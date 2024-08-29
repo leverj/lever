@@ -1,0 +1,20 @@
+{
+  "version": "1.0.0",
+  "$schema": "node_modules/lerna/schemas/lerna-schema.json",
+  "npmClient": "yarn",
+  "ignoreChanges": [
+    "**/test/**",
+    "**/bin/**",
+    "**/deployment/**",
+    "**/.*",
+    "**/*.md"
+  ],
+  "command": {
+    "publish": {
+      "allowBranch": [
+        "main",
+        "dev"
+      ]
+    }
+  }
+}

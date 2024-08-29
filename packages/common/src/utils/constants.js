@@ -1,0 +1,10 @@
+import {ZeroAddress, ZeroHash} from 'ethers'
+import {uint} from './ethereum.js'
+
+
+export const MinHash = ZeroHash
+export const MaxHash = `0x${'f'.repeat(64)}`
+export const ETH = ZeroAddress
+export const address_0 = ZeroAddress
+export const bytes32_0 = ZeroHash
+export const zero = uint(MinHash)
