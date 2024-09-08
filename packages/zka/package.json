@@ -1,0 +1,21 @@
+{
+  "name": "@leverj/zka",
+  "version": "1.2.0",
+  "license": "UNLICENSED",
+  "type": "module",
+  "main": "./src/index.js",
+  "scripts": {
+    "test": "npx mocha"
+  },
+  "dependencies": {
+    "@leverj/common": "1.2.0",
+    "axios": "^1.7.7",
+    "ephemeral-cache": "^1.1.0",
+    "ethers": "^6.13.2",
+    "lodash-es": "^4.17.21",
+    "socket.io-client": "^4.7.5"
+  },
+  "devDependencies": {
+    "sinon": "^19.0.2"
+  }
+}

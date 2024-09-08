@@ -1,5 +1,4 @@
 import exitHook from 'async-exit-hook'
-import {Contract} from 'ethers'
 import {List} from 'immutable'
 import {merge} from 'lodash-es'
 
@@ -7,58 +6,48 @@ import {merge} from 'lodash-es'
  * a ContractTracker connects to a contract deployed in an Ethereum-like chain and tracks its events
  */
 export class ContractTracker {
-  static defaults({contract, topics}) {
-    const result = {marker: {block: 0, logIndex: -1, blockWasProcessed: false}}
-    if (contract) result.abi = contract.interface.format()
-    if (topics) result.topics = [topics]
-    return result
+  static of(chainId, contract, store, polling, onEvent = logger.log, logger = console) {
+    const key = [chainId, contract.target].join(':')
+    store.update(key, {
+      marker: {block: 0, logIndex: -1, blockWasProcessed: false}
+    })
+    return new this(contract, store, key, polling, onEvent, logger)
   }
 
-  static from(store, chainId, address, provider, defaults, polling, processEvent = logger.log, logger = console) {
-    const key = [chainId, address].join(':')
-    store.update(key, this.defaults(defaults))
-    return new this(store, chainId, address, provider, polling, processEvent, logger)
-  }
-
-  constructor(store, chainId, address, provider, polling, processEvent, logger) {
+  constructor(contract, store, key, polling, onEvent, logger) {
+    this.contract = contract
+    this.topics = [contract.interface.fragments.filter(_ => _.type === 'event').map(_ => _.topicHash)]
     this.store = store
-    this.key = [chainId, address].join(':')
-    this.address = address
-    this.provider = provider
+    this.key = key
     this.polling = polling
-    this.processEvent = processEvent
+    this.onEvent = onEvent
     this.logger = logger
     this.isRunning = false
-    this.load()
     exitHook(() => this.stop())
   }
+  get address() { return this.contract.target }
+  get provider() { return this.contract.runner.provider }
   get interface() { return this.contract.interface }
+  get marker() { return this.store.get(this.key).marker }
   get lastBlock() { return this.marker.block }
 
-  load() {
-    const {abi, topics, marker} = this.store.get(this.key)
-    this.contract = new Contract(this.address, abi, this.provider)
-    this.topics = topics
-    this.marker = marker
-  }
-
-  update(state) { this.store.update(this.key, state) }
-  updateMarker(state) { this.update({marker: merge(this.marker, state)}) }
+  async update(state) { return this.store.update(this.key, state) }
+  async updateMarker(state) { return this.update({marker: merge(this.marker, state)}) }
 
   async start() {
-    if (!this.isRunning) {
-      this.logger.log(`starting tracker [${this.key}]`)
-      this.isRunning = true
-      await this.pollForEvents()
-    }
+    if (this.isRunning) return
+
+    this.logger.log(`starting tracker [${this.key}]`)
+    this.isRunning = true
+    await this.pollForEvents()
   }
 
   stop() {
-    if (this.isRunning) {
-      this.logger.log(`stopping tracker [${this.key}]`)
-      this.isRunning = false
-      if (this.pollingTimer) clearTimeout(this.pollingTimer)
-    }
+    if (!this.isRunning) return
+
+    this.logger.log(`stopping tracker [${this.key}]`)
+    this.isRunning = false
+    if (this.pollingTimer) clearTimeout(this.pollingTimer)
   }
 
   fail(e) {
@@ -92,7 +81,7 @@ export class ContractTracker {
       map((value, _) => value.sortBy(_ => _.logIndex).toArray()).
       toKeyedSeq()
     for (let [block, blockLogs] of logsPerBlock) await this.onNewBlock(block, blockLogs)
-    if (this.lastBlock < toBlock) this.updateMarker({block: toBlock, blockWasProcessed: true})
+    if (this.lastBlock < toBlock) await this.updateMarker({block: toBlock, blockWasProcessed: true})
   }
 
   async getLogsFor(fromBlock, toBlock, topics) {
@@ -104,13 +93,13 @@ export class ContractTracker {
   }
 
   async onNewBlock(block, logs) {
-    this.updateMarker(block > this.lastBlock ? {block, logIndex: -1, blockWasProcessed: false} : {blockWasProcessed: false})
+    await this.updateMarker(block > this.lastBlock ? {block, logIndex: -1, blockWasProcessed: false} : {blockWasProcessed: false})
     for (let each of logs) {
       const event = this.toEvent(each)
-      await this.processEvent(event)
-      this.updateMarker({logIndex: each.logIndex})
+      await this.onEvent(event)
+      await this.updateMarker({logIndex: each.logIndex})
     }
-    this.updateMarker({blockWasProcessed: true})
+    await this.updateMarker({blockWasProcessed: true})
   }
 
   toEvent(log) {

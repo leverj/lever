@@ -1,30 +1,19 @@
 {
   "name": "@leverj/common",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "license": "UNLICENSED",
   "type": "module",
-  "exports": {
-    "./Crypto": "./src/utils/Crypto.js",
-    "./utils": "./src/utils/index.js",
-    "./zka": "./src/zka/index.js",
-    "./expectations": "./test/expectations.js"
-  },
+  "main": "./src/index.js",
   "scripts": {
-    "test": "npx mocha",
-    "coverage": "NODE_OPTIONS='--experimental-loader @istanbuljs/esm-loader-hook' npx nyc mocha",
-    "dependency:check": "npx depcheck"
+    "test": "npx mocha"
   },
   "dependencies": {
-    "axios": "^1.7.2",
-    "ephemeral-cache": "^1.1.0",
-    "ethers": "^6.13.1",
+    "ethers": "^6.13.2",
     "immutable": "^5.0.0-rc.1",
     "lodash-es": "^4.17.21",
-    "socket.io-client": "^4.7.5",
     "uuid": "^10.0.0"
   },
   "devDependencies": {
-    "randomhex": "^0.1.5",
-    "sinon": "^18.0.0"
+    "randomhex": "^0.1.5"
   }
 }

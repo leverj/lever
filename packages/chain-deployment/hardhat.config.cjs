@@ -1,16 +1,17 @@
-require('@nomiclabs/hardhat-ethers')
+require('@nomicfoundation/hardhat-ethers')
+require('@nomicfoundation/hardhat-network-helpers')
+// require('@nomicfoundation/hardhat-verify')
 require('@nomiclabs/hardhat-etherscan')
-require('hardhat-gas-reporter')
-
+// require('hardhat-deploy')
+require('hardhat-deploy-ethers')
+// require('hardhat-switch-network')
 
 module.exports = {
-  solidity: {
-    version: '0.8.20',
-    settings: {
-      optimizer: {
-        enabled: true,
-        runs: 200,
-      },
+  solidity: '0.8.24',
+  networks: {
+    hardhat: {
+      gasPrice: 0,
+      initialBaseFeePerGas: 0,
     },
   },
 }

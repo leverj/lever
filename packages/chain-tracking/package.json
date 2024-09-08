@@ -1,27 +1,25 @@
 {
   "name": "@leverj/chain-tracking",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "license": "UNLICENSED",
   "type": "module",
   "main": "./src/index.js",
   "exports": {
     ".": "./src/index.js",
-    "./test": "./test/help/index.js"
+    "./test": "./test/help.js"
   },
   "scripts": {
-    "test": "npx hardhat compile && npx mocha",
-    "dependency:check": "npx depcheck"
+    "test": "npx mocha"
   },
   "dependencies": {
+    "@leverj/common": "1.2.0",
     "async-exit-hook": "^2.0.1",
     "ethers": "^6.13.2",
     "immutable": "^5.0.0-rc.1",
     "lodash-es": "^4.17.21"
   },
   "devDependencies": {
-    "@leverj/common": "^1.0.0",
-    "@nomiclabs/hardhat-ethers": "^3.0.0-beta.0",
-    "@openzeppelin/contracts": "^5.0.2",
-    "hardhat": "^2.22.6"
+    "@leverj/chain-deployment": "1.2.0",
+    "@openzeppelin/contracts": "^5.0.2"
   }
 }
