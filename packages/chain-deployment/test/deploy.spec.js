@@ -13,7 +13,7 @@ import config from '../config.js'
 
 describe('deploy to multiple chains', () => {
   const chains = ['holesky', 'sepolia']
-  let processes
+  let processes = []
 
   before(async () => {
     const {ports, providerURLs} = configureDeployment()
@@ -49,7 +49,7 @@ describe('deploy to multiple chains', () => {
   }
 
   it('can deploy contracts to each chain', async () => {
-    rmSync(`${config.deploymentDir}/env/test`, {recursive: true, force: true})
+    rmSync(`${config.deploymentDir}/test`, {recursive: true, force: true})
     const deploy = Deploy.from(config, logger)
 
     for (let chain of chains) {
