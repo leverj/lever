@@ -11,6 +11,5 @@
     "convict": "^6.2.4",
     "convict-format-with-validator": "^6.2.0",
     "lodash-es": "^4.17.21"
-  },
-  "gitHead": "c0876090e0f1db46873af75e7e4fffd3f25b4d08"
+  }
 }
