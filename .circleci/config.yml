@@ -9,5 +9,6 @@ jobs:
     docker:
       - image: cimg/node:20.15.1
     steps:
+      - checkout
       - run: yarn
       - run: yarn test
