@@ -11,7 +11,7 @@
     "packages/*"
   ],
   "scripts": {
-    "test": "yarn workspaces foreach --since -pR run test",
+    "test": "yarn workspaces foreach --all run test",
     "publish:prerelease": "up=prerelease yarn publish:up",
     "publish:patch": "up=patch yarn publish:up",
     "publish:minor": "up=minor yarn publish:up",
@@ -19,7 +19,6 @@
     "publish:up": "lerna version $up --force-publish --exact --git-tag-version --push --yes && lerna publish from-git --yes"
   },
   "devDependencies": {
-    "depcheck": "^1.4.7",
     "expect": "^29.7.0",
     "lerna": "^8.1.8",
     "mocha": "^10.7.3",
