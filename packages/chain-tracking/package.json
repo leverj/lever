@@ -1,6 +1,6 @@
 {
   "name": "@leverj/chain-tracking",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "license": "UNLICENSED",
   "type": "module",
   "main": "./src/index.js",
@@ -12,14 +12,14 @@
     "test": "npx mocha"
   },
   "dependencies": {
-    "@leverj/common": "1.2.1",
+    "@leverj/common": "1.2.2",
     "async-exit-hook": "^2.0.1",
     "ethers": "^6.13.2",
     "immutable": "^5.0.0-rc.1",
     "lodash-es": "^4.17.21"
   },
   "devDependencies": {
-    "@leverj/chain-deployment": "1.2.1",
+    "@leverj/chain-deployment": "1.2.2",
     "@openzeppelin/contracts": "^5.0.2"
   }
 }
