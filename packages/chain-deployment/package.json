@@ -1,6 +1,6 @@
 {
   "name": "@leverj/chain-deployment",
-  "version": "1.3.0",
+  "version": "2.0.0",
   "license": "UNLICENSED",
   "type": "module",
   "exports": {
@@ -27,9 +27,9 @@
     "solidity-coverage": "^0.8.13"
   },
   "devDependencies": {
-    "@leverj/config": "1.3.0",
+    "@leverj/config": "2.0.0",
     "viem": "^2.21.9",
     "wait-on": "^8.0.1"
   },
-  "gitHead": "7389f747f14019d7ee25842d2af1c9023e9b6ebf"
+  "gitHead": "c0876090e0f1db46873af75e7e4fffd3f25b4d08"
 }
