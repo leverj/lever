@@ -1,0 +1,13 @@
+# Javascript Node CircleCI 2.1 configuration file
+#
+# Check https://circleci.com/docs/2.1/language-javascript/ for more details
+#
+version: 2.1
+
+jobs:
+  tests:
+    docker:
+      - image: cimg/node:20.15.1
+    steps:
+      - run: yarn
+      - run: yarn test
