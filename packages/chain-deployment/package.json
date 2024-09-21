@@ -7,7 +7,7 @@
     ".": "./src/index.js",
     "./config.schema": "./config.schema.js",
     "./hardhat.config": "./hardhat.config.cjs",
-    "./test": "./test/help/index.js"
+    "./hardhat.help": "./hardhat.help.js"
   },
   "scripts": {
     "test": "npx mocha"
