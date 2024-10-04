@@ -19,7 +19,7 @@ export async function configure(schema, postLoad = _ => _, options = {}) {
   const override = async (fileName) => {
     const path = `${configDir}/${fileName}`
     if (!existsSync(path)) return
-    const {default: override} = await import(path)
+    const {default: override} = await import(`${path}?update=${Date.now()}`) // note: cache invalidation for dynamic imports
     config.load(override || {})
   }
 
