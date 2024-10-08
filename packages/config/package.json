@@ -1,6 +1,6 @@
 {
   "name": "@leverj/config",
-  "version": "5.0.1",
+  "version": "5.0.2",
   "license": "UNLICENSED",
   "type": "module",
   "main": "src/main.js",
