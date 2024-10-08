@@ -3,7 +3,7 @@
   "version": "5.0.0",
   "license": "UNLICENSED",
   "type": "module",
-  "main": "src/index.js",
+  "main": "src/main.js",
   "scripts": {
     "test": "npx mocha"
   },

@@ -1,17 +1,9 @@
 import convict from 'convict'
 import convict_format_with_validator from 'convict-format-with-validator'
-// import {expand} from '@dotenvx/dotenvx'
-//    "@dotenvx/dotenvx": "^1.13.2",
 import {get, set} from 'lodash-es'
 import {existsSync} from 'node:fs'
 
 convict.addFormats(convict_format_with_validator)
-convict.addFormat({
-  name: 'json',
-  // validate: function (val) { try { typeof val === 'object' || JSON.parse(val) } catch (e) { throw Error('must be a valid json string') } },
-  validate: (val) => { if (typeof val !== 'object') throw Error('must be a valid json string') },
-  coerce: (val) => JSON.parse(val),
-})
 
 export async function configure(schema, postLoad = _ => _, options = {}) {
   const configDir = `${options?.env?.PWD || process.env.PWD}/config`
@@ -24,7 +16,6 @@ export async function configure(schema, postLoad = _ => _, options = {}) {
   }
 
   const env = config.get('env')
-  // await override('defaults.js')
   await override(`${env}.js`)
   await override(`local-${env}.js`)
   for (const each of schema.dependencies || []) inferDependency(config._instance, each)
