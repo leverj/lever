@@ -4,6 +4,16 @@ import {get, set} from 'lodash-es'
 import {existsSync} from 'node:fs'
 
 convict.addFormats(convict_format_with_validator)
+convict.addFormat({
+  name: 'json',
+  validate: (value) => { if (typeof value !== 'object') throw Error('must be a valid json string') },
+  coerce: (value) => JSON.parse(value),
+})
+convict.addFormat(
+  'derived',
+  value => value /* validate proper path here */,
+  (value, config) => value.replace(/\$\{([\w\.]+)}/g, (_, match) => config.get(match))
+)
 
 export async function configure(schema, postLoad = _ => _, options = {}) {
   const configDir = `${options?.env?.PWD || process.env.PWD}/config`
