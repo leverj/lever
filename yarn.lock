@@ -736,6 +736,15 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@leverj/telegram@workspace:packages/telegram":
+  version: 0.0.0-use.local
+  resolution: "@leverj/telegram@workspace:packages/telegram"
+  dependencies:
+    "@leverj/common": "npm:5.0.2"
+    axios: "npm:^1.7.2"
+  languageName: unknown
+  linkType: soft
+
 "@leverj/zka@workspace:packages/zka":
   version: 0.0.0-use.local
   resolution: "@leverj/zka@workspace:packages/zka"
@@ -2454,7 +2463,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"axios@npm:^1.7.7":
+"axios@npm:^1.7.2, axios@npm:^1.7.7":
   version: 1.7.7
   resolution: "axios@npm:1.7.7"
   dependencies:
