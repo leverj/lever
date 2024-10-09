@@ -1,4 +1,4 @@
-import {Deploy} from 'packages/chain-deployment/src/index.js'
+import {Deploy} from '@leverj/chain-deployment'
 import {logger} from '@leverj/common'
 import {execSync} from 'node:child_process'
 import {hideBin} from 'yargs/helpers'

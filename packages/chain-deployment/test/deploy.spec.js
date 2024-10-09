@@ -12,7 +12,6 @@ import waitOn from 'wait-on'
 import config from '../config.js'
 
 describe('deploy to multiple chains', () => {
-  const chains = ['holesky', 'sepolia']
   let processes = []
 
   before(async () => {
@@ -28,6 +27,7 @@ describe('deploy to multiple chains', () => {
   })
 
   const configureDeployment = () => {
+    const chains = config.chains
     config.contracts = Map(zip(
       chains,
       chains.map(_ => ({Bank: {params: [networks[_].id, info.name]}}))
@@ -40,7 +40,7 @@ describe('deploy to multiple chains', () => {
 
   const launchEvms = async (ports, providerURLs) => {
     const processes = []
-    for (let [chain, port, providerURL] of zip(chains, ports, providerURLs)) {
+    for (let [chain, port, providerURL] of zip(config.chains, ports, providerURLs)) {
       const evm = exec(`npx hardhat node --config ${import.meta.dirname}/hardhat/${chain}.config.cjs --port ${port}`)
       await waitOn({resources: [providerURL], timeout: 10_000})
       processes.push(evm)
@@ -52,7 +52,7 @@ describe('deploy to multiple chains', () => {
     rmSync(`${config.deploymentDir}/test`, {recursive: true, force: true})
     const deploy = Deploy.from(config, logger)
 
-    for (let chain of chains) {
+    for (let chain of config.chains) {
       const pre_deployed = deploy.store.get(chain).contracts
       expect(pre_deployed.Bank).not.toBeDefined()
 

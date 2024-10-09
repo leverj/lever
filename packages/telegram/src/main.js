@@ -7,7 +7,7 @@ const APP_INFO = typeof process !== 'undefined' && process.env.TELEGRAM_APP_INFO
 const msg = (message, error) => `${APP_INFO}\n ${message}\n${error ? error.stack : ''}`
 
 
-export const main = {
+export const telegram = {
   post: async (message, error) => {
     if (!CHAT_ID || !TOKEN_ID) return logger.log('TELEGRAM MESSAGE', msg(message, error))
     const url = `https://api.telegram.org/bot${TOKEN_ID}/sendMessage`
