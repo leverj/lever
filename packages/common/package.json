@@ -1,6 +1,6 @@
 {
   "name": "@leverj/common",
-  "version": "5.0.6",
+  "version": "5.0.7",
   "license": "UNLICENSED",
   "type": "module",
   "main": "./src/index.js",
