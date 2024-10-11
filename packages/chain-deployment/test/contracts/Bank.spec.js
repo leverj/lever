@@ -1,4 +1,4 @@
-import {accounts, chainId, deployContract} from '@leverj/chain-deployment/hardhat.help'
+import {accounts, chainId, deployContract} from '@leverj/lever.chain-deployment/hardhat.help'
 import {expect} from 'expect'
 
 describe('Bank', () => {

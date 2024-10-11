@@ -1,5 +1,5 @@
-import {provider} from '@leverj/chain-deployment/hardhat.help'
-import {ERC20} from '@leverj/chain-tracking/test'
+import {provider} from '@leverj/lever.chain-deployment/hardhat.help'
+import {ERC20} from '@leverj/lever.chain-tracking/test'
 import {expect} from 'expect'
 import {getCreationBlock} from '../src/evm.js'
 

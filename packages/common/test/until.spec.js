@@ -1,5 +1,5 @@
 import {expect} from 'expect'
-import {until} from '@leverj/common'
+import {until} from '@leverj/lever.common'
 
 describe('until', () => {
   const interval = 10, timeout = 100 * interval

@@ -1,6 +1,6 @@
 import info from '../package.json' assert {type: 'json'}
-import {Deploy, networks} from '@leverj/chain-deployment'
-import {logger} from '@leverj/common'
+import {Deploy, networks} from '@leverj/lever.chain-deployment'
+import {logger} from '@leverj/lever.common'
 import {isAddress} from 'ethers'
 import {expect} from 'expect'
 import {Map} from 'immutable'

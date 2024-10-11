@@ -1,4 +1,4 @@
-import {authenticate, Authenticator} from '@leverj/zka'
+import {authenticate, Authenticator} from '@leverj/lever.zka'
 import {expect} from 'expect'
 
 describe('Authenticator', () => {

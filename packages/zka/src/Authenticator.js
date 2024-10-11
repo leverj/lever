@@ -1,4 +1,4 @@
-import {affirm} from '@leverj/common'
+import {affirm} from '@leverj/lever.common'
 import {computeAddress, getBytes, hashMessage, recoverAddress, SigningKey} from 'ethers'
 
 export const SIGN = 'SIGN'

@@ -1,4 +1,4 @@
-import {configure} from '@leverj/config'
+import {configure} from '@leverj/lever.config'
 import {expect} from 'expect'
 import {schema} from './fixtures/override/config.schema.js'
 import {rmSync, writeFileSync} from 'node:fs'

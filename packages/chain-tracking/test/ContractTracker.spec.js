@@ -1,7 +1,7 @@
-import {accounts, chainId} from '@leverj/chain-deployment/hardhat.help'
-import {ContractTracker} from '@leverj/chain-tracking'
-import {ERC20, expectEventsToMatch} from '@leverj/chain-tracking/test'
-import {InMemoryStore, logger} from '@leverj/common'
+import {accounts, chainId} from '@leverj/lever.chain-deployment/hardhat.help'
+import {ContractTracker} from '@leverj/lever.chain-tracking'
+import {ERC20, expectEventsToMatch} from '@leverj/lever.chain-tracking/test'
+import {InMemoryStore, logger} from '@leverj/lever.common'
 import {ZeroAddress as ETH} from 'ethers'
 import {setTimeout} from 'node:timers/promises'
 

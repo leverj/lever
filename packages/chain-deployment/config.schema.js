@@ -1,5 +1,5 @@
+import {networks} from '@leverj/lever.chain-deployment/networks'
 import {Map, Set} from 'immutable'
-import {networks} from './src/networks.js'
 
 export const schema = {
   env: {

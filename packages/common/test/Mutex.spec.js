@@ -1,5 +1,5 @@
 import {expect} from 'expect'
-import {CapturingLogger, Mutex} from '@leverj/common'
+import {CapturingLogger, Mutex} from '@leverj/lever.common'
 
 describe('Mutex', () => {
   const task1 = async (array) => { await array.push(1); await array.push(2) }

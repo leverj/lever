@@ -1,4 +1,4 @@
-import {JsonStore} from '@leverj/common'
+import {JsonStore} from '@leverj/lever.common'
 import {default as hardhat} from 'hardhat'
 import {Map} from 'immutable'
 import {execSync} from 'node:child_process'

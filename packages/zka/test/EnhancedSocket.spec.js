@@ -1,4 +1,4 @@
-import {EnhancedSocket} from '@leverj/zka'
+import {EnhancedSocket} from '@leverj/lever.zka'
 import {expect} from 'expect'
 import sinon from 'sinon'
 

@@ -1,10 +1,11 @@
 {
-  "name": "@leverj/chain-deployment",
-  "version": "5.0.7",
+  "name": "@leverj/lever.chain-deployment",
+  "version": "0.1.0",
   "license": "UNLICENSED",
   "type": "module",
   "exports": {
     ".": "./src/index.js",
+    "./networks": "./src/networks.js",
     "./config.schema": "./config.schema.js",
     "./hardhat.config": "./hardhat.config.cjs",
     "./hardhat.help": "./hardhat.help.js"
@@ -27,7 +28,7 @@
     "solidity-coverage": "^0.8.13"
   },
   "devDependencies": {
-    "@leverj/config": "5.0.7",
+    "@leverj/lever.config": "0.1.0",
     "viem": "^2.21.21",
     "wait-on": "^8.0.1"
   }

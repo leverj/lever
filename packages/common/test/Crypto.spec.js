@@ -1,5 +1,5 @@
 import {expect} from 'expect'
-import {Crypto, ETH, uint} from '@leverj/common'
+import {Crypto, ETH, uint} from '@leverj/lever.common'
 
 describe('Crypto', () => {
   const aNumber = uint(Number.MAX_SAFE_INTEGER)

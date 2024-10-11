@@ -1,5 +1,5 @@
 import {expect} from 'expect'
-import {affirm, affirmExists} from '@leverj/common'
+import {affirm, affirmExists} from '@leverj/lever.common'
 
 describe('affirm', () => {
   it('should pass', () => {

@@ -10,7 +10,7 @@ import {
   toNearestEndOfDuration,
   toNearestStartOfDuration,
   week,
-} from '@leverj/common'
+} from '@leverj/lever.common'
 
 const today = Date.UTC(2021, 6, 1)
 const tomorrow = today + 1 * day

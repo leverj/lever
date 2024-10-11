@@ -1,11 +1,11 @@
 {
-  "name": "@leverj/telegram",
-  "version": "5.0.7",
+  "name": "@leverj/lever.telegram",
+  "version": "0.1.0",
   "license": "UNLICENSED",
   "type": "module",
   "main": "src/main.js",
   "dependencies": {
-    "@leverj/common": "5.0.7",
+    "@leverj/lever.common": "0.1.0",
     "axios": "^1.7.7"
   }
 }

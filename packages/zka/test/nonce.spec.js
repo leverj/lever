@@ -1,4 +1,4 @@
-import * as nonce from '@leverj/zka'
+import * as nonce from '@leverj/lever.zka'
 import {expect} from 'expect'
 
 describe('nonce', () => {

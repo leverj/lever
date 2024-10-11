@@ -1,4 +1,4 @@
-import {Rest, SIGN} from '@leverj/zka'
+import {Rest, SIGN} from '@leverj/lever.zka'
 import axios from 'axios'
 import {expect} from 'expect'
 import sinon from 'sinon'

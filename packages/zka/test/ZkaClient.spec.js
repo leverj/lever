@@ -1,4 +1,4 @@
-import {NONCE, ZkaClient} from '@leverj/zka'
+import {NONCE, ZkaClient} from '@leverj/lever.zka'
 import {expect} from 'expect'
 
 describe('ZkaClient', () => {
