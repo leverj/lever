@@ -21,11 +21,10 @@ export class JsonStore {
   constructor(path, type) {
     ensureExistsSync(path)
     this.file = `${path}/${type}.json`
-    this.cache = existsSync(this.file) ?
+    this.cache = this.exists ?
       new InMemoryStore(JSON.parse(readFileSync(this.file, 'utf8'))) :
       new InMemoryStore()
   }
-  get exists() { return existsSync(this.file) }
   get(key, defaults) { return this.cache.get(key.toString(), defaults) }
   set(key, value) { this.cache.set(key.toString(), value); this.save() }
   update(key, value) { this.cache.update(key.toString(), value); this.save() }
@@ -37,4 +36,5 @@ export class JsonStore {
   clear() { this.cache.clear(); this.save() }
   toObject() { return this.cache.toObject() }
   save() { writeFileSync(this.file, JSON.stringify(this.toObject(), null, 2)) }
+  get exists() { return existsSync(this.file) }
 }

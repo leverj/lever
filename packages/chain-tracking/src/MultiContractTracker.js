@@ -10,9 +10,9 @@ import {getCreationBlock} from './evm.js'
  * a MultiContractTracker connects to multiple contracts deployed in an Ethereum-like chain and tracks their respective events
  */
 export class MultiContractTracker {
-  static from(chainId, provider, store, polling, processEvent = logger.log, logger = console) {
+  static async of(chainId, provider, store, polling, processEvent = logger.log, logger = console) {
     const key = chainId
-    store.update(key, {
+    await store.update(key, {
       marker: {block: 0, logIndex: -1, blockWasProcessed: false},
       abis: [],
       contracts: [],
@@ -74,7 +74,7 @@ export class MultiContractTracker {
 
   async onboard(contract) {
     const {chainId, provider, polling, processEvent, logger, lastBlock} = this
-    const tracker = ContractTracker.of(chainId, contract, new InMemoryStore(), polling, processEvent, logger)
+    const tracker = await ContractTracker.of(chainId, contract, new InMemoryStore(), polling, processEvent, logger)
     const creationBlock = await getCreationBlock(provider, contract.target).catch(_ => 0)
     await tracker.processLogs(creationBlock, lastBlock)
     await this.update({

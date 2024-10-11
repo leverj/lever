@@ -6,9 +6,9 @@ import {merge} from 'lodash-es'
  * a ContractTracker connects to a contract deployed in an Ethereum-like chain and tracks its events
  */
 export class ContractTracker {
-  static of(chainId, contract, store, polling, onEvent = logger.log, logger = console) {
+  static async of(chainId, contract, store, polling, onEvent = logger.log, logger = console) {
     const key = [chainId, contract.target].join(':')
-    store.update(key, {
+    await store.update(key, {
       marker: {block: 0, logIndex: -1, blockWasProcessed: false}
     })
     return new this(contract, store, key, polling, onEvent, logger)
