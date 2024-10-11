@@ -10,9 +10,9 @@ export class InMemoryStore {
   update(key, value) { this.set(key, merge(this.get(key, {}), value)) }
   delete(key) { this.map.delete(key) }
   has(key) { return this.map.has(key) }
-  entries() { return this.map.entries() }
-  keys() { return this.map.keys() }
-  values() { return this.map.values() }
+  entries() { return this.map.entrySeq() }
+  keys() { return this.map.keySeq().toArray() }
+  values() { return this.map.valueSeq().toArray() }
   clear() { this.map.clear() }
   toObject() { return this.map.toJS() }
 }
