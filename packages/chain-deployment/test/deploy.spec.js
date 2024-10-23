@@ -19,6 +19,8 @@ describe('deploy to multiple chains', () => {
     processes = await launchEvms(ports, providerURLs)
   })
 
+  beforeEach(() => rmSync(`${config.deploymentDir}/test`, {recursive: true, force: true}))
+
   after(async () => {
     for (let each of processes) {
       each.kill()
@@ -49,7 +51,6 @@ describe('deploy to multiple chains', () => {
   }
 
   it('can deploy contracts to each chain', async () => {
-    rmSync(`${config.deploymentDir}/test`, {recursive: true, force: true})
     const deploy = Deploy.from(config, logger)
 
     for (let chain of config.chains) {

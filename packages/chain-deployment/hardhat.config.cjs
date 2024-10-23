@@ -4,7 +4,6 @@ require('@nomicfoundation/hardhat-verify')
 require('hardhat-deploy-ethers')
 
 module.exports = {
-  solidity: '0.8.24',
   networks: {
     hardhat: {
       gasPrice: 0,
@@ -14,4 +13,5 @@ module.exports = {
   sourcify: {
     enabled: true,
   },
+  solidity: '0.8.24',
 }
