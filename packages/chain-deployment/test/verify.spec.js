@@ -3,8 +3,6 @@ import {configure} from '@leverj/lever.config'
 import {CapturingLogger} from '@leverj/lever.common'
 import {getAddress, JsonRpcProvider, Wallet} from 'ethers'
 import {expect} from 'expect'
-import {default as hardhat} from 'hardhat'
-import nock from 'nock'
 import {exec} from 'node:child_process'
 import {rmSync} from 'node:fs'
 import {setTimeout} from 'node:timers/promises'
@@ -16,7 +14,7 @@ describe('verify', () => {
 
   beforeEach(async () => {
     config = await configure(schema, postLoad, {env: {NODE_ENV: 'test'}})
-    rmSync(`${config.deploymentDir}/test`, {recursive: true, force: true})
+    // rmSync(`${config.deploymentDir}/test`, {recursive: true, force: true})
   })
 
   it('attempt to verify unsupported chain', async () => {
@@ -35,7 +33,7 @@ describe('verify', () => {
     }
   })
 
-  it.skip('verify supported chain', async () => {
+  it('verify supported chain', async () => {
     const chain = 'sepolia', chainId = Number(networks[chain].id)
     config.contracts = {[chain]: {Bank: {params: [networks[chain].id, 'whatever']}}}
 
@@ -48,35 +46,14 @@ describe('verify', () => {
     const deploy = Deploy.from(config, logger)
 
     await deploy.to(chain)
-    const address = deploy.store.get(chain).contracts.Bank.address
-
-    nock(hardhat.config.sourcify.apiUrl).get(`/check-all-by-addresses`).reply(200, [
-      {address, status: false},
-    ])
-    nock(hardhat.config.sourcify.apiUrl).post(`/verify`).reply(200, [
-      {
-        result: [
-          {
-            address,
-            chainId,
-            status: 'perfect',
-            libraryMap: {},
-          },
-        ],
-      },
-    ])
     logger.clear()
     await deploy.to(chain, {verify: true})
-    console.log('>'.repeat(50), logger.toObject())
+    // console.error(logger.errors)
+    expect(logger.errors).toHaveLength(0)
 
-    nock(hardhat.config.sourcify.apiUrl).get(`/check-all-by-addresses?addresses=${address}&chainIds=${chainId}`).reply(200, [
-      {
-        address,
-        chainIds: [{chainId, status: 'perfect'}],
-      },
-    ])
-    logger.clear()
-    await deploy.to(chain, {verify: true})
-    console.log('>'.repeat(50), logger.toObject())
+    // logger.clear()
+    // await deploy.to(chain, {verify: true})
+    // console.log('>'.repeat(50), logger.toObject())
+    // expect(logger.errors).toHaveLength(0)
   })
 })
