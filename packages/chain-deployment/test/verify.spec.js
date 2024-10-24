@@ -18,7 +18,7 @@ describe('verify', () => {
     config = await configure(schema, postLoad, {env: {NODE_ENV: 'test', CHAINS: [chain]}})
     config.contracts = {[chain]: {Bank: {params: [networks[chain].id, 'whatever']}}}
     evm = exec(`npx hardhat node`)
-    await waitOn({resources: [config.networks[chain].providerURL], timeout: 10000})
+    await waitOn({resources: [networks[chain].providerURL], timeout: 10000})
     rmSync(`${config.deploymentDir}/test`, {recursive: true, force: true})
   })
 

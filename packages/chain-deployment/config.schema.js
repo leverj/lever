@@ -1,6 +1,3 @@
-import {networks} from '@leverj/lever.chain-deployment/networks'
-import {Map, Set} from 'immutable'
-
 export const schema = {
   env: {
     doc: 'The application environment',
@@ -23,16 +20,8 @@ export const schema = {
       env: 'DEPLOYER_PRIVATE_KEY',
     },
   },
-  chains: {
-    doc: 'all possible chains to deploy to',
-    format: Array,
-    default: ['mainnet'],
-    env: 'CHAINS',
-  },
 }
 
 export function postLoad(config) {
-  const chains = Set(config.chains)
-  config.networks = Map(networks).filter(_ => chains.has(_.label)).toJS()
   return config
 }

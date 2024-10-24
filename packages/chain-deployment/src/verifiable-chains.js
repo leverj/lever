@@ -284,3 +284,5 @@ export const builtinChains = [
   // Please read this to learn how to manually add support for custom networks:
   // https://github.com/NomicFoundation/hardhat/tree/main/packages/hardhat-verify#adding-support-for-other-networks
 ]
+
+export const verifiableChains = new Set(builtinChains.map(_ => _.chainId))
