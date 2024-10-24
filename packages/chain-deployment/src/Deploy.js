@@ -4,11 +4,9 @@ import {execSync} from 'node:child_process'
 import {setTimeout} from 'node:timers/promises'
 import {Sourcify} from '@nomicfoundation/hardhat-verify/sourcify.js'
 import {networks} from './networks.js'
-import {builtinChains} from './verifiable-chains.js'
-// import {verifiableChains} from './verifiable-chains.js'
+import {verifiableChains} from './verifiable-chains.js'
 
 const {ethers: {deployContract, JsonRpcProvider, Wallet}} = hardhat
-export const verifiableChains = new Set(builtinChains.map(_ => _.chainId))
 
 export class Deploy {
   static from(config, logger = logger) {

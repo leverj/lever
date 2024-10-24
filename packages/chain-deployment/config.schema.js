@@ -23,5 +23,6 @@ export const schema = {
 }
 
 export function postLoad(config) {
+  config.networks = {}
   return config
 }
