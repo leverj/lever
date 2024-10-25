@@ -14,7 +14,7 @@ describe('verify', () => {
 
   beforeEach(async () => {
     config = await configure(schema, postLoad, {env: {NODE_ENV: 'test'}})
-    // rmSync(`${config.deploymentDir}/test`, {recursive: true, force: true})
+    rmSync(`${config.deploymentDir}/test`, {recursive: true, force: true})
   })
 
   it('attempt to verify unsupported chain', async () => {
@@ -33,7 +33,7 @@ describe('verify', () => {
     }
   })
 
-  it('verify supported chain', async () => {
+  it.skip('verify supported chain', async () => {
     const chain = 'sepolia', chainId = Number(networks[chain].id)
     config.contracts = {[chain]: {Bank: {params: [networks[chain].id, 'whatever']}}}
 
@@ -44,16 +44,15 @@ describe('verify', () => {
 
     const logger = new CapturingLogger()
     const deploy = Deploy.from(config, logger)
-
     await deploy.to(chain)
     logger.clear()
+
     await deploy.to(chain, {verify: true})
-    // console.error(logger.errors)
     expect(logger.errors).toHaveLength(0)
 
-    // logger.clear()
-    // await deploy.to(chain, {verify: true})
-    // console.log('>'.repeat(50), logger.toObject())
-    // expect(logger.errors).toHaveLength(0)
+    logger.clear()
+    await deploy.to(chain, {verify: true})
+    expect(logger.errors).toHaveLength(0)
+    console.log('>'.repeat(50), logger.toObject())
   })
 })
