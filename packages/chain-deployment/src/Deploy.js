@@ -102,3 +102,4 @@ export class Deploy {
     // }
   }
 }
+//find . -depth -name "*.ts" -exec sh -c 'f="{}"; mv -- "$f" "${f%.ts}.js"' \;
