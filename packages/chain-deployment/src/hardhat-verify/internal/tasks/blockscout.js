@@ -14,8 +14,6 @@ import {
   TASK_VERIFY_BLOCKSCOUT,
   TASK_VERIFY_BLOCKSCOUT_ATTEMPT_VERIFICATION,
   TASK_VERIFY_BLOCKSCOUT_RESOLVE_ARGUMENTS,
-  TASK_VERIFY_ETHERSCAN_ATTEMPT_VERIFICATION,
-  TASK_VERIFY_ETHERSCAN_GET_MINIMAL_INPUT,
   TASK_VERIFY_GET_CONTRACT_INFORMATION,
 } from '../task-names.js'
 import {getCompilerVersions, resolveLibraries} from '../utilities.js'
@@ -85,12 +83,13 @@ ${contractURL}
         },
       )
 
-      const minimalInput = await run(
-        TASK_VERIFY_ETHERSCAN_GET_MINIMAL_INPUT,
-        {
-          sourceName: contractInformation.sourceName,
-        },
-      )
+      const minimalInput = null //fixme
+      // const minimalInput = await run(
+      //   TASK_VERIFY_ETHERSCAN_GET_MINIMAL_INPUT,
+      //   {
+      //     sourceName: contractInformation.sourceName,
+      //   },
+      // )
 
       // First, try to verify the contract using the minimal input
       const {success: minimalInputVerificationSuccess} =
@@ -173,30 +172,5 @@ subtask(TASK_VERIFY_BLOCKSCOUT_RESOLVE_ARGUMENTS)
         contractFQN: contract,
         force,
       }
-    },
-  )
-
-subtask(TASK_VERIFY_BLOCKSCOUT_ATTEMPT_VERIFICATION)
-  .addParam('address')
-  .addParam('compilerInput', undefined, undefined, types.any)
-  .addParam('contractInformation', undefined, undefined, types.any)
-  .addParam('verificationInterface', undefined, undefined, types.any)
-  .setAction(
-    async (
-      {
-        address,
-        compilerInput,
-        contractInformation,
-        verificationInterface,
-      },
-      {run},
-    ) => {
-      return run(TASK_VERIFY_ETHERSCAN_ATTEMPT_VERIFICATION, {
-        address,
-        compilerInput,
-        contractInformation,
-        verificationInterface,
-        encodedConstructorArguments: '',
-      })
     },
   )

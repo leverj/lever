@@ -29,23 +29,6 @@ Instead, this name was received: ${contractName}`)
   }
 }
 
-export class MissingApiKeyError extends HardhatVerifyError {
-  constructor(network) {
-    super(`You are trying to verify a contract in '${network}', but no API token was found for this network. Please provide one in your hardhat config. For example:
-
-{
-  ...
-  etherscan: {
-    apiKey: {
-      ${network}: 'your API key'
-    }
-  }
-}
-
-See https://etherscan.io/apis`)
-  }
-}
-
 export class InvalidConstructorArgumentsError extends HardhatVerifyError {
   constructor() {
     super(`The constructorArguments parameter should be an array.
@@ -55,22 +38,6 @@ If your constructor has no arguments pass an empty array. E.g:
     <other args>,
     constructorArguments: []
   };`)
-  }
-}
-
-export class ExclusiveConstructorArgumentsError extends HardhatVerifyError {
-  constructor() {
-    super(
-      'The parameters constructorArgsParams and constructorArgsModule are exclusive. Please provide only one of them.',
-    )
-  }
-}
-
-export class InvalidConstructorArgumentsModuleError extends HardhatVerifyError {
-  constructor(constructorArgsModulePath) {
-    super(`The module ${constructorArgsModulePath} doesn't export a list. The module should look like this:
-
-module.exports = [ arg1, arg2, ... ];`)
   }
 }
 
@@ -136,40 +103,6 @@ The HTTP server response is not ok. Status code: ${statusCode} Response text: ${
   }
 }
 
-export class ContractVerificationMissingBytecodeError extends HardhatVerifyError {
-  constructor(url, contractAddress) {
-    super(`Failed to send contract verification request.
-Endpoint URL: ${url}
-Reason: The Etherscan API responded that the address ${contractAddress} does not have bytecode.
-This can happen if the contract was recently deployed and this fact hasn't propagated to the backend yet.
-Try waiting for a minute before verifying your contract. If you are invoking this from a script,
-try to wait for five confirmations of your contract deployment transaction before running the verification subtask.`)
-  }
-}
-
-export class ContractStatusPollingInvalidStatusCodeError extends HardhatVerifyError {
-  constructor(statusCode, responseText) {
-    super(
-      `The HTTP server response is not ok. Status code: ${statusCode} Response text: ${responseText}`,
-    )
-  }
-}
-
-export class ContractStatusPollingResponseNotOkError extends HardhatVerifyError {
-  constructor(message) {
-    super(`The Etherscan API responded with a failure status.
-The verification may still succeed but should be checked manually.
-Reason: ${message}`)
-  }
-}
-
-export class EtherscanVersionNotSupportedError extends HardhatVerifyError {
-  constructor() {
-    super(`Etherscan only supports compiler versions 0.4.11 and higher.
-See https://etherscan.io/solcversions for more information.`)
-  }
-}
-
 export class DeployedBytecodeNotFoundError extends HardhatVerifyError {
   constructor(address, network) {
     super(`The address ${address} has no bytecode. Is the contract deployed to this network?
@@ -193,41 +126,6 @@ export class CompilerVersionsMismatchError extends HardhatVerifyError {
 Possible causes are:
 - You are not in the same commit that was used to deploy the contract.
 - Wrong compiler version selected in hardhat config.
-- The given address is wrong.
-- The selected network (${network}) is wrong.`)
-  }
-}
-
-export class ContractNotFoundError extends HardhatVerifyError {
-  constructor(contractFQN) {
-    super(`The contract ${contractFQN} is not present in your project.`)
-  }
-}
-
-export class BuildInfoNotFoundError extends HardhatVerifyError {
-  constructor(contractFQN) {
-    super(`The contract ${contractFQN} is present in your project, but we couldn't find its sources.
-Please make sure that it has been compiled by Hardhat and that it is written in Solidity.`)
-  }
-}
-
-export class BuildInfoCompilerVersionMismatchError extends HardhatVerifyError {
-  constructor(
-    contractFQN,
-    compilerVersion,
-    isVersionRange,
-    buildInfoCompilerVersion,
-    network,
-  ) {
-    const versionDetails = isVersionRange
-      ? `a solidity version in the range ${compilerVersion}`
-      : `the solidity version ${compilerVersion}`
-
-    super(`The contract ${contractFQN} is being compiled with ${buildInfoCompilerVersion}.
-However, the contract found in the address provided as argument has its bytecode marked with ${versionDetails}.
-
-Possible causes are:
-- Solidity compiler version settings were modified after the deployment was executed.
 - The given address is wrong.
 - The selected network (${network}) is wrong.`)
   }
@@ -367,52 +265,6 @@ You can either fix these addresses in your libraries dictionary or simply remove
   }
 }
 
-export class UnexpectedNumberOfFilesError extends HardhatVerifyError {
-  constructor() {
-    super(
-      'The plugin found an unexpected number of files for this contract. Please report this issue to the Hardhat team.',
-    )
-  }
-}
-
-export class ABIArgumentLengthError extends HardhatVerifyError {
-  constructor(
-    sourceName,
-    contractName,
-    error,
-  ) {
-    const {types: requiredArgs, values: providedArgs} = error.count
-    super(
-      `The constructor for ${sourceName}:${contractName} has ${requiredArgs} parameters
-but ${providedArgs} arguments were provided instead.`,
-      error,
-    )
-  }
-}
-
-export class ABIArgumentTypeError extends HardhatVerifyError {
-  constructor(error) {
-    const {value: argValue, argument: argName, reason} = error
-    super(
-      `Value ${argValue} cannot be encoded for the parameter ${argName}.
-Encoder error reason: ${reason}`,
-      error,
-    )
-  }
-}
-
-export class ABIArgumentOverflowError extends HardhatVerifyError {
-  constructor(error) {
-    const {value: argValue, fault: reason, operation} = error
-    super(
-      `Value ${argValue} is not a safe integer and cannot be encoded.
-Use a string instead of a plain number.
-Encoder error reason: ${reason} fault in ${operation}`,
-      error,
-    )
-  }
-}
-
 /**
  * `VerificationAPIUnexpectedMessageError` is thrown when the block explorer API
  * does not behave as expected, such as when it returns an unexpected response message.
@@ -446,13 +298,5 @@ address for one of these libraries:
 ${undetectableLibraries.map((x) => `  * ${x}`).join('\n')}`
         : ''
     }`)
-  }
-}
-
-export class ContractAlreadyVerifiedError extends HardhatVerifyError {
-  constructor(contractFQN, contractAddress) {
-    super(`The block explorer's API responded that the contract ${contractFQN} at ${contractAddress} is already verified.
-This can happen if you used the '--force' flag. However, re-verification of contracts might not be supported
-by the explorer (e.g., Etherscan), or the contract may have already been verified with a full match.`)
   }
 }

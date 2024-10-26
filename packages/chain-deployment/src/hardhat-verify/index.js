@@ -1,40 +1,21 @@
 import chalk from 'chalk'
 import {extendConfig, subtask, task, types} from 'hardhat/config'
-
 import {
   TASK_VERIFY,
   TASK_VERIFY_BLOCKSCOUT,
-  TASK_VERIFY_ETHERSCAN,
   TASK_VERIFY_GET_CONTRACT_INFORMATION,
   TASK_VERIFY_GET_VERIFICATION_SUBTASKS,
-  TASK_VERIFY_PRINT_SUPPORTED_NETWORKS,
   TASK_VERIFY_SOURCIFY,
-  TASK_VERIFY_SOURCIFY_DISABLED_WARNING,
   TASK_VERIFY_VERIFY,
 } from './internal/task-names.js'
-import {blockscoutConfigExtender, etherscanConfigExtender, sourcifyConfigExtender} from './internal/config.js'
-import {
-  BuildInfoCompilerVersionMismatchError,
-  BuildInfoNotFoundError,
-  ContractNotFoundError,
-  DeployedBytecodeMismatchError,
-  InvalidConstructorArgumentsError,
-  InvalidLibrariesError,
-} from './internal/errors.js'
-import {printSupportedNetworks, printVerificationErrors} from './internal/utilities.js'
-import {
-  extractInferredContractInformation,
-  extractMatchingContractInformation,
-  getLibraryInformation,
-} from './internal/solc/artifacts.js'
-
-import './internal/type-extensions.js'
-import './internal/tasks/etherscan.js'
+import {blockscoutConfigExtender, sourcifyConfigExtender} from './internal/config.js'
+import {InvalidConstructorArgumentsError, InvalidLibrariesError} from './internal/errors.js'
+import {printVerificationErrors} from './internal/utilities.js'
+import {extractInferredContractInformation, getLibraryInformation} from './internal/solc/artifacts.js'
 import './internal/tasks/sourcify.js'
 import './internal/tasks/blockscout.js'
 
 
-extendConfig(etherscanConfigExtender)
 extendConfig(sourcifyConfigExtender)
 extendConfig(blockscoutConfigExtender)
 
@@ -77,11 +58,6 @@ task(TASK_VERIFY, 'Verifies a contract on Etherscan or Sourcify')
   )
   .addFlag('listNetworks', 'Print the list of supported networks')
   .setAction(async (taskArgs, {run}) => {
-    if (taskArgs.listNetworks) {
-      await run(TASK_VERIFY_PRINT_SUPPORTED_NETWORKS)
-      return
-    }
-
     const verificationSubtasks = await run(
       TASK_VERIFY_GET_VERIFICATION_SUBTASKS,
     )
@@ -103,33 +79,14 @@ task(TASK_VERIFY, 'Verifies a contract on Etherscan or Sourcify')
   })
 
 subtask(
-  TASK_VERIFY_PRINT_SUPPORTED_NETWORKS,
-  'Prints the supported networks list',
-).setAction(async ({}, {config}) => {
-  await printSupportedNetworks(config.etherscan.customChains)
-})
-
-subtask(
   TASK_VERIFY_GET_VERIFICATION_SUBTASKS,
   async (_, {config, userConfig}) => {
     const verificationSubtasks = []
-
-    if (config.etherscan.enabled) {
-      verificationSubtasks.push({
-        label: 'Etherscan',
-        subtaskName: TASK_VERIFY_ETHERSCAN,
-      })
-    }
 
     if (config.sourcify.enabled) {
       verificationSubtasks.push({
         label: 'Sourcify',
         subtaskName: TASK_VERIFY_SOURCIFY,
-      })
-    } else if (userConfig.sourcify?.enabled === undefined) {
-      verificationSubtasks.unshift({
-        label: 'Common',
-        subtaskName: TASK_VERIFY_SOURCIFY_DISABLED_WARNING,
       })
     }
 
@@ -141,7 +98,6 @@ subtask(
     }
 
     if (
-      !config.etherscan.enabled &&
       !config.sourcify.enabled &&
       !config.blockscout.enabled
     ) {
@@ -171,50 +127,12 @@ subtask(TASK_VERIFY_GET_CONTRACT_INFORMATION)
       },
       {network, artifacts},
     ) => {
-      let contractInformation
-
-      if (contractFQN !== undefined) {
-        const artifactExists = await artifacts.artifactExists(contractFQN)
-
-        if (!artifactExists) {
-          throw new ContractNotFoundError(contractFQN)
-        }
-
-        const buildInfo = await artifacts.getBuildInfo(contractFQN)
-        if (buildInfo === undefined) {
-          throw new BuildInfoNotFoundError(contractFQN)
-        }
-
-        if (
-          !matchingCompilerVersions.includes(buildInfo.solcVersion) &&
-          !deployedBytecode.isOvm()
-        ) {
-          throw new BuildInfoCompilerVersionMismatchError(
-            contractFQN,
-            deployedBytecode.getVersion(),
-            deployedBytecode.hasVersionRange(),
-            buildInfo.solcVersion,
-            network.name,
-          )
-        }
-
-        contractInformation = extractMatchingContractInformation(
-          contractFQN,
-          buildInfo,
-          deployedBytecode,
-        )
-
-        if (contractInformation === null) {
-          throw new DeployedBytecodeMismatchError(network.name, contractFQN)
-        }
-      } else {
-        contractInformation = await extractInferredContractInformation(
-          artifacts,
-          network,
-          matchingCompilerVersions,
-          deployedBytecode,
-        )
-      }
+      let contractInformation = await extractInferredContractInformation(
+        artifacts,
+        network,
+        matchingCompilerVersions,
+        deployedBytecode,
+      )
 
       // map contractInformation libraries
       const libraryInformation = await getLibraryInformation(
@@ -256,16 +174,6 @@ subtask(TASK_VERIFY_VERIFY)
 
       if (typeof libraries !== 'object' || Array.isArray(libraries)) {
         throw new InvalidLibrariesError()
-      }
-
-      if (config.etherscan.enabled) {
-        await run(TASK_VERIFY_ETHERSCAN, {
-          address,
-          constructorArgsParams: constructorArguments,
-          libraries,
-          contract,
-          force,
-        })
       }
 
       if (config.sourcify.enabled) {

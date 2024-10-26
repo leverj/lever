@@ -138,14 +138,6 @@ class SourcifyResponse {
     }
   }
 
-  isPending() {
-    return false
-  }
-
-  isFailure() {
-    return this.error !== undefined
-  }
-
   isSuccess() {
     return this.error === undefined
   }

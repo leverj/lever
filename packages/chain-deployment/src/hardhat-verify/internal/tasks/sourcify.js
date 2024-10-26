@@ -1,4 +1,3 @@
-import chalk from 'chalk'
 import {subtask, types} from 'hardhat/config'
 import {isFullyQualifiedName} from 'hardhat/utils/contract-names'
 import {HARDHAT_NETWORK_NAME} from 'hardhat/plugins'
@@ -17,7 +16,6 @@ import {
   TASK_VERIFY_GET_CONTRACT_INFORMATION,
   TASK_VERIFY_SOURCIFY,
   TASK_VERIFY_SOURCIFY_ATTEMPT_VERIFICATION,
-  TASK_VERIFY_SOURCIFY_DISABLED_WARNING,
   TASK_VERIFY_SOURCIFY_RESOLVE_ARGUMENTS,
 } from '../task-names'
 import {getCompilerVersions, resolveLibraries} from '../utilities'
@@ -196,26 +194,9 @@ subtask(TASK_VERIFY_SOURCIFY_ATTEMPT_VERIFICATION)
 ${contractURL}
 `)
       }
-
       return {
         success: response.isSuccess(),
         message: 'Contract successfuly verified on Sourcify',
       }
     },
   )
-
-subtask(TASK_VERIFY_SOURCIFY_DISABLED_WARNING, async () => {
-  console.info(
-    chalk.cyan(
-      `[INFO] Sourcify Verification Skipped: Sourcify verification is currently disabled. To enable it, add the following entry to your Hardhat configuration:
-
-sourcify: {
-  enabled: true
-}
-
-Or set 'enabled' to false to hide this message.
-
-For more information, visit https://hardhat.org/hardhat-runner/plugins/nomicfoundation-hardhat-verify#verifying-on-sourcify`,
-    ),
-  )
-})
