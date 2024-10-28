@@ -1,15 +1,11 @@
 import {JsonStore} from '@leverj/lever.common'
 import {default as hardhat} from 'hardhat'
-import {Map} from 'immutable'
 import {execSync} from 'node:child_process'
-import {readFileSync} from 'node:fs'
 import {setTimeout} from 'node:timers/promises'
-import {Sourcify} from '@nomicfoundation/hardhat-verify/sourcify.js'
 import {networks} from './networks.js'
 import {verifiableChains} from './verifiable-chains.js'
 
-const {artifacts, ethers: {deployContract, JsonRpcProvider, Wallet}} = hardhat
-const contractFullyQualifiedNames = Map((await artifacts.getAllFullyQualifiedNames()).map(_ => [_.split(':')[1], _])).toJS()
+const {ethers: {deployContract, JsonRpcProvider, Wallet}} = hardhat
 
 export class Deploy {
   static from(config, logger = logger) {
@@ -82,24 +78,5 @@ export class Deploy {
 
     const address = network.contracts[name].address
     execSync(`npx hardhat verify --network ${chain} ${address} --config ${process.env.PWD}/hardhat.config.cjs`)
-    // const {apiUrl, browserUrl} = hardhat.config.sourcify
-    // const sourcify = new Sourcify(chainId, apiUrl, browserUrl)
-    // try {
-    //   if (!await sourcify.isVerified(address)) execSync(`npx hardhat verify --network ${chain} ${address} --config ${process.env.PWD}/hardhat.config.cjs`)
-    //   if (!await sourcify.isVerified(address)) {
-    //     const contractFQN = contractFullyQualifiedNames[name]
-    //     const files = {
-    //       ['metadata.json']: JSON.stringify(await artifacts.getBuildInfo(contractFQN)),
-    //       [`${name}.sol`]: readFileSync(contractFQN.split(':')[0], 'utf8'),
-    //     }
-    //     await sourcify.verify(address, files, 0)
-    //   }
-    //   const status = await sourcify.isVerified(address)
-    //   const contractUrl = await sourcify.getContractUrl(address, status)
-    //   this.logger.log(`contract ${address} is verified on Sourcify: ${contractUrl}`)
-    // } catch (e) {
-    //   this.logger.error(e)
-    // }
   }
 }
-//find . -depth -name "*.ts" -exec sh -c 'f="{}"; mv -- "$f" "${f%.ts}.js"' \;

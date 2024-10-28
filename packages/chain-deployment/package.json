@@ -20,9 +20,7 @@
     "ethers": "^6.13.3",
     "glob": "^11.0.0",
     "hardhat": "^2.22.13",
-    "hardhat-deploy-ethers": "^0.4.2",
-    "hardhat-gas-reporter": "^2.2.1",
-    "solidity-coverage": "^0.8.13"
+    "hardhat-deploy-ethers": "^0.4.2"
   },
   "devDependencies": {
     "@leverj/lever.config": "1.0.2",
