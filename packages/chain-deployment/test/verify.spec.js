@@ -34,7 +34,9 @@ describe('verify', () => {
   })
 
   it.skip('verify supported chain', async () => {
-    const chain = 'sepolia', chainId = Number(networks[chain].id)
+    const chain = 'sepolia'
+    // const chain = 'holesky'
+    const chainId = Number(networks[chain].id)
     config.contracts = {[chain]: {Bank: {params: [networks[chain].id, 'whatever']}}}
 
     const signer = new Wallet(config.deployer.privateKey)
@@ -53,6 +55,5 @@ describe('verify', () => {
     logger.clear()
     await deploy.to(chain, {verify: true})
     expect(logger.errors).toHaveLength(0)
-    console.log('>'.repeat(50), logger.toObject())
   })
 })
