@@ -26,13 +26,23 @@ describe('verify', () => {
       const logger = new CapturingLogger()
       const deploy = Deploy.from(config, logger)
       await deploy.to(chain, {verify: true})
-      expect(logger.warnings[0]).toEqual('verifying on hardhat chain (31337) is not supported')
+      expect(logger.warnings[0]).toEqual('verifying on chain 31337 is not supported')
     } finally {
       evm.kill()
       while (!evm.killed) await setTimeout(10)
     }
   })
 
+ /**
+  to try out contract verification, establish a local-test file at:
+    .../lever/packages/chain-deployment/config/local-test.js
+  with the private key of an account that has sufficient funds to deploy on the desired chain, using this template:
+    export default {
+      deployer: {
+        privateKey: '???',
+      },
+    }
+  */
   it.skip('verify supported chain', async () => {
     const chain = 'sepolia'
     // const chain = 'holesky'
@@ -45,14 +55,6 @@ describe('verify', () => {
     console.log(`${getAddress(signer.address)} must have sufficient funds to deploy contract.\nbalance on ${chain} [${chainId}] is: ${balance}`)
 
     const logger = new CapturingLogger()
-    const deploy = Deploy.from(config, logger)
-    await deploy.to(chain)
-    logger.clear()
-
-    await deploy.to(chain, {verify: true})
-    expect(logger.errors).toHaveLength(0)
-
-    logger.clear()
     await deploy.to(chain, {verify: true})
     expect(logger.errors).toHaveLength(0)
   })

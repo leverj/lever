@@ -2,8 +2,8 @@ import {JsonStore} from '@leverj/lever.common'
 import {default as hardhat} from 'hardhat'
 import {execSync} from 'node:child_process'
 import {setTimeout} from 'node:timers/promises'
+import {verifyContract} from './blockscout.js'
 import {networks} from './networks.js'
-import {verifiableChains} from './verifiable-chains.js'
 
 const {ethers: {deployContract, JsonRpcProvider, Wallet}} = hardhat
 
@@ -53,30 +53,26 @@ export class Deploy {
       this.store.update(chain, {block: await provider.getBlockNumber()})
     }
     for (let [name, {libraries, params}] of Object.entries(contracts)) {
-      if (!deployedContracts[name]?.address || reset) {
-        const getContractAddress = (name) => deployedContracts[name]?.address
-        const translateAddresses = (params = []) => params.map(_ => Array.isArray(_) ? translateAddresses(_) : getContractAddress(_) || _)
-        const translateLibraries = (names = []) => names.reduce((result, _) => Object.assign(result, ({[_]: getContractAddress(_)})), {})
+      const getContractAddress = (name) => deployedContracts[name]?.address
+      const translateAddresses = (params = []) => params.map(_ => Array.isArray(_) ? translateAddresses(_) : getContractAddress(_) || _)
+      const translateLibraries = (names = []) => names.reduce((result, _) => Object.assign(result, ({[_]: getContractAddress(_)})), {})
 
+      libraries = translateLibraries(libraries)
+      params = translateAddresses(params)
+      if (!deployedContracts[name]?.address || reset) {
         this.logger.log(`deploying ${name} contract `.padEnd(120, '.'))
-        libraries = translateLibraries(libraries)
-        params = translateAddresses(params)
         const contract = await deployContract(name, params, {libraries, signer})
         const address = contract.target
         const blockCreated = await provider.getTransactionReceipt(contract.deploymentTransaction().hash).then(_ => _?.blockNumber || -1)
         this.store.update(chain, {contracts: {[name]: {address, blockCreated}}})
         await setTimeout(200) // note: must wait a bit to avoid "Nonce too low" error
       }
-      if (verify) await this.verifyContract(chain, name)
+      if (verify) {
+        const network = this.store.get(chain)
+        const chainId = parseInt(network.id)
+        const address = network.contracts[name].address
+        await verifyContract(this.logger, name, chainId, address, libraries || {})
+      }
     }
-  }
-
-  async verifyContract(chain, name) {
-    const network = this.store.get(chain)
-    const chainId = parseInt(network.id)
-    if (!verifiableChains.has(chainId)) return this.logger.warn(`verifying on ${chain} chain (${chainId}) is not supported`)
-
-    const address = network.contracts[name].address
-    execSync(`npx hardhat verify --network ${chain} ${address} --config ${process.env.PWD}/hardhat.config.cjs`)
   }
 }
