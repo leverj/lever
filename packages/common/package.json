@@ -11,7 +11,7 @@
     "ethers": "^6.13.4",
     "immutable": "^5.0.0-rc.2",
     "lodash-es": "^4.17.21",
-    "uuid": "^10.0.0"
+    "uuid": "^11.0.2"
   },
   "devDependencies": {
     "randomhex": "^0.1.5"
