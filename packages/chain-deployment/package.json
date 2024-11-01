@@ -17,19 +17,14 @@
     "@nomicfoundation/hardhat-ethers": "^3.0.8",
     "@nomicfoundation/hardhat-network-helpers": "^1.0.12",
     "@nomicfoundation/hardhat-verify": "^2.0.11",
-    "@nomiclabs/hardhat-etherscan": "^3.1.8",
-    "ethers": "^6.13.3",
+    "ethers": "^6.13.4",
     "glob": "^11.0.0",
-    "hardhat": "^2.22.13",
-    "hardhat-deploy": "^0.12.4",
-    "hardhat-deploy-ethers": "^0.4.2",
-    "hardhat-gas-reporter": "^2.2.1",
-    "hardhat-switch-network": "^1.1.1",
-    "solidity-coverage": "^0.8.13"
+    "hardhat": "^2.22.15",
+    "hardhat-deploy-ethers": "^0.4.2"
   },
   "devDependencies": {
     "@leverj/lever.config": "1.0.2",
-    "viem": "^2.21.21",
+    "viem": "^2.21.38",
     "wait-on": "^8.0.1"
   }
 }
