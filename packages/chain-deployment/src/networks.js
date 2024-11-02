@@ -17,6 +17,10 @@ export const networks = {
       multicall3: {
         address: '0xF9cda624FBC7e059355ce98a31693d299FACd963',
         blockCreated: 358349
+      },
+      universalSignatureVerifier: {
+        address: '0xfB688330379976DA81eB64Fe4BF50d7401763B9C',
+        blockCreated: 431682
       }
     },
     testnet: true
@@ -193,6 +197,29 @@ export const networks = {
     providerURL: 'http://127.0.0.1:8545',
     blockExplorer: {},
     contracts: {},
+    testnet: false
+  },
+  apeChain: {
+    id: 33139n,
+    label: 'apeChain',
+    name: 'Ape Chain',
+    nativeCurrency: {
+      name: 'ApeCoin',
+      symbol: 'APE',
+      decimals: 18
+    },
+    providerURL: 'https://rpc.apechain.com/http',
+    blockExplorer: {
+      name: 'Apescan',
+      url: 'https://apescan.io',
+      apiUrl: 'https://api.apescan.io'
+    },
+    contracts: {
+      multicall3: {
+        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+        blockCreated: 20889
+      }
+    },
     testnet: false
   },
   apexTestnet: {
@@ -691,6 +718,11 @@ export const networks = {
       l2ToL1MessagePasser: {
         address: '0x4200000000000000000000000000000000000016'
       },
+      disputeGameFactory: {
+        '1': {
+          address: '0x43edB88C4B80fDD2AdFF2412A7BebF9dF42cB40e'
+        }
+      },
       l2OutputOracle: {
         '1': {
           address: '0x56315b90c40730925ec5485cf004d835058518A0'
@@ -971,6 +1003,23 @@ export const networks = {
     contracts: {},
     testnet: false
   },
+  bifrost: {
+    id: 3068n,
+    label: 'bifrost',
+    name: 'Bifrost Mainnet',
+    nativeCurrency: {
+      name: 'BFC',
+      symbol: 'BFC',
+      decimals: 18
+    },
+    providerURL: 'https://public-01.mainnet.bifrostnetwork.com/rpc',
+    blockExplorer: {
+      name: 'Bifrost Blockscout',
+      url: 'https://explorer.mainnet.bifrostnetwork.com'
+    },
+    contracts: {},
+    testnet: false
+  },
   bitTorrent: {
     id: 199n,
     label: 'bitTorrent',
@@ -1081,6 +1130,23 @@ export const networks = {
     },
     contracts: {},
     testnet: true
+  },
+  bitrock: {
+    id: 7171n,
+    label: 'bitrock',
+    name: 'Bitrock Mainnet',
+    nativeCurrency: {
+      name: 'BROCK',
+      symbol: 'BROCK',
+      decimals: 18
+    },
+    providerURL: 'https://brockrpc.io',
+    blockExplorer: {
+      name: 'Bitrock Explorer',
+      url: 'https://explorer.bit-rock.io'
+    },
+    contracts: {},
+    testnet: false
   },
   blast: {
     id: 81457n,
@@ -1648,6 +1714,23 @@ export const networks = {
     },
     testnet: true
   },
+  chang: {
+    id: 5858n,
+    label: 'chang',
+    name: 'Chang Chain Foundation Mainnet',
+    nativeCurrency: {
+      decimals: 18,
+      name: 'CTH',
+      symbol: 'CTH'
+    },
+    providerURL: 'https://rpc.cthscan.com',
+    blockExplorer: {
+      name: 'Chang Chain explorer',
+      url: 'https://cthscan.com'
+    },
+    contracts: {},
+    testnet: false
+  },
   chiliz: {
     id: 88888n,
     label: 'chiliz',
@@ -2170,6 +2253,52 @@ export const networks = {
     },
     testnet: false
   },
+  dosChain: {
+    id: 7979n,
+    label: 'dosChain',
+    name: 'DOS Chain',
+    nativeCurrency: {
+      decimals: 18,
+      name: 'DOS Chain',
+      symbol: 'DOS'
+    },
+    providerURL: 'https://main.doschain.com',
+    blockExplorer: {
+      name: 'DOS Chain Explorer',
+      url: 'https://doscan.io',
+      apiUrl: 'https://api.doscan.io'
+    },
+    contracts: {
+      multicall3: {
+        address: '0xca11bde05977b3631167028862be2a173976ca11',
+        blockCreated: 161908
+      }
+    },
+    testnet: false
+  },
+  dosChainTestnet: {
+    id: 3939n,
+    label: 'dosChainTestnet',
+    name: 'DOS Chain Testnet',
+    nativeCurrency: {
+      decimals: 18,
+      name: 'DOS Chain Testnet',
+      symbol: 'DOS'
+    },
+    providerURL: 'https://test.doschain.com',
+    blockExplorer: {
+      name: 'DOS Chain Testnet Explorer',
+      url: 'https://test.doscan.io',
+      apiUrl: 'https://api-test.doscan.io'
+    },
+    contracts: {
+      multicall3: {
+        address: '0xca11bde05977b3631167028862be2a173976ca11',
+        blockCreated: 69623
+      }
+    },
+    testnet: true
+  },
   dreyerxMainnet: {
     id: 23451n,
     label: 'dreyerxMainnet',
@@ -2203,6 +2332,46 @@ export const networks = {
     },
     contracts: {},
     testnet: true
+  },
+  dustboyIoT: {
+    id: 555888n,
+    label: 'dustboyIoT',
+    name: 'DustBoy IoT',
+    nativeCurrency: {
+      name: 'Ether',
+      symbol: 'DST',
+      decimals: 18
+    },
+    providerURL: 'https://dustboy-rpc.jibl2.com',
+    blockExplorer: {
+      name: 'Blockscout',
+      url: 'https://dustboy.jibl2.com',
+      apiUrl: 'https://dustboy.jibl2.com/api'
+    },
+    contracts: {
+      multicall3: {
+        address: '0xFFD34aa2C62B2D52E00A361e466C229788f4eD6a',
+        blockCreated: 526569
+      }
+    },
+    testnet: false
+  },
+  dymension: {
+    id: 1100n,
+    label: 'dymension',
+    name: 'Dymension',
+    nativeCurrency: {
+      name: 'DYM',
+      symbol: 'DYM',
+      decimals: 18
+    },
+    providerURL: 'https://dymension-evm-rpc.publicnode.com',
+    blockExplorer: {
+      name: 'Dym FYI',
+      url: 'https://dym.fyi'
+    },
+    contracts: {},
+    testnet: false
   },
   edgeless: {
     id: 2026n,
@@ -2311,6 +2480,74 @@ export const networks = {
       name: 'Test Ektascan',
       url: 'https://test.ektascan.io',
       apiUrl: 'https://test.ektascan.io/api'
+    },
+    contracts: {},
+    testnet: true
+  },
+  elastos: {
+    id: 20n,
+    label: 'elastos',
+    name: 'Elastos Smart Chain',
+    nativeCurrency: {
+      name: 'ELA',
+      symbol: 'ELA',
+      decimals: 18
+    },
+    providerURL: 'https://api2.elastos.io/eth',
+    blockExplorer: {
+      name: 'Elastos Explorer',
+      url: 'https://esc.elastos.io'
+    },
+    contracts: {},
+    testnet: false
+  },
+  elastosTestnet: {
+    id: 21n,
+    label: 'elastosTestnet',
+    name: 'Elastos Smart Chain Testnet',
+    nativeCurrency: {
+      name: 'tELA',
+      symbol: 'tELA',
+      decimals: 18
+    },
+    providerURL: 'https://api-testnet.elastos.io/eth',
+    blockExplorer: {
+      name: 'Elastos Explorer',
+      url: 'https://esc-testnet.elastos.io'
+    },
+    contracts: {},
+    testnet: true
+  },
+  electroneum: {
+    id: 52014n,
+    label: 'electroneum',
+    name: 'Electroneum Mainnet',
+    nativeCurrency: {
+      name: 'ETN',
+      symbol: 'ETN',
+      decimals: 18
+    },
+    providerURL: 'https://rpc.electroneum.com',
+    blockExplorer: {
+      name: 'Electroneum Block Explorer',
+      url: 'https://blockexplorer.electroneum.com'
+    },
+    contracts: {},
+    testnet: false
+  },
+  electroneumTestnet: {
+    id: 5201420n,
+    label: 'electroneumTestnet',
+    name: 'Electroneum Testnet',
+    nativeCurrency: {
+      name: 'ETN',
+      symbol: 'ETN',
+      decimals: 18
+    },
+    providerURL: 'https://testnet-rpc.electroneum.com',
+    blockExplorer: {
+      name: 'Electroneum Block Explorer',
+      url: 'https://blockexplorer.thesecurityteam.rocks'
     },
     contracts: {},
     testnet: true
@@ -2483,6 +2720,23 @@ export const networks = {
     blockExplorer: {
       name: 'Evmos Testnet Block Explorer',
       url: 'https://evm.evmos.dev/'
+    },
+    contracts: {},
+    testnet: false
+  },
+  excelonMainnet: {
+    id: 22052002n,
+    label: 'excelonMainnet',
+    name: 'Excelon Mainnet',
+    nativeCurrency: {
+      decimals: 18,
+      name: 'Excelon',
+      symbol: 'xlon'
+    },
+    providerURL: 'https://edgewallet1.xlon.org',
+    blockExplorer: {
+      name: 'Excelon explorer',
+      url: 'https://explorer.excelon.io'
     },
     contracts: {},
     testnet: false
@@ -3147,6 +3401,57 @@ export const networks = {
     },
     testnet: true
   },
+  genesys: {
+    id: 16507n,
+    label: 'genesys',
+    name: 'Genesys Mainnet',
+    nativeCurrency: {
+      decimals: 18,
+      name: 'GSYS',
+      symbol: 'GSYS'
+    },
+    providerURL: 'https://rpc.genesys.network',
+    blockExplorer: {
+      name: 'Genesys Explorer',
+      url: 'https://gchainexplorer.genesys.network'
+    },
+    contracts: {},
+    testnet: false
+  },
+  glideL1Protocol: {
+    id: 251n,
+    label: 'glideL1Protocol',
+    name: 'Glide L1 Protocol XP',
+    nativeCurrency: {
+      name: 'GLXP',
+      symbol: 'GLXP',
+      decimals: 18
+    },
+    providerURL: 'https://rpc-api.glideprotocol.xyz/l1-rpc',
+    blockExplorer: {
+      name: 'Glide Protocol Explore',
+      url: 'https://blockchain-explorer.glideprotocol.xyz'
+    },
+    contracts: {},
+    testnet: false
+  },
+  glideL2Protocol: {
+    id: 253n,
+    label: 'glideL2Protocol',
+    name: 'Glide L2 Protocol XP',
+    nativeCurrency: {
+      name: 'GLXP',
+      symbol: 'GLXP',
+      decimals: 18
+    },
+    providerURL: 'https://rpc-api.glideprotocol.xyz/l2-rpc',
+    blockExplorer: {
+      name: 'Glide Protocol Explore',
+      url: 'https://blockchain-explorer.glideprotocol.xyz'
+    },
+    contracts: {},
+    testnet: false
+  },
   gnosis: {
     id: 100n,
     label: 'gnosis',
@@ -3279,6 +3584,23 @@ export const networks = {
       }
     },
     testnet: false
+  },
+  guruTestnet: {
+    id: 261n,
+    label: 'guruTestnet',
+    name: 'Guru Network Testnet',
+    nativeCurrency: {
+      name: 'testGURU',
+      symbol: 'tGURU',
+      decimals: 18
+    },
+    providerURL: 'https://rpc.gurunetwork.ai/archive/261',
+    blockExplorer: {
+      name: 'Guruscan',
+      url: 'https://scan.gurunetwork.ai'
+    },
+    contracts: {},
+    testnet: true
   },
   ham: {
     id: 5112n,
@@ -3438,6 +3760,23 @@ export const networks = {
     contracts: {},
     testnet: true
   },
+  hela: {
+    id: 8668n,
+    label: 'hela',
+    name: 'Hela Mainnet',
+    nativeCurrency: {
+      name: 'HLUSD',
+      symbol: 'HLUSD',
+      decimals: 18
+    },
+    providerURL: 'https://mainnet-rpc.helachain.com',
+    blockExplorer: {
+      name: 'Hela explorer',
+      url: 'https://mainnet-blockexplorer.helachain.com'
+    },
+    contracts: {},
+    testnet: false
+  },
   hemiSepolia: {
     id: 743111n,
     label: 'hemiSepolia',
@@ -3588,6 +3927,58 @@ export const networks = {
     },
     testnet: false
   },
+  inkSepolia: {
+    id: 763373n,
+    label: 'inkSepolia',
+    name: 'Ink Sepolia',
+    nativeCurrency: {
+      name: 'Sepolia Ether',
+      symbol: 'ETH',
+      decimals: 18
+    },
+    providerURL: 'https://rpc-gel-sepolia.inkonchain.com',
+    blockExplorer: {
+      name: 'Blockscout',
+      url: 'https://explorer-sepolia.inkonchain.com/',
+      apiUrl: 'https://explorer-sepolia.inkonchain.com/api/v2'
+    },
+    contracts: {
+      gasPriceOracle: {
+        address: '0x420000000000000000000000000000000000000F'
+      },
+      l1Block: {
+        address: '0x4200000000000000000000000000000000000015'
+      },
+      l2CrossDomainMessenger: {
+        address: '0x4200000000000000000000000000000000000007'
+      },
+      l2Erc721Bridge: {
+        address: '0x4200000000000000000000000000000000000014'
+      },
+      l2StandardBridge: {
+        address: '0x4200000000000000000000000000000000000010'
+      },
+      l2ToL1MessagePasser: {
+        address: '0x4200000000000000000000000000000000000016'
+      },
+      disputeGameFactory: {
+        '11155111': {
+          address: '0x860e626c700af381133d9f4af31412a2d1db3d5d'
+        }
+      },
+      portal: {
+        '11155111': {
+          address: '0x5c1d29c6c9c8b0800692acc95d700bcb4966a1d7'
+        }
+      },
+      l1StandardBridge: {
+        '11155111': {
+          address: '0x33f60714bbd74d62b66d79213c348614de51901c'
+        }
+      }
+    },
+    testnet: true
+  },
   iota: {
     id: 8822n,
     label: 'iota',
@@ -3603,7 +3994,12 @@ export const networks = {
       url: 'https://explorer.evm.iota.org',
       apiUrl: 'https://explorer.evm.iota.org/api'
     },
-    contracts: {},
+    contracts: {
+      multicall3: {
+        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+        blockCreated: 25022
+      }
+    },
     testnet: false
   },
   iotaTestnet: {
@@ -3777,7 +4173,7 @@ export const networks = {
     testnet: true
   },
   kakarotStarknetSepolia: {
-    id: 5424235787602241n,
+    id: 920637907288165n,
     label: 'kakarotStarknetSepolia',
     name: 'Kakarot Starknet Sepolia',
     nativeCurrency: {
@@ -3792,6 +4188,23 @@ export const networks = {
     },
     contracts: {},
     testnet: true
+  },
+  kardiaChain: {
+    id: 24n,
+    label: 'kardiaChain',
+    name: 'KardiaChain Mainnet',
+    nativeCurrency: {
+      name: 'KAI',
+      symbol: 'KAI',
+      decimals: 18
+    },
+    providerURL: 'https://rpc.kardiachain.io',
+    blockExplorer: {
+      name: 'KardiaChain Explorer',
+      url: 'https://explorer.kardiachain.io'
+    },
+    contracts: {},
+    testnet: false
   },
   karura: {
     id: 686n,
@@ -4033,6 +4446,23 @@ export const networks = {
     },
     contracts: {},
     testnet: true
+  },
+  lavita: {
+    id: 360890n,
+    label: 'lavita',
+    name: 'LAVITA Mainnet',
+    nativeCurrency: {
+      name: 'vTFUEL',
+      symbol: 'vTFUEL',
+      decimals: 18
+    },
+    providerURL: 'https://tsub360890-eth-rpc.thetatoken.org/rpc',
+    blockExplorer: {
+      name: 'LAVITA Explorer',
+      url: 'https://tsub360890-explorer.thetatoken.org'
+    },
+    contracts: {},
+    testnet: false
   },
   lightlinkPegasus: {
     id: 1891n,
@@ -4283,6 +4713,23 @@ export const networks = {
     blockExplorer: {},
     contracts: {},
     testnet: true
+  },
+  loop: {
+    id: 15551n,
+    label: 'loop',
+    name: 'LoopNetwork Mainnet',
+    nativeCurrency: {
+      name: 'LOOP',
+      symbol: 'LOOP',
+      decimals: 18
+    },
+    providerURL: 'https://api.mainnetloop.com',
+    blockExplorer: {
+      name: 'LoopNetwork Blockchain Explorer',
+      url: 'https://explorer.mainnetloop.com/'
+    },
+    contracts: {},
+    testnet: false
   },
   lukso: {
     id: 42n,
@@ -4606,6 +5053,28 @@ export const networks = {
     },
     contracts: {},
     testnet: true
+  },
+  meld: {
+    id: 333000333n,
+    label: 'meld',
+    name: 'Meld',
+    nativeCurrency: {
+      decimals: 18,
+      name: 'Meld',
+      symbol: 'MELD'
+    },
+    providerURL: 'https://rpc-1.meld.com',
+    blockExplorer: {
+      name: 'MELDscan',
+      url: 'https://meldscan.io'
+    },
+    contracts: {
+      multicall3: {
+        address: '0x769ee5a8e82c15c1b6e358f62ac8eb6e3abe8dc5',
+        blockCreated: 360069
+      }
+    },
+    testnet: false
   },
   merlin: {
     id: 4200n,
@@ -5080,6 +5549,23 @@ export const networks = {
     },
     testnet: false
   },
+  morph: {
+    id: 2818n,
+    label: 'morph',
+    name: 'Morph',
+    nativeCurrency: {
+      decimals: 18,
+      name: 'Ether',
+      symbol: 'ETH'
+    },
+    providerURL: 'https://rpc.morphl2.io',
+    blockExplorer: {
+      name: 'Morph Explorer',
+      url: 'https://explorer.morphl2.io'
+    },
+    contracts: {},
+    testnet: false
+  },
   morphHolesky: {
     id: 2810n,
     label: 'morphHolesky',
@@ -5257,6 +5743,24 @@ export const networks = {
     },
     contracts: {},
     testnet: false
+  },
+  odysseyTestnet: {
+    id: 911867n,
+    label: 'odysseyTestnet',
+    name: 'Odyssey Testnet',
+    nativeCurrency: {
+      name: 'Ether',
+      symbol: 'ETH',
+      decimals: 18
+    },
+    providerURL: 'https://odyssey.ithaca.xyz',
+    blockExplorer: {
+      name: 'Odyssey Explorer',
+      url: 'https://odyssey-explorer.ithaca.xyz',
+      apiUrl: 'https://odyssey-explorer.ithaca.xyz/api'
+    },
+    contracts: {},
+    testnet: true
   },
   okc: {
     id: 66n,
@@ -6102,6 +6606,27 @@ export const networks = {
     contracts: {},
     testnet: true
   },
+  ql1: {
+    id: 766n,
+    label: 'ql1',
+    name: 'QL1',
+    nativeCurrency: {
+      decimals: 18,
+      name: 'QOM',
+      symbol: 'QOM'
+    },
+    providerURL: 'https://rpc.qom.one',
+    blockExplorer: {
+      name: 'Ql1 Explorer',
+      url: 'https://scan.qom.one'
+    },
+    contracts: {
+      multicall3: {
+        address: '0x7A52370716ea730585884F5BDB0f6E60C39b8C64'
+      }
+    },
+    testnet: false
+  },
   real: {
     id: 111188n,
     label: 'real',
@@ -6482,6 +7007,23 @@ export const networks = {
     },
     testnet: true
   },
+  saakuru: {
+    id: 7225878n,
+    label: 'saakuru',
+    name: 'Saakuru Mainnet',
+    nativeCurrency: {
+      name: 'OAS',
+      symbol: 'OAS',
+      decimals: 18
+    },
+    providerURL: 'https://rpc.saakuru.network',
+    blockExplorer: {
+      name: 'Saakuru Explorer',
+      url: 'https://explorer.saakuru.network'
+    },
+    contracts: {},
+    testnet: false
+  },
   saigon: {
     id: 2021n,
     label: 'saigon',
@@ -6503,6 +7045,23 @@ export const networks = {
       }
     },
     testnet: true
+  },
+  sanko: {
+    id: 1996n,
+    label: 'sanko',
+    name: 'Sanko',
+    nativeCurrency: {
+      name: 'DMT',
+      symbol: 'DMT',
+      decimals: 18
+    },
+    providerURL: 'https://mainnet.sanko.xyz',
+    blockExplorer: {
+      name: 'Sanko Explorer',
+      url: 'https://explorer.sanko.xyz'
+    },
+    contracts: {},
+    testnet: false
   },
   sapphire: {
     id: 23294n,
@@ -6872,6 +7431,23 @@ export const networks = {
       }
     },
     testnet: true
+  },
+  shiden: {
+    id: 336n,
+    label: 'shiden',
+    name: 'Shiden',
+    nativeCurrency: {
+      decimals: 18,
+      name: 'SDN',
+      symbol: 'SDN'
+    },
+    providerURL: 'https://shiden.public.blastapi.io',
+    blockExplorer: {
+      name: 'Shiden Scan',
+      url: 'https://shiden.subscan.io'
+    },
+    contracts: {},
+    testnet: false
   },
   shimmer: {
     id: 148n,
@@ -7497,6 +8073,23 @@ export const networks = {
     contracts: {},
     testnet: true
   },
+  step: {
+    id: 1234n,
+    label: 'step',
+    name: 'Step Network',
+    nativeCurrency: {
+      name: 'FITFI',
+      symbol: 'FITFI',
+      decimals: 18
+    },
+    providerURL: 'https://rpc.step.network',
+    blockExplorer: {
+      name: 'Step Scan',
+      url: 'https://stepscan.io'
+    },
+    contracts: {},
+    testnet: false
+  },
   storyTestnet: {
     id: 1513n,
     label: 'storyTestnet',
@@ -7544,6 +8137,23 @@ export const networks = {
     blockExplorer: {
       name: 'Lumio explorer',
       url: 'https://explorer.lumio.io'
+    },
+    contracts: {},
+    testnet: false
+  },
+  superposition: {
+    id: 55244n,
+    label: 'superposition',
+    name: 'Superposition',
+    nativeCurrency: {
+      name: 'Ether',
+      symbol: 'ETH',
+      decimals: 18
+    },
+    providerURL: 'https://rpc.superposition.so',
+    blockExplorer: {
+      name: 'Superposition Explorer',
+      url: 'https://explorer.superposition.so'
     },
     contracts: {},
     testnet: false
@@ -7870,6 +8480,74 @@ export const networks = {
     },
     testnet: false
   },
+  that: {
+    id: 8428n,
+    label: 'that',
+    name: 'THAT Mainnet',
+    nativeCurrency: {
+      name: 'THAT',
+      symbol: 'THAT',
+      decimals: 18
+    },
+    providerURL: 'https://api.thatchain.io/mainnet',
+    blockExplorer: {
+      name: 'Blockscout',
+      url: 'https://that.blockscout.com'
+    },
+    contracts: {},
+    testnet: false
+  },
+  theta: {
+    id: 361n,
+    label: 'theta',
+    name: 'Theta Mainnet',
+    nativeCurrency: {
+      name: 'TFUEL',
+      symbol: 'TFUEL',
+      decimals: 18
+    },
+    providerURL: 'https://eth-rpc-api.thetatoken.org/rpc',
+    blockExplorer: {
+      name: 'Theta Explorer',
+      url: 'https://explorer.thetatoken.org'
+    },
+    contracts: {},
+    testnet: false
+  },
+  thetaTestnet: {
+    id: 365n,
+    label: 'thetaTestnet',
+    name: 'Theta Testnet',
+    nativeCurrency: {
+      name: 'TFUEL',
+      symbol: 'TFUEL',
+      decimals: 18
+    },
+    providerURL: 'https://eth-rpc-api-testnet.thetatoken.org/rpc',
+    blockExplorer: {
+      name: 'Theta Explorer',
+      url: 'https://testnet-explorer.thetatoken.org'
+    },
+    contracts: {},
+    testnet: true
+  },
+  thunderCore: {
+    id: 108n,
+    label: 'thunderCore',
+    name: 'ThunderCore Mainnet',
+    nativeCurrency: {
+      name: 'TT',
+      symbol: 'TT',
+      decimals: 18
+    },
+    providerURL: 'https://mainnet-rpc.thundercore.com',
+    blockExplorer: {
+      name: 'ThunderCore Explorer',
+      url: 'https://viewblock.io/thundercore'
+    },
+    contracts: {},
+    testnet: false
+  },
   thunderTestnet: {
     id: 997n,
     label: 'thunderTestnet',
@@ -7886,6 +8564,40 @@ export const networks = {
     },
     contracts: {},
     testnet: true
+  },
+  tiktrixTestnet: {
+    id: 62092n,
+    label: 'tiktrixTestnet',
+    name: 'TikTrix Testnet',
+    nativeCurrency: {
+      name: 'tTTX',
+      symbol: 'tTTX',
+      decimals: 18
+    },
+    providerURL: 'https://tiktrix-rpc.xyz',
+    blockExplorer: {
+      name: 'TikTrix Testnet Explorer',
+      url: 'https://tiktrix.xyz'
+    },
+    contracts: {},
+    testnet: true
+  },
+  tomb: {
+    id: 6969n,
+    label: 'tomb',
+    name: 'Tomb Mainnet',
+    nativeCurrency: {
+      name: 'TOMB',
+      symbol: 'TOMB',
+      decimals: 18
+    },
+    providerURL: 'https://rpc.tombchain.com',
+    blockExplorer: {
+      name: 'Tomb Explorer',
+      url: 'https://tombscout.com'
+    },
+    contracts: {},
+    testnet: false
   },
   tron: {
     id: 728126428n,
@@ -7904,6 +8616,96 @@ export const networks = {
     },
     contracts: {},
     testnet: false
+  },
+  ultron: {
+    id: 1231n,
+    label: 'ultron',
+    name: 'Ultron Mainnet',
+    nativeCurrency: {
+      name: 'ULX',
+      symbol: 'ULX',
+      decimals: 18
+    },
+    providerURL: 'https://ultron-rpc.net',
+    blockExplorer: {
+      name: 'Ultron Scan',
+      url: 'https://ulxscan.com'
+    },
+    contracts: {},
+    testnet: false
+  },
+  ultronTestnet: {
+    id: 1230n,
+    label: 'ultronTestnet',
+    name: 'Ultron Testnet',
+    nativeCurrency: {
+      name: 'ULX',
+      symbol: 'ULX',
+      decimals: 18
+    },
+    providerURL: 'https://ultron-dev.io',
+    blockExplorer: {
+      name: 'Ultron Scan',
+      url: 'https://explorer.ultron-dev.io'
+    },
+    contracts: {},
+    testnet: true
+  },
+  unichainSepolia: {
+    id: 1301n,
+    label: 'unichainSepolia',
+    name: 'Unichain Sepolia',
+    nativeCurrency: {
+      name: 'Ether',
+      symbol: 'ETH',
+      decimals: 18
+    },
+    providerURL: 'https://sepolia.unichain.org',
+    blockExplorer: {
+      name: 'Uniscan',
+      url: 'https://sepolia.uniscan.xyz',
+      apiUrl: 'https://api-sepolia.uniscan.xyz'
+    },
+    contracts: {
+      gasPriceOracle: {
+        address: '0x420000000000000000000000000000000000000F'
+      },
+      l1Block: {
+        address: '0x4200000000000000000000000000000000000015'
+      },
+      l2CrossDomainMessenger: {
+        address: '0x4200000000000000000000000000000000000007'
+      },
+      l2Erc721Bridge: {
+        address: '0x4200000000000000000000000000000000000014'
+      },
+      l2StandardBridge: {
+        address: '0x4200000000000000000000000000000000000010'
+      },
+      l2ToL1MessagePasser: {
+        address: '0x4200000000000000000000000000000000000016'
+      },
+      multicall3: {
+        address: '0xca11bde05977b3631167028862be2a173976ca11',
+        blockCreated: 0
+      },
+      portal: {
+        '11155111': {
+          address: '0x0d83dab629f0e0F9d36c0Cbc89B69a489f0751bD'
+        }
+      },
+      l1StandardBridge: {
+        '11155111': {
+          address: '0xea58fcA6849d79EAd1f26608855c2D6407d54Ce2'
+        }
+      },
+      disputeGameFactory: {
+        '11155111': {
+          address: '0xeff73e5aa3B9AEC32c659Aa3E00444d20a84394b'
+        }
+      }
+    },
+    testnet: true
   },
   unique: {
     id: 8880n,
@@ -7992,6 +8794,23 @@ export const networks = {
     blockExplorer: {
       name: 'Vechain Explorer',
       url: 'https://explore.vechain.org'
+    },
+    contracts: {},
+    testnet: false
+  },
+  velas: {
+    id: 106n,
+    label: 'velas',
+    name: 'Velas EVM Mainnet',
+    nativeCurrency: {
+      name: 'VLX',
+      symbol: 'VLX',
+      decimals: 18
+    },
+    providerURL: 'https://evmexplorer.velas.com/rpc',
+    blockExplorer: {
+      name: 'Velas Explorer',
+      url: 'https://evmexplorer.velas.com'
     },
     contracts: {},
     testnet: false
@@ -8176,10 +8995,54 @@ export const networks = {
     },
     providerURL: 'https://worldchain-mainnet.g.alchemy.com/public',
     blockExplorer: {
-      name: 'World Chain Explorer',
-      url: 'https://worldchain-mainnet.explorer.alchemy.com'
+      name: 'Worldscan',
+      url: 'https://worldscan.org',
+      apiUrl: 'https://api.worldscan.org/api'
     },
-    contracts: {},
+    contracts: {
+      gasPriceOracle: {
+        address: '0x420000000000000000000000000000000000000F'
+      },
+      l1Block: {
+        address: '0x4200000000000000000000000000000000000015'
+      },
+      l2CrossDomainMessenger: {
+        address: '0x4200000000000000000000000000000000000007'
+      },
+      l2Erc721Bridge: {
+        address: '0x4200000000000000000000000000000000000014'
+      },
+      l2StandardBridge: {
+        address: '0x4200000000000000000000000000000000000010'
+      },
+      l2ToL1MessagePasser: {
+        address: '0x4200000000000000000000000000000000000016'
+      },
+      multicall3: {
+        address: '0xca11bde05977b3631167028862be2a173976ca11',
+        blockCreated: 0
+      },
+      disputeGameFactory: {
+        '1': {
+          address: '0x0E90dCAFBC242D2C861A20Bb20EC8E7182965a52'
+        }
+      },
+      l2OutputOracle: {
+        '1': {
+          address: '0x19A6d1E9034596196295CF148509796978343c5D'
+        }
+      },
+      portal: {
+        '1': {
+          address: '0xd5ec14a83B7d95BE1E2Ac12523e2dEE12Cbeea6C'
+        }
+      },
+      l1StandardBridge: {
+        '1': {
+          address: '0x470458C91978D2d929704489Ad730DC3E3001113'
+        }
+      }
+    },
     testnet: false
   },
   worldchainSepolia: {
@@ -8193,10 +9056,53 @@ export const networks = {
     },
     providerURL: 'https://worldchain-sepolia.g.alchemy.com/public',
     blockExplorer: {
-      name: 'World Chain Sepolia Explorer',
-      url: 'https://worldchain-sepolia.explorer.alchemy.com'
+      name: 'Worldscan Sepolia',
+      url: 'https://sepolia.worldscan.org'
     },
-    contracts: {},
+    contracts: {
+      gasPriceOracle: {
+        address: '0x420000000000000000000000000000000000000F'
+      },
+      l1Block: {
+        address: '0x4200000000000000000000000000000000000015'
+      },
+      l2CrossDomainMessenger: {
+        address: '0x4200000000000000000000000000000000000007'
+      },
+      l2Erc721Bridge: {
+        address: '0x4200000000000000000000000000000000000014'
+      },
+      l2StandardBridge: {
+        address: '0x4200000000000000000000000000000000000010'
+      },
+      l2ToL1MessagePasser: {
+        address: '0x4200000000000000000000000000000000000016'
+      },
+      multicall3: {
+        address: '0xca11bde05977b3631167028862be2a173976ca11',
+        blockCreated: 0
+      },
+      disputeGameFactory: {
+        '11155111': {
+          address: '0x8cF97Ee616C986a070F5020d973b456D0120C253'
+        }
+      },
+      l2OutputOracle: {
+        '11155111': {
+          address: '0xc8886f8BAb6Eaeb215aDB5f1c686BF699248300e'
+        }
+      },
+      portal: {
+        '11155111': {
+          address: '0xFf6EBa109271fe6d4237EeeD4bAb1dD9A77dD1A4'
+        }
+      },
+      l1StandardBridge: {
+        '11155111': {
+          address: '0xd7DF54b3989855eb66497301a4aAEc33Dbb3F8DE'
+        }
+      }
+    },
     testnet: true
   },
   x1Testnet: {
@@ -8314,15 +9220,15 @@ export const networks = {
       name: 'XDC',
       symbol: 'XDC'
     },
-    providerURL: 'https://rpc.xinfin.network',
+    providerURL: 'https://rpc.xdcrpc.com',
     blockExplorer: {
-      name: 'Blocksscan',
-      url: 'https://xdc.blocksscan.io'
+      name: 'XDCScan',
+      url: 'https://xdcscan.com'
     },
     contracts: {
       multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 71542788
+        address: '0x0B1795ccA8E4eC4df02346a082df54D437F8D9aF',
+        blockCreated: 75884020
       }
     },
     testnet: false
@@ -8338,8 +9244,8 @@ export const networks = {
     },
     providerURL: 'https://erpc.apothem.network',
     blockExplorer: {
-      name: 'Blocksscan',
-      url: 'https://apothem.blocksscan.io'
+      name: 'XDCScan',
+      url: 'https://testnet.xdcscan.com'
     },
     contracts: {
       multicall3: {
@@ -8652,6 +9558,10 @@ export const networks = {
     contracts: {
       multicall3: {
         address: '0xF9cda624FBC7e059355ce98a31693d299FACd963'
+      },
+      universalSignatureVerifier: {
+        address: '0xfB688330379976DA81eB64Fe4BF50d7401763B9C',
+        blockCreated: 45659388
       }
     },
     testnet: false
@@ -8702,6 +9612,10 @@ export const networks = {
     contracts: {
       multicall3: {
         address: '0xF9cda624FBC7e059355ce98a31693d299FACd963'
+      },
+      universalSignatureVerifier: {
+        address: '0xfB688330379976DA81eB64Fe4BF50d7401763B9C',
+        blockCreated: 3855712
       }
     },
     testnet: true
@@ -8724,6 +9638,10 @@ export const networks = {
     contracts: {
       multicall3: {
         address: '0xF9cda624FBC7e059355ce98a31693d299FACd963'
+      },
+      universalSignatureVerifier: {
+        address: '0xfB688330379976DA81eB64Fe4BF50d7401763B9C',
+        blockCreated: 45659388
       }
     },
     testnet: false
@@ -8774,6 +9692,10 @@ export const networks = {
     contracts: {
       multicall3: {
         address: '0xF9cda624FBC7e059355ce98a31693d299FACd963'
+      },
+      universalSignatureVerifier: {
+        address: '0xfB688330379976DA81eB64Fe4BF50d7401763B9C',
+        blockCreated: 3855712
       }
     },
     testnet: true

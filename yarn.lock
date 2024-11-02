@@ -463,7 +463,7 @@ __metadata:
     glob: "npm:^11.0.0"
     hardhat: "npm:^2.22.15"
     hardhat-deploy-ethers: "npm:^0.4.2"
-    viem: "npm:^2.21.38"
+    viem: "npm:^2.21.39"
     wait-on: "npm:^8.0.1"
   languageName: unknown
   linkType: soft
@@ -7688,9 +7688,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"viem@npm:^2.21.38":
-  version: 2.21.38
-  resolution: "viem@npm:2.21.38"
+"viem@npm:^2.21.39":
+  version: 2.21.39
+  resolution: "viem@npm:2.21.39"
   dependencies:
     "@adraffy/ens-normalize": "npm:1.11.0"
     "@noble/curves": "npm:1.6.0"
@@ -7706,7 +7706,7 @@ __metadata:
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: eca1ba239b20b97f06c77d095b93e72bf11331e80d7720325aff07873c228babed3a06dbd7a66a6052cabb8304e9df025dfde75206e2beb763ca5d9a74d43c6f
+  checksum: b9d2f8eadeccd12da8171a159450ee40b9df1ea5c25a8ec17a3542ab5a133db50dcd38558aeeaec1c53a2b5bbec60c71d2e6440933855c7fd07c22fc32e399ed
   languageName: node
   linkType: hard
 

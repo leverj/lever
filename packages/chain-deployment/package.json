@@ -24,7 +24,7 @@
   },
   "devDependencies": {
     "@leverj/lever.config": "1.0.3",
-    "viem": "^2.21.38",
+    "viem": "^2.21.39",
     "wait-on": "^8.0.1"
   }
 }
