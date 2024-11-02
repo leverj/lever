@@ -1,6 +1,6 @@
 {
   "name": "@leverj/lever.chain-deployment",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "license": "UNLICENSED",
   "type": "module",
   "exports": {
@@ -23,7 +23,7 @@
     "hardhat-deploy-ethers": "^0.4.2"
   },
   "devDependencies": {
-    "@leverj/lever.config": "1.0.3",
+    "@leverj/lever.config": "1.0.4",
     "viem": "^2.21.39",
     "wait-on": "^8.0.1"
   }
