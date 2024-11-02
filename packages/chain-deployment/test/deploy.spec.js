@@ -1,21 +1,21 @@
-import info from '../package.json' assert {type: 'json'}
 import {Deploy, networks} from '@leverj/lever.chain-deployment'
 import {logger} from '@leverj/lever.common'
 import {isAddress} from 'ethers'
 import {expect} from 'expect'
-import {Map} from 'immutable'
 import {cloneDeep, zip} from 'lodash-es'
 import {exec} from 'node:child_process'
 import {rmSync} from 'node:fs'
 import {setTimeout} from 'node:timers/promises'
 import waitOn from 'wait-on'
 import config from '../config.js'
+import info from '../package.json' assert {type: 'json'}
 
 describe('deploy to multiple chains', () => {
   const chains = ['holesky', 'sepolia']
   let processes = []
 
   before(async () => {
+    config.createContractsConstructors = (chain) => ({Bank: {params: [networks[chain].id, info.name]}})
     const {ports, providerURLs} = configureDeployment()
     processes = await launchEvms(ports, providerURLs)
   })
@@ -30,10 +30,6 @@ describe('deploy to multiple chains', () => {
   })
 
   const configureDeployment = () => {
-    config.contracts = Map(zip(
-      chains,
-      chains.map(_ => ({Bank: {params: [networks[_].id, info.name]}}))
-    )).toJS()
     const ports = chains.map((chain, i) => 8101 + i)
     const providerURLs = ports.map(port => `http://localhost:${port}`)
     zip(chains, providerURLs).forEach(([chain, providerURL]) => networks[chain].providerURL = providerURL)

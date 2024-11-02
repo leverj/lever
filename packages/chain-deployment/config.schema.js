@@ -24,5 +24,8 @@ export const schema = {
 
 export function postLoad(config) {
   config.networks = {}
+  config.constructors = {}
+  config.createContractsConstructors = (chain) => ({})
+  config.setContractsConstructors = function (chain) { this.constructors[chain] = this.createContractsConstructors(chain) }
   return config
 }

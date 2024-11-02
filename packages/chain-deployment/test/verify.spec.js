@@ -8,12 +8,14 @@ import {rmSync} from 'node:fs'
 import {setTimeout} from 'node:timers/promises'
 import waitOn from 'wait-on'
 import {postLoad, schema} from '../config.schema.js'
+import info from '../package.json' assert {type: 'json'}
 
 describe('verify', () => {
   let config
 
   beforeEach(async () => {
     config = await configure(schema, postLoad, {env: {NODE_ENV: 'test'}})
+    config.createContractsConstructors = (chain) => ({Bank: {params: [networks[chain].id, info.name]}})
     rmSync(`${config.deploymentDir}/test`, {recursive: true, force: true})
   })
 
