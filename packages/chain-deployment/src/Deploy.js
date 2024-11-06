@@ -41,9 +41,12 @@ export class Deploy {
   }
 
   async deployContracts(chain, options) {
-    const {reset, verify} = options
     const network = this.store.get(chain)
-    const provider = new JsonRpcProvider(network.providerURL)
+    const providerURL =
+      options.providerURL ||
+      process.env[`${chain.toUpperCase()}_PROVIDER_URL`] ||
+      network.providerURL
+    const provider = new JsonRpcProvider(providerURL)
     const signer = new Wallet(this.config.deployer.privateKey, provider)
     this.config.setContractsConstructors(chain)
     const constructors = this.config.constructors[chain]
@@ -60,7 +63,7 @@ export class Deploy {
 
       libraries = translateLibraries(libraries)
       params = translateAddresses(params)
-      if (!deployedContracts[name]?.address || reset) {
+      if (!deployedContracts[name]?.address || options.reset) {
         this.logger.log(`deploying ${name} contract `.padEnd(120, '.'))
         const contract = await deployContract(name, params, {libraries, signer})
         const address = contract.target
@@ -68,7 +71,7 @@ export class Deploy {
         this.store.update(chain, {contracts: {[name]: {address, blockCreated}}})
         await setTimeout(200) // note: must wait a bit to avoid "Nonce too low" error
       }
-      if (verify) {
+      if (options.verify) {
         const network = this.store.get(chain)
         const chainId = parseInt(network.id)
         const address = network.contracts[name].address

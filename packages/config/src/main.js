@@ -1,5 +1,7 @@
 import convict from 'convict'
 import convict_format_with_validator from 'convict-format-with-validator'
+import dotenv from 'dotenv'
+import {expand} from 'dotenv-expand'
 import {get, set} from 'lodash-es'
 import {existsSync} from 'node:fs'
 
@@ -14,6 +16,7 @@ convict.addFormat(
   value => value /* validate proper path here */,
   (value, config) => value.replace(/\$\{([\w\.]+)}/g, (_, match) => config.get(match))
 )
+expand(dotenv.config())
 
 export async function configure(schema, postLoad = _ => _, options = {}) {
   const configDir = `${options?.env?.PWD || process.env.PWD}/config`
