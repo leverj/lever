@@ -43,6 +43,23 @@ export const networks = {
     contracts: {},
     testnet: false
   },
+  aioz: {
+    id: 168n,
+    label: 'aioz',
+    name: 'AIOZ Network',
+    nativeCurrency: {
+      decimals: 18,
+      name: 'AIOZ',
+      symbol: 'AIOZ'
+    },
+    providerURL: 'https://eth-dataseed.aioz.network',
+    blockExplorer: {
+      name: 'AIOZ Explorer',
+      url: 'https://explorer.aioz.network'
+    },
+    contracts: {},
+    testnet: false
+  },
   alienx: {
     id: 10241024n,
     label: 'alienx',
@@ -2588,6 +2605,23 @@ export const networks = {
     },
     testnet: true
   },
+  enuls: {
+    id: 119n,
+    label: 'enuls',
+    name: 'ENULS Mainnet',
+    nativeCurrency: {
+      decimals: 18,
+      name: 'NULS',
+      symbol: 'NULS'
+    },
+    providerURL: 'https://evmapi2.nuls.io',
+    blockExplorer: {
+      name: 'ENULS Explorer',
+      url: 'https://evmscan.nuls.io'
+    },
+    contracts: {},
+    testnet: false
+  },
   eon: {
     id: 7332n,
     label: 'eon',
@@ -3531,6 +3565,28 @@ export const networks = {
     },
     contracts: {},
     testnet: true
+  },
+  godwoken: {
+    id: 71402n,
+    label: 'godwoken',
+    name: 'Godwoken Mainnet',
+    nativeCurrency: {
+      decimals: 18,
+      name: 'pCKB',
+      symbol: 'pCKB'
+    },
+    providerURL: 'https://v1.mainnet.godwoken.io/rpc',
+    blockExplorer: {
+      name: 'GW Scan',
+      url: 'https://v1.gwscan.com'
+    },
+    contracts: {
+      multicall3: {
+        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+        blockCreated: 15034
+      }
+    },
+    testnet: false
   },
   goerli: {
     id: 5n,
@@ -6408,8 +6464,8 @@ export const networks = {
     label: 'polygonAmoy',
     name: 'Polygon Amoy',
     nativeCurrency: {
-      name: 'MATIC',
-      symbol: 'MATIC',
+      name: 'POL',
+      symbol: 'POL',
       decimals: 18
     },
     providerURL: 'https://rpc-amoy.polygon.technology',
@@ -7249,7 +7305,7 @@ export const networks = {
       symbol: 'ETH',
       decimals: 18
     },
-    providerURL: 'https://rpc2.sepolia.org',
+    providerURL: 'https://sepolia.drpc.org',
     blockExplorer: {
       name: 'Etherscan',
       url: 'https://sepolia.etherscan.io',
@@ -7946,8 +8002,8 @@ export const networks = {
     providerURL: 'https://rpc.minato.soneium.org',
     blockExplorer: {
       name: 'Blockscout',
-      url: 'https://explorer-testnet.soneium.org',
-      apiUrl: 'https://explorer-testnet.soneium.org/api'
+      url: 'https://soneium-minato.blockscout.com',
+      apiUrl: 'https://soneium-minato.blockscout.com/api'
     },
     contracts: {
       gasPriceOracle: {
@@ -7970,7 +8026,7 @@ export const networks = {
       },
       disputeGameFactory: {
         '11155111': {
-          address: '0xF69dB6cA559C52d9A4BB6e2B2901f490Ca35Fbf6'
+          address: '0xB3Ad2c38E6e0640d7ce6aA952AB3A60E81bf7a01'
         }
       },
       l2OutputOracle: {
@@ -9327,6 +9383,23 @@ export const networks = {
       }
     },
     testnet: true
+  },
+  zeniq: {
+    id: 383414847825n,
+    label: 'zeniq',
+    name: 'Zeniq Mainnet',
+    nativeCurrency: {
+      name: 'ZENIQ',
+      symbol: 'ZENIQ',
+      decimals: 18
+    },
+    providerURL: 'https://api.zeniq.network',
+    blockExplorer: {
+      name: 'Zeniq Explorer',
+      url: 'https://zeniqscan.com'
+    },
+    contracts: {},
+    testnet: false
   },
   zetachain: {
     id: 7000n,

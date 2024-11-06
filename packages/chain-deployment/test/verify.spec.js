@@ -21,7 +21,6 @@ describe('verify', () => {
 
   it('attempt to verify unsupported chain', async () => {
     const chain = 'hardhat'
-    config.contracts = {[chain]: {Bank: {params: [networks[chain].id, 'whatever']}}}
     const evm = exec(`npx hardhat node`)
     await waitOn({resources: [networks[chain].providerURL], timeout: 10000})
     try {
@@ -49,14 +48,13 @@ describe('verify', () => {
     const chain = 'sepolia'
     // const chain = 'holesky'
     const chainId = Number(networks[chain].id)
-    config.contracts = {[chain]: {Bank: {params: [networks[chain].id, 'whatever']}}}
-
     const signer = new Wallet(config.deployer.privateKey)
     const provider = new JsonRpcProvider(networks[chain].providerURL)
     const balance = await provider.getBalance(signer.address)
     console.log(`${getAddress(signer.address)} must have sufficient funds to deploy contract.\nbalance on ${chain} [${chainId}] is: ${balance}`)
 
     const logger = new CapturingLogger()
+    const deploy = Deploy.from(config, logger)
     await deploy.to(chain, {verify: true})
     expect(logger.errors).toHaveLength(0)
   })
