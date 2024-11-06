@@ -23,7 +23,13 @@ export class Deploy {
   async to(chain, options = {}) {
     const network = networks[chain]
     if (!network) throw Error(`chain ${chain} is not supported`)
-    else if (!this.store.has(chain)) this.store.set(chain, network)
+    else if (!this.store.has(chain)) {
+      const providerURL =
+        options.providerURL ||
+        process.env[`${chain.toUpperCase()}_PROVIDER_URL`] ||
+        network.providerURL
+      this.store.set(chain, Object.assign({}, network, {providerURL}))
+    }
 
     this.logger.log(`${'*'.repeat(30)} starting deploying contracts `.padEnd(120, '*'))
     this.logger.log(`${'-'.repeat(60)} config `.padEnd(120, '-'))
@@ -42,11 +48,7 @@ export class Deploy {
 
   async deployContracts(chain, options) {
     const network = this.store.get(chain)
-    const providerURL =
-      options.providerURL ||
-      process.env[`${chain.toUpperCase()}_PROVIDER_URL`] ||
-      network.providerURL
-    const provider = new JsonRpcProvider(providerURL)
+    const provider = new JsonRpcProvider(network.providerURL)
     const signer = new Wallet(this.config.deployer.privateKey, provider)
     this.config.setContractsConstructors(chain)
     const constructors = this.config.constructors[chain]
