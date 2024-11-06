@@ -1,6 +1,6 @@
 {
   "name": "@leverj/lever.zka",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "license": "UNLICENSED",
   "type": "module",
   "main": "./src/index.js",
@@ -8,7 +8,7 @@
     "test": "npx mocha"
   },
   "dependencies": {
-    "@leverj/lever.common": "1.0.4",
+    "@leverj/lever.common": "1.0.5",
     "axios": "^1.7.7",
     "ephemeral-cache": "^1.1.0",
     "ethers": "^6.13.4",
