@@ -1,3 +1,4 @@
+import axios from 'axios'
 import * as glob from 'glob'
 import {default as hardhat} from 'hardhat'
 import {Map} from 'immutable'
@@ -10,11 +11,7 @@ import blockscoutExplorerUrls from './chainscout-chains.json' assert {type: 'jso
 const {artifacts, config: {paths}} = hardhat
 const contractFullyQualifiedNames = Map((await artifacts.getAllFullyQualifiedNames()).map(_ => [_.split(':')[1], _])).toJS()
 
-async function getBuildInfo(name) {
-  return artifacts.getBuildInfo(contractFullyQualifiedNames[name])
-}
-
-function getSourceCode(name) {
+const getSourceCode = (name) => {
   const sources = glob.sync(`${paths.sources}/**/*.sol`)
   const source_path = sources.find(_ => _.endsWith(`/${name}.sol`))
   const flattened_path = `${tmpdir()}/${name}.sol`
@@ -26,8 +23,9 @@ export async function verifyContract(logger, name, chainId, address, libraries) 
   const explorerUrl = blockscoutExplorerUrls[chainId]?.explorers[0].url
   if (!explorerUrl) return logger.warn(`verifying on chain ${chainId} is not supported`)
 
-  const {solcLongVersion, input: {settings: {evmVersion, optimizer}}} = await getBuildInfo(name)
-  const body = JSON.stringify({
+  const buildInfo = await artifacts.getBuildInfo(contractFullyQualifiedNames[name])
+  const {solcLongVersion, input: {settings: {evmVersion, optimizer}}} = buildInfo
+  const data = JSON.stringify({
     compiler_version: solcLongVersion,
     license_type: 'mit',
     is_optimization_enabled: optimizer.enabled,
@@ -38,19 +36,7 @@ export async function verifyContract(logger, name, chainId, address, libraries) 
     contract_name: name,
     libraries,
   })
-
-  try {
-    const response = await fetch(`${explorerUrl}/api/v2/smart-contracts/${address}/verification/via/flattened-code`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body,
-    })
-    const data = await response.json()
-    if (response.status === 200) logger.log(`[${data.message}] see: ${explorerUrl}/address/${address}?tab=contract`)
-    else throw Error(`${explorerUrl} : failed to verify ${name} @ ${address} ; [${response.status}] ${data.message}`)
-  } catch (e) {
-    logger.error(e)
-  }
+  const url = `${explorerUrl}/api/v2/smart-contracts/${address}/verification/via/flattened-code`
+  const headers = {'content-type': 'application/json'}
+  await axios.post(url, data, {headers, timeout: 1000}).catch(logger.error)
 }

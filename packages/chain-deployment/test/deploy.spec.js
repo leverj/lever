@@ -50,8 +50,7 @@ describe('deploy to multiple chains', () => {
     const deploy = Deploy.from(config, logger)
 
     for (let chain of chains) {
-      const pre_deployed = deploy.store.get(chain)
-      expect(pre_deployed).not.toBeDefined()
+      expect(deploy.store.get(chain)).not.toBeDefined()
 
       // first deploy; from scratch
       await deploy.to(chain)
