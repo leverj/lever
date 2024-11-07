@@ -8,7 +8,7 @@ import {networks} from './networks.js'
 const {ethers: {deployContract, JsonRpcProvider, Wallet}} = hardhat
 
 export class Deploy {
-  static from(config, logger = logger) {
+  static from(config, logger = console) {
     const {deploymentDir, env} = config
     const store = new JsonStore(`${deploymentDir}/${env}`, '.evms')
     return new this(config, store, logger)
