@@ -24,10 +24,7 @@ export class Deploy {
     const network = networks[chain]
     if (!network) throw Error(`chain ${chain} is not supported`)
     else if (!this.store.has(chain)) {
-      const providerURL =
-        options.providerURL ||
-        process.env[`${chain.toUpperCase()}_PROVIDER_URL`] ||
-        network.providerURL
+      const providerURL = process.env[`${chain.toUpperCase()}_PROVIDER_URL`] || network.providerURL
       this.store.set(chain, Object.assign({}, network, {providerURL}))
     }
 
