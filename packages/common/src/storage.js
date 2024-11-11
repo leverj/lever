@@ -4,6 +4,7 @@ import {existsSync, readdirSync, readFileSync, rmSync, writeFileSync} from 'node
 import {basename, extname} from 'node:path'
 import {ensureExistsSync} from './files.js'
 
+/** in-memory key/value store **/
 export class InMemoryStore {
   constructor(prior = {}) { this.map = Map(prior).asMutable() }
   get(key, defaults) { return this.map.get(key, defaults) }
@@ -18,12 +19,16 @@ export class InMemoryStore {
   toObject() { return this.map.toJS() }
 }
 
-export class JsonStore {
-  constructor(path, type) {
+/** file-based key/value store **/
+export class FileStore {
+  constructor(path, type, extension, deserializer, serializer) {
     ensureExistsSync(path)
-    this.file = `${path}/${type}.json`
+    this.extension = extension
+    this.deserializer = deserializer
+    this.serializer = serializer
+    this.file = `${path}/${type}${this.extension}`
     this.cache = this.exists ?
-      new InMemoryStore(JSON.parse(readFileSync(this.file, 'utf8'))) :
+      new InMemoryStore(this.deserializer(readFileSync(this.file, 'utf8'))) :
       new InMemoryStore()
   }
   get(key, defaults) { return this.cache.get(key.toString(), defaults) }
@@ -36,24 +41,40 @@ export class JsonStore {
   values() { return this.cache.values() }
   clear() { this.cache.clear(); this.save() }
   toObject() { return this.cache.toObject() }
-  save() { writeFileSync(this.file, JSON.stringify(this.toObject(), null, 2)) }
+  save() { writeFileSync(this.file, this.serializer(this.toObject(), null, 2)) }
   get exists() { return existsSync(this.file) }
 }
 
-export class JsonDirStore {
+export class JsonStore extends FileStore {
   constructor(path, type) {
+    super(path, type, '.json', JSON.parse, JSON.stringify)
+  }
+}
+
+/** key/value store where key = filename (without extension) and value = whole file contents **/
+export class DirStore {
+  constructor(path, type, extension, deserializer, serializer) {
     this.path = `${path}/${type}`
     ensureExistsSync(this.path)
+    this.extension = extension
+    this.deserializer = deserializer
+    this.serializer = serializer
   }
-  fileOf(key) { return `${this.path}/${key}.json` }
-  get(key, defaults) { return existsSync(this.fileOf(key)) ? JSON.parse(readFileSync(this.fileOf(key), 'utf8')) : defaults }
-  set(key, value) { writeFileSync(this.fileOf(key), JSON.stringify(value, null, 2)) }
+  fileOf(key) { return `${this.path}/${key}${this.extension}` }
+  get(key, defaults) { return existsSync(this.fileOf(key)) ? this.deserializer(readFileSync(this.fileOf(key), 'utf8')) : defaults }
+  set(key, value) { writeFileSync(this.fileOf(key), this.serializer(value, null, 2)) }
   update(key, value) { this.set(key, merge(this.get(key, {}), value)) }
   delete(key) { rmSync(this.fileOf(key), {force: true}) }
   has(key) { return !!this.get(key) }
   entries() { return this.keys().map(_ => [_, this.get(_)]) }
-  keys() { return readdirSync(this.path).filter(_ => extname(_) === '.json').map(_ => basename(_, '.json')) }
+  keys() { return readdirSync(this.path).filter(_ => extname(_) === this.extension).map(_ => basename(_, this.extension)) }
   values() { return this.keys().map(_ => this.get(_)) }
   clear() { this.keys().forEach(_ => this.delete(_)) }
   toObject() { return Map(this.entries()).toJS() }
+}
+
+export class JsonDirStore extends DirStore {
+  constructor(path, type) {
+    super(path, type, '.json', JSON.parse, JSON.stringify)
+  }
 }
