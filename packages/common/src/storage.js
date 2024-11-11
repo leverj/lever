@@ -1,6 +1,7 @@
 import {Map} from 'immutable'
 import {merge} from 'lodash-es'
-import {existsSync, readFileSync, writeFileSync} from 'node:fs'
+import {existsSync, readdirSync, readFileSync, rmSync, writeFileSync} from 'node:fs'
+import {basename, extname} from 'node:path'
 import {ensureExistsSync} from './files.js'
 
 export class InMemoryStore {
@@ -37,4 +38,22 @@ export class JsonStore {
   toObject() { return this.cache.toObject() }
   save() { writeFileSync(this.file, JSON.stringify(this.toObject(), null, 2)) }
   get exists() { return existsSync(this.file) }
+}
+
+export class JsonDirStore {
+  constructor(path, type) {
+    this.path = `${path}/${type}`
+    ensureExistsSync(this.path)
+  }
+  fileOf(key) { return `${this.path}/${key}.json` }
+  get(key, defaults) { return existsSync(this.fileOf(key)) ? JSON.parse(readFileSync(this.fileOf(key), 'utf8')) : defaults }
+  set(key, value) { writeFileSync(this.fileOf(key), JSON.stringify(value, null, 2)) }
+  update(key, value) { this.set(key, merge(this.get(key, {}), value)) }
+  delete(key) { rmSync(this.fileOf(key), {force: true}) }
+  has(key) { return !!this.get(key) }
+  entries() { return this.keys().map(_ => [_, this.get(_)]) }
+  keys() { return readdirSync(this.path).filter(_ => extname(_) === '.json').map(_ => basename(_, '.json')) }
+  values() { return this.keys().map(_ => this.get(_)) }
+  clear() { this.keys().forEach(_ => this.delete(_)) }
+  toObject() { return Map(this.entries()).toJS() }
 }
