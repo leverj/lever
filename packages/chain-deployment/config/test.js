@@ -1,4 +1,4 @@
-import info from '../package.json' assert {type: 'json'}
+import info from '../package.json' with {type: 'json'}
 import {wallets} from '@leverj/lever.chain-deployment/hardhat.help'
 import {last} from 'lodash-es'
 

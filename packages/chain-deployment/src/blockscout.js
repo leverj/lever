@@ -6,7 +6,7 @@ import {execSync} from 'node:child_process'
 import {readFileSync} from 'node:fs'
 import {tmpdir} from 'node:os'
 /*** from https://github.com/blockscout/chainscout/blob/main/data/chains.json ***/
-import blockscoutExplorerUrls from './chainscout-chains.json' assert {type: 'json'}
+import blockscoutExplorerUrls from './chainscout-chains.json' with {type: 'json'}
 
 const {artifacts, config: {paths}} = hardhat
 const contractFullyQualifiedNames = Map((await artifacts.getAllFullyQualifiedNames()).map(_ => [_.split(':')[1], _])).toJS()
