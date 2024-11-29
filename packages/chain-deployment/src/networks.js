@@ -1,4 +1,21 @@
 export const networks = {
+  abey: {
+    id: 179n,
+    label: 'abey',
+    name: 'ABEY Mainnet',
+    nativeCurrency: {
+      name: 'ABEY',
+      symbol: 'ABEY',
+      decimals: 18
+    },
+    providerURL: 'https://rpc.abeychain.com',
+    blockExplorer: {
+      name: 'Abey Scan',
+      url: 'https://abeyscan.com'
+    },
+    contracts: {},
+    testnet: false
+  },
   abstractTestnet: {
     id: 11124n,
     label: 'abstractTestnet',
@@ -39,6 +56,23 @@ export const networks = {
       name: 'Acala Blockscout',
       url: 'https://blockscout.acala.network',
       apiUrl: 'https://blockscout.acala.network/api'
+    },
+    contracts: {},
+    testnet: false
+  },
+  acria: {
+    id: 47n,
+    label: 'acria',
+    name: 'Acria IntelliChain',
+    nativeCurrency: {
+      decimals: 18,
+      name: 'ACRIA',
+      symbol: 'ACRIA'
+    },
+    providerURL: 'https://aic.acria.ai',
+    blockExplorer: {
+      name: 'Acria Explorer',
+      url: 'https://explorer.acria.ai'
     },
     contracts: {},
     testnet: false
@@ -1078,6 +1112,23 @@ export const networks = {
     contracts: {},
     testnet: true
   },
+  bitgert: {
+    id: 32520n,
+    label: 'bitgert',
+    name: 'Bitgert Mainnet',
+    nativeCurrency: {
+      decimals: 18,
+      name: 'Brise',
+      symbol: 'Brise'
+    },
+    providerURL: 'https://rpc-bitgert.icecreamswap.com',
+    blockExplorer: {
+      name: 'Bitgert Scan',
+      url: 'https://brisescan.com'
+    },
+    contracts: {},
+    testnet: false
+  },
   bitkub: {
     id: 96n,
     label: 'bitkub',
@@ -1797,6 +1848,40 @@ export const networks = {
     contracts: {},
     testnet: false
   },
+  coinbit: {
+    id: 112n,
+    label: 'coinbit',
+    name: 'Coinbit Mainnet',
+    nativeCurrency: {
+      name: 'GIDR',
+      symbol: 'GIDR',
+      decimals: 18
+    },
+    providerURL: 'https://coinbit-rpc-mainnet.chain.sbcrypto.app',
+    blockExplorer: {
+      name: 'Coinbit Explorer',
+      url: 'https://coinbit-explorer.chain.sbcrypto.app'
+    },
+    contracts: {},
+    testnet: false
+  },
+  coinex: {
+    id: 52n,
+    label: 'coinex',
+    name: 'CoinEx Mainnet',
+    nativeCurrency: {
+      name: 'cet',
+      symbol: 'cet',
+      decimals: 18
+    },
+    providerURL: 'https://rpc.coinex.net',
+    blockExplorer: {
+      name: 'CoinEx Explorer',
+      url: 'https://www.coinex.net'
+    },
+    contracts: {},
+    testnet: false
+  },
   confluxESpace: {
     id: 1030n,
     label: 'confluxESpace',
@@ -2230,6 +2315,23 @@ export const networks = {
     },
     testnet: false
   },
+  diode: {
+    id: 15n,
+    label: 'diode',
+    name: 'Diode Prenet',
+    nativeCurrency: {
+      decimals: 18,
+      name: 'DIODE',
+      symbol: 'DIODE'
+    },
+    providerURL: 'https://prenet.diode.io:8443',
+    blockExplorer: {
+      name: 'Diode Explorer',
+      url: 'https://diode.io/prenet'
+    },
+    contracts: {},
+    testnet: false
+  },
   dodochainTestnet: {
     id: 53457n,
     label: 'dodochainTestnet',
@@ -2605,6 +2707,23 @@ export const networks = {
     },
     testnet: true
   },
+  energy: {
+    id: 246n,
+    label: 'energy',
+    name: 'Energy Mainnet',
+    nativeCurrency: {
+      name: 'EWT',
+      symbol: 'EWT',
+      decimals: 18
+    },
+    providerURL: 'https://rpc.energyweb.org',
+    blockExplorer: {
+      name: 'EnergyWeb Explorer',
+      url: 'https://explorer.energyweb.org'
+    },
+    contracts: {},
+    testnet: false
+  },
   enuls: {
     id: 119n,
     label: 'enuls',
@@ -2771,6 +2890,23 @@ export const networks = {
     blockExplorer: {
       name: 'Excelon explorer',
       url: 'https://explorer.excelon.io'
+    },
+    contracts: {},
+    testnet: false
+  },
+  expanse: {
+    id: 2n,
+    label: 'expanse',
+    name: 'Expanse Network',
+    nativeCurrency: {
+      decimals: 18,
+      name: 'EXP',
+      symbol: 'EXP'
+    },
+    providerURL: 'https://node.expanse.tech',
+    blockExplorer: {
+      name: 'Expanse Explorer',
+      url: 'https://explorer.expanse.tech'
     },
     contracts: {},
     testnet: false
@@ -3435,6 +3571,28 @@ export const networks = {
     },
     testnet: true
   },
+  geist: {
+    id: 63157n,
+    label: 'geist',
+    name: 'Geist Mainnet',
+    nativeCurrency: {
+      decimals: 18,
+      name: 'Aavegotchi GHST Token',
+      symbol: 'GHST'
+    },
+    providerURL: 'https://geist-mainnet.g.alchemy.com/public',
+    blockExplorer: {
+      name: 'Blockscout',
+      url: 'https://geist-mainnet.explorer.alchemy.com'
+    },
+    contracts: {
+      multicall3: {
+        address: '0xca11bde05977b3631167028862be2a173976ca11',
+        blockCreated: 660735
+      }
+    },
+    testnet: false
+  },
   genesys: {
     id: 16507n,
     label: 'genesys',
@@ -3492,8 +3650,8 @@ export const networks = {
     name: 'Gnosis',
     nativeCurrency: {
       decimals: 18,
-      name: 'Gnosis',
-      symbol: 'xDAI'
+      name: 'xDAI',
+      symbol: 'XDAI'
     },
     providerURL: 'https://rpc.gnosischain.com',
     blockExplorer: {
@@ -3881,6 +4039,23 @@ export const networks = {
     },
     testnet: true
   },
+  hpb: {
+    id: 269n,
+    label: 'hpb',
+    name: 'High Performance Blockchain',
+    nativeCurrency: {
+      name: 'HPB',
+      symbol: 'HPB',
+      decimals: 18
+    },
+    providerURL: 'https://hpbnode.com',
+    blockExplorer: {
+      name: 'hpbScan',
+      url: 'https://hscan.org'
+    },
+    contracts: {},
+    testnet: false
+  },
   hychain: {
     id: 2911n,
     label: 'hychain',
@@ -3914,6 +4089,23 @@ export const networks = {
     },
     contracts: {},
     testnet: true
+  },
+  idchain: {
+    id: 74n,
+    label: 'idchain',
+    name: 'IDChain Mainnet',
+    nativeCurrency: {
+      decimals: 18,
+      name: 'EIDI',
+      symbol: 'EIDI'
+    },
+    providerURL: 'https://idchain.one/rpc',
+    blockExplorer: {
+      name: 'IDChain Explorer',
+      url: 'https://explorer.idchain.one'
+    },
+    contracts: {},
+    testnet: false
   },
   immutableZkEvm: {
     id: 13371n,
@@ -5110,6 +5302,41 @@ export const networks = {
     contracts: {},
     testnet: true
   },
+  mchVerse: {
+    id: 29548n,
+    label: 'mchVerse',
+    name: 'MCH Verse',
+    nativeCurrency: {
+      name: 'Oasys',
+      symbol: 'OAS',
+      decimals: 18
+    },
+    providerURL: 'https://rpc.oasys.mycryptoheroes.net',
+    blockExplorer: {
+      name: 'MCH Verse Explorer',
+      url: 'https://explorer.oasys.mycryptoheroes.net',
+      apiUrl: 'https://explorer.oasys.mycryptoheroes.net/api'
+    },
+    contracts: {},
+    testnet: false
+  },
+  mekong: {
+    id: 7078815900n,
+    label: 'mekong',
+    name: 'Mekong Pectra Devnet',
+    nativeCurrency: {
+      name: 'eth',
+      symbol: 'eth',
+      decimals: 18
+    },
+    providerURL: 'https://rpc.mekong.ethpandaops.io',
+    blockExplorer: {
+      name: 'Block Explorer',
+      url: 'https://explorer.mekong.ethpandaops.io'
+    },
+    contracts: {},
+    testnet: true
+  },
   meld: {
     id: 333000333n,
     label: 'meld',
@@ -5658,6 +5885,23 @@ export const networks = {
     contracts: {},
     testnet: true
   },
+  nahmii: {
+    id: 5551n,
+    label: 'nahmii',
+    name: 'Nahmii 2 Mainnet',
+    nativeCurrency: {
+      decimals: 18,
+      name: 'ETH',
+      symbol: 'ETH'
+    },
+    providerURL: 'https://l2.nahmii.io',
+    blockExplorer: {
+      name: 'Nahmii 2 Explorer',
+      url: 'https://explorer.n2.nahmii.io'
+    },
+    contracts: {},
+    testnet: false
+  },
   nautilus: {
     id: 22222n,
     label: 'nautilus',
@@ -5838,6 +6082,40 @@ export const networks = {
         blockCreated: 10364792
       }
     },
+    testnet: false
+  },
+  omax: {
+    id: 311n,
+    label: 'omax',
+    name: 'Omax Mainnet',
+    nativeCurrency: {
+      decimals: 18,
+      name: 'OMAX',
+      symbol: 'OMAX'
+    },
+    providerURL: 'https://mainapi.omaxray.com',
+    blockExplorer: {
+      name: 'Omax Explorer',
+      url: 'https://omaxscan.com'
+    },
+    contracts: {},
+    testnet: false
+  },
+  oneWorld: {
+    id: 309075n,
+    label: 'oneWorld',
+    name: 'One World Chain Mainnet',
+    nativeCurrency: {
+      decimals: 18,
+      name: 'OWCT',
+      symbol: 'OWCT'
+    },
+    providerURL: 'https://mainnet-rpc.oneworldchain.org',
+    blockExplorer: {
+      name: 'One World Explorer',
+      url: 'https://mainnet.oneworldchain.org'
+    },
+    contracts: {},
     testnet: false
   },
   oortMainnetDev: {
@@ -6434,6 +6712,28 @@ export const networks = {
       apiUrl: 'https://testnet-explorer.plumenetwork.xyz/api'
     },
     contracts: {},
+    testnet: true
+  },
+  polterTestnet: {
+    id: 631571n,
+    label: 'polterTestnet',
+    name: 'Polter Testnet',
+    nativeCurrency: {
+      decimals: 18,
+      name: 'Polter GHST',
+      symbol: 'GHST'
+    },
+    providerURL: 'https://geist-polter.g.alchemy.com/public',
+    blockExplorer: {
+      name: 'Blockscout',
+      url: 'https://polter-testnet.explorer.alchemy.com'
+    },
+    contracts: {
+      multicall3: {
+        address: '0xca11bde05977b3631167028862be2a173976ca11',
+        blockCreated: 11245
+      }
+    },
     testnet: true
   },
   polygon: {
@@ -8089,6 +8389,28 @@ export const networks = {
     contracts: {},
     testnet: true
   },
+  sophon: {
+    id: 50104n,
+    label: 'sophon',
+    name: 'Sophon',
+    nativeCurrency: {
+      decimals: 18,
+      name: 'Sophon',
+      symbol: 'SOPH'
+    },
+    providerURL: 'https://rpc.sophon.xyz',
+    blockExplorer: {
+      name: 'Sophon Block Explorer',
+      url: 'https://explorer.sophon.xyz'
+    },
+    contracts: {
+      multicall3: {
+        address: '0x5f4867441d2416cA88B1b3fd38f21811680CD2C8',
+        blockCreated: 116
+      }
+    },
+    testnet: false
+  },
   sophonTestnet: {
     id: 531050104n,
     label: 'sophonTestnet',
@@ -8211,7 +8533,12 @@ export const networks = {
       name: 'Superposition Explorer',
       url: 'https://explorer.superposition.so'
     },
-    contracts: {},
+    contracts: {
+      multicall3: {
+        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+        blockCreated: 39
+      }
+    },
     testnet: false
   },
   swan: {
@@ -8346,7 +8673,12 @@ export const networks = {
       name: 'Taikoscan',
       url: 'https://hekla.taikoscan.network'
     },
-    contracts: {},
+    contracts: {
+      multicall3: {
+        address: '0xca11bde05977b3631167028862be2a173976ca11',
+        blockCreated: 59757
+      }
+    },
     testnet: true
   },
   taikoJolnir: {
@@ -8673,6 +9005,23 @@ export const networks = {
     contracts: {},
     testnet: false
   },
+  ubiq: {
+    id: 8n,
+    label: 'ubiq',
+    name: 'Ubiq Mainnet',
+    nativeCurrency: {
+      name: 'UBQ',
+      symbol: 'UBQ',
+      decimals: 18
+    },
+    providerURL: 'https://pyrus2.ubiqscan.io',
+    blockExplorer: {
+      name: 'Ubiq Scan',
+      url: 'https://ubiqscan.io'
+    },
+    contracts: {},
+    testnet: false
+  },
   ultron: {
     id: 1231n,
     label: 'ultron',
@@ -8720,7 +9069,7 @@ export const networks = {
     blockExplorer: {
       name: 'Uniscan',
       url: 'https://sepolia.uniscan.xyz',
-      apiUrl: 'https://api-sepolia.uniscan.xyz'
+      apiUrl: 'https://api-sepolia.uniscan.xyz/api'
     },
     contracts: {
       gasPriceOracle: {
@@ -8836,6 +9185,23 @@ export const networks = {
       }
     },
     testnet: true
+  },
+  vanar: {
+    id: 2040n,
+    label: 'vanar',
+    name: 'Vanar Mainnet',
+    nativeCurrency: {
+      name: 'VANRY',
+      symbol: 'VANRY',
+      decimals: 18
+    },
+    providerURL: 'https://rpc.vanarchain.com',
+    blockExplorer: {
+      name: 'Vanar Mainnet Explorer',
+      url: 'https://explorer.vanarchain.com/'
+    },
+    contracts: {},
+    testnet: false
   },
   vechain: {
     id: 100009n,

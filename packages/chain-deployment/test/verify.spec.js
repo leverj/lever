@@ -8,7 +8,7 @@ import {rmSync} from 'node:fs'
 import {setTimeout} from 'node:timers/promises'
 import waitOn from 'wait-on'
 import {postLoad, schema} from '../config.schema.js'
-import info from '../package.json' assert {type: 'json'}
+import info from '../package.json' with {type: 'json'}
 
 describe('verify', () => {
   let config

@@ -8,7 +8,7 @@ import {rmSync} from 'node:fs'
 import {setTimeout} from 'node:timers/promises'
 import waitOn from 'wait-on'
 import config from '../config.js'
-import info from '../package.json' assert {type: 'json'}
+import info from '../package.json' with {type: 'json'}
 
 describe('deploy to multiple chains', () => {
   const chains = ['holesky', 'sepolia']
