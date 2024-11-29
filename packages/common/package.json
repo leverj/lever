@@ -3,7 +3,10 @@
   "version": "1.0.9",
   "license": "UNLICENSED",
   "type": "module",
-  "main": "./src/index.js",
+  "exports": {
+    ".": "./src/index.js",
+    "./crypto": "./src/Crypto.js"
+  },
   "scripts": {
     "test": "npx mocha"
   },
