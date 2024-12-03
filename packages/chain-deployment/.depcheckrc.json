@@ -1,18 +1,9 @@
 {
   "ignore-patterns": [
-    "dist",
-    "src/wallet.js",
     "test"
   ],
   "ignores": [
-    "@leverj/gallery.config",
-    "@testing-library/cypress",
-    "@vitejs/plugin-vue",
-    "@vitest/coverage-v8",
-    "@vue/test-utils",
-    "cypress-jest-adapter",
-    "cypress-localstorage-commands",
-    "cypress-vite",
-    "msw"
+    "@leverj/lever.chain-deployment",
+    "wait-on"
   ]
 }
