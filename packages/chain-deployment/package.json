@@ -1,6 +1,6 @@
 {
   "name": "@leverj/lever.chain-deployment",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "license": "MIT",
   "type": "module",
   "exports": {
@@ -11,9 +11,12 @@
     "./hardhat.help": "./hardhat.help.js"
   },
   "scripts": {
-    "test": "npx mocha"
+    "test": "npx mocha",
+    "dependency:check": "npx depcheck"
   },
   "dependencies": {
+    "@leverj/lever.common": "4.0.1",
+    "@leverj/lever.storage": "4.0.1",
     "@nomicfoundation/hardhat-ethers": "^3.0.8",
     "@nomicfoundation/hardhat-network-helpers": "^1.0.12",
     "@nomicfoundation/hardhat-verify": "^2.0.12",
@@ -22,10 +25,13 @@
     "glob": "^11.0.0",
     "hardhat": "^2.22.16",
     "hardhat-deploy": "~0.12.0",
-    "hardhat-deploy-ethers": "^0.4.2"
+    "hardhat-deploy-ethers": "^0.4.2",
+    "immutable": "^5.0.3",
+    "yargs": "^17.7.2"
   },
   "devDependencies": {
-    "@leverj/lever.config": "4.0.0",
+    "@leverj/lever.config": "4.0.1",
+    "lodash-es": "^4.17.21",
     "viem": "^2.21.48",
     "wait-on": "^8.0.1"
   }

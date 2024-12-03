@@ -1,11 +1,12 @@
 {
   "name": "@leverj/lever.config",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "license": "MIT",
   "type": "module",
   "main": "src/main.js",
   "scripts": {
-    "test": "npx mocha"
+    "test": "npx mocha",
+    "dependency:check": "npx depcheck"
   },
   "dependencies": {
     "convict": "^6.2.4",
