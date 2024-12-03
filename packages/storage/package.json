@@ -1,5 +1,5 @@
 {
-  "name": "@leverj/lever.common",
+  "name": "@leverj/lever.storage",
   "version": "3.0.0",
   "license": "MIT",
   "type": "module",
@@ -8,10 +8,8 @@
     "test": "npx mocha"
   },
   "dependencies": {
-    "ethers": "^6.13.4",
     "immutable": "^5.0.3",
-    "lodash-es": "^4.17.21",
-    "uuid": "^11.0.3"
+    "lodash-es": "^4.17.21"
   },
   "devDependencies": {
     "randomhex": "^0.1.5"

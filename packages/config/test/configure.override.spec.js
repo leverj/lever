@@ -1,5 +1,5 @@
 import {configure} from '@leverj/lever.config'
-import {ensureExistsSync} from '@leverj/lever.common'
+import {ensureExistsSync} from '@leverj/lever.storage'
 import {expect} from 'expect'
 import {schema} from './fixtures/override/config.schema.js'
 import {rmSync, writeFileSync} from 'node:fs'

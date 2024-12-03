@@ -1,7 +1,7 @@
 {
   "name": "@leverj/lever.chain-tracking",
   "version": "3.0.0",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "type": "module",
   "main": "./src/index.js",
   "exports": {

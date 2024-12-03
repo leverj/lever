@@ -697,6 +697,16 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@leverj/lever.storage@workspace:packages/storage":
+  version: 0.0.0-use.local
+  resolution: "@leverj/lever.storage@workspace:packages/storage"
+  dependencies:
+    immutable: "npm:^5.0.3"
+    lodash-es: "npm:^4.17.21"
+    randomhex: "npm:^0.1.5"
+  languageName: unknown
+  linkType: soft
+
 "@leverj/lever.telegram@workspace:packages/telegram":
   version: 0.0.0-use.local
   resolution: "@leverj/lever.telegram@workspace:packages/telegram"
