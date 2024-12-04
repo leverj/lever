@@ -5,8 +5,21 @@
   "type": "module",
   "exports": {
     ".": "./src/index.js",
+    "./affirm": "./src/affirm.js",
+    "./cleanse": "./src/cleanse.js",
+    "./Crypto": "./src/Crypto.js",
+    "./Enum": "./src/Enum.js",
+    "./ethereum": "./src/ethereum.js",
+    "./exceptions": "./src/exceptions.js",
     "./files": "./src/files.js",
-    "./storage": "./src/storage.js"
+    "./generators": "./src/generators.js",
+    "./index": "./src/index.js",
+    "./logger": "./src/logger.js",
+    "./Mutex": "./src/Mutex.js",
+    "./storage": "./src/storage.js",
+    "./time": "./src/time.js",
+    "./transformers": "./src/transformers.js",
+    "./until": "./src/until.js"
   },
   "scripts": {
     "test": "npx mocha",
