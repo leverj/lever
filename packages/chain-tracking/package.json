@@ -1,6 +1,6 @@
 {
   "name": "@leverj/lever.chain-tracking",
-  "version": "4.1.0",
+  "version": "4.1.1",
   "license": "MIT",
   "type": "module",
   "main": "./src/index.js",
@@ -20,7 +20,7 @@
     "lodash-es": "^4.17.21"
   },
   "devDependencies": {
-    "@leverj/lever.chain-deployment": "4.1.0",
+    "@leverj/lever.chain-deployment": "4.1.1",
     "@openzeppelin/contracts": "^5.1.0"
   }
 }
