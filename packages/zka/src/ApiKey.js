@@ -1,4 +1,4 @@
-import {days} from '@leverj/lever.common'
+import {days} from '@leverj/lever.common/time'
 import {getAddress, Wallet} from 'ethers'
 
 export class ApiKey {

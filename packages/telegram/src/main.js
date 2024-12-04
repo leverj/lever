@@ -1,5 +1,5 @@
 import axios from 'axios'
-import {logger} from '@leverj/lever.common'
+import {logger} from '@leverj/lever.common/logger'
 
 const CHAT_ID = typeof process !== 'undefined' && process.env.TELEGRAM_CHAT_ID
 const TOKEN_ID = typeof process !== 'undefined' && process.env.TELEGRAM_BOT_TOKEN

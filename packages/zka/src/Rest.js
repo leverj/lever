@@ -1,4 +1,4 @@
-import {logger} from '@leverj/lever.common'
+import {logger} from '@leverj/lever.common/logger'
 import axios from 'axios'
 import {Authenticator} from './Authenticator.js'
 import {calibrateREST, getNonce} from './nonce.js'

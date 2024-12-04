@@ -1,4 +1,5 @@
-import {affirm, logger} from '@leverj/lever.common'
+import {affirm} from '@leverj/lever.common/affirm'
+import {logger} from '@leverj/lever.common/logger'
 import Cache from 'ephemeral-cache'
 import {assign} from 'lodash-es'
 import {io} from 'socket.io-client'

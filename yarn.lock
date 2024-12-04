@@ -795,7 +795,7 @@ __metadata:
   resolution: "@leverj/lever.chain-tracking@workspace:packages/chain-tracking"
   dependencies:
     "@leverj/lever.chain-deployment": "npm:4.1.1"
-    "@leverj/lever.storage": "npm:4.0.2"
+    "@leverj/lever.common": "npm:4.1.1"
     "@openzeppelin/contracts": "npm:^5.1.0"
     async-exit-hook: "npm:^2.0.1"
     ethers: "npm:^6.13.4"
@@ -827,16 +827,6 @@ __metadata:
     lodash-es: "npm:^4.17.21"
   languageName: unknown
   linkType: soft
-
-"@leverj/lever.storage@npm:4.0.2":
-  version: 4.0.2
-  resolution: "@leverj/lever.storage@npm:4.0.2"
-  dependencies:
-    immutable: "npm:^5.0.3"
-    lodash-es: "npm:^4.17.21"
-  checksum: 10c0/5d136f0c6358bb1e9a2887df63d8aa1bb663119814bcb9d1ce68912a24728a0516c2ffd60c2ba2c95add83cecf2b2912128adb65552ac2f39c247e8535262533
-  languageName: node
-  linkType: hard
 
 "@leverj/lever.telegram@workspace:packages/telegram":
   version: 0.0.0-use.local

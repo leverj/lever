@@ -1,4 +1,4 @@
-import {JsonDirStore, JsonStore} from '@leverj/lever.common/storage'
+import {JsonDirStore, JsonStore} from '@leverj/lever.common'
 import {expect} from 'expect'
 import {existsSync, mkdtempSync, rmSync} from 'node:fs'
 import {tmpdir} from 'node:os'
