@@ -1,4 +1,4 @@
-import {JsonStore} from '@leverj/lever.storage'
+import {JsonStore} from '@leverj/lever.common/storage'
 import {default as hardhat} from 'hardhat'
 import {execSync} from 'node:child_process'
 import {setTimeout} from 'node:timers/promises'
