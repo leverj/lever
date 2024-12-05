@@ -16,27 +16,51 @@ const getSourceCode = (name) => {
   const source_path = sources.find(_ => _.endsWith(`/${name}.sol`))
   const flattened_path = `${tmpdir()}/${name}.sol`
   execSync(`npx hardhat flatten ${source_path} | awk '/SPDX-License-Identifier/&&c++>0 {next} 1' > ${flattened_path}`)
-  return readFileSync(flattened_path, 'utf8')
+  return flattened_path
 }
 
-export async function verifyContract(logger, name, chainId, address, libraries) {
-  const explorerUrl = blockscoutExplorerUrls[chainId]?.explorers[0].url
-  if (!explorerUrl) return logger.warn(`verifying on chain ${chainId} is not supported`)
-
+export async function verifyContract(logger, network, deploymentTransaction, name, libraries) {
+  const chainId = parseInt(network.id)
+  const address = network.contracts[name].address
+  const flattenedSourcePath = getSourceCode(name)
   const buildInfo = await artifacts.getBuildInfo(contractFullyQualifiedNames[name])
   const {solcLongVersion, input: {settings: {evmVersion, optimizer}}} = buildInfo
-  const data = JSON.stringify({
-    compiler_version: solcLongVersion,
-    license_type: 'mit',
-    is_optimization_enabled: optimizer.enabled,
-    optimization_runs: optimizer.runs,
-    evm_version: evmVersion,
-    autodetect_constructor_args: true,
-    source_code: getSourceCode(name),
-    contract_name: name,
-    libraries,
-  })
-  const url = `${explorerUrl}/api/v2/smart-contracts/${address}/verification/via/flattened-code`
-  const headers = {'content-type': 'application/json'}
-  await axios.post(url, data, {headers, timeout: 1000}).catch(logger.error)
+  const explorerUrl = blockscoutExplorerUrls[chainId]?.explorers[0].url
+  if (explorerUrl) {
+    const url = `${explorerUrl}/api/v2/smart-contracts/${address}/verification/via/flattened-code`
+    const data = {
+      compiler_version: solcLongVersion,
+      license_type: 'mit',
+      is_optimization_enabled: optimizer.enabled,
+      optimization_runs: optimizer.runs,
+      evm_version: evmVersion,
+      autodetect_constructor_args: true,
+      source_code: readFileSync(flattenedSourcePath, 'utf8'),
+      contract_name: name,
+      libraries,
+    }
+    const headers = {'content-type': 'application/json'}
+    const response = await axios.post(url, JSON.stringify(data), {headers, timeout: 1000}).catch(logger.error)
+    logger.log(response.statusText, response.data.message)
+  } else {
+    const artifact = await artifacts.readArtifactSync(contractFullyQualifiedNames[name])
+    const constructorArgs = deploymentTransaction ?
+      deploymentTransaction.data.slice(artifact.bytecode.length) : // constructor args are attached at the END of the input created bytecode
+      'Unknown'
+    logger.warn(`verifying on chain ${chainId} is not supported`)
+    logger.log(`instead, try verifying manually using the following data:`)
+    logger.log('-'.repeat(100))
+    logger.log('Contract Name:', name)
+    logger.log('Contract Address:', address)
+    logger.log('Compiler Type:', 'Solidity (Single File)')
+    logger.log('License Type:', 'MIT License (MIT)')
+    logger.log('Compiler Version:', solcLongVersion)
+    logger.log('Optimization:', optimizer.enabled)
+    logger.log('Runs (Optimizer):', optimizer.runs)
+    logger.log('EVM Version to target:', evmVersion)
+    logger.log('Constructor Arguments:', constructorArgs)
+    logger.log('Solidity Contract Code (read from file):', flattenedSourcePath)
+    logger.log('Libraries:', libraries)
+    logger.log('-'.repeat(100))
+  }
 }

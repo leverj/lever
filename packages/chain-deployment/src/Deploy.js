@@ -62,19 +62,21 @@ export class Deploy {
 
       libraries = translateLibraries(libraries)
       params = translateAddresses(params)
+      let deploymentTransaction
       if (!deployedContracts[name]?.address || options.reset) {
         this.logger.log(`deploying ${name} contract `.padEnd(120, '.'))
+        const currentBlockNumber = await provider.getBlockNumber()
         const contract = await deployContract(name, params, {libraries, signer})
         const address = contract.target
-        const blockCreated = await provider.getTransactionReceipt(contract.deploymentTransaction().hash).then(_ => _?.blockNumber || -1)
+        deploymentTransaction = contract.deploymentTransaction()
+        const deploymentReceipt = await provider.getTransactionReceipt(deploymentTransaction.hash)
+        const blockCreated = deploymentReceipt?.blockNumber || currentBlockNumber
         this.store.update(chain, {contracts: {[name]: {address, blockCreated}}})
         await setTimeout(200) // note: must wait a bit to avoid "Nonce too low" error
       }
       if (options.verify) {
         const network = this.store.get(chain)
-        const chainId = parseInt(network.id)
-        const address = network.contracts[name].address
-        await verifyContract(this.logger, name, chainId, address, libraries || {})
+        await verifyContract(this.logger, network, deploymentTransaction, name, libraries || {})
       }
     }
   }
