@@ -44,18 +44,35 @@ describe('verify', () => {
       },
     }
   */
-  it.skip('verify supported chain', async () => {
-    const chain = 'sepolia'
-    // const chain = 'holesky'
-    const chainId = Number(networks[chain].id)
-    const signer = new Wallet(config.deployer.privateKey)
-    const provider = new JsonRpcProvider(networks[chain].providerURL)
-    const balance = await provider.getBalance(signer.address)
-    console.log(`${getAddress(signer.address)} must have sufficient funds to deploy contract.\nbalance on ${chain} [${chainId}] is: ${balance}`)
+  describe.skip('testnets', () => {
+    it('verify supported chain', async () => {
+      const chain = 'sepolia'
+      const chainId = Number(networks[chain].id)
+      const signer = new Wallet(config.deployer.privateKey)
+      const provider = new JsonRpcProvider(networks[chain].providerURL)
+      const balance = await provider.getBalance(signer.address)
+      console.log(`${getAddress(signer.address)} must have sufficient funds to deploy contract.\nbalance on ${chain} [${chainId}] is: ${balance}`)
 
-    const logger = new CapturingLogger()
-    const deploy = Deploy.from(config, logger)
-    await deploy.to(chain, {verify: true})
-    expect(logger.errors).toHaveLength(0)
+      const logger = new CapturingLogger()
+      const deploy = Deploy.from(config, logger)
+      await deploy.to(chain, {verify: true})
+      expect(logger.errors).toHaveLength(0)
+      expect(logger.logs.includes('OK: Smart-contract verification started')).toBe(true)
+    })
+
+    it('verify unsupported chain', async () => {
+      const chain = 'fantomTestnet'
+      const chainId = Number(networks[chain].id)
+      const signer = new Wallet(config.deployer.privateKey)
+      const provider = new JsonRpcProvider(networks[chain].providerURL)
+      const balance = await provider.getBalance(signer.address)
+      console.log(`${getAddress(signer.address)} must have sufficient funds to deploy contract.\nbalance on ${chain} [${chainId}] is: ${balance}`)
+
+      const logger = new CapturingLogger()
+      const deploy = Deploy.from(config, logger)
+      await deploy.to(chain, {verify: true})
+      expect(logger.errors).toHaveLength(0)
+      expect(logger.warnings.includes(`verifying on chain ${chainId} is not supported`)).toBe(true)
+    })
   })
 })

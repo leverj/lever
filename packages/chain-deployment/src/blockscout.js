@@ -1,4 +1,6 @@
+import {getCreationTransaction} from '@leverj/lever.common'
 import axios from 'axios'
+import {JsonRpcProvider} from 'ethers'
 import * as glob from 'glob'
 import {default as hardhat} from 'hardhat'
 import {Map} from 'immutable'
@@ -19,9 +21,9 @@ const getSourceCode = (name) => {
   return flattened_path
 }
 
-export async function verifyContract(logger, network, deploymentTransaction, name, libraries) {
+export async function verifyContract(logger, network, name, libraries) {
   const chainId = parseInt(network.id)
-  const address = network.contracts[name].address
+  const {address, blockCreated} = network.contracts[name]
   const flattenedSourcePath = getSourceCode(name)
   const buildInfo = await artifacts.getBuildInfo(contractFullyQualifiedNames[name])
   const {solcLongVersion, input: {settings: {evmVersion, optimizer}}} = buildInfo
@@ -41,9 +43,11 @@ export async function verifyContract(logger, network, deploymentTransaction, nam
     }
     const headers = {'content-type': 'application/json'}
     const response = await axios.post(url, JSON.stringify(data), {headers, timeout: 1000}).catch(logger.error)
-    logger.log(response.statusText, response.data.message)
+    logger.log(`${response.statusText}: ${response.data.message}`)
   } else {
     const artifact = await artifacts.readArtifactSync(contractFullyQualifiedNames[name])
+    const provider = new JsonRpcProvider(network.providerURL)
+    const deploymentTransaction = await getCreationTransaction(provider, blockCreated, address)
     const constructorArgs = deploymentTransaction ?
       deploymentTransaction.data.slice(artifact.bytecode.length) : // constructor args are attached at the END of the input created bytecode
       'Unknown'

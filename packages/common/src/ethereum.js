@@ -29,3 +29,12 @@ export const getCreationBlock = async (provider, address, fromBlock = 0, toBlock
     getCreationBlock(provider, address, midway + 1, toBlock)
 }
 
+export const getCreationTransaction = async (provider, blockNumber, address) => {
+  const block = await provider.getBlock(blockNumber)
+  for (let each of block.transactions) {
+    const receipt = await provider.getTransactionReceipt(each)
+    if (receipt.contractAddress === address) return receipt.getTransaction()
+  }
+  return null
+}
+
