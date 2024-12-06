@@ -52,8 +52,8 @@ export async function verifyContract(logger, network, name, libraries) {
       deploymentTransaction.data.slice(artifact.bytecode.length) : // constructor args are attached at the END of the input created bytecode
       'Unknown'
     logger.warn(`verifying on chain ${chainId} is not supported`)
-    logger.log(`instead, try verifying manually using the following data:`)
-    logger.log('-'.repeat(100))
+    logger.warn(`instead, try verifying manually using the following data:`)
+    logger.warn('-'.repeat(120))
     logger.log('Contract Name:', name)
     logger.log('Contract Address:', address)
     logger.log('Compiler Type:', 'Solidity (Single File)')
@@ -65,6 +65,6 @@ export async function verifyContract(logger, network, name, libraries) {
     logger.log('Constructor Arguments:', constructorArgs)
     logger.log('Solidity Contract Code (read from file):', flattenedSourcePath)
     logger.log('Libraries:', libraries)
-    logger.log('-'.repeat(100))
+    logger.warn('-'.repeat(120))
   }
 }
