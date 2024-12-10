@@ -42,8 +42,8 @@ export async function verifyContract(logger, network, name, libraries) {
       libraries,
     }
     const headers = {'content-type': 'application/json'}
-    const response = await axios.post(url, JSON.stringify(data), {headers, timeout: 1000}).catch(logger.error)
-    logger.log(`${response.statusText}: ${response.data.message}`)
+    const response = await axios.post(url, JSON.stringify(data), {headers, timeout: 5000}).catch(logger.error)
+    if (response) logger.log(`${response?.statusText}: ${response?.data?.message}`)
   } else {
     const artifact = await artifacts.readArtifactSync(contractFullyQualifiedNames[name])
     const provider = new JsonRpcProvider(network.providerURL)
