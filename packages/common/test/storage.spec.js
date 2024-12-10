@@ -39,7 +39,7 @@ describe('storage', () => {
   })
 
   it('JsonDirStore', () => {
-    const store = new JsonDirStore(storageDir, 'fixtures')
+    const store = new JsonDirStore(`${storageDir}/fixtures`)
     for (let key of Object.keys(fixtures)) expect(store.get(key)).toBeUndefined()
     for (let [key, value] of Object.entries(fixtures)) store.set(key, value)
     for (let key of Object.keys(fixtures)) expect(store.get(key)).toMatchObject(fixtures[key])

@@ -53,8 +53,8 @@ export class JsonStore extends FileStore {
 
 /** key/value store where key = filename (without extension) and value = whole file contents **/
 export class DirStore {
-  constructor(path, type, extension, deserializer, serializer) {
-    this.path = `${path}/${type}`
+  constructor(path, extension, deserializer, serializer) {
+    this.path = path
     ensureExistsSync(this.path)
     this.extension = extension
     this.deserializer = deserializer
@@ -74,7 +74,7 @@ export class DirStore {
 }
 
 export class JsonDirStore extends DirStore {
-  constructor(path, type) {
-    super(path, type, '.json', JSON.parse, JSON.stringify)
+  constructor(path) {
+    super(path, '.json', JSON.parse, JSON.stringify)
   }
 }
