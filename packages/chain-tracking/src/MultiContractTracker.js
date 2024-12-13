@@ -9,9 +9,9 @@ import {ContractTracker} from './ContractTracker.js'
  * a MultiContractTracker connects to multiple contracts deployed in an Ethereum-like chain and tracks their respective events
  */
 export class MultiContractTracker {
-  static async of(chainId, provider, store, polling, processEvent = logger.log, logger = console) {
+  static of(chainId, provider, store, polling, processEvent = logger.log, logger = console) {
     const key = chainId
-    await store.update(key, {
+    store.update(key, {
       marker: {block: 0, logIndex: -1, blockWasProcessed: false},
       abis: [],
       contracts: [],
@@ -44,8 +44,8 @@ export class MultiContractTracker {
   }
   get lastBlock() { return this.marker.block }
 
-  async update(state) { return this.store.update(this.key, state) }
-  async updateMarker(state) { return this.update({marker: merge(this.marker, state)}) }
+  update(state) { this.store.update(this.key, state) }
+  updateMarker(state) { this.update({marker: merge(this.marker, state)}) }
 
   _addContract_(contract, kind) {
     const {runner: {provider}, target: address, interface: iface} = contract
@@ -66,17 +66,17 @@ export class MultiContractTracker {
       this.scheduleToOnboard(contract.target, kind)
   }
 
-  async scheduleToOnboard(address, kind) {
+  scheduleToOnboard(address, kind) {
     this.toOnboard.push({address, kind})
-    await this.update({toOnboard: this.toOnboard})
+    this.update({toOnboard: this.toOnboard})
   }
 
   async onboard(contract) {
     const {chainId, provider, polling, processEvent, logger, lastBlock} = this
-    const tracker = await ContractTracker.of(chainId, contract, new InMemoryStore(), polling, processEvent, logger)
+    const tracker = ContractTracker.of(chainId, contract, new InMemoryStore(), polling, processEvent, logger)
     const creationBlock = await getCreationBlock(provider, contract.target).catch(_ => 0)
     await tracker.processLogs(creationBlock, lastBlock)
-    await this.update({
+    this.update({
       contracts: Map(this.contracts).toArray(),
       abis: Map(this.interfaces).map(_ => _.format()).toArray(),
     })
@@ -134,7 +134,7 @@ export class MultiContractTracker {
       map((value, _) => value.sortBy(_ => _.logIndex).toArray()).
       toKeyedSeq()
     for (let [block, blockLogs] of logsPerBlock) await this.onNewBlock(block, blockLogs)
-    if (this.lastBlock < toBlock) await this.updateMarker({block: toBlock, blockWasProcessed: true})
+    if (this.lastBlock < toBlock) this.updateMarker({block: toBlock, blockWasProcessed: true})
   }
 
   async getLogsFor(fromBlock, toBlock, topics) {
@@ -166,13 +166,13 @@ export class MultiContractTracker {
   }
 
   async onNewBlock(block, logs) {
-    await this.updateMarker(block > this.lastBlock ? {block, logIndex: -1, blockWasProcessed: false} : {blockWasProcessed: false})
+    this.updateMarker(block > this.lastBlock ? {block, logIndex: -1, blockWasProcessed: false} : {blockWasProcessed: false})
     for (let each of logs) if (this.contracts[each.address]) {
       const event = this.toEvent(each)
       await this.processEvent(event)
-      await this.updateMarker({logIndex: each.logIndex})
+      this.updateMarker({logIndex: each.logIndex})
     }
-    await this.updateMarker({blockWasProcessed: true})
+    this.updateMarker({blockWasProcessed: true})
   }
 
   toEvent(log) {

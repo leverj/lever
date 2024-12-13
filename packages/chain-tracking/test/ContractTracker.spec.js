@@ -13,7 +13,7 @@ describe('ContractTracker', () => {
     events = []
     contract = await ERC20()
     const polling = {interval: 10, attempts: 5}
-    tracker = await ContractTracker.of(chainId, contract, new InMemoryStore(), polling, _ => _, logger)
+    tracker = ContractTracker.of(chainId, contract, new InMemoryStore(), polling, _ => _, logger)
   })
 
   afterEach(() => tracker.stop())

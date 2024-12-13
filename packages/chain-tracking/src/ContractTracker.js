@@ -6,9 +6,9 @@ import {merge} from 'lodash-es'
  * a ContractTracker connects to a contract deployed in an Ethereum-like chain and tracks its events
  */
 export class ContractTracker {
-  static async of(chainId, contract, store, polling, onEvent = logger.log, logger = console) {
+  static of(chainId, contract, store, polling, onEvent = logger.log, logger = console) {
     const key = [chainId, contract.target].join(':')
-    await store.update(key, {
+    store.update(key, {
       marker: {block: 0, logIndex: -1, blockWasProcessed: false}
     })
     return new this(contract, store, key, polling, onEvent, logger)
@@ -31,8 +31,8 @@ export class ContractTracker {
   get marker() { return this.store.get(this.key).marker }
   get lastBlock() { return this.marker.block }
 
-  async update(state) { return this.store.update(this.key, state) }
-  async updateMarker(state) { return this.update({marker: merge(this.marker, state)}) }
+  update(state) { this.store.update(this.key, state) }
+  updateMarker(state) { this.update({marker: merge(this.marker, state)}) }
 
   async start() {
     if (this.isRunning) return
@@ -81,7 +81,7 @@ export class ContractTracker {
       map((value, _) => value.sortBy(_ => _.logIndex).toArray()).
       toKeyedSeq()
     for (let [block, blockLogs] of logsPerBlock) await this.onNewBlock(block, blockLogs)
-    if (this.lastBlock < toBlock) await this.updateMarker({block: toBlock, blockWasProcessed: true})
+    if (this.lastBlock < toBlock) this.updateMarker({block: toBlock, blockWasProcessed: true})
   }
 
   async getLogsFor(fromBlock, toBlock, topics) {
@@ -93,13 +93,13 @@ export class ContractTracker {
   }
 
   async onNewBlock(block, logs) {
-    await this.updateMarker(block > this.lastBlock ? {block, logIndex: -1, blockWasProcessed: false} : {blockWasProcessed: false})
+   this.updateMarker(block > this.lastBlock ? {block, logIndex: -1, blockWasProcessed: false} : {blockWasProcessed: false})
     for (let each of logs) {
       const event = this.toEvent(each)
       await this.onEvent(event)
-      await this.updateMarker({logIndex: each.logIndex})
+      this.updateMarker({logIndex: each.logIndex})
     }
-    await this.updateMarker({blockWasProcessed: true})
+    this.updateMarker({blockWasProcessed: true})
   }
 
   toEvent(log) {

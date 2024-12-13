@@ -9,7 +9,6 @@ import {setTimeout} from 'node:timers/promises'
 import waitOn from 'wait-on'
 import {postLoad, schema} from '../config.schema.js'
 import info from '../package.json' with {type: 'json'}
-import blockscoutExplorerUrls from './../src/chainscout-chains.json' with {type: 'json'}
 
 describe('verify', () => {
   let config
@@ -18,12 +17,6 @@ describe('verify', () => {
     config = await configure(schema, postLoad, {env: {NODE_ENV: 'test'}})
     config.createContractsConstructors = (chain) => ({Bank: {params: [networks[chain].id, info.name]}})
     rmSync(`${config.deploymentDir}/test`, {recursive: true, force: true})
-  })
-
-  it.skip('list non-verifiable chains', async () => {
-    const blockscout = new Set(Object.keys(blockscoutExplorerUrls))
-    const exluded = Object.values(networks).filter(_ => !blockscout.has(_.id.toString()) && _.testnet).map(({id, label, blockExplorer}) => ({id, label, explorer: blockExplorer.url}))
-    console.log(JSON.stringify(exluded.filter(_ => !!_.explorer), null, 2))
   })
 
   it('attempt to verify unsupported chain', async () => {
@@ -54,7 +47,6 @@ describe('verify', () => {
   describe.skip('testnets', () => {
     it('verify supported chain', async () => {
       const chain = 'sepolia'
-      // const chain = 'holesky'
       const chainId = Number(networks[chain].id)
       const signer = new Wallet(config.deployer.privateKey)
       const provider = new JsonRpcProvider(networks[chain].providerURL)
@@ -70,9 +62,6 @@ describe('verify', () => {
 
     it('verify unsupported chain', async () => {
       const chain = 'fantomTestnet'
-      // const chain = 'arbitrumSepolia'
-      // const chain = 'avalancheFuji'
-      // const chain = 'cronosTestnet'
       const chainId = Number(networks[chain].id)
       const signer = new Wallet(config.deployer.privateKey)
       const provider = new JsonRpcProvider(networks[chain].providerURL)

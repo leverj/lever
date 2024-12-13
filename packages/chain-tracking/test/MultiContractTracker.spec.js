@@ -9,10 +9,10 @@ describe('MultiContractTracker', () => {
   const [deployer, account] = accounts
   let tracker, events
 
-  beforeEach(async () => {
+  beforeEach(() => {
     events = []
     const polling = {interval: 10, attempts: 5}
-    tracker = await MultiContractTracker.of(chainId, provider, new InMemoryStore(), polling, _ => events.push(_), logger)
+    tracker = MultiContractTracker.of(chainId, provider, new InMemoryStore(), polling, _ => events.push(_), logger)
   })
 
   afterEach(() => tracker.stop())
