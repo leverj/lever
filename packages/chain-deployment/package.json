@@ -20,9 +20,9 @@
     "@nomicfoundation/hardhat-network-helpers": "^1.0.12",
     "@nomicfoundation/hardhat-verify": "^2.0.12",
     "axios": "^1.7.9",
-    "ethers": "^6.13.4",
-    "glob": "^11.0.0",
-    "hardhat": "^2.22.17",
+    "ethers": "^6.13.5",
+    "glob": "^11.0.1",
+    "hardhat": "^2.22.18",
     "hardhat-deploy": "~0.14.0",
     "hardhat-deploy-ethers": "^0.4.2",
     "immutable": "^5.0.3",
@@ -31,7 +31,7 @@
   "devDependencies": {
     "@leverj/lever.config": "4.1.6",
     "lodash-es": "^4.17.21",
-    "viem": "^2.21.55",
-    "wait-on": "^8.0.1"
+    "viem": "^2.22.10",
+    "wait-on": "^8.0.2"
   }
 }

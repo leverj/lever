@@ -28,7 +28,7 @@ export const networks = {
     providerURL: 'https://api.testnet.abs.xyz',
     blockExplorer: {
       name: 'Abstract Block Explorer',
-      url: 'https://explorer.testnet.abs.xyz'
+      url: 'https://sepolia.abscan.org'
     },
     contracts: {
       multicall3: {
@@ -110,6 +110,52 @@ export const networks = {
     },
     contracts: {},
     testnet: false
+  },
+  alephZero: {
+    id: 41455n,
+    label: 'alephZero',
+    name: 'Aleph Zero',
+    nativeCurrency: {
+      name: 'Aleph Zero',
+      symbol: 'AZERO',
+      decimals: 18
+    },
+    providerURL: 'https://rpc.alephzero.raas.gelato.cloud',
+    blockExplorer: {
+      name: 'Aleph Zero EVM Explorer',
+      url: 'https://evm-explorer.alephzero.org',
+      apiUrl: 'https://evm-explorer.alephzero.org/api'
+    },
+    contracts: {
+      multicall3: {
+        address: '0xca11bde05977b3631167028862be2a173976ca11',
+        blockCreated: 4603377
+      }
+    },
+    testnet: false
+  },
+  alephZeroTestnet: {
+    id: 2039n,
+    label: 'alephZeroTestnet',
+    name: 'Aleph Zero Testnet',
+    nativeCurrency: {
+      name: 'TZERO',
+      symbol: 'TZERO',
+      decimals: 18
+    },
+    providerURL: 'https://rpc.alephzero-testnet.gelato.digital',
+    blockExplorer: {
+      name: 'Aleph Zero EVM Testnet explorer',
+      url: 'https://evm-explorer-testnet.alephzero.org',
+      apiUrl: 'https://evm-explorer-testnet.alephzero.org/api'
+    },
+    contracts: {
+      multicall3: {
+        address: '0xca11bde05977b3631167028862be2a173976ca11',
+        blockCreated: 2861745
+      }
+    },
+    testnet: true
   },
   alienx: {
     id: 10241024n,
@@ -465,6 +511,52 @@ export const networks = {
       }
     },
     testnet: true
+  },
+  arthera: {
+    id: 10242n,
+    label: 'arthera',
+    name: 'Arthera',
+    nativeCurrency: {
+      name: 'Arthera',
+      symbol: 'AA',
+      decimals: 18
+    },
+    providerURL: 'https://rpc.arthera.net',
+    blockExplorer: {
+      name: 'Arthera EVM Explorer',
+      url: 'https://explorer.arthera.net',
+      apiUrl: 'https://explorer.arthera.net/api'
+    },
+    contracts: {
+      multicall3: {
+        address: '0xca11bde05977b3631167028862be2a173976ca11',
+        blockCreated: 4502791
+      }
+    },
+    testnet: false
+  },
+  artheraTestnet: {
+    id: 10243n,
+    label: 'artheraTestnet',
+    name: 'Arthera Testnet',
+    nativeCurrency: {
+      name: 'Arthera',
+      symbol: 'AA',
+      decimals: 18
+    },
+    providerURL: 'https://rpc-test.arthera.net',
+    blockExplorer: {
+      name: 'Arthera EVM Explorer',
+      url: 'https://explorer-test.arthera.net',
+      apiUrl: 'https://explorer-test.arthera.net/api'
+    },
+    contracts: {
+      multicall3: {
+        address: '0xca11bde05977b3631167028862be2a173976ca11',
+        blockCreated: 22051
+      }
+    },
+    testnet: false
   },
   assetChain: {
     id: 42420n,
@@ -1049,6 +1141,14 @@ export const networks = {
       multicall3: {
         address: '0xcA11bde05977b3631167028862bE2a173976CA11',
         blockCreated: 109269
+      },
+      ensRegistry: {
+        address: '0xB0eef18971290b333450586D33dcA6cE122651D2',
+        blockCreated: 7736794
+      },
+      ensUniversalResolver: {
+        address: '0x41692Ef1EA0C79E6b73077E4A67572D2BDbD7057',
+        blockCreated: 7736795
       }
     },
     testnet: true
@@ -1254,6 +1354,24 @@ export const networks = {
       apiUrl: 'https://api.blastscan.io/api'
     },
     contracts: {
+      gasPriceOracle: {
+        address: '0x420000000000000000000000000000000000000F'
+      },
+      l1Block: {
+        address: '0x4200000000000000000000000000000000000015'
+      },
+      l2CrossDomainMessenger: {
+        address: '0x4200000000000000000000000000000000000007'
+      },
+      l2Erc721Bridge: {
+        address: '0x4200000000000000000000000000000000000014'
+      },
+      l2StandardBridge: {
+        address: '0x4200000000000000000000000000000000000010'
+      },
+      l2ToL1MessagePasser: {
+        address: '0x4200000000000000000000000000000000000016'
+      },
       multicall3: {
         address: '0xcA11bde05977b3631167028862bE2a173976CA11',
         blockCreated: 212929
@@ -1870,6 +1988,24 @@ export const networks = {
     contracts: {},
     testnet: false
   },
+  citreaTestnet: {
+    id: 5115n,
+    label: 'citreaTestnet',
+    name: 'Citrea Testnet',
+    nativeCurrency: {
+      name: 'cBTC',
+      symbol: 'cBTC',
+      decimals: 18
+    },
+    providerURL: 'https://rpc.testnet.citrea.xyz',
+    blockExplorer: {
+      name: 'Citrea Explorer',
+      url: 'https://explorer.testnet.citrea.xyz',
+      apiUrl: 'https://explorer.testnet.citrea.xyz/api'
+    },
+    contracts: {},
+    testnet: true
+  },
   classic: {
     id: 61n,
     label: 'classic',
@@ -1990,7 +2126,7 @@ export const networks = {
   corn: {
     id: 21000000n,
     label: 'corn',
-    name: 'Corn Maizenet',
+    name: 'Corn',
     nativeCurrency: {
       decimals: 18,
       name: 'Bitcorn',
@@ -3068,6 +3204,42 @@ export const networks = {
     contracts: {},
     testnet: false
   },
+  exsat: {
+    id: 7200n,
+    label: 'exsat',
+    name: 'exSat Network',
+    nativeCurrency: {
+      decimals: 18,
+      name: 'BTC',
+      symbol: 'BTC'
+    },
+    providerURL: 'https://evm.exsat.network',
+    blockExplorer: {
+      name: 'exSat Explorer',
+      url: 'https://scan.exsat.network',
+      apiUrl: 'https://scan.exsat.network/api'
+    },
+    contracts: {},
+    testnet: false
+  },
+  exsatTestnet: {
+    id: 839999n,
+    label: 'exsatTestnet',
+    name: 'exSat Testnet',
+    nativeCurrency: {
+      decimals: 18,
+      name: 'BTC',
+      symbol: 'BTC'
+    },
+    providerURL: 'https://evm-tst3.exsat.network',
+    blockExplorer: {
+      name: 'exSat Explorer',
+      url: 'https://scan-testnet.exsat.network',
+      apiUrl: 'https://scan-testnet.exsat.network/api'
+    },
+    contracts: {},
+    testnet: false
+  },
   fantom: {
     id: 250n,
     label: 'fantom',
@@ -3265,7 +3437,7 @@ export const networks = {
   flowMainnet: {
     id: 747n,
     label: 'flowMainnet',
-    name: 'FlowEVM Mainnet',
+    name: 'Flow EVM Mainnet',
     nativeCurrency: {
       decimals: 18,
       name: 'Flow',
@@ -3274,15 +3446,20 @@ export const networks = {
     providerURL: 'https://mainnet.evm.nodes.onflow.org',
     blockExplorer: {
       name: 'Mainnet Explorer',
-      url: 'https://flowdiver.io'
+      url: 'https://evm.flowscan.io'
     },
-    contracts: {},
+    contracts: {
+      multicall3: {
+        address: '0xca11bde05977b3631167028862be2a173976ca11',
+        blockCreated: 6205
+      }
+    },
     testnet: false
   },
   flowPreviewnet: {
     id: 646n,
     label: 'flowPreviewnet',
-    name: 'FlowEVM Previewnet',
+    name: 'Flow EVM Previewnet',
     nativeCurrency: {
       decimals: 18,
       name: 'Flow',
@@ -3304,7 +3481,7 @@ export const networks = {
   flowTestnet: {
     id: 545n,
     label: 'flowTestnet',
-    name: 'FlowEVM Testnet',
+    name: 'Flow EVM Testnet',
     nativeCurrency: {
       decimals: 18,
       name: 'Flow',
@@ -3313,7 +3490,7 @@ export const networks = {
     providerURL: 'https://testnet.evm.nodes.onflow.org',
     blockExplorer: {
       name: 'Flow Diver',
-      url: 'https://testnet.flowdiver.io'
+      url: 'https://evm-testnet.flowscan.io'
     },
     contracts: {
       multicall3: {
@@ -3321,7 +3498,7 @@ export const networks = {
         blockCreated: 137518
       }
     },
-    testnet: false
+    testnet: true
   },
   fluence: {
     id: 9999999n,
@@ -3896,6 +4073,28 @@ export const networks = {
     contracts: {},
     testnet: false
   },
+  goat: {
+    id: 2345n,
+    label: 'goat',
+    name: 'GOAT',
+    nativeCurrency: {
+      decimals: 18,
+      name: 'Bitcoin',
+      symbol: 'BTC'
+    },
+    providerURL: 'https://rpc.goat.network',
+    blockExplorer: {
+      name: 'Goat Explorer',
+      url: 'https://explorer.goat.network'
+    },
+    contracts: {
+      multicall3: {
+        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+        blockCreated: 0
+      }
+    },
+    testnet: false
+  },
   gobi: {
     id: 1663n,
     label: 'gobi',
@@ -4267,6 +4466,82 @@ export const networks = {
     contracts: {},
     testnet: false
   },
+  huddle01Mainnet: {
+    id: 12323n,
+    label: 'huddle01Mainnet',
+    name: 'Huddle01 dRTC Chain',
+    nativeCurrency: {
+      name: 'Ethereum',
+      symbol: 'ETH',
+      decimals: 18
+    },
+    providerURL: 'https://huddle01.calderachain.xyz/http',
+    blockExplorer: {
+      name: 'Huddle01 Caldera Explorer',
+      url: 'https://huddle01.calderaexplorer.xyz',
+      apiUrl: 'https://huddle01.calderaexplorer.xyz/api'
+    },
+    contracts: {},
+    testnet: false
+  },
+  huddle01Testnet: {
+    id: 2524852n,
+    label: 'huddle01Testnet',
+    name: 'Huddle01 dRTC Chain Testnet',
+    nativeCurrency: {
+      name: 'Ethereum',
+      symbol: 'ETH',
+      decimals: 18
+    },
+    providerURL: 'https://huddle-testnet.rpc.caldera.xyz/http',
+    blockExplorer: {
+      name: 'Huddle01 Caldera Explorer',
+      url: 'https://huddle-testnet.explorer.caldera.xyz',
+      apiUrl: 'https://huddle-testnet.explorer.caldera.xyz/api'
+    },
+    contracts: {},
+    testnet: false
+  },
+  humanode: {
+    id: 5234n,
+    label: 'humanode',
+    name: 'Humanode',
+    nativeCurrency: {
+      name: 'HMND',
+      symbol: 'HMND',
+      decimals: 18
+    },
+    providerURL: 'https://explorer-rpc-http.mainnet.stages.humanode.io',
+    blockExplorer: {
+      name: 'Subscan',
+      url: 'https://humanode.subscan.io'
+    },
+    contracts: {
+      multicall3: {
+        address: '0xca11bde05977b3631167028862be2a173976ca11',
+        blockCreated: 4413097
+      }
+    },
+    testnet: false
+  },
+  humanodeTestnet5: {
+    id: 14853n,
+    label: 'humanodeTestnet5',
+    name: 'Humanode Testnet 5',
+    nativeCurrency: {
+      name: 'HMND',
+      symbol: 'HMND',
+      decimals: 18
+    },
+    providerURL: 'https://explorer-rpc-http.testnet5.stages.humanode.io',
+    blockExplorer: {},
+    contracts: {
+      multicall3: {
+        address: '0xca11bde05977b3631167028862be2a173976ca11'
+      }
+    },
+    testnet: false
+  },
   hychain: {
     id: 2911n,
     label: 'hychain',
@@ -4399,6 +4674,81 @@ export const networks = {
       multicall3: {
         address: '0xca11bde05977b3631167028862be2a173976ca11',
         blockCreated: 118606
+      }
+    },
+    testnet: false
+  },
+  initVerseGenesis: {
+    id: 7234n,
+    label: 'initVerseGenesis',
+    name: 'InitVerse Genesis Testnet',
+    nativeCurrency: {
+      decimals: 18,
+      name: 'InitVerse',
+      symbol: 'INI'
+    },
+    providerURL: 'https://rpc-testnet.inichain.com',
+    blockExplorer: {
+      name: 'InitVerseGenesisScan',
+      url: 'https://genesis-testnet.iniscan.com',
+      apiUrl: 'https://explorer-testnet-api.inichain.com/api'
+    },
+    contracts: {
+      multicall3: {
+        address: '0x0cF32CBDd6c437331EA4f85ed2d881A5379B5a6F',
+        blockCreated: 16361
+      }
+    },
+    testnet: true
+  },
+  ink: {
+    id: 57073n,
+    label: 'ink',
+    name: 'Ink',
+    nativeCurrency: {
+      name: 'Ether',
+      symbol: 'ETH',
+      decimals: 18
+    },
+    providerURL: 'https://rpc-gel.inkonchain.com',
+    blockExplorer: {
+      name: 'Blockscout',
+      url: 'https://explorer.inkonchain.com',
+      apiUrl: 'https://explorer.inkonchain.com/api/v2'
+    },
+    contracts: {
+      gasPriceOracle: {
+        address: '0x420000000000000000000000000000000000000F'
+      },
+      l1Block: {
+        address: '0x4200000000000000000000000000000000000015'
+      },
+      l2CrossDomainMessenger: {
+        address: '0x4200000000000000000000000000000000000007'
+      },
+      l2Erc721Bridge: {
+        address: '0x4200000000000000000000000000000000000014'
+      },
+      l2StandardBridge: {
+        address: '0x4200000000000000000000000000000000000010'
+      },
+      l2ToL1MessagePasser: {
+        address: '0x4200000000000000000000000000000000000016'
+      },
+      disputeGameFactory: {
+        '1': {
+          address: '0x10d7b35078d3baabb96dd45a9143b94be65b12cd'
+        }
+      },
+      portal: {
+        '1': {
+          address: '0x5d66c1782664115999c47c9fa5cd031f495d3e4f'
+        }
+      },
+      l1StandardBridge: {
+        '1': {
+          address: '0x88ff1e5b602916615391f55854588efcbb7663f0'
+        }
       }
     },
     testnet: false
@@ -4866,7 +5216,12 @@ export const networks = {
       url: 'https://blockscout.kroma.network',
       apiUrl: 'https://blockscout.kroma.network/api'
     },
-    contracts: {},
+    contracts: {
+      multicall3: {
+        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+        blockCreated: 16054868
+      }
+    },
     testnet: false
   },
   kromaSepolia: {
@@ -4884,7 +5239,12 @@ export const networks = {
       url: 'https://blockscout.sepolia.kroma.network',
       apiUrl: 'https://blockscout.sepolia.kroma.network/api'
     },
-    contracts: {},
+    contracts: {
+      multicall3: {
+        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+        blockCreated: 8900914
+      }
+    },
     testnet: true
   },
   l3x: {
@@ -5253,6 +5613,50 @@ export const networks = {
     },
     testnet: true
   },
+  lumiaMainnet: {
+    id: 994873017n,
+    label: 'lumiaMainnet',
+    name: 'Lumia Mainnet',
+    nativeCurrency: {
+      name: 'Lumia',
+      symbol: 'LUMIA',
+      decimals: 18
+    },
+    providerURL: 'https://mainnet-rpc.lumia.org',
+    blockExplorer: {
+      name: 'Lumia Explorer',
+      url: 'https://explorer.lumia.org/'
+    },
+    contracts: {
+      multicall3: {
+        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+        blockCreated: 3975939
+      }
+    },
+    testnet: false
+  },
+  lumiaTestnet: {
+    id: 1952959480n,
+    label: 'lumiaTestnet',
+    name: 'Lumia Testnet',
+    nativeCurrency: {
+      name: 'Lumia',
+      symbol: 'LUMIA',
+      decimals: 18
+    },
+    providerURL: 'https://testnet-rpc.lumia.org',
+    blockExplorer: {
+      name: 'Lumia Testnet Explorer',
+      url: 'https://testnet-explorer.lumia.org/'
+    },
+    contracts: {
+      multicall3: {
+        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+        blockCreated: 2235063
+      }
+    },
+    testnet: true
+  },
   lycan: {
     id: 721n,
     label: 'lycan',
@@ -5302,7 +5706,7 @@ export const networks = {
       symbol: 'ETH',
       decimals: 18
     },
-    providerURL: 'https://cloudflare-eth.com',
+    providerURL: 'https://eth.merkle.io',
     blockExplorer: {
       name: 'Etherscan',
       url: 'https://etherscan.io',
@@ -6181,6 +6585,40 @@ export const networks = {
     contracts: {},
     testnet: false
   },
+  near: {
+    id: 397n,
+    label: 'near',
+    name: 'NEAR Protocol',
+    nativeCurrency: {
+      decimals: 18,
+      name: 'NEAR',
+      symbol: 'NEAR'
+    },
+    providerURL: 'https://eth-rpc.mainnet.near.org',
+    blockExplorer: {
+      name: 'NEAR Explorer',
+      url: 'https://eth-explorer.near.org'
+    },
+    contracts: {},
+    testnet: false
+  },
+  nearTestnet: {
+    id: 398n,
+    label: 'nearTestnet',
+    name: 'NEAR Protocol Testnet',
+    nativeCurrency: {
+      decimals: 18,
+      name: 'NEAR',
+      symbol: 'NEAR'
+    },
+    providerURL: 'https://eth-rpc.testnet.near.org',
+    blockExplorer: {
+      name: 'NEAR Explorer',
+      url: 'https://eth-explorer-testnet.near.org'
+    },
+    contracts: {},
+    testnet: true
+  },
   neonDevnet: {
     id: 245022926n,
     label: 'neonDevnet',
@@ -6224,6 +6662,40 @@ export const networks = {
       }
     },
     testnet: false
+  },
+  neoxMainnet: {
+    id: 47763n,
+    label: 'neoxMainnet',
+    name: 'Neo X Mainnet',
+    nativeCurrency: {
+      name: 'Gas',
+      symbol: 'GAS',
+      decimals: 18
+    },
+    providerURL: 'https://mainnet-1.rpc.banelabs.org',
+    blockExplorer: {
+      name: 'Neo X - Explorer',
+      url: 'https://xexplorer.neo.org'
+    },
+    contracts: {},
+    testnet: false
+  },
+  neoxT4: {
+    id: 12227332n,
+    label: 'neoxT4',
+    name: 'Neo X Testnet T4',
+    nativeCurrency: {
+      name: 'Gas',
+      symbol: 'GAS',
+      decimals: 18
+    },
+    providerURL: 'https://testnet.rpc.banelabs.org/',
+    blockExplorer: {
+      name: 'neox-scan',
+      url: 'https://xt4scan.ngd.network'
+    },
+    contracts: {},
+    testnet: true
   },
   nexi: {
     id: 4242n,
@@ -6990,7 +7462,12 @@ export const networks = {
       url: 'https://explorer.plumenetwork.xyz',
       apiUrl: 'https://explorer.plumenetwork.xyz/api'
     },
-    contracts: {},
+    contracts: {
+      multicall3: {
+        address: '0xca11bde05977b3631167028862be2a173976ca11',
+        blockCreated: 48577
+      }
+    },
     testnet: false
   },
   plumeDevnet: {
@@ -7008,7 +7485,12 @@ export const networks = {
       url: 'https://test-explorer.plumenetwork.xyz',
       apiUrl: 'https://test-explorer.plumenetwork.xyz/api'
     },
-    contracts: {},
+    contracts: {
+      multicall3: {
+        address: '0xca11bde05977b3631167028862be2a173976ca11',
+        blockCreated: 481948
+      }
+    },
     testnet: true
   },
   plumeTestnet: {
@@ -7448,6 +7930,23 @@ export const networks = {
     contracts: {},
     testnet: false
   },
+  rivalz: {
+    id: 753n,
+    label: 'rivalz',
+    name: 'Rivalz',
+    nativeCurrency: {
+      decimals: 18,
+      name: 'Ether',
+      symbol: 'ETH'
+    },
+    providerURL: 'https://rivalz.calderachain.xyz/http',
+    blockExplorer: {
+      name: 'Rivalz Caldera Explorer',
+      url: 'https://rivalz.calderaexplorer.xyz'
+    },
+    contracts: {},
+    testnet: false
+  },
   rollux: {
     id: 570n,
     label: 'rollux',
@@ -7728,6 +8227,28 @@ export const networks = {
       url: 'https://explorer.saakuru.network'
     },
     contracts: {},
+    testnet: false
+  },
+  saga: {
+    id: 5464n,
+    label: 'saga',
+    name: 'Saga',
+    nativeCurrency: {
+      decimals: 18,
+      name: 'gas',
+      symbol: 'GAS'
+    },
+    providerURL: 'http://sagaevm-5464-1.jsonrpc.sagarpc.io',
+    blockExplorer: {
+      name: 'Saga Explorer',
+      url: 'https://sagaevm-5464-1.sagaexplorer.io'
+    },
+    contracts: {
+      multicall3: {
+        address: '0x864DDc9B50B9A0dF676d826c9B9EDe9F8913a160',
+        blockCreated: 467530
+      }
+    },
     testnet: false
   },
   saigon: {
@@ -8662,6 +9183,69 @@ export const networks = {
     },
     testnet: true
   },
+  soneium: {
+    id: 1868n,
+    label: 'soneium',
+    name: 'Soneium Mainnet',
+    nativeCurrency: {
+      name: 'Ether',
+      symbol: 'ETH',
+      decimals: 18
+    },
+    providerURL: 'https://rpc.soneium.org',
+    blockExplorer: {
+      name: 'Blockscout',
+      url: 'https://soneium.blockscout.com',
+      apiUrl: 'https://soneium.blockscout.com/api'
+    },
+    contracts: {
+      gasPriceOracle: {
+        address: '0x420000000000000000000000000000000000000F'
+      },
+      l1Block: {
+        address: '0x4200000000000000000000000000000000000015'
+      },
+      l2CrossDomainMessenger: {
+        address: '0x4200000000000000000000000000000000000007'
+      },
+      l2Erc721Bridge: {
+        address: '0x4200000000000000000000000000000000000014'
+      },
+      l2StandardBridge: {
+        address: '0x4200000000000000000000000000000000000010'
+      },
+      l2ToL1MessagePasser: {
+        address: '0x4200000000000000000000000000000000000016'
+      },
+      disputeGameFactory: {
+        '1': {
+          address: '0x512a3d2c7a43bd9261d2b8e8c9c70d4bd4d503c0'
+        }
+      },
+      l2OutputOracle: {
+        '1': {
+          address: '0x0000000000000000000000000000000000000000'
+        }
+      },
+      portal: {
+        '1': {
+          address: '0x88e529a6ccd302c948689cd5156c83d4614fae92',
+          blockCreated: 7061266
+        }
+      },
+      l1StandardBridge: {
+        '1': {
+          address: '0xeb9bf100225c214efc3e7c651ebbadcf85177607',
+          blockCreated: 7061266
+        }
+      },
+      multicall3: {
+        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+        blockCreated: 1
+      }
+    },
+    testnet: false
+  },
   soneiumMinato: {
     id: 1946n,
     label: 'soneiumMinato',
@@ -8773,9 +9357,14 @@ export const networks = {
     providerURL: 'https://rpc.soniclabs.com',
     blockExplorer: {
       name: 'Sonic Explorer',
-      url: 'https://explorer.soniclabs.com'
+      url: 'https://sonicscan.org/'
     },
-    contracts: {},
+    contracts: {
+      multicall3: {
+        address: '0xca11bde05977b3631167028862be2a173976ca11',
+        blockCreated: 60
+      }
+    },
     testnet: false
   },
   sonicTestnet: {
@@ -9397,6 +9986,23 @@ export const networks = {
       name: 'TenetScan Mainnet',
       url: 'https://tenetscan.io',
       apiUrl: 'https://tenetscan.io/api'
+    },
+    contracts: {},
+    testnet: false
+  },
+  ternoa: {
+    id: 752025n,
+    label: 'ternoa',
+    name: 'Ternoa',
+    nativeCurrency: {
+      name: 'Capsule Coin',
+      symbol: 'CAPS',
+      decimals: 18
+    },
+    providerURL: 'https://rpc-mainnet.zkevm.ternoa.network',
+    blockExplorer: {
+      name: 'Ternoa Explorer',
+      url: 'https://explorer-mainnet.zkevm.ternoa.network'
     },
     contracts: {},
     testnet: false
@@ -10523,6 +11129,21 @@ export const networks = {
     contracts: {
       multicall3: {
         address: '0xcA11bde05977b3631167028862bE2a173976CA11'
+      },
+      l2OutputOracle: {
+        '1': {
+          address: '0x92Ef6Af472b39F1b363da45E35530c24619245A4'
+        }
+      },
+      portal: {
+        '1': {
+          address: '0x17bfAfA932d2e23Bd9B909Fd5B4D2e2a27043fb1'
+        }
+      },
+      l1StandardBridge: {
+        '1': {
+          address: '0x386B76D9cA5F5Fb150B6BFB35CF5379B22B26dd8'
+        }
       }
     },
     testnet: false
@@ -10545,6 +11166,21 @@ export const networks = {
       multicall3: {
         address: '0xcA11bde05977b3631167028862bE2a173976CA11',
         blockCreated: 6040287
+      },
+      l2OutputOracle: {
+        '11155111': {
+          address: '0x740C2dac453aEf7140809F80b72bf0e647af8148'
+        }
+      },
+      portal: {
+        '11155111': {
+          address: '0x787f1C8c5924178689E0560a43D848bF8E54b23e'
+        }
+      },
+      l1StandardBridge: {
+        '11155111': {
+          address: '0x0545c5fe980098C16fcD0eCB5E79753afa6d9af9'
+        }
       }
     },
     testnet: true
