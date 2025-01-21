@@ -1,6 +1,6 @@
 {
   "name": "@leverj/lever.telegram",
-  "version": "4.1.6",
+  "version": "4.1.7",
   "license": "MIT",
   "type": "module",
   "main": "src/main.js",
@@ -8,7 +8,7 @@
     "dependency:check": "npx depcheck"
   },
   "dependencies": {
-    "@leverj/lever.common": "4.1.6",
+    "@leverj/lever.common": "4.1.7",
     "axios": "^1.7.9"
   }
 }
