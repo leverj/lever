@@ -16,10 +16,8 @@
     "./index": "./src/index.js",
     "./logger": "./src/logger.js",
     "./Mutex": "./src/Mutex.js",
-    "./storage": "./src/storage.js",
     "./time": "./src/time.js",
-    "./transformers": "./src/transformers.js",
-    "./until": "./src/until.js"
+    "./transformers": "./src/transformers.js"
   },
   "scripts": {
     "test": "npx mocha",
