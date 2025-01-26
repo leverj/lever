@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@leverj/lever.common": "4.1.10",
+    "chokidar": "^4.0.3",
     "immutable": "^5.0.3",
     "level": "^9.0.0",
     "lodash-es": "^4.17.21",

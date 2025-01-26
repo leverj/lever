@@ -17,7 +17,9 @@ export class DirStore {
     this.cache = new InMemoryStore()
     ensureExistsSync(path)
     readdirSync(path).forEach(_ => this.load(_))
-    this.watcher = new Watcher(path, (event, file) => { if (event === 'add') this.load(file) })
+    this.watcher = new Watcher(path, (event, file) => {
+      if (event === 'add' || event === 'change') this.load(file)
+    })
   }
 
   load(file) {
