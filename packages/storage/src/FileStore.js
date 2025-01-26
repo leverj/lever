@@ -13,10 +13,12 @@ export class FileStore {
       new InMemoryStore(this.deserializer(readFileSync(this.file, 'utf8'))) :
       new InMemoryStore()
   }
+
   save() { writeFileSync(this.file, this.serializer(this.toObject(), null, 2)) }
   clear() { this.cache.clear(); this.save() }
   toObject() { return this.cache.toObject() }
 
+  /*** API ***/
   get(key) { return this.cache.get(key) }
   set(key, value) { this.cache.set(key, value); this.save() }
   update(key, value) { this.cache.update(key, value); this.save() }
@@ -27,6 +29,7 @@ export class FileStore {
   keys() { return this.cache.keys() }
   values() { return this.cache.values() }
   entries() { return this.cache.entries() }
+  close() { }
 }
 
 export class JsonStore extends FileStore {
