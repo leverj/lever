@@ -1,8 +1,8 @@
 import {ensureExistsSync} from '@leverj/lever.common/files'
-import {readdirSync, readFileSync, rmSync, writeFileSync} from 'node:fs'
+import {Map} from 'immutable'
+import {merge} from 'lodash-es'
+import {existsSync, readdirSync, readFileSync, rmSync, writeFileSync} from 'node:fs'
 import {basename, extname} from 'node:path'
-import Watcher from 'watcher'
-import {InMemoryStore} from './InMemoryStore.js'
 
 const keySeparator = '-'
 const toKey = _ => Array.isArray(_) ? _.join(keySeparator) : _
@@ -14,38 +14,29 @@ export class DirStore {
     this.extension = extension
     this.deserializer = deserializer
     this.serializer = serializer
-    this.cache = new InMemoryStore()
-    ensureExistsSync(path)
-    readdirSync(path).forEach(_ => this.load(_))
-    this.watcher = new Watcher(path, (event, file) => {
-      if (event === 'add' || event === 'change') this.load(file)
-    })
+    ensureExistsSync(this.path)
   }
 
-  load(file) {
-    if (extname(file) === this.extension) {
-      const key = basename(file, this.extension)
-      const value = this.deserializer(readFileSync(file, 'utf8'))
-      this.cache.set(key, value)
-    }
-  }
   fileOf(key) { return `${this.path}/${toKey(key)}${this.extension}` }
   save(key, value) { writeFileSync(this.fileOf(key), this.serializer(value, null, 2)) }
   clear() { this.keys().forEach(_ => this.delete(_)) }
-  toObject() { return this.cache.toObject() }
+  toObject() { return Map(this.entries()).toJS() }
 
   /*** API ***/
-  get(key) { return this.cache.get(key) }
-  set(key, value) { this.cache.set(key, value); this.save(key, value) }
-  update(key, value) { this.cache.update(key, value); this.save(key, value) }
-  delete(key) { this.cache.delete(key); rmSync(this.fileOf(key), {force: true}) }
-  has(key) { return this.cache.has(key) }
-  find(keyable) { return this.cache.find(keyable) }
-  size() { return this.cache.size() }
-  keys() { return this.cache.keys() }
-  values() { return this.cache.values() }
-  entries() { return this.cache.entries() }
-  close() { return this.watcher.close() }
+  get(key) { return existsSync(this.fileOf(key)) ? this.deserializer(readFileSync(this.fileOf(key), 'utf8')) : undefined }
+  set(key, value) { this.save(key, value) }
+  update(key, value) { this.set(key, merge(this.get(key) || {}, value)) }
+  delete(key) { rmSync(this.fileOf(key), {force: true}) }
+  has(key) { return !!this.get(key) }
+  find(keyable) {
+    const prefix = toKey(keyable)
+    return this.keys().filter(_ => _.startsWith(prefix)).map(_ => this.get(_))
+  }
+  size() { return this.keys().length }
+  keys() { return readdirSync(this.path).filter(_ => extname(_) === this.extension).map(_ => basename(_, this.extension)) }
+  values() { return this.keys().map(_ => this.get(_)) }
+  entries() { return this.keys().map(_ => [_, this.get(_)]) }
+  close() {  }
 }
 
 export class JsonDirStore extends DirStore {
