@@ -1,4 +1,5 @@
-import {getCreationBlock, InMemoryStore} from '@leverj/lever.common'
+import {getCreationBlock} from '@leverj/lever.common'
+import {InMemoryStore} from '@leverj/lever.storage'
 import exitHook from 'async-exit-hook'
 import {Contract} from 'ethers'
 import {List, Map} from 'immutable'

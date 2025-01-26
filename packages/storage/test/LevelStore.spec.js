@@ -2,7 +2,7 @@ import {LevelStore} from '@leverj/lever.storage'
 import {expect} from 'expect'
 import {existsSync, mkdtempSync, rmSync} from 'node:fs'
 import {tmpdir} from 'node:os'
-import {transactions} from './fixtures/transactions.js'
+import {fixtures} from './fixtures.js'
 
 describe('LevelStore', () => {
   const storageDir = mkdtempSync(`${tmpdir()}/storage`)
@@ -16,13 +16,13 @@ describe('LevelStore', () => {
 
     store = new LevelStore(storageDir, 'simple')
     expect(Object.keys(await store.toObject())).toHaveLength(0)
-    for (let each of transactions) {
+    for (let each of fixtures) {
       const key = keyFrom(each.from, each.txId)
       expect(await store.has(key)).toBe(false)
       await store.set(key, each)
       expect(await store.has(key)).toBe(true)
     }
-    expect(transactions).toHaveLength(100)
+    expect(fixtures).toHaveLength(100)
     expect(Object.keys(await store.toObject())).toHaveLength(100)
 
     expect(await store.find('BNB')).toHaveLength(36)
@@ -32,7 +32,7 @@ describe('LevelStore', () => {
       expect(await store.find(keyFrom('Ethereum', i + 1))).toHaveLength(each)
     }
 
-    for (let each of transactions) {
+    for (let each of fixtures) {
       const key = keyFrom(each.from, each.txId)
       expect(await store.has(key)).toBe(true)
       await store.delete(key)
@@ -42,14 +42,14 @@ describe('LevelStore', () => {
 
   it('can set & get & find & delete a composite key', async () => {
     store = new LevelStore(storageDir, 'composite')
-    for (let each of transactions) {
+    for (let each of fixtures) {
       const {account, from, txId} = each
       const key = [account, from, txId]
       expect(await store.has(key)).toBe(false)
       await store.set(key, each)
       expect(await store.has(key)).toBe(true)
     }
-    expect(transactions).toHaveLength(100)
+    expect(fixtures).toHaveLength(100)
     expect(Object.keys(await store.toObject())).toHaveLength(100)
 
     expect(await store.find('0x1')).toHaveLength(35)
@@ -60,7 +60,7 @@ describe('LevelStore', () => {
     expect(await store.find(['0x14dC79964da2C08b23698B3D3cc7Ca32193d9955', 'Fantom'])).toHaveLength(3)
     expect(await store.find(['0x14dC79964da2C08b23698B3D3cc7Ca32193d9955', 'Polygon'])).toHaveLength(0)
 
-    for (let each of transactions) {
+    for (let each of fixtures) {
       const {account, from, txId} = each
       const key = [account, from, txId]
       expect(await store.has(key)).toBe(true)
@@ -71,9 +71,9 @@ describe('LevelStore', () => {
 
   it('can get size & keys & values & entries', async () => {
     store = new LevelStore(storageDir, 'whatever')
-    const size = transactions.length
-    for (let i = 0; i < size; i++) await store.set(i, transactions[i])
-    expect(transactions).toHaveLength(100)
+    const size = fixtures.length
+    for (let i = 0; i < size; i++) await store.set(i, fixtures[i])
+    expect(fixtures).toHaveLength(100)
     expect(Object.keys(await store.toObject())).toHaveLength(100)
     expect(await store.size()).toEqual(size)
     expect(await store.entries()).toHaveLength(size)
