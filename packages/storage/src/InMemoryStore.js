@@ -17,8 +17,7 @@ export class InMemoryStore {
   delete(key) { Array.isArray(key) ? this.map.deleteIn(key) : this.map.delete(key) }
   has(key) { return Array.isArray(key) ? this.map.hasIn(key) : this.map.has(key) }
   find(keyable) { return findStartsWithInMap(keyable, this.map) }
-  size() { return this.map.size }
-  // keys() { return this.map.keySeq().toArray() }
+  size() { return this.keys().length }
   keys() { return flattenKeys(this.map) }
   values() { return flattenValues(this.map) }
   entries() { return this.map.entrySeq().toArray() }
