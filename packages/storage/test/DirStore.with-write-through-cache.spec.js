@@ -8,6 +8,7 @@ import {fixtures} from './fixtures.js'
 
 describe('DirStore.with-write-through-cache', () => {
   const storageDir = mkdtempSync(`${tmpdir()}/storage`)
+  const size = fixtures.length
   let store
 
   beforeEach(() => { if (existsSync(storageDir)) rmSync(storageDir, {recursive: true, force: true}) })
@@ -24,8 +25,7 @@ describe('DirStore.with-write-through-cache', () => {
       store.set(key, each)
       expect(store.has(key)).toBe(true)
     }
-    expect(fixtures).toHaveLength(100)
-    expect(Object.keys(store.toObject())).toHaveLength(100)
+    expect(Object.keys(store.toObject())).toHaveLength(size)
 
     expect(store.find('BNB')).toHaveLength(36)
     expect(store.find('Fantom')).toHaveLength(34)
@@ -51,6 +51,8 @@ describe('DirStore.with-write-through-cache', () => {
       store.set(key, each)
       expect(store.has(key)).toBe(true)
     }
+    expect(store.keys()).toHaveLength(size)
+    expect(store.values()).toHaveLength(size)
 
     expect(store.find('0x1')).toHaveLength(35)
     expect(store.find('0x14')).toHaveLength(11)
@@ -71,19 +73,16 @@ describe('DirStore.with-write-through-cache', () => {
 
   it('can get size & keys & values & entries', () => {
     store = new JsonDirStore(storageDir)
-    const size = fixtures.length
     for (let i = 0; i < size; i++) store.set(i, fixtures[i])
-    expect(fixtures).toHaveLength(100)
-    expect(Object.keys(store.toObject())).toHaveLength(100)
+    expect(Object.keys(store.toObject())).toHaveLength(size)
     expect(store.size()).toEqual(size)
-    expect(store.entries()).toHaveLength(size)
     expect(store.keys()).toHaveLength(size)
     expect(store.values()).toHaveLength(size)
+    expect(store.entries()).toHaveLength(size)
   })
 
   it('can detect an externally added file and update accordingly', async () => {
     store = new JsonDirStore(storageDir)
-    const size = fixtures.length
     for (let i = 0; i < size; i++) writeFileSync(`${storageDir}/${i}.json`, JSON.stringify(fixtures[i]))
     await pWaitFor(() => store.size() === size)
     expect(Object.keys(store.toObject())).toHaveLength(size)
@@ -94,7 +93,7 @@ describe('DirStore.with-write-through-cache', () => {
     for (let i = 0; i < fixtures.length; i++) store.set(i, fixtures[i])
     expect(store.get(0)).not.toMatchObject(store.get(1))
     writeFileSync(`${storageDir}/${0}.json`, JSON.stringify(fixtures[1], null, 2))
-    await setTimeout(100)
+    await setTimeout(size)
     expect(readFileSync(`${storageDir}/${0}.json`, 'utf8')).toEqual(readFileSync(`${storageDir}/${1}.json`, 'utf8'))
     // fixme: failing to detect changed file
     // expect(store.get(0)).toMatchObject(store.get(1))

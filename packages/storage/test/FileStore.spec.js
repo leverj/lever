@@ -6,6 +6,7 @@ import {fixtures} from './fixtures.js'
 
 describe('FileStore', () => {
   const storageDir = mkdtempSync(`${tmpdir()}/storage`)
+  const size = fixtures.length
   let store
 
   beforeEach(() => { if (existsSync(storageDir)) rmSync(storageDir, {recursive: true, force: true}) })
@@ -21,8 +22,7 @@ describe('FileStore', () => {
       store.set(key, each)
       expect(store.has(key)).toBe(true)
     }
-    expect(fixtures).toHaveLength(100)
-    expect(Object.keys(store.toObject())).toHaveLength(100)
+    expect(Object.keys(store.toObject())).toHaveLength(size)
 
     expect(store.find('BNB')).toHaveLength(36)
     expect(store.find('Fantom')).toHaveLength(34)
@@ -48,8 +48,8 @@ describe('FileStore', () => {
       store.set(key, each)
       expect(store.has(key)).toBe(true)
     }
-    expect(fixtures).toHaveLength(100)
-    expect(Object.keys(store.toObject())).toHaveLength(10)
+    expect(store.keys()).toHaveLength(size)
+    expect(store.values()).toHaveLength(size)
 
     expect(store.find('0x1')).toHaveLength(35)
     expect(store.find('0x14')).toHaveLength(11)
@@ -70,13 +70,11 @@ describe('FileStore', () => {
 
   it('can get size & keys & values & entries', () => {
     store = new JsonStore(storageDir, 'whatever')
-    const size = fixtures.length
     for (let i = 0; i < size; i++) store.set(i, fixtures[i])
-    expect(fixtures).toHaveLength(100)
-    expect(Object.keys(store.toObject())).toHaveLength(100)
+    expect(Object.keys(store.toObject())).toHaveLength(size)
     expect(store.size()).toEqual(size)
-    expect(store.entries()).toHaveLength(size)
     expect(store.keys()).toHaveLength(size)
     expect(store.values()).toHaveLength(size)
+    expect(store.entries()).toHaveLength(size)
   })
 })

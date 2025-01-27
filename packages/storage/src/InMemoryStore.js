@@ -1,10 +1,10 @@
-import {Map} from 'immutable'
+import {Map, fromJS} from 'immutable'
 import {first, last, merge} from 'lodash-es'
 
 /** in-memory key/value store **/
 export class InMemoryStore {
   constructor(prior = {}) {
-    this.map = Map(prior).asMutable()
+    this.map = fromJS(prior).asMutable()
   }
 
   clear() { this.map.clear() }
@@ -18,12 +18,20 @@ export class InMemoryStore {
   has(key) { return Array.isArray(key) ? this.map.hasIn(key) : this.map.has(key) }
   find(keyable) { return findStartsWithInMap(keyable, this.map) }
   size() { return this.map.size }
-  keys() { return this.map.keySeq().toArray() }
-  values() { return this.map.valueSeq().toArray() }
+  // keys() { return this.map.keySeq().toArray() }
+  keys() { return flattenKeys(this.map) }
+  values() { return flattenValues(this.map) }
   entries() { return this.map.entrySeq().toArray() }
   close() { }
 }
+const flattenKeys = (map, currentPath = []) => map.reduce((results, value, key) => {
+  const newPath = [...currentPath, key]
+  return results.concat(Map.isMap(value) ? flattenKeys(value, newPath) : [newPath])
+}, [])
 
+const flattenValues = (map) => map.reduce((results, value) =>
+  results.concat(Map.isMap(value) ? flattenValues(value) : value), []
+)
 const findStartsWithInMap = (keyable, map) => !Array.isArray(keyable) ?
   map.filter((value, key) => key.startsWith(keyable)).valueSeq().flatten().toArray() :
   keyable.length === 1 ?

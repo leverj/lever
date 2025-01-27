@@ -6,6 +6,7 @@ import {fixtures} from './fixtures.js'
 
 describe('LevelStore', () => {
   const storageDir = mkdtempSync(`${tmpdir()}/storage`)
+  const size = fixtures.length
   let store
 
   beforeEach(() => { if (existsSync(storageDir)) rmSync(storageDir, {recursive: true, force: true}) })
@@ -22,8 +23,7 @@ describe('LevelStore', () => {
       await store.set(key, each)
       expect(await store.has(key)).toBe(true)
     }
-    expect(fixtures).toHaveLength(100)
-    expect(Object.keys(await store.toObject())).toHaveLength(100)
+    expect(Object.keys(await store.toObject())).toHaveLength(size)
 
     expect(await store.find('BNB')).toHaveLength(36)
     expect(await store.find('Fantom')).toHaveLength(34)
@@ -49,8 +49,8 @@ describe('LevelStore', () => {
       await store.set(key, each)
       expect(await store.has(key)).toBe(true)
     }
-    expect(fixtures).toHaveLength(100)
-    expect(Object.keys(await store.toObject())).toHaveLength(100)
+    expect(await store.keys()).toHaveLength(size)
+    expect(await store.values()).toHaveLength(size)
 
     expect(await store.find('0x1')).toHaveLength(35)
     expect(await store.find('0x14')).toHaveLength(11)
@@ -71,13 +71,11 @@ describe('LevelStore', () => {
 
   it('can get size & keys & values & entries', async () => {
     store = new LevelStore(storageDir, 'whatever')
-    const size = fixtures.length
     for (let i = 0; i < size; i++) await store.set(i, fixtures[i])
-    expect(fixtures).toHaveLength(100)
-    expect(Object.keys(await store.toObject())).toHaveLength(100)
+    expect(Object.keys(await store.toObject())).toHaveLength(size)
     expect(await store.size()).toEqual(size)
-    expect(await store.entries()).toHaveLength(size)
     expect(await store.keys()).toHaveLength(size)
     expect(await store.values()).toHaveLength(size)
+    expect(await store.entries()).toHaveLength(size)
   })
 })

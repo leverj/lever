@@ -3,6 +3,7 @@ import {expect} from 'expect'
 import {fixtures} from './fixtures.js'
 
 describe('InMemoryStore', () => {
+  const size = fixtures.length
   let store
 
   it('can set & get & find & delete a simple key', () => {
@@ -16,8 +17,7 @@ describe('InMemoryStore', () => {
       store.set(key, each)
       expect(store.has(key)).toBe(true)
     }
-    expect(fixtures).toHaveLength(100)
-    expect(Object.keys(store.toObject())).toHaveLength(100)
+    expect(Object.keys(store.toObject())).toHaveLength(size)
 
     expect(store.find('BNB')).toHaveLength(36)
     expect(store.find('Fantom')).toHaveLength(34)
@@ -43,8 +43,8 @@ describe('InMemoryStore', () => {
       store.set(key, each)
       expect(store.has(key)).toBe(true)
     }
-    expect(fixtures).toHaveLength(100)
-    expect(Object.keys(store.toObject())).toHaveLength(10)
+    expect(store.keys()).toHaveLength(size)
+    expect(store.values()).toHaveLength(size)
 
     expect(store.find('0x1')).toHaveLength(35)
     expect(store.find('0x14')).toHaveLength(11)
@@ -65,13 +65,11 @@ describe('InMemoryStore', () => {
 
   it('can get size & keys & values & entries', () => {
     store = new InMemoryStore()
-    const size = fixtures.length
     for (let i = 0; i < size; i++) store.set(i, fixtures[i])
-    expect(fixtures).toHaveLength(100)
-    expect(Object.keys(store.toObject())).toHaveLength(100)
+    expect(Object.keys(store.toObject())).toHaveLength(size)
     expect(store.size()).toEqual(size)
-    expect(store.entries()).toHaveLength(size)
     expect(store.keys()).toHaveLength(size)
     expect(store.values()).toHaveLength(size)
+    expect(store.entries()).toHaveLength(size)
   })
 })
