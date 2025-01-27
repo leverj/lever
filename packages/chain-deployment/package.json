@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@leverj/lever.common": "4.1.11",
+    "@leverj/lever.storage": "4.1.11",
     "@nomicfoundation/hardhat-ethers": "^3.0.8",
     "@nomicfoundation/hardhat-network-helpers": "^1.0.12",
     "@nomicfoundation/hardhat-verify": "^2.0.12",
@@ -31,7 +32,7 @@
   "devDependencies": {
     "@leverj/lever.config": "4.1.11",
     "lodash-es": "^4.17.21",
-    "viem": "^2.22.14",
+    "viem": "^2.22.15",
     "wait-on": "^8.0.2"
   }
 }

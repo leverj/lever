@@ -11,7 +11,7 @@
   ],
   "scripts": {
     "test": "yarn workspaces foreach --all run test",
-    "dependency:check": "yarn workspaces foreach --since -pR run dependency:check",
+    "dependency:check": "yarn workspaces foreach --all run dependency:check",
     "publish:prerelease": "up=prerelease yarn publish:up",
     "publish:patch": "up=patch yarn publish:up",
     "publish:minor": "up=minor yarn publish:up",

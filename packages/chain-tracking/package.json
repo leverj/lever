@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "@leverj/lever.common": "4.1.11",
+    "@leverj/lever.storage": "4.1.11",
     "async-exit-hook": "^2.0.1",
     "ethers": "^6.13.5",
     "immutable": "^5.0.3",

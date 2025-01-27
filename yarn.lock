@@ -773,6 +773,7 @@ __metadata:
   dependencies:
     "@leverj/lever.common": "npm:4.1.11"
     "@leverj/lever.config": "npm:4.1.11"
+    "@leverj/lever.storage": "npm:4.1.11"
     "@nomicfoundation/hardhat-ethers": "npm:^3.0.8"
     "@nomicfoundation/hardhat-network-helpers": "npm:^1.0.12"
     "@nomicfoundation/hardhat-verify": "npm:^2.0.12"
@@ -784,7 +785,7 @@ __metadata:
     hardhat-deploy-ethers: "npm:^0.4.2"
     immutable: "npm:^5.0.3"
     lodash-es: "npm:^4.17.21"
-    viem: "npm:^2.22.14"
+    viem: "npm:^2.22.15"
     wait-on: "npm:^8.0.2"
     yargs: "npm:^17.7.2"
   languageName: unknown
@@ -796,6 +797,7 @@ __metadata:
   dependencies:
     "@leverj/lever.chain-deployment": "npm:4.1.11"
     "@leverj/lever.common": "npm:4.1.11"
+    "@leverj/lever.storage": "npm:4.1.11"
     "@openzeppelin/contracts": "npm:^5.2.0"
     async-exit-hook: "npm:^2.0.1"
     ethers: "npm:^6.13.5"
@@ -828,7 +830,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@leverj/lever.storage@workspace:packages/storage":
+"@leverj/lever.storage@npm:4.1.11, @leverj/lever.storage@workspace:packages/storage":
   version: 0.0.0-use.local
   resolution: "@leverj/lever.storage@workspace:packages/storage"
   dependencies:
@@ -8891,9 +8893,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"viem@npm:^2.22.14":
-  version: 2.22.14
-  resolution: "viem@npm:2.22.14"
+"viem@npm:^2.22.15":
+  version: 2.22.15
+  resolution: "viem@npm:2.22.15"
   dependencies:
     "@noble/curves": "npm:1.8.1"
     "@noble/hashes": "npm:1.7.1"
@@ -8908,7 +8910,7 @@ __metadata:
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: 10c0/85f856f759e89c69d3266e6f6a174ee8167210274041ffbe4f683327a10e4ec57db5da3a05c0b10a653e58bfb393bbdb21909f9ed915f62c9c8cbce4ac21e423
+  checksum: 10c0/de832e08423498d6b1746cfb352cbf525b433f57706890fe54c54f3576623e177f2edb9784c6a0cdc4cf77d50be15f0ead46798c2767393989477240bbbbee93
   languageName: node
   linkType: hard
 

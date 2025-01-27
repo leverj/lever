@@ -10449,6 +10449,23 @@ export const networks = {
     contracts: {},
     testnet: false
   },
+  ultra: {
+    id: 19991n,
+    label: 'ultra',
+    name: 'Ultra EVM',
+    nativeCurrency: {
+      decimals: 18,
+      name: 'Ultra Token',
+      symbol: 'UOS'
+    },
+    providerURL: 'https://evm.ultra.eosusa.io',
+    blockExplorer: {
+      name: 'Ultra EVM Explorer',
+      url: 'https://evmexplorer.ultra.io'
+    },
+    contracts: {},
+    testnet: false
+  },
   ultraTestnet: {
     id: 18881n,
     label: 'ultraTestnet',
