@@ -32,7 +32,7 @@ const flattenValues = (map) => map.reduce((results, value) =>
   results.concat(Map.isMap(value) ? flattenValues(value) : value), []
 )
 const findStartsWithInMap = (keyable, map) => !Array.isArray(keyable) ?
-  map.filter((value, key) => key.startsWith(keyable)).valueSeq().flatten().toArray() :
+  map.filter((value, key) => key.toString().startsWith(keyable.toString())).valueSeq().flatten().toArray() :
   keyable.length === 1 ?
     findStartsWithInMap(first(keyable), map) :
     findStartsWithInMap(last(keyable), map.getIn(keyable.slice(0, -1)) || Map())
