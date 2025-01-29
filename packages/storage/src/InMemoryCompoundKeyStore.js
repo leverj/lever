@@ -11,17 +11,19 @@ export class InMemoryCompoundKeyStore {
   toObject() { return this.map.toJS() }
 
   /*** API ***/
-  get(key) { return Array.isArray(key) ? this.map.getIn(key) : this.map.get(key) }
-  set(key, value) { Array.isArray(key) ? this.map.setIn(key, value) : this.map.set(key, value) }
+  get(key) { return this.map.getIn(normalize(key)) }
+  set(key, value) { this.map.setIn(normalize(key), value) }
   update(key, value) { this.set(key, merge(this.get(key, {}), value)) }
-  delete(key) { Array.isArray(key) ? this.map.deleteIn(key) : this.map.delete(key) }
-  has(key) { return Array.isArray(key) ? this.map.hasIn(key) : this.map.has(key) }
+  delete(key) { this.map.deleteIn(normalize(key)) }
+  has(key) { return this.map.hasIn(normalize(key)) }
   find(keyable) { return findStartsWithInMap(keyable, this.map) }
   size() { return this.keys().length }
   keys() { return flattenKeys(this.map) }
   values() { return flattenValues(this.map) }
   entries() { return this.map.entrySeq().toArray() }
 }
+
+const normalize = (key) => Array.isArray(key) ? key : [key]
 
 const findStartsWithInMap = (keyable, map) => !Array.isArray(keyable) ?
   map.filter((value, key) => key.toString().startsWith(keyable.toString())).valueSeq().flatten().toArray() :

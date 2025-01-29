@@ -1,4 +1,4 @@
-export const fixtures = [
+export const transfers = [
   {"account":"0x14dC79964da2C08b23698B3D3cc7Ca32193d9955","currency":"€","amount":848,"from":"BNB","to":"Polygon","txId":10},
 	{"account":"0x14dC79964da2C08b23698B3D3cc7Ca32193d9955","currency":"$","amount":484,"from":"BNB","to":"Polygon","txId":19},
 	{"account":"0x14dC79964da2C08b23698B3D3cc7Ca32193d9955","currency":"€","amount":801,"from":"BNB","to":"Polygon","txId":21},

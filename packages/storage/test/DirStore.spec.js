@@ -2,11 +2,11 @@ import {JsonDirStore} from '@leverj/lever.storage'
 import {expect} from 'expect'
 import {existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync} from 'node:fs'
 import {tmpdir} from 'node:os'
-import {fixtures} from './fixtures.js'
+import {transfers} from './fixtures/transfers.js'
 
 describe('DirStore', () => {
   const storageDir = mkdtempSync(`${tmpdir()}/storage`)
-  const size = fixtures.length
+  const size = transfers.length
   let store
 
   beforeEach(() => { if (existsSync(storageDir)) rmSync(storageDir, {recursive: true, force: true}) })
@@ -16,7 +16,7 @@ describe('DirStore', () => {
 
     store = new JsonDirStore(storageDir)
     expect(Object.keys(store.toObject())).toHaveLength(0)
-    for (let each of fixtures) {
+    for (let each of transfers) {
       const key = keyFrom(each.from, each.txId)
       expect(store.has(key)).toBe(false)
       store.set(key, each)
@@ -31,7 +31,7 @@ describe('DirStore', () => {
       expect(store.find(keyFrom('Ethereum', i + 1))).toHaveLength(each)
     }
 
-    for (let each of fixtures) {
+    for (let each of transfers) {
       const key = keyFrom(each.from, each.txId)
       expect(store.has(key)).toBe(true)
       store.delete(key)
@@ -41,7 +41,7 @@ describe('DirStore', () => {
 
   it('can set & get & find & delete a composite key', () => {
     store = new JsonDirStore(storageDir)
-    for (let each of fixtures) {
+    for (let each of transfers) {
       const {account, from, txId} = each
       const key = [account, from, txId]
       expect(store.has(key)).toBe(false)
@@ -59,7 +59,7 @@ describe('DirStore', () => {
     expect(store.find(['0x14dC79964da2C08b23698B3D3cc7Ca32193d9955', 'Fantom'])).toHaveLength(3)
     expect(store.find(['0x14dC79964da2C08b23698B3D3cc7Ca32193d9955', 'Polygon'])).toHaveLength(0)
 
-    for (let each of fixtures) {
+    for (let each of transfers) {
       const {account, from, txId} = each
       const key = [account, from, txId]
       expect(store.has(key)).toBe(true)
@@ -70,7 +70,7 @@ describe('DirStore', () => {
 
   it('can get size & keys & values & entries', () => {
     store = new JsonDirStore(storageDir)
-    for (let i = 0; i < size; i++) store.set(i, fixtures[i])
+    for (let i = 0; i < size; i++) store.set(i, transfers[i])
     expect(Object.keys(store.toObject())).toHaveLength(size)
     expect(store.size()).toEqual(size)
     expect(store.keys()).toHaveLength(size)
@@ -80,15 +80,15 @@ describe('DirStore', () => {
 
   it('can detect an externally added file and update accordingly', () => {
     store = new JsonDirStore(storageDir)
-    for (let i = 0; i < size; i++) writeFileSync(`${storageDir}/${i}.json`, JSON.stringify(fixtures[i]))
+    for (let i = 0; i < size; i++) writeFileSync(`${storageDir}/${i}.json`, JSON.stringify(transfers[i]))
     expect(Object.keys(store.toObject())).toHaveLength(size)
   })
 
   it('can detect an externally modified file and update accordingly', async () => {
     store = new JsonDirStore(storageDir)
-    for (let i = 0; i < size; i++) store.set(i, fixtures[i])
+    for (let i = 0; i < size; i++) store.set(i, transfers[i])
     expect(store.get(0)).not.toMatchObject(store.get(1))
-    writeFileSync(`${storageDir}/${0}.json`, JSON.stringify(fixtures[1], null, 2))
+    writeFileSync(`${storageDir}/${0}.json`, JSON.stringify(transfers[1], null, 2))
     expect(readFileSync(`${storageDir}/${0}.json`, 'utf8')).toEqual(readFileSync(`${storageDir}/${1}.json`, 'utf8'))
     expect(store.get(0)).toMatchObject(store.get(1))
   })

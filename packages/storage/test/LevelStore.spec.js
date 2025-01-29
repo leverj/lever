@@ -2,11 +2,11 @@ import {LevelStore} from '@leverj/lever.storage'
 import {expect} from 'expect'
 import {existsSync, mkdtempSync, rmSync} from 'node:fs'
 import {tmpdir} from 'node:os'
-import {fixtures} from './fixtures.js'
+import {transfers} from './fixtures/transfers.js'
 
 describe('LevelStore', () => {
   const storageDir = mkdtempSync(`${tmpdir()}/storage`)
-  const size = fixtures.length
+  const size = transfers.length
   let store
 
   beforeEach(() => { if (existsSync(storageDir)) rmSync(storageDir, {recursive: true, force: true}) })
@@ -17,7 +17,7 @@ describe('LevelStore', () => {
 
     store = new LevelStore(storageDir, 'simple')
     expect(Object.keys(await store.toObject())).toHaveLength(0)
-    for (let each of fixtures) {
+    for (let each of transfers) {
       const key = keyFrom(each.from, each.txId)
       expect(await store.has(key)).toBe(false)
       await store.set(key, each)
@@ -32,7 +32,7 @@ describe('LevelStore', () => {
       expect(await store.find(keyFrom('Ethereum', i + 1))).toHaveLength(each)
     }
 
-    for (let each of fixtures) {
+    for (let each of transfers) {
       const key = keyFrom(each.from, each.txId)
       expect(await store.has(key)).toBe(true)
       await store.delete(key)
@@ -42,7 +42,7 @@ describe('LevelStore', () => {
 
   it('can set & get & find & delete a composite key', async () => {
     store = new LevelStore(storageDir, 'composite')
-    for (let each of fixtures) {
+    for (let each of transfers) {
       const {account, from, txId} = each
       const key = [account, from, txId]
       expect(await store.has(key)).toBe(false)
@@ -60,7 +60,7 @@ describe('LevelStore', () => {
     expect(await store.find(['0x14dC79964da2C08b23698B3D3cc7Ca32193d9955', 'Fantom'])).toHaveLength(3)
     expect(await store.find(['0x14dC79964da2C08b23698B3D3cc7Ca32193d9955', 'Polygon'])).toHaveLength(0)
 
-    for (let each of fixtures) {
+    for (let each of transfers) {
       const {account, from, txId} = each
       const key = [account, from, txId]
       expect(await store.has(key)).toBe(true)
@@ -69,10 +69,10 @@ describe('LevelStore', () => {
     }
   })
 
-  //fixme: assert about keys / values / entries
+  //fixme:values: assert about keys / values / entries
   it('can get size & keys & values & entries', async () => {
     store = new LevelStore(storageDir, 'whatever')
-    for (let i = 0; i < size; i++) await store.set(i, fixtures[i])
+    for (let i = 0; i < size; i++) await store.set(i, transfers[i])
     expect(Object.keys(await store.toObject())).toHaveLength(size)
     expect(await store.size()).toEqual(size)
     expect(await store.keys()).toHaveLength(size)

@@ -2,11 +2,11 @@ import {JsonStore} from '@leverj/lever.storage'
 import {expect} from 'expect'
 import {existsSync, mkdtempSync, rmSync} from 'node:fs'
 import {tmpdir} from 'node:os'
-import {fixtures} from './fixtures.js'
+import {transfers} from './fixtures/transfers.js'
 
 describe('FileStore', () => {
   const storageDir = mkdtempSync(`${tmpdir()}/storage`)
-  const size = fixtures.length
+  const size = transfers.length
   let store
 
   beforeEach(() => { if (existsSync(storageDir)) rmSync(storageDir, {recursive: true, force: true}) })
@@ -16,7 +16,7 @@ describe('FileStore', () => {
 
     store = new JsonStore(storageDir, 'simple')
     expect(Object.keys(store.toObject())).toHaveLength(0)
-    for (let each of fixtures) {
+    for (let each of transfers) {
       const key = keyFrom(each.from, each.txId)
       expect(store.has(key)).toBe(false)
       store.set(key, each)
@@ -31,7 +31,7 @@ describe('FileStore', () => {
       expect(store.find(keyFrom('Ethereum', i + 1))).toHaveLength(each)
     }
 
-    for (let each of fixtures) {
+    for (let each of transfers) {
       const key = keyFrom(each.from, each.txId)
       expect(store.has(key)).toBe(true)
       store.delete(key)
@@ -41,7 +41,7 @@ describe('FileStore', () => {
 
   it('can set & get & find & delete a composite key', () => {
     store = new JsonStore(storageDir, 'composite', true)
-    for (let each of fixtures) {
+    for (let each of transfers) {
       const {account, from, txId} = each
       const key = [account, from, txId]
       expect(store.has(key)).toBe(false)
@@ -59,7 +59,7 @@ describe('FileStore', () => {
     expect(store.find(['0x14dC79964da2C08b23698B3D3cc7Ca32193d9955', 'Fantom'])).toHaveLength(3)
     expect(store.find(['0x14dC79964da2C08b23698B3D3cc7Ca32193d9955', 'Polygon'])).toHaveLength(0)
 
-    for (let each of fixtures) {
+    for (let each of transfers) {
       const {account, from, txId} = each
       const key = [account, from, txId]
       expect(store.has(key)).toBe(true)
@@ -68,11 +68,11 @@ describe('FileStore', () => {
     }
   })
 
-  //fixme: assert about keys / values / entries
+  //fixme:values: assert about keys / values / entries
   it('can get size & keys & values & entries', () => {
     {
       store = new JsonStore(storageDir, 'simple')
-      for (let i = 0; i < size; i++) store.set(i, fixtures[i])
+      for (let i = 0; i < size; i++) store.set(i, transfers[i])
       expect(Object.keys(store.toObject())).toHaveLength(size)
       expect(store.size()).toEqual(size)
       expect(store.keys()).toHaveLength(size)
@@ -81,7 +81,7 @@ describe('FileStore', () => {
     }
     {
       store = new JsonStore(storageDir, 'composite', true)
-      for (let i = 0; i < size; i++) store.set(i, fixtures[i])
+      for (let i = 0; i < size; i++) store.set(i, transfers[i])
       expect(Object.keys(store.toObject())).toHaveLength(size)
       expect(store.size()).toEqual(size)
       expect(store.keys()).toHaveLength(size)

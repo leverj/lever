@@ -20,7 +20,7 @@ export class FileStore {
   save() { writeFileSync(this.file, this.serializer(this.toObject(), null, 2)) }
   clear() { this.cache.clear(); this.save() }
   toObject() { return this.cache.toObject() }
-  toKey(key) { return this.useCompoundKey ? key : key.toString() } //fixme: check if array?
+  toKey(key) { return this.useCompoundKey ? key : key.toString() } //fixme:values: check if array?
 
   /*** API ***/
   get(key) { return this.cache.get(this.toKey(key)) }
