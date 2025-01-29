@@ -3213,6 +3213,23 @@ export const networks = {
     contracts: {},
     testnet: true
   },
+  etp: {
+    id: 20256789n,
+    label: 'etp',
+    name: 'ETP Mainnet',
+    nativeCurrency: {
+      decimals: 18,
+      name: 'ETP Chain Native Token',
+      symbol: 'ETP'
+    },
+    providerURL: 'https://rpc.etpscan.xyz',
+    blockExplorer: {
+      name: 'ETP Scan',
+      url: 'https://etpscan.xyz'
+    },
+    contracts: {},
+    testnet: false
+  },
   evmos: {
     id: 9001n,
     label: 'evmos',
@@ -4320,6 +4337,28 @@ export const networks = {
     },
     contracts: {},
     testnet: false
+  },
+  happychainTestnet: {
+    id: 216n,
+    label: 'happychainTestnet',
+    name: 'Happychain Testnet',
+    nativeCurrency: {
+      symbol: 'HAPPY',
+      name: 'HAPPY',
+      decimals: 18
+    },
+    providerURL: 'https://happy-testnet-sepolia.rpc.caldera.xyz/http',
+    blockExplorer: {
+      name: 'Happy Chain Testnet Explorer',
+      url: 'https://happy-testnet-sepolia.explorer.caldera.xyz/'
+    },
+    contracts: {
+      multicall3: {
+        address: '0xca11bde05977b3631167028862be2a173976ca11',
+        blockCreated: 1
+      }
+    },
+    testnet: true
   },
   haqqMainnet: {
     id: 11235n,
