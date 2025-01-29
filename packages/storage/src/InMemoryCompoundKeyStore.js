@@ -1,4 +1,4 @@
-import {Map, fromJS} from 'immutable'
+import {fromJS, Map} from 'immutable'
 import {first, last, merge} from 'lodash-es'
 
 /** in-memory compound-key/value store **/
@@ -20,7 +20,7 @@ export class InMemoryCompoundKeyStore {
   size() { return this.keys().length }
   keys() { return flattenKeys(this.map) }
   values() { return flattenValues(this.map) }
-  entries() { return this.map.entrySeq().toArray() }
+  entries() { return flattenEntries(this.map) }
 }
 
 const normalize = (key) => Array.isArray(key) ? key : [key]
@@ -39,3 +39,8 @@ const flattenKeys = (map, currentPath = []) => map.reduce((results, value, key) 
 const flattenValues = (map) => map.reduce((results, value) =>
   results.concat(Map.isMap(value) ? flattenValues(value) : value), []
 )
+
+const flattenEntries = (map, currentPath = []) => map.reduce((results, value, key) => {
+  const newPath = [...currentPath, key]
+  return results.concat(Map.isMap(value) ? flattenEntries(value, newPath) : [[newPath, value]])
+}, [])

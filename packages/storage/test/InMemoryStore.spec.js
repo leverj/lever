@@ -34,8 +34,7 @@ describe('InMemoryStore', () => {
     }
   })
 
-  //fixme:values: assert about keys / values / entries
-  it('can get size & keys & values & entries', () => {
+  it('can store and get size & keys & values & entries', () => {
     store = new InMemoryStore()
     for (let i = 0; i < size; i++) store.set(i, transfers[i])
     expect(Object.keys(store.toObject())).toHaveLength(size)

@@ -1,8 +1,9 @@
+import {existsSync, mkdtempSync, rmSync} from 'node:fs'
 import {JsonStore} from '@leverj/lever.storage'
 import {expect} from 'expect'
-import {existsSync, mkdtempSync, rmSync} from 'node:fs'
 import {tmpdir} from 'node:os'
 import {transfers} from './fixtures/transfers.js'
+import {Map, Set} from 'immutable'
 
 describe('FileStore', () => {
   const storageDir = mkdtempSync(`${tmpdir()}/storage`)
@@ -68,8 +69,7 @@ describe('FileStore', () => {
     }
   })
 
-  //fixme:values: assert about keys / values / entries
-  it('can get size & keys & values & entries', () => {
+  it('can store and get size & keys & values & entries (for simple & compound keys', () => {
     {
       store = new JsonStore(storageDir, 'simple')
       for (let i = 0; i < size; i++) store.set(i, transfers[i])
@@ -81,12 +81,46 @@ describe('FileStore', () => {
     }
     {
       store = new JsonStore(storageDir, 'composite', true)
-      for (let i = 0; i < size; i++) store.set(i, transfers[i])
-      expect(Object.keys(store.toObject())).toHaveLength(size)
+      transfers.forEach(_ => store.set([_.account, _.from, _.txId], _))
+      expect(Object.keys(store.toObject())).not.toHaveLength(size)
+      expect(Object.keys(store.toObject())).toHaveLength(size / 10)
       expect(store.size()).toEqual(size)
       expect(store.keys()).toHaveLength(size)
       expect(store.values()).toHaveLength(size)
       expect(store.entries()).toHaveLength(size)
     }
+  })
+
+  it('can store and get the size & keys & values of deeply nested objects', () => {
+    const contractTypesToTrack = Set([
+      'multicall3',
+      'ensRegistry',
+      'ensUniversalResolver',
+    ])
+    const chains = [
+      'hardhat',  // no contracts
+      'arbitrum', // only multicall3 contract
+      'holesky',
+      'sepolia',
+      'fantom',
+    ]
+    const fixtures_store = new JsonStore(`${import.meta.dirname}/fixtures`, 'networks')
+    expect(fixtures_store.keys()).toHaveLength(518)
+
+    const evms = fixtures_store.values().filter(_ => Set(chains.concat('no-such-chain')).has(_.label)).map(_ => {
+      _.id = parseInt(_.id)
+      _.chainId = parseInt(_.id)
+      _.contracts = Map(_.contracts).filter((value, key) => contractTypesToTrack.has(key)).map(_ => _.address).toJS()
+      return _
+    })
+    store = new JsonStore(storageDir, 'evms')
+    evms.forEach(_ => store.set(_.label, _))
+    expect(store.size()).toEqual(chains.length)
+    expect(store.keys()).toHaveLength(chains.length)
+    expect(store.values()).toHaveLength(chains.length)
+    expect(store.has('no-such-chain')).toBe(false)
+    store.values().filter(_ => _.label !== 'no-such-chain').forEach(
+      _ => expect(store.get(_.label)).toMatchObject(fixtures_store.get(_.label))
+    )
   })
 })

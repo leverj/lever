@@ -69,14 +69,24 @@ describe('LevelStore', () => {
     }
   })
 
-  //fixme:values: assert about keys / values / entries
-  it('can get size & keys & values & entries', async () => {
-    store = new LevelStore(storageDir, 'whatever')
-    for (let i = 0; i < size; i++) await store.set(i, transfers[i])
-    expect(Object.keys(await store.toObject())).toHaveLength(size)
-    expect(await store.size()).toEqual(size)
-    expect(await store.keys()).toHaveLength(size)
-    expect(await store.values()).toHaveLength(size)
-    expect(await store.entries()).toHaveLength(size)
+  it('can store and get size & keys & values & entries (for simple & compound keys', async () => {
+    {
+      store = new LevelStore(storageDir, 'simple')
+      for (let i = 0; i < size; i++) await store.set(i, transfers[i])
+      expect(Object.keys(await store.toObject())).toHaveLength(size)
+      expect(await store.size()).toEqual(size)
+      expect(await store.keys()).toHaveLength(size)
+      expect(await store.values()).toHaveLength(size)
+      expect(await store.entries()).toHaveLength(size)
+    }
+    {
+      store = new LevelStore(storageDir, 'composite')
+      await Promise.all(transfers.map(_ => store.set([_.account, _.from, _.txId], _)))
+      expect(Object.keys(await store.toObject())).toHaveLength(size)
+      expect(await store.size()).toEqual(size)
+      expect(await store.keys()).toHaveLength(size)
+      expect(await store.values()).toHaveLength(size)
+      expect(await store.entries()).toHaveLength(size)
+    }
   })
 })

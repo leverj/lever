@@ -63,14 +63,25 @@ describe('InMemoryCompoundKeyStore', () => {
     }
   })
 
-  //fixme:values: assert about keys / values / entries
-  it('can get size & keys & values & entries', () => {
-    store = new InMemoryCompoundKeyStore()
-    for (let i = 0; i < size; i++) store.set(i, transfers[i])
-    expect(Object.keys(store.toObject())).toHaveLength(size)
-    expect(store.size()).toEqual(size)
-    expect(store.keys()).toHaveLength(size)
-    expect(store.values()).toHaveLength(size)
-    expect(store.entries()).toHaveLength(size)
+  it('can store and get size & keys & values & entries (for simple & compound keys', () => {
+    {
+      store = new InMemoryCompoundKeyStore()
+      for (let i = 0; i < size; i++) store.set(i, transfers[i])
+      expect(Object.keys(store.toObject())).toHaveLength(size)
+      expect(store.size()).toEqual(size)
+      expect(store.keys()).toHaveLength(size)
+      expect(store.values()).toHaveLength(size)
+      expect(store.entries()).toHaveLength(size)
+    }
+    {
+      store = new InMemoryCompoundKeyStore()
+      transfers.forEach(_ => store.set([_.account, _.from, _.txId], _))
+      expect(Object.keys(store.toObject())).not.toHaveLength(size)
+      expect(Object.keys(store.toObject())).toHaveLength(size / 10)
+      expect(store.size()).toEqual(size)
+      expect(store.keys()).toHaveLength(size)
+      expect(store.values()).toHaveLength(size)
+      expect(store.entries()).toHaveLength(size)
+    }
   })
 })
