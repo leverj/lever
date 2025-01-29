@@ -11,6 +11,7 @@ export class LevelStore {
   }
 
   async open(options = {passive: true}) { return this.db.open(options) }
+  async close() { return this.db.close() }
   async clear() { return this.db.clear() }
   async toObject() { return Map(await this.db.iterator().all()).toJS() }
 
@@ -30,5 +31,4 @@ export class LevelStore {
   async keys() { return this.db.keys().all() }
   async values() { return this.db.values().all() }
   async entries() { return this.db.iterator().all() }
-  async close() { return this.db.close() }
 }

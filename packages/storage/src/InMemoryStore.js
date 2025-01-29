@@ -21,7 +21,6 @@ export class InMemoryStore {
   keys() { return flattenKeys(this.map) }
   values() { return flattenValues(this.map) }
   entries() { return this.map.entrySeq().toArray() }
-  close() { }
 }
 const flattenKeys = (map, currentPath = []) => map.reduce((results, value, key) => {
   const newPath = [...currentPath, key]

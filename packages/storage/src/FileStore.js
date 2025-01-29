@@ -29,7 +29,6 @@ export class FileStore {
   keys() { return this.cache.keys() }
   values() { return this.cache.values() }
   entries() { return this.cache.entries() }
-  close() { }
 }
 
 export class JsonStore extends FileStore {
