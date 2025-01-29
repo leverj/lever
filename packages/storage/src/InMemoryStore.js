@@ -1,37 +1,24 @@
-import {Map, fromJS} from 'immutable'
-import {first, last, merge} from 'lodash-es'
+import {Map} from 'immutable'
+import {merge} from 'lodash-es'
 
-/** in-memory key/value store **/
+/** in-memory simple-key/value store **/
 export class InMemoryStore {
   constructor(prior = {}) {
-    this.map = fromJS(prior).asMutable()
+    this.map = Map(prior).asMutable()
   }
 
   clear() { this.map.clear() }
   toObject() { return this.map.toJS() }
 
   /*** API ***/
-  get(key) { return Array.isArray(key) ? this.map.getIn(key) : this.map.get(key) }
-  set(key, value) { Array.isArray(key) ? this.map.setIn(key, value) : this.map.set(key, value) }
+  get(key) { return this.map.get(key) }
+  set(key, value) { this.map.set(key, value) }
   update(key, value) { this.set(key, merge(this.get(key, {}), value)) }
-  delete(key) { Array.isArray(key) ? this.map.deleteIn(key) : this.map.delete(key) }
-  has(key) { return Array.isArray(key) ? this.map.hasIn(key) : this.map.has(key) }
-  find(keyable) { return findStartsWithInMap(keyable, this.map) }
-  size() { return this.keys().length }
-  keys() { return flattenKeys(this.map) }
-  values() { return flattenValues(this.map) }
+  delete(key) { this.map.delete(key) }
+  has(key) { return this.map.has(key) }
+  find(keyable) { return this.map.filter((value, key) => key.toString().startsWith(keyable.toString())).valueSeq().toArray() }
+  size() { return this.map.size }
+  keys() { return this.map.keySeq().toArray() }
+  values() { return this.map.valueSeq().toArray() }
   entries() { return this.map.entrySeq().toArray() }
 }
-const flattenKeys = (map, currentPath = []) => map.reduce((results, value, key) => {
-  const newPath = [...currentPath, key]
-  return results.concat(Map.isMap(value) ? flattenKeys(value, newPath) : [newPath])
-}, [])
-
-const flattenValues = (map) => map.reduce((results, value) =>
-  results.concat(Map.isMap(value) ? flattenValues(value) : value), []
-)
-const findStartsWithInMap = (keyable, map) => !Array.isArray(keyable) ?
-  map.filter((value, key) => key.toString().startsWith(keyable.toString())).valueSeq().flatten().toArray() :
-  keyable.length === 1 ?
-    findStartsWithInMap(first(keyable), map) :
-    findStartsWithInMap(last(keyable), map.getIn(keyable.slice(0, -1)) || Map())

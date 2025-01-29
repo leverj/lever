@@ -1,15 +1,15 @@
-import {InMemoryStore} from '@leverj/lever.storage'
+import {InMemoryCompoundKeyStore} from '@leverj/lever.storage'
 import {expect} from 'expect'
 import {fixtures} from './fixtures.js'
 
-describe('InMemoryStore', () => {
+describe('InMemoryCompoundKeyStore', () => {
   const size = fixtures.length
   let store
 
   it('can set & get & find & delete a simple key', () => {
     const keyFrom = (from, txId) => `${from}@${txId}`
 
-    store = new InMemoryStore()
+    store = new InMemoryCompoundKeyStore()
     expect(Object.keys(store.toObject())).toHaveLength(0)
     for (let each of fixtures) {
       const key = keyFrom(each.from, each.txId)
@@ -34,9 +34,38 @@ describe('InMemoryStore', () => {
     }
   })
 
+  it('can set & get & find & delete a composite key', () => {
+    store = new InMemoryCompoundKeyStore()
+    for (let each of fixtures) {
+      const {account, from, txId} = each
+      const key = [account, from, txId]
+      expect(store.has(key)).toBe(false)
+      store.set(key, each)
+      expect(store.has(key)).toBe(true)
+    }
+    expect(store.keys()).toHaveLength(size)
+    expect(store.values()).toHaveLength(size)
+
+    expect(store.find('0x1')).toHaveLength(35)
+    expect(store.find('0x14')).toHaveLength(11)
+    expect(store.find('0x14dC79964da2C08b23698B3D3cc7Ca32193d9955')).toHaveLength(11)
+    expect(store.find(['0x14dC79964da2C08b23698B3D3cc7Ca32193d9955', 'BNB'])).toHaveLength(6)
+    expect(store.find(['0x14dC79964da2C08b23698B3D3cc7Ca32193d9955', 'Ethereum'])).toHaveLength(2)
+    expect(store.find(['0x14dC79964da2C08b23698B3D3cc7Ca32193d9955', 'Fantom'])).toHaveLength(3)
+    expect(store.find(['0x14dC79964da2C08b23698B3D3cc7Ca32193d9955', 'Polygon'])).toHaveLength(0)
+
+    for (let each of fixtures) {
+      const {account, from, txId} = each
+      const key = [account, from, txId]
+      expect(store.has(key)).toBe(true)
+      store.delete(key)
+      expect(store.has(key)).toBe(false)
+    }
+  })
+
   //fixme: assert about keys / values / entries
   it('can get size & keys & values & entries', () => {
-    store = new InMemoryStore()
+    store = new InMemoryCompoundKeyStore()
     for (let i = 0; i < size; i++) store.set(i, fixtures[i])
     expect(Object.keys(store.toObject())).toHaveLength(size)
     expect(store.size()).toEqual(size)

@@ -40,7 +40,7 @@ describe('FileStore', () => {
   })
 
   it('can set & get & find & delete a composite key', () => {
-    store = new JsonStore(storageDir, 'composite')
+    store = new JsonStore(storageDir, 'composite', true)
     for (let each of fixtures) {
       const {account, from, txId} = each
       const key = [account, from, txId]
@@ -68,13 +68,25 @@ describe('FileStore', () => {
     }
   })
 
+  //fixme: assert about keys / values / entries
   it('can get size & keys & values & entries', () => {
-    store = new JsonStore(storageDir, 'whatever')
-    for (let i = 0; i < size; i++) store.set(i, fixtures[i])
-    expect(Object.keys(store.toObject())).toHaveLength(size)
-    expect(store.size()).toEqual(size)
-    expect(store.keys()).toHaveLength(size)
-    expect(store.values()).toHaveLength(size)
-    expect(store.entries()).toHaveLength(size)
+    {
+      store = new JsonStore(storageDir, 'simple')
+      for (let i = 0; i < size; i++) store.set(i, fixtures[i])
+      expect(Object.keys(store.toObject())).toHaveLength(size)
+      expect(store.size()).toEqual(size)
+      expect(store.keys()).toHaveLength(size)
+      expect(store.values()).toHaveLength(size)
+      expect(store.entries()).toHaveLength(size)
+    }
+    {
+      store = new JsonStore(storageDir, 'composite', true)
+      for (let i = 0; i < size; i++) store.set(i, fixtures[i])
+      expect(Object.keys(store.toObject())).toHaveLength(size)
+      expect(store.size()).toEqual(size)
+      expect(store.keys()).toHaveLength(size)
+      expect(store.values()).toHaveLength(size)
+      expect(store.entries()).toHaveLength(size)
+    }
   })
 })

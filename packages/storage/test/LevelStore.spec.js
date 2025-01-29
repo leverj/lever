@@ -69,6 +69,7 @@ describe('LevelStore', () => {
     }
   })
 
+  //fixme: assert about keys / values / entries
   it('can get size & keys & values & entries', async () => {
     store = new LevelStore(storageDir, 'whatever')
     for (let i = 0; i < size; i++) await store.set(i, fixtures[i])

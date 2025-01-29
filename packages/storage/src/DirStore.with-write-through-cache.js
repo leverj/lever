@@ -2,7 +2,7 @@ import {ensureExistsSync} from '@leverj/lever.common/files'
 import {readdirSync, readFileSync, rmSync, writeFileSync} from 'node:fs'
 import {basename, extname} from 'node:path'
 import Watcher from 'watcher'
-import {InMemoryStore} from './InMemoryStore.js'
+import {InMemoryCompoundKeyStore} from './InMemoryCompoundKeyStore.js'
 
 const keySeparator = '-'
 const toKey = _ => Array.isArray(_) ? _.join(keySeparator) : _
@@ -15,7 +15,7 @@ export class DirStore {
     this.extension = extension
     this.deserializer = deserializer
     this.serializer = serializer
-    this.cache = new InMemoryStore()
+    this.cache = new InMemoryCompoundKeyStore()
     ensureExistsSync(path)
     readdirSync(path).forEach(_ => this.load(_))
     this.watcher = new Watcher(path, (event, file) => {
