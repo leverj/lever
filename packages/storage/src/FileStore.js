@@ -35,7 +35,7 @@ export class FileStore {
   entries() { return this.cache.entries() }
 }
 
-export class JsonStore extends FileStore {
+export class JsonFileStore extends FileStore {
   constructor(path, type, useCompoundKey = false) {
     super(path, type, '.json', JSON.parse, JSON.stringify, useCompoundKey)
   }

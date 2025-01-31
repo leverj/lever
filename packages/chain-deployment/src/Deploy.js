@@ -1,4 +1,4 @@
-import {JsonStore} from '@leverj/lever.storage'
+import {JsonFileStore} from '@leverj/lever.storage'
 import {default as hardhat} from 'hardhat'
 import {execSync} from 'node:child_process'
 import {setTimeout} from 'node:timers/promises'
@@ -10,7 +10,7 @@ const {ethers: {deployContract, JsonRpcProvider, Wallet}} = hardhat
 export class Deploy {
   static from(config, logger = console) {
     const {deploymentDir, env} = config
-    const store = new JsonStore(`${deploymentDir}/${env}`, '.evms')
+    const store = new JsonFileStore(`${deploymentDir}/${env}`, '.evms')
     return new this(config, store, logger)
   }
 

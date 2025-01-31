@@ -1,5 +1,5 @@
 import {existsSync, mkdtempSync, rmSync} from 'node:fs'
-import {JsonStore} from '@leverj/lever.storage'
+import {JsonFileStore} from '@leverj/lever.storage'
 import {expect} from 'expect'
 import {tmpdir} from 'node:os'
 import {transfers} from './fixtures/transfers.js'
@@ -15,7 +15,7 @@ describe('FileStore', () => {
   it('can set & get & find & delete a simple key', () => {
     const keyFrom = (from, txId) => `${from}_${txId}`
 
-    store = new JsonStore(storageDir, 'simple')
+    store = new JsonFileStore(storageDir, 'simple')
     expect(Object.keys(store.toObject())).toHaveLength(0)
     for (let each of transfers) {
       const key = keyFrom(each.from, each.txId)
@@ -41,7 +41,7 @@ describe('FileStore', () => {
   })
 
   it('can set & get & find & delete a composite key', () => {
-    store = new JsonStore(storageDir, 'composite', true)
+    store = new JsonFileStore(storageDir, 'composite', true)
     for (let each of transfers) {
       const {account, from, txId} = each
       const key = [account, from, txId]
@@ -71,7 +71,7 @@ describe('FileStore', () => {
 
   it('can store and get size & keys & values & entries (for simple & compound keys', () => {
     {
-      store = new JsonStore(storageDir, 'simple')
+      store = new JsonFileStore(storageDir, 'simple')
       for (let i = 0; i < size; i++) store.set(i, transfers[i])
       expect(Object.keys(store.toObject())).toHaveLength(size)
       expect(store.size()).toEqual(size)
@@ -80,7 +80,7 @@ describe('FileStore', () => {
       expect(store.entries()).toHaveLength(size)
     }
     {
-      store = new JsonStore(storageDir, 'composite', true)
+      store = new JsonFileStore(storageDir, 'composite', true)
       transfers.forEach(_ => store.set([_.account, _.from, _.txId], _))
       expect(Object.keys(store.toObject())).not.toHaveLength(size)
       expect(Object.keys(store.toObject())).toHaveLength(size / 10)
@@ -104,7 +104,7 @@ describe('FileStore', () => {
       'sepolia',
       'fantom',
     ]
-    const fixtures_store = new JsonStore(`${import.meta.dirname}/fixtures`, 'networks')
+    const fixtures_store = new JsonFileStore(`${import.meta.dirname}/fixtures`, 'networks')
     expect(fixtures_store.keys()).toHaveLength(518)
 
     const evms = fixtures_store.values().filter(_ => Set(chains.concat('no-such-chain')).has(_.label)).map(_ => {
@@ -113,7 +113,7 @@ describe('FileStore', () => {
       _.contracts = Map(_.contracts).filter((value, key) => contractTypesToTrack.has(key)).map(_ => _.address).toJS()
       return _
     })
-    store = new JsonStore(storageDir, 'evms')
+    store = new JsonFileStore(storageDir, 'evms')
     evms.forEach(_ => store.set(_.label, _))
     expect(store.size()).toEqual(chains.length)
     expect(store.keys()).toHaveLength(chains.length)
