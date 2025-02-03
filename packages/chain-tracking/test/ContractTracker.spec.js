@@ -2,7 +2,7 @@ import {accounts, chainId} from '@leverj/lever.chain-deployment/hardhat.help'
 import {ContractTracker} from '@leverj/lever.chain-tracking'
 import {ERC20, expectEventsToMatch} from '@leverj/lever.chain-tracking/test'
 import {logger} from '@leverj/lever.common'
-import {InMemoryStore} from '@leverj/lever.storage'
+import {InMemoryCompoundKeyStore} from '@leverj/lever.storage'
 import {ZeroAddress as ETH} from 'ethers'
 import {setTimeout} from 'node:timers/promises'
 
@@ -14,7 +14,7 @@ describe('ContractTracker', () => {
     events = []
     contract = await ERC20()
     const polling = {interval: 10, attempts: 5}
-    tracker = ContractTracker.of(chainId, contract, new InMemoryStore(), polling, _ => _, logger)
+    tracker = ContractTracker.of(chainId, contract, new InMemoryCompoundKeyStore(), polling, _ => _, logger)
   })
 
   afterEach(() => tracker.stop())

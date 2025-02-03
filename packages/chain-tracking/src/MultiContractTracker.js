@@ -1,5 +1,5 @@
 import {getCreationBlock} from '@leverj/lever.common'
-import {InMemoryStore} from '@leverj/lever.storage'
+import {InMemoryCompoundKeyStore} from '@leverj/lever.storage'
 import exitHook from 'async-exit-hook'
 import {Contract} from 'ethers'
 import {List, Map} from 'immutable'
@@ -11,21 +11,19 @@ import {ContractTracker} from './ContractTracker.js'
  */
 export class MultiContractTracker {
   static of(chainId, provider, store, polling, processEvent = logger.log, logger = console) {
-    const key = chainId
-    store.update(key, {
+    store.update(chainId, {
       marker: {block: 0, logIndex: -1, blockWasProcessed: false},
       abis: [],
       contracts: [],
       toOnboard: [],
     })
-    return new this(chainId, provider, store, key, polling, processEvent, logger)
+    return new this(chainId, provider, store, polling, processEvent, logger)
   }
 
-  constructor(chainId, provider, store, key, polling, processEvent, logger) {
+  constructor(chainId, provider, store, polling, processEvent, logger) {
     this.chainId = chainId
     this.provider = provider
     this.store = store
-    this.key = key
     this.polling = polling
     this.processEvent = processEvent
     this.logger = logger
@@ -34,7 +32,7 @@ export class MultiContractTracker {
     this.topicsByKind = {}
     this.topics = [[]]
     this.isRunning = false
-    const {marker, toOnboard, abis, contracts} = store.get(key)
+    const {marker, toOnboard, abis, contracts} = store.get(chainId)
     this.marker = marker
     this.toOnboard = toOnboard
     const ifaces = Map(abis).toObject()
@@ -45,7 +43,7 @@ export class MultiContractTracker {
   }
   get lastBlock() { return this.marker.block }
 
-  update(state) { this.store.update(this.key, state) }
+  update(state) { this.store.update(this.chainId, state) }
   updateMarker(state) { this.update({marker: merge(this.marker, state)}) }
 
   _addContract_(contract, kind) {
@@ -74,7 +72,7 @@ export class MultiContractTracker {
 
   async onboard(contract) {
     const {chainId, provider, polling, processEvent, logger, lastBlock} = this
-    const tracker = ContractTracker.of(chainId, contract, new InMemoryStore(), polling, processEvent, logger)
+    const tracker = ContractTracker.of(chainId, contract, new InMemoryCompoundKeyStore(), polling, processEvent, logger)
     const creationBlock = await getCreationBlock(provider, contract.target).catch(_ => 0)
     await tracker.processLogs(creationBlock, lastBlock)
     this.update({
@@ -85,7 +83,7 @@ export class MultiContractTracker {
 
   async start() {
     if (!this.isRunning) {
-      this.logger.log(`starting tracker [${this.key}]`)
+      this.logger.log(`starting tracker [${this.chainId}]`)
       while (this.toOnboard.length > 0)  {
         const {address, kind} = this.toOnboard.shift()
         const contract = new Contract(address, this.interfaces[kind], this.provider)
@@ -98,7 +96,7 @@ export class MultiContractTracker {
 
   stop() {
     if (this.isRunning) {
-      this.logger.log(`stopping tracker [${this.key}]`)
+      this.logger.log(`stopping tracker [${this.chainId}]`)
       this.isRunning = false
       if (this.pollingTimer) clearTimeout(this.pollingTimer)
     }
@@ -113,7 +111,7 @@ export class MultiContractTracker {
     try {
       await this.poll()
     } catch (e) {
-      if (attempts === 1) this.logger.error(`tracker [${this.key}] failed during polling for events`, e, e.cause || '')
+      if (attempts === 1) this.logger.error(`tracker [${this.chainId}] failed during polling for events`, e, e.cause || '')
       return attempts === this.polling.attempts ? this.fail(e) : this.pollForEvents(attempts + 1)
     }
     if (this.isRunning) this.pollingTimer = setTimeout(_ => this.pollForEvents(_), this.polling.interval)

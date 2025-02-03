@@ -7,24 +7,24 @@ import {merge} from 'lodash-es'
  */
 export class ContractTracker {
   static of(chainId, contract, store, polling, onEvent = logger.log, logger = console) {
-    const key = [chainId, contract.target].join(':')
-    store.update(key, {
+    store.update([chainId, contract.target], {
       marker: {block: 0, logIndex: -1, blockWasProcessed: false}
     })
-    return new this(contract, store, key, polling, onEvent, logger)
+    return new this(chainId, contract, store, polling, onEvent, logger)
   }
 
-  constructor(contract, store, key, polling, onEvent, logger) {
+  constructor(chainId, contract, store, polling, onEvent, logger) {
+    this.chainId = chainId
     this.contract = contract
     this.topics = [contract.interface.fragments.filter(_ => _.type === 'event').map(_ => _.topicHash)]
     this.store = store
-    this.key = key
     this.polling = polling
     this.onEvent = onEvent
     this.logger = logger
     this.isRunning = false
     exitHook(() => this.stop())
   }
+  get key() { return [this.chainId, this.address] }
   get address() { return this.contract.target }
   get provider() { return this.contract.runner.provider }
   get interface() { return this.contract.interface }
