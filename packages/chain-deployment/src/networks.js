@@ -3685,6 +3685,23 @@ export const networks = {
     },
     testnet: false
   },
+  forta: {
+    id: 80931n,
+    label: 'forta',
+    name: 'Forta Chain',
+    nativeCurrency: {
+      symbol: 'FORT',
+      name: 'FORT',
+      decimals: 18
+    },
+    providerURL: 'https://rpc-forta-chain-8gj1qndmfc.t.conduit.xyz',
+    blockExplorer: {
+      name: 'Forta Explorer',
+      url: 'https://explorer.forta.org'
+    },
+    contracts: {},
+    testnet: false
+  },
   foundry: {
     id: 31337n,
     label: 'foundry',
@@ -8931,6 +8948,23 @@ export const networks = {
     contracts: {},
     testnet: true
   },
+  sidraChain: {
+    id: 97453n,
+    label: 'sidraChain',
+    name: 'Sidra Chain',
+    nativeCurrency: {
+      decimals: 18,
+      name: 'Sidra Digital Asset',
+      symbol: 'SDA'
+    },
+    providerURL: 'https://node.sidrachain.com',
+    blockExplorer: {
+      name: 'Sidra Chain Explorer',
+      url: 'https://ledger.sidrachain.com'
+    },
+    contracts: {},
+    testnet: false
+  },
   silicon: {
     id: 2355n,
     label: 'silicon',
@@ -9538,7 +9572,12 @@ export const networks = {
       url: 'https://songbird-explorer.flare.network',
       apiUrl: 'https://songbird-explorer.flare.network/api'
     },
-    contracts: {},
+    contracts: {
+      multicall3: {
+        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+        blockCreated: 13382504
+      }
+    },
     testnet: false
   },
   songbirdTestnet: {
@@ -10907,6 +10946,23 @@ export const networks = {
       name: 'wemixExplorer',
       url: 'https://testnet.wemixscan.com',
       apiUrl: 'https://testnet.wemixscan.com/api'
+    },
+    contracts: {},
+    testnet: true
+  },
+  wmcTestnet: {
+    id: 42070n,
+    label: 'wmcTestnet',
+    name: 'WMC Testnet',
+    nativeCurrency: {
+      name: 'WMTx',
+      symbol: 'WMTx',
+      decimals: 18
+    },
+    providerURL: 'https://rpc-testnet-base.worldmobile.net',
+    blockExplorer: {
+      name: 'WMC Explorer',
+      url: 'https://explorer2-base-testnet.worldmobile.net'
     },
     contracts: {},
     testnet: true
