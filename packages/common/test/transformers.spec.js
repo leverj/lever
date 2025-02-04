@@ -196,7 +196,6 @@ describe('Transformer', () => {
       const to = Type('String', ['number'], Functional(v => NumberType.valueOf(v))).
       add('String', ['term'], Functional(v => TermType.valueOf(v))).
       add('String', ['string'], Functional(v => v.replace(/-/g, ' ')))
-
       const pojo = {
         number: 1,
         string: '1 2 3',
@@ -217,7 +216,6 @@ describe('Transformer', () => {
           }],
         ])
       }
-
       expect(from.map(pojo)).toMatchObject({
         number: 'negative',
         string: '1-2-3',
@@ -238,7 +236,6 @@ describe('Transformer', () => {
           }],
         ])
       })
-
       expect(() => from.mapBack(from.map(pojo))).toThrow(/disabled/)
     })
   })

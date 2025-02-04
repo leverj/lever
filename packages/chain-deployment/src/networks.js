@@ -1132,6 +1132,23 @@ export const networks = {
     contracts: {},
     testnet: true
   },
+  berachain: {
+    id: 80094n,
+    label: 'berachain',
+    name: 'Berachain',
+    nativeCurrency: {
+      decimals: 18,
+      name: 'BERA Token',
+      symbol: 'BERA'
+    },
+    providerURL: 'https://rpc.berachain.com',
+    blockExplorer: {
+      name: 'Berascan',
+      url: 'https://berascan.com'
+    },
+    contracts: {},
+    testnet: false
+  },
   berachainTestnet: {
     id: 80085n,
     label: 'berachainTestnet',
@@ -2738,6 +2755,28 @@ export const networks = {
       multicall3: {
         address: '0x68a8609a60a008EFA633dfdec592c03B030cC508',
         blockCreated: 25384031
+      }
+    },
+    testnet: false
+  },
+  donatuz: {
+    id: 42026n,
+    label: 'donatuz',
+    name: 'Donatuz',
+    nativeCurrency: {
+      decimals: 18,
+      name: 'Ether',
+      symbol: 'ETH'
+    },
+    providerURL: 'ttps://rpc.donatuz.com',
+    blockExplorer: {
+      name: 'Donatuz Explorer',
+      url: 'https://explorer.donatuz.com'
+    },
+    contracts: {
+      multicall3: {
+        address: '0xca11bde05977b3631167028862be2a173976ca11',
+        blockCreated: 0
       }
     },
     testnet: false

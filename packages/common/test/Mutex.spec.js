@@ -12,14 +12,14 @@ describe('Mutex', () => {
     expect(populatedList).toEqual([1, 3, 2, 4])
   })
 
-  it('can to run 2 jobs in sequence', async () => {
+  it('can run 2 jobs in sequence', async () => {
     const mutex = new Mutex()
     const populatedList = []
     await Promise.all([mutex.synchronize(() => task1(populatedList)), mutex.synchronize(() => task2(populatedList))])
     expect(populatedList).toEqual([1, 2, 3, 4])
   })
 
-  it('can to run 2 jobs in sequence even if one of the three tasks throws an error', async () => {
+  it('can run 2 jobs in sequence even if one of the three tasks throws an error', async () => {
     const logger = new CapturingLogger()
     const mutex = new Mutex()
     const populatedList = []
@@ -30,5 +30,4 @@ describe('Mutex', () => {
     ]).catch(e => logger.error(e))
     expect(populatedList).toEqual([1, 2, 3, 4])
   })
-
 })

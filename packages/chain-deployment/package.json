@@ -32,7 +32,7 @@
   "devDependencies": {
     "@leverj/lever.config": "4.2.0",
     "lodash-es": "^4.17.21",
-    "viem": "^2.22.19",
+    "viem": "^2.22.21",
     "wait-on": "^8.0.2"
   }
 }
