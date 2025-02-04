@@ -1,14 +1,13 @@
 import {fromJS, Map} from 'immutable'
 import {first, last, merge} from 'lodash-es'
+import {Store} from './Store.js'
 
 /** in-memory compound-key/value store **/
-export class InMemoryCompoundKeyStore {
+export class InMemoryCompoundKeyStore extends Store {
   constructor(prior = {}) {
+    super()
     this.map = fromJS(prior).asMutable()
   }
-
-  clear() { this.map.clear() }
-  toObject() { return this.map.toJS() }
 
   /*** API ***/
   get(key) { return this.map.getIn(normalize(key)) }
@@ -17,10 +16,11 @@ export class InMemoryCompoundKeyStore {
   delete(key) { this.map.deleteIn(normalize(key)) }
   has(key) { return this.map.hasIn(normalize(key)) }
   find(keyable) { return findStartsWithInMap(keyable, this.map) }
-  size() { return this.keys().length }
   keys() { return flattenKeys(this.map) }
   values() { return flattenValues(this.map) }
   entries() { return flattenEntries(this.map) }
+  toObject() { return this.map.toJS() }
+  clear() { this.map.clear() }
 }
 
 const normalize = (key) => Array.isArray(key) ? key : [key]

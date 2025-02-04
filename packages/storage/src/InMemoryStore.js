@@ -1,14 +1,13 @@
 import {Map} from 'immutable'
 import {merge} from 'lodash-es'
+import {Store} from './Store.js'
 
 /** in-memory simple-key/value store **/
-export class InMemoryStore {
+export class InMemoryStore extends Store {
   constructor(prior = {}) {
+    super()
     this.map = Map(prior).asMutable()
   }
-
-  clear() { this.map.clear() }
-  toObject() { return this.map.toJS() }
 
   /*** API ***/
   get(key) { return this.map.get(key) }
@@ -21,4 +20,6 @@ export class InMemoryStore {
   keys() { return this.map.keySeq().toArray() }
   values() { return this.map.valueSeq().toArray() }
   entries() { return this.map.entrySeq().toArray() }
+  toObject() { return this.map.toJS() }
+  clear() { this.map.clear() }
 }

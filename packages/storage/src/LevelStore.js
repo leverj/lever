@@ -1,19 +1,13 @@
 import {Level} from 'level'
 import {merge} from 'lodash-es'
 import {Map} from 'immutable'
+import {Store} from './Store.js'
 
-const keySeparator = '::'
-const toKey = _ => Array.isArray(_) ? _.join(keySeparator) : _
-
-export class LevelStore {
+export class LevelStore extends Store {
   constructor(path, type) {
+    super()
     this.db = new Level(`${path}/${type}`, {valueEncoding: 'json'})
   }
-
-  async open(options = {passive: true}) { return this.db.open(options) }
-  async close() { return this.db.close() }
-  async clear() { return this.db.clear() }
-  async toObject() { return Map(await this.db.iterator().all()).toJS() }
 
   /*** API ***/
   async get(key) { return this.db.get(toKey(key)) }
@@ -31,4 +25,11 @@ export class LevelStore {
   async keys() { return this.db.keys().all() }
   async values() { return this.db.values().all() }
   async entries() { return this.db.iterator().all() }
+  async toObject() { return Map(await this.db.iterator().all()).toJS() }
+  async clear() { return this.db.clear() }
+  async open(options = {passive: true}) { return this.db.open(options) }
+  async close() { return this.db.close() }
 }
+
+const keySeparator = '::'
+const toKey = _ => Array.isArray(_) ? _.join(keySeparator) : _

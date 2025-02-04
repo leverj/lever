@@ -2,37 +2,32 @@ import {ensureExistsSync} from '@leverj/lever.common/files'
 import {existsSync, readFileSync, writeFileSync} from 'node:fs'
 import {InMemoryStore} from './InMemoryStore.js'
 import {InMemoryCompoundKeyStore} from './InMemoryCompoundKeyStore.js'
+import {CachedStore} from './CachedStore.js'
 
 /** file-based key/value store **/
-export class FileStore {
+export class FileStore extends CachedStore {
   constructor(path, type, extension, deserializer, serializer, useCompoundKey) {
     ensureExistsSync(path)
+    const file = `${path}/${type}${extension}`
+    const StoreClass = useCompoundKey ? InMemoryCompoundKeyStore : InMemoryStore
+    const cache = existsSync(file) ? new StoreClass(deserializer(readFileSync(file, 'utf8'))) : new StoreClass()
+    super(cache)
     this.deserializer = deserializer
     this.serializer = serializer
-    this.file = `${path}/${type}${extension}`
+    this.file = file
     this.useCompoundKey = useCompoundKey
-    const StoreClass = useCompoundKey ? InMemoryCompoundKeyStore : InMemoryStore
-    this.cache = existsSync(this.file) ?
-      new StoreClass(this.deserializer(readFileSync(this.file, 'utf8'))) :
-      new StoreClass()
   }
 
   save() { writeFileSync(this.file, this.serializer(this.toObject(), null, 2)) }
-  clear() { this.cache.clear(); this.save() }
-  toObject() { return this.cache.toObject() }
-  toKey(key) { return this.useCompoundKey ? key : key.toString() } //fixme:values: check if array?
+  normalize(key) { return this.useCompoundKey ? key : key.toString() } //fixme:values: check if array?
 
   /*** API ***/
-  get(key) { return this.cache.get(this.toKey(key)) }
-  set(key, value) { this.cache.set(this.toKey(key), value); this.save() }
-  update(key, value) { this.cache.update(this.toKey(key), value); this.save() }
-  delete(key) { this.cache.delete(this.toKey(key)); this.save() }
-  has(key) { return this.cache.has(this.toKey(key)) }
-  find(keyable) { return this.cache.find(keyable) }
-  size() { return this.cache.size() }
-  keys() { return this.cache.keys() }
-  values() { return this.cache.values() }
-  entries() { return this.cache.entries() }
+  get(key) { return super.get(this.normalize(key)) }
+  set(key, value) { super.set(this.normalize(key), value); this.save() }
+  update(key, value) { super.update(this.normalize(key), value); this.save() }
+  delete(key) { super.delete(this.normalize(key)); this.save() }
+  has(key) { return super.has(this.normalize(key)) }
+  clear() { super.clear(); this.save() }
 }
 
 export class JsonFileStore extends FileStore {
