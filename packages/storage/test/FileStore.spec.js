@@ -1,9 +1,10 @@
-import {existsSync, mkdtempSync, rmSync} from 'node:fs'
 import {JsonFileStore} from '@leverj/lever.storage'
 import {expect} from 'expect'
-import {tmpdir} from 'node:os'
-import {transfers} from './fixtures/transfers.js'
 import {Map, Set} from 'immutable'
+import {existsSync, mkdtempSync, rmSync} from 'node:fs'
+import {tmpdir} from 'node:os'
+import {setTimeout} from 'node:timers/promises'
+import {transfers} from './fixtures/transfers.js'
 
 describe('FileStore', () => {
   const storageDir = mkdtempSync(`${tmpdir()}/storage`)
@@ -11,6 +12,7 @@ describe('FileStore', () => {
   let store
 
   beforeEach(() => { if (existsSync(storageDir)) rmSync(storageDir, {recursive: true, force: true}) })
+  afterEach(() => store.close())
 
   it('can set & get & find & delete a simple key', () => {
     const keyFrom = (from, txId) => `${from}_${txId}`
@@ -70,7 +72,7 @@ describe('FileStore', () => {
   })
 
   it('can store and get size & keys & values & entries (for simple & compound keys', () => {
-    {
+    try {
       store = new JsonFileStore(storageDir, 'simple')
       for (let i = 0; i < size; i++) store.set(i, transfers[i])
       expect(Object.keys(store.toObject())).toHaveLength(size)
@@ -78,8 +80,10 @@ describe('FileStore', () => {
       expect(store.keys()).toHaveLength(size)
       expect(store.values()).toHaveLength(size)
       expect(store.entries()).toHaveLength(size)
+    } finally {
+      store.close()
     }
-    {
+    try {
       store = new JsonFileStore(storageDir, 'composite', true)
       transfers.forEach(_ => store.set([_.account, _.from, _.txId], _))
       expect(Object.keys(store.toObject())).not.toHaveLength(size)
@@ -88,6 +92,8 @@ describe('FileStore', () => {
       expect(store.keys()).toHaveLength(size)
       expect(store.values()).toHaveLength(size)
       expect(store.entries()).toHaveLength(size)
+    } finally {
+      store.close()
     }
   })
 
@@ -105,22 +111,52 @@ describe('FileStore', () => {
       'fantom',
     ]
     const fixtures_store = new JsonFileStore(`${import.meta.dirname}/fixtures`, 'networks')
-    expect(fixtures_store.keys()).toHaveLength(518)
+    try {
+      expect(fixtures_store.keys()).toHaveLength(518)
 
-    const evms = fixtures_store.values().filter(_ => Set(chains.concat('no-such-chain')).has(_.label)).map(_ => {
-      _.id = parseInt(_.id)
-      _.chainId = parseInt(_.id)
-      _.contracts = Map(_.contracts).filter((value, key) => contractTypesToTrack.has(key)).map(_ => _.address).toJS()
-      return _
+      const evms = fixtures_store.values().filter(_ => Set(chains.concat('no-such-chain')).has(_.label)).map(_ => {
+        _.id = parseInt(_.id)
+        _.chainId = parseInt(_.id)
+        _.contracts = Map(_.contracts).filter((value, key) => contractTypesToTrack.has(key)).map(_ => _.address).toJS()
+        return _
+      })
+      store = new JsonFileStore(storageDir, 'evms')
+      evms.forEach(_ => store.set(_.label, _))
+      expect(store.size()).toEqual(chains.length)
+      expect(store.keys()).toHaveLength(chains.length)
+      expect(store.values()).toHaveLength(chains.length)
+      expect(store.has('no-such-chain')).toBe(false)
+      store.values().filter(_ => _.label !== 'no-such-chain').forEach(
+        _ => expect(store.get(_.label)).toMatchObject(fixtures_store.get(_.label)),
+      )
+    } finally {
+      fixtures_store.close()
+    }
+  })
+
+  describe('share & sync', () => {
+    it('can detect underlying file being modified and sync accordingly', async () => {
+      const every = 2//nd
+      store = new JsonFileStore(storageDir, 'shared')
+      for (let i = 0; i < size; i++) store.set(i, transfers[i])
+
+      const replica = new JsonFileStore(storageDir, 'shared')
+      try {
+        for (let i = 0; i < size; i++) {
+          expect(store.get(i)).toMatchObject(replica.get(i))
+          if (i % every === 1) expect(replica.get(i)).not.toMatchObject(transfers[i - 1])
+        }
+        for (let i = 0; i < size; i++) {
+          if (i % every === 1) replica.set(i, transfers[i - 1])
+        }
+        await setTimeout(400)
+        for (let i = 0; i < size; i++) {
+          if (i % every === 1) expect(replica.get(i)).toMatchObject(transfers[i - 1])
+          expect(store.get(i)).toMatchObject(replica.get(i))
+        }
+      } finally {
+        replica.close()
+      }
     })
-    store = new JsonFileStore(storageDir, 'evms')
-    evms.forEach(_ => store.set(_.label, _))
-    expect(store.size()).toEqual(chains.length)
-    expect(store.keys()).toHaveLength(chains.length)
-    expect(store.values()).toHaveLength(chains.length)
-    expect(store.has('no-such-chain')).toBe(false)
-    store.values().filter(_ => _.label !== 'no-such-chain').forEach(
-      _ => expect(store.get(_.label)).toMatchObject(fixtures_store.get(_.label))
-    )
   })
 })

@@ -16,7 +16,8 @@ export class DirStore extends Store {
     this.serializer = serializer
   }
 
-  fileOf(key) { return `${this.path}/${normalize(key)}${this.extension}` }
+  fileOf(key) { return `${this.path}/${this.normalize(key)}${this.extension}` }
+  normalize(key) { return Array.isArray(key) ? key.join(keySeparator) : key.toString() }
 
   /*** API ***/
   get(key) { return existsSync(this.fileOf(key)) ? this.deserializer(readFileSync(this.fileOf(key), 'utf8')) : undefined }
@@ -24,7 +25,7 @@ export class DirStore extends Store {
   update(key, value) { this.set(key, merge(this.get(key) || {}, value)) }
   delete(key) { rmSync(this.fileOf(key), {force: true}) }
   find(keyable) {
-    const prefix = normalize(keyable)
+    const prefix = this.normalize(keyable)
     return this.keys().filter(_ => _.startsWith(prefix)).map(_ => this.get(_))
   }
   keys() { return readdirSync(this.path).filter(_ => extname(_) === this.extension).map(_ => basename(_, this.extension)) }
@@ -34,7 +35,6 @@ export class DirStore extends Store {
 }
 
 const keySeparator = '-'
-const normalize = _ => Array.isArray(_) ? _.join(keySeparator) : _
 
 export class JsonDirStore extends DirStore {
   constructor(path) {

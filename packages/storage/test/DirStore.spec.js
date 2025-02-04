@@ -78,18 +78,20 @@ describe('DirStore', () => {
     expect(store.entries()).toHaveLength(size)
   })
 
-  it('can detect an externally added file and update accordingly', () => {
-    store = new JsonDirStore(storageDir)
-    for (let i = 0; i < size; i++) writeFileSync(`${storageDir}/${i}.json`, JSON.stringify(transfers[i]))
-    expect(Object.keys(store.toObject())).toHaveLength(size)
-  })
+  describe('share & sync', () => {
+    it('can detect an externally added file and update accordingly', () => {
+      store = new JsonDirStore(storageDir)
+      for (let i = 0; i < size; i++) writeFileSync(`${storageDir}/${i}.json`, JSON.stringify(transfers[i]))
+      expect(Object.keys(store.toObject())).toHaveLength(size)
+    })
 
-  it('can detect an externally modified file and update accordingly', async () => {
-    store = new JsonDirStore(storageDir)
-    for (let i = 0; i < size; i++) store.set(i, transfers[i])
-    expect(store.get(0)).not.toMatchObject(store.get(1))
-    writeFileSync(`${storageDir}/${0}.json`, JSON.stringify(transfers[1], null, 2))
-    expect(readFileSync(`${storageDir}/${0}.json`, 'utf8')).toEqual(readFileSync(`${storageDir}/${1}.json`, 'utf8'))
-    expect(store.get(0)).toMatchObject(store.get(1))
+    it('can detect an externally modified file and update accordingly', async () => {
+      store = new JsonDirStore(storageDir)
+      for (let i = 0; i < size; i++) store.set(i, transfers[i])
+      expect(store.get(0)).not.toMatchObject(store.get(1))
+      writeFileSync(`${storageDir}/${0}.json`, JSON.stringify(transfers[1], null, 2))
+      expect(readFileSync(`${storageDir}/${0}.json`, 'utf8')).toEqual(readFileSync(`${storageDir}/${1}.json`, 'utf8'))
+      expect(store.get(0)).toMatchObject(store.get(1))
+    })
   })
 })

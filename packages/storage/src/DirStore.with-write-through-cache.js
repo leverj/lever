@@ -15,22 +15,25 @@ export class DirStore extends CachedStore {
     this.extension = extension
     this.deserializer = deserializer
     this.serializer = serializer
-    this.initializeCache(readdirSync(path))
+    this.initializeCache(readdirSync(path).map(_ => `${path}/${_}`))
     this.watcher = new Watcher(path, (event, file) => {
-      if (event === 'add' || event === 'change') this.load(file)
+      // console.log('>'.repeat(5), event, file)
+      if (event === 'add' || event === 'change') this.reload(file)
     })
   }
 
-  initializeCache(files) { files.forEach(_ => this.load(_)) }
-  load(file) {
+  initializeCache(files) { files.forEach(_ => this.reload(_)) }
+  reload(file) {
+    // console.log('>'.repeat(50), file)
     if (extname(file) === this.extension) {
       const key = basename(file, this.extension)
       const value = this.deserializer(readFileSync(file, 'utf8'))
       this.cache.set(key, value)
     }
   }
-  fileOf(key) { return `${this.path}/${toKey(key)}${this.extension}` }
+  fileOf(key) { return `${this.path}/${normalize(key)}${this.extension}` }
   save(key, value) { writeFileSync(this.fileOf(key), this.serializer(value, null, 2)) }
+  // normalize(key) { return Array.isArray(key) ? key.join(keySeparator) : key.toString() }
 
   /*** API ***/
   set(key, value) { super.set(key, value); this.save(key, value) }
@@ -40,7 +43,7 @@ export class DirStore extends CachedStore {
 }
 
 const keySeparator = '-'
-const toKey = _ => Array.isArray(_) ? _.join(keySeparator) : _
+const normalize = _ => Array.isArray(_) ? _.join(keySeparator) : _
 
 export class JsonDirStore extends DirStore {
   constructor(path) {
