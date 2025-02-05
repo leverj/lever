@@ -2,25 +2,24 @@ import {ensureExistsSync} from '@leverj/lever.common/files'
 import {readdirSync, readFileSync, rmSync, writeFileSync} from 'node:fs'
 import {basename, extname} from 'node:path'
 import Watcher from 'watcher'
-import {InMemoryCompoundKeyStore} from './InMemoryCompoundKeyStore.js'
 import {CachedStore} from './CachedStore.js'
+import {InMemoryStore} from './InMemoryStore.js'
 
 /** key/value store where key = filename (without extension) and value = whole file contents **/
 export class DirStore extends CachedStore {
   constructor(path, extension, deserializer, serializer) {
     ensureExistsSync(path)
-    super(new InMemoryCompoundKeyStore())
+    super(new InMemoryStore())
     this.path = path
     this.extension = extension
     this.deserializer = deserializer
     this.serializer = serializer
-    this.initializeCache(readdirSync(path).map(_ => `${path}/${_}`))
+    readdirSync(path).map(_ => `${path}/${_}`).forEach(_ => this.reload(_))
     this.watcher = new Watcher(path, (event, file) => {
       if (event === 'add' || event === 'change') this.reload(file)
     })
   }
 
-  initializeCache(files) { files.forEach(_ => this.reload(_)) }
   reload(file) {
     // console.log('>'.repeat(50), file)
     if (extname(file) === this.extension) {
@@ -34,8 +33,6 @@ export class DirStore extends CachedStore {
   normalize(key) { return Array.isArray(key) ? key.join(keySeparator) : key.toString() }
 
   /*** API ***/
-  set(key, value) { super.set(key, value); this.save(key, value) }
-  update(key, value) { super.update(key, value); this.save(key, value) }
   delete(key) { super.delete(key); rmSync(this.fileOf(key), {force: true}) }
   close() { return this.watcher.close() }
 }
