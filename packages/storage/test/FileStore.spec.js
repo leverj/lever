@@ -98,11 +98,7 @@ describe('FileStore', () => {
   })
 
   it('can store and get the size & keys & values of deeply nested objects', () => {
-    const contractTypesToTrack = Set([
-      'multicall3',
-      'ensRegistry',
-      'ensUniversalResolver',
-    ])
+    const contractTypesToTrack = Set(['multicall3', 'ensRegistry', 'ensUniversalResolver'])
     const chains = [
       'hardhat',  // no contracts
       'arbitrum', // only multicall3 contract
@@ -117,7 +113,6 @@ describe('FileStore', () => {
       const evms = fixtures_store.values().filter(_ => Set(chains.concat('no-such-chain')).has(_.label)).map(_ => {
         _.id = parseInt(_.id)
         _.chainId = parseInt(_.id)
-        _.contracts = Map(_.contracts).filter((value, key) => contractTypesToTrack.has(key)).map(_ => _.address).toJS()
         return _
       })
       store = new JsonFileStore(storageDir, 'evms')
@@ -126,9 +121,7 @@ describe('FileStore', () => {
       expect(store.keys()).toHaveLength(chains.length)
       expect(store.values()).toHaveLength(chains.length)
       expect(store.has('no-such-chain')).toBe(false)
-      store.values().filter(_ => _.label !== 'no-such-chain').forEach(
-        _ => expect(store.get(_.label)).toMatchObject(fixtures_store.get(_.label)),
-      )
+      store.values().forEach(_ => expect(store.get(_.label)).toMatchObject(fixtures_store.get(_.label)))
     } finally {
       fixtures_store.close()
     }
