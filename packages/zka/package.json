@@ -1,6 +1,6 @@
 {
   "name": "@leverj/lever.zka",
-  "version": "4.2.2",
+  "version": "4.2.3",
   "license": "MIT",
   "type": "module",
   "main": "./src/index.js",
@@ -9,7 +9,7 @@
     "dependency:check": "npx depcheck"
   },
   "dependencies": {
-    "@leverj/lever.common": "4.2.2",
+    "@leverj/lever.common": "4.2.3",
     "axios": "^1.7.9",
     "ephemeral-cache": "^1.1.0",
     "ethers": "^6.13.5",
