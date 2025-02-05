@@ -29,7 +29,7 @@ export class DirStore extends CachedStore {
     }
   }
   fileOf(key) { return `${this.path}/${this.normalize(key)}${this.extension}` }
-  save(key, value) { writeFileSync(this.fileOf(key), this.serializer(value, null, 2)) }
+  save(key, value) { writeFileSync(this.fileOf(key), this.serializer(value)) }
   normalize(key) { return Array.isArray(key) ? key.join(keySeparator) : key.toString() }
 
   /*** API ***/
@@ -41,6 +41,6 @@ const keySeparator = '-'
 
 export class JsonDirStore extends DirStore {
   constructor(path) {
-    super(path, '.json', JSON.parse, JSON.stringify)
+    super(path, '.json', JSON.parse,  _ => JSON.stringify(_, null, 2))
   }
 }

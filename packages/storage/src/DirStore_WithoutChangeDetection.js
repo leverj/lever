@@ -22,7 +22,7 @@ export class DirStore_WithoutChangeDetection extends Store {
 
   /*** API ***/
   get(key) { return existsSync(this.fileOf(key)) ? this.deserializer(readFileSync(this.fileOf(key), 'utf8')) : undefined }
-  set(key, value) { writeFileSync(this.fileOf(key), this.serializer(value, null, 2)) }
+  set(key, value) { writeFileSync(this.fileOf(key), this.serializer(value)) }
   update(key, value) { this.set(key, merge(this.get(key) || {}, value)) }
   delete(key) { rmSync(this.fileOf(key), {force: true}) }
   find(keyable) {
@@ -40,6 +40,6 @@ const keySeparator = '-'
 /*** deprecated: replaced by JsonDirStore ***/
 export class JsonDirStore_WithoutChangeDetection extends DirStore_WithoutChangeDetection {
   constructor(path) {
-    super(path, '.json', JSON.parse, JSON.stringify)
+    super(path, '.json', JSON.parse,  _ => JSON.stringify(_, null, 2))
   }
 }

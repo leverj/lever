@@ -1,9 +1,10 @@
-import {JsonFileStore, LevelStore} from '@leverj/lever.storage'
+import {LevelStore} from '@leverj/lever.storage'
 import {expect} from 'expect'
+import {ZeroAddress} from 'ethers'
+import {cloneDeep} from 'lodash-es'
 import {existsSync, mkdtempSync, rmSync} from 'node:fs'
 import {tmpdir} from 'node:os'
 import {transfers} from './fixtures/transfers.js'
-import {Map, Set} from 'immutable'
 
 describe('LevelStore', () => {
   const storageDir = mkdtempSync(`${tmpdir()}/storage`)
@@ -95,33 +96,40 @@ describe('LevelStore', () => {
     }
   })
 
-  it('can store and get the size & keys & values of deeply nested objects', async () => {
-    const contractTypesToTrack = Set(['multicall3', 'ensRegistry', 'ensUniversalResolver'])
-    const chains = [
-      'hardhat',  // no contracts
-      'arbitrum', // only multicall3 contract
-      'holesky',
-      'sepolia',
-      'fantom',
-    ]
-    const fixtures_store = new JsonFileStore(`${import.meta.dirname}/fixtures`, 'networks')
-    try {
-      expect(fixtures_store.keys()).toHaveLength(518)
+  it('can update values within a deeply nested object', async () => {
+    const {default: _networks_} = await import('./fixtures/networks.json', {assert: {type: 'json'}})
+    const networks = cloneDeep(_networks_)
+    const chains = ['holesky', 'sepolia']
+    const evms = chains.map(_ => networks[_]).map(_ => {
+      _.id = parseInt(_.id)
+      _.chainId = parseInt(_.id)
+      return _
+    })
+    store = new LevelStore(storageDir, 'evms')
+    for (let _ of evms) await store.set(_.label, _)
+    expect(await store.size()).toEqual(chains.length)
+    expect(await store.keys()).toHaveLength(chains.length)
+    expect(await store.values()).toHaveLength(chains.length)
+    expect(await store.has('no-such-chain')).toBe(false)
 
-      const evms = fixtures_store.values().filter(_ => Set(chains.concat('no-such-chain')).has(_.label)).map(_ => {
-        _.id = parseInt(_.id)
-        _.chainId = parseInt(_.id)
-        return _
-      })
-      store = new LevelStore(storageDir, 'evms')
-      for (let _ of evms) await store.set(_.label, _)
-      expect(await store.size()).toEqual(chains.length)
-      expect(await store.keys()).toHaveLength(chains.length)
-      expect(await store.values()).toHaveLength(chains.length)
-      expect(await store.has('no-such-chain')).toBe(false)
-      for (let _ of await store.values()) expect(await store.get(_.label)).toMatchObject(fixtures_store.get(_.label))
-    } finally {
-      fixtures_store.close()
+    const contracts = ['multicall3', 'ensRegistry', 'ensUniversalResolver']
+    const multicall3 = {address: ZeroAddress.replaceAll('0', 'f'), blockCreated: 911} // modify
+    const new_kid_in_town = {address: ZeroAddress, blockCreated: 1_000_000_000}
+    const updates = {
+      multicall3,      // modify
+      new_kid_in_town, // add
+    }
+    for (let chain of chains) {
+      const before = cloneDeep((await store.get(chain)).contracts)
+      contracts.forEach(name => expect(before[name]).toBeDefined())
+      await store.update(chain, {contracts: updates})
+      const after = cloneDeep((await store.get(chain)).contracts)
+      expect(before.ensRegistry).toMatchObject(after.ensRegistry) // unchanged
+      expect(before.ensUniversalResolver).toMatchObject(after.ensUniversalResolver) // unchanged
+      expect(before.multicall3).not.toMatchObject(multicall3)// modified
+      expect(after.multicall3).toMatchObject(multicall3)
+      expect(before.new_kid_in_town).not.toBeDefined()
+      expect(after.new_kid_in_town).toMatchObject(new_kid_in_town) // added
     }
   })
 

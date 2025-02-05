@@ -24,7 +24,7 @@ export class FileStore extends CachedStore {
     const StoreClass = this.useCompoundKey ? InMemoryCompoundKeyStore : InMemoryStore
     this.cache = new StoreClass(existsSync(this.file) ? this.deserializer(readFileSync(this.file, 'utf8')) : {})
   }
-  save() { writeFileSync(this.file, this.serializer(this.toObject(), null, 2)) }
+  save() { writeFileSync(this.file, this.serializer(this.toObject())) }
   normalize(key) { return Array.isArray(key) ? key.map(_ => _.toString()) : key.toString() }
   // normalize(key) { return this.useCompoundKey ? key : key.toString() } //fixme:values: check if array?
 
@@ -35,6 +35,6 @@ export class FileStore extends CachedStore {
 
 export class JsonFileStore extends FileStore {
   constructor(path, type, useCompoundKey = false) {
-    super(path, type, '.json', JSON.parse, JSON.stringify, useCompoundKey)
+    super(path, type, '.json', JSON.parse, _ => JSON.stringify(_, null, 2), useCompoundKey)
   }
 }
