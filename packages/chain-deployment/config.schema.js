@@ -1,3 +1,5 @@
+import {logger} from '@leverj/lever.common'
+
 export const schema = {
   env: {
     doc: 'The application environment',
@@ -23,6 +25,7 @@ export const schema = {
 }
 
 export function postLoad(config) {
+  config.logger = logger
   config.networks = {}
   config.constructors = {}
   config.createContractsConstructors = (chain) => ({})

@@ -3,6 +3,7 @@ import {configure} from '@leverj/lever.config'
 import {CapturingLogger} from '@leverj/lever.common'
 import {getAddress, JsonRpcProvider, Wallet} from 'ethers'
 import {expect} from 'expect'
+import {merge} from 'lodash-es'
 import {exec} from 'node:child_process'
 import {rmSync} from 'node:fs'
 import {setTimeout} from 'node:timers/promises'
@@ -25,7 +26,7 @@ describe('verify', () => {
     await waitOn({resources: [networks[chain].providerURL], timeout: 10000})
     try {
       const logger = new CapturingLogger()
-      const deploy = Deploy.from(config, logger)
+      const deploy = Deploy.from(merge(config, {logger}))
       await deploy.to(chain, {verify: true})
       expect(logger.warnings[0]).toEqual('verifying on chain 31337 is not supported')
     } finally {
@@ -54,7 +55,7 @@ describe('verify', () => {
       console.log(`${getAddress(signer.address)} must have sufficient funds to deploy contract.\nbalance on ${chain} [${chainId}] is: ${balance}`)
 
       const logger = new CapturingLogger()
-      const deploy = Deploy.from(config, logger)
+      const deploy = Deploy.from(merge(config, {logger}))
       await deploy.to(chain, {verify: true})
       expect(logger.errors).toHaveLength(0)
       expect(logger.logs.includes('OK: Smart-contract verification started')).toBe(true)
@@ -69,7 +70,7 @@ describe('verify', () => {
       console.log(`${getAddress(signer.address)} must have sufficient funds to deploy contract.\nbalance on ${chain} [${chainId}] is: ${balance}`)
 
       const logger = new CapturingLogger()
-      const deploy = Deploy.from(config, logger)
+      const deploy = Deploy.from(merge(config, {logger}))
       await deploy.to(chain, {verify: true})
       expect(logger.errors).toHaveLength(0)
       expect(logger.warnings.includes(`verifying on chain ${chainId} is not supported`)).toBe(true)

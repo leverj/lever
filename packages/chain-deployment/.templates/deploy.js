@@ -10,5 +10,5 @@ const {reset, chain} = yargs(hideBin(process.argv)).
 usage('Usage: $0 --reset --chain=[chain]').
 demandOption(['chain'], 'must have a target chain to deploy to').
   argv
-const deploy = Deploy.from(config, logger)
+const deploy = Deploy.from(config)
 await deploy.to(chain, {reset}).catch(logger.error)

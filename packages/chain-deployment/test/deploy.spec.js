@@ -1,5 +1,4 @@
 import {Deploy, networks} from '@leverj/lever.chain-deployment'
-import {logger} from '@leverj/lever.common'
 import {isAddress} from 'ethers'
 import {expect} from 'expect'
 import {cloneDeep, zip} from 'lodash-es'
@@ -14,15 +13,14 @@ describe('deploy to multiple chains', () => {
   const chains = ['holesky', 'sepolia']
   let processes = []
 
-  before(async () => {
+  beforeEach(async () => {
     config.createContractsConstructors = (chain) => ({Bank: {params: [networks[chain].id, info.name]}})
     const {ports, providerURLs} = configureDeployment()
     processes = await launchEvms(ports, providerURLs)
+    rmSync(`${config.deploymentDir}/test`, {recursive: true, force: true})
   })
 
-  beforeEach(() => rmSync(`${config.deploymentDir}/test`, {recursive: true, force: true}))
-
-  after(async () => {
+  afterEach(async () => {
     for (let each of processes) {
       each.kill()
       while(!each.killed) await setTimeout(10)
@@ -47,7 +45,7 @@ describe('deploy to multiple chains', () => {
   }
 
   it('can deploy contracts to each chain', async () => {
-    const deploy = Deploy.from(config, logger)
+    const deploy = Deploy.from(config)
 
     for (let chain of chains) {
       expect(deploy.store.get(chain)).not.toBeDefined()
@@ -57,6 +55,7 @@ describe('deploy to multiple chains', () => {
       const deployed_initial = cloneDeep(deploy.store.get(chain).contracts)
       expect(deployed_initial.Bank).toBeDefined()
       expect(isAddress(deployed_initial.Bank.address)).toBe(true)
+      expect(deployed_initial.Bank.blockCreated).toBeGreaterThan(0n)
 
       // deploy again, but not really; do not reset contract addresses!
       await deploy.to(chain, {reset: false})
