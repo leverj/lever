@@ -1,4 +1,5 @@
 export * from './DirStore.js'
+export * from './DirStore_WithoutChangeDetection.js'
 export * from './FileStore.js'
 export * from './InMemoryStore.js'
 export * from './InMemoryCompoundKeyStore.js'

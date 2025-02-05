@@ -1,7 +1,9 @@
 import {JsonDirStore} from '@leverj/lever.storage'
 import {expect} from 'expect'
-import {existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync} from 'node:fs'
+import {existsSync, mkdtempSync, rmSync, writeFileSync} from 'node:fs'
 import {tmpdir} from 'node:os'
+import {setTimeout} from 'node:timers/promises'
+import pWaitFor from 'p-wait-for'
 import {transfers} from './fixtures/transfers.js'
 
 describe('DirStore', () => {
@@ -10,6 +12,7 @@ describe('DirStore', () => {
   let store
 
   beforeEach(() => { if (existsSync(storageDir)) rmSync(storageDir, {recursive: true, force: true}) })
+  afterEach(() => store.close())
 
   it('can set & get & find & delete a simple key', () => {
     const keyFrom = (from, txId) => `${from}-${txId}`
@@ -79,19 +82,36 @@ describe('DirStore', () => {
   })
 
   describe('share & sync', () => {
-    it('can detect an externally added file and update accordingly', () => {
+    it('can detect an externally added file and synchronize', async () => {
       store = new JsonDirStore(storageDir)
       for (let i = 0; i < size; i++) writeFileSync(`${storageDir}/${i}.json`, JSON.stringify(transfers[i]))
+      await pWaitFor(() => store.size() === size)
       expect(Object.keys(store.toObject())).toHaveLength(size)
+      for (let i = 0; i < size; i++) expect(store.get(i)).toMatchObject(transfers[i])
     })
 
-    it('can detect an externally modified file and update accordingly', async () => {
+    it('can detect underlying files being modified and synchronize', async () => {
+      const every = 2//nd
       store = new JsonDirStore(storageDir)
       for (let i = 0; i < size; i++) store.set(i, transfers[i])
-      expect(store.get(0)).not.toMatchObject(store.get(1))
-      writeFileSync(`${storageDir}/${0}.json`, JSON.stringify(transfers[1], null, 2))
-      expect(readFileSync(`${storageDir}/${0}.json`, 'utf8')).toEqual(readFileSync(`${storageDir}/${1}.json`, 'utf8'))
-      expect(store.get(0)).toMatchObject(store.get(1))
+
+      const replica = new JsonDirStore(storageDir)
+      try {
+        for (let i = 0; i < size; i++) {
+          expect(store.get(i)).toMatchObject(replica.get(i))
+          if (i % every === 1) expect(replica.get(i)).not.toMatchObject(transfers[i - 1])
+        }
+        for (let i = 0; i < size; i++) {
+          if (i % every === 1) replica.set(i, transfers[i - 1])
+        }
+        await setTimeout(400)
+        for (let i = 0; i < size; i++) {
+          if (i % every === 1) expect(replica.get(i)).toMatchObject(transfers[i - 1])
+          expect(store.get(i)).toMatchObject(replica.get(i))
+        }
+      } finally {
+        replica.close()
+      }
     })
   })
 })

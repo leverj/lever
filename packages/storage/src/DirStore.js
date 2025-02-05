@@ -1,37 +1,43 @@
 import {ensureExistsSync} from '@leverj/lever.common/files'
-import {Map} from 'immutable'
-import {merge} from 'lodash-es'
-import {existsSync, readdirSync, readFileSync, rmSync, writeFileSync} from 'node:fs'
+import {readdirSync, readFileSync, rmSync, writeFileSync} from 'node:fs'
 import {basename, extname} from 'node:path'
-import {Store} from './Store.js'
+import Watcher from 'watcher'
+import {InMemoryCompoundKeyStore} from './InMemoryCompoundKeyStore.js'
+import {CachedStore} from './CachedStore.js'
 
 /** key/value store where key = filename (without extension) and value = whole file contents **/
-export class DirStore extends Store {
+export class DirStore extends CachedStore {
   constructor(path, extension, deserializer, serializer) {
     ensureExistsSync(path)
-    super()
+    super(new InMemoryCompoundKeyStore())
     this.path = path
     this.extension = extension
     this.deserializer = deserializer
     this.serializer = serializer
+    this.initializeCache(readdirSync(path).map(_ => `${path}/${_}`))
+    this.watcher = new Watcher(path, (event, file) => {
+      if (event === 'add' || event === 'change') this.reload(file)
+    })
   }
 
+  initializeCache(files) { files.forEach(_ => this.reload(_)) }
+  reload(file) {
+    // console.log('>'.repeat(50), file)
+    if (extname(file) === this.extension) {
+      const key = basename(file, this.extension)
+      const value = this.deserializer(readFileSync(file, 'utf8'))
+      this.cache.set(key, value)
+    }
+  }
   fileOf(key) { return `${this.path}/${this.normalize(key)}${this.extension}` }
+  save(key, value) { writeFileSync(this.fileOf(key), this.serializer(value, null, 2)) }
   normalize(key) { return Array.isArray(key) ? key.join(keySeparator) : key.toString() }
 
   /*** API ***/
-  get(key) { return existsSync(this.fileOf(key)) ? this.deserializer(readFileSync(this.fileOf(key), 'utf8')) : undefined }
-  set(key, value) { writeFileSync(this.fileOf(key), this.serializer(value, null, 2)) }
-  update(key, value) { this.set(key, merge(this.get(key) || {}, value)) }
-  delete(key) { rmSync(this.fileOf(key), {force: true}) }
-  find(keyable) {
-    const prefix = this.normalize(keyable)
-    return this.keys().filter(_ => _.startsWith(prefix)).map(_ => this.get(_))
-  }
-  keys() { return readdirSync(this.path).filter(_ => extname(_) === this.extension).map(_ => basename(_, this.extension)) }
-  values() { return this.keys().map(_ => this.get(_)) }
-  entries() { return this.keys().map(_ => [_, this.get(_)]) }
-  toObject() { return Map(this.entries()).toJS() }
+  set(key, value) { super.set(key, value); this.save(key, value) }
+  update(key, value) { super.update(key, value); this.save(key, value) }
+  delete(key) { super.delete(key); rmSync(this.fileOf(key), {force: true}) }
+  close() { return this.watcher.close() }
 }
 
 const keySeparator = '-'

@@ -1,8 +1,9 @@
-import {LevelStore} from '@leverj/lever.storage'
+import {JsonFileStore, LevelStore} from '@leverj/lever.storage'
 import {expect} from 'expect'
 import {existsSync, mkdtempSync, rmSync} from 'node:fs'
 import {tmpdir} from 'node:os'
 import {transfers} from './fixtures/transfers.js'
+import {Map, Set} from 'immutable'
 
 describe('LevelStore', () => {
   const storageDir = mkdtempSync(`${tmpdir()}/storage`)
@@ -70,7 +71,7 @@ describe('LevelStore', () => {
   })
 
   it('can store and get size & keys & values & entries (for simple & compound keys', async () => {
-    {
+    try {
       store = new LevelStore(storageDir, 'simple')
       for (let i = 0; i < size; i++) await store.set(i, transfers[i])
       expect(Object.keys(await store.toObject())).toHaveLength(size)
@@ -78,8 +79,10 @@ describe('LevelStore', () => {
       expect(await store.keys()).toHaveLength(size)
       expect(await store.values()).toHaveLength(size)
       expect(await store.entries()).toHaveLength(size)
+    } finally {
+      await store.close()
     }
-    {
+    try {
       store = new LevelStore(storageDir, 'composite')
       await Promise.all(transfers.map(_ => store.set([_.account, _.from, _.txId], _)))
       expect(Object.keys(await store.toObject())).toHaveLength(size)
@@ -87,6 +90,54 @@ describe('LevelStore', () => {
       expect(await store.keys()).toHaveLength(size)
       expect(await store.values()).toHaveLength(size)
       expect(await store.entries()).toHaveLength(size)
+    } finally {
+      await store.close()
     }
+  })
+
+  it('can store and get the size & keys & values of deeply nested objects', async () => {
+    const contractTypesToTrack = Set([
+      'multicall3',
+      'ensRegistry',
+      'ensUniversalResolver',
+    ])
+    const chains = [
+      'hardhat',  // no contracts
+      'arbitrum', // only multicall3 contract
+      'holesky',
+      'sepolia',
+      'fantom',
+    ]
+    const fixtures_store = new JsonFileStore(`${import.meta.dirname}/fixtures`, 'networks')
+    try {
+      expect(fixtures_store.keys()).toHaveLength(518)
+
+      const evms = fixtures_store.values().filter(_ => Set(chains.concat('no-such-chain')).has(_.label)).map(_ => {
+        _.id = parseInt(_.id)
+        _.chainId = parseInt(_.id)
+        _.contracts = Map(_.contracts).filter((value, key) => contractTypesToTrack.has(key)).map(_ => _.address).toJS()
+        return _
+      })
+      store = new LevelStore(storageDir, 'evms')
+      for (let _ of evms) await store.set(_.label, _)
+      expect(await store.size()).toEqual(chains.length)
+      expect(await store.keys()).toHaveLength(chains.length)
+      expect(await store.values()).toHaveLength(chains.length)
+      expect(await store.has('no-such-chain')).toBe(false)
+      for (let _ of (await store.values()).filter(_ => _.label !== 'no-such-chain')) {
+        expect(await store.get(_.label)).toMatchObject(fixtures_store.get(_.label))
+      }
+    } finally {
+      fixtures_store.close()
+    }
+  })
+
+  it('cannot open more than one concurrently', async () => {
+    store = new LevelStore(storageDir, 'shared')
+    await store.set(0, transfers[0])
+
+    const replica = new LevelStore(storageDir, 'shared')
+    await expect((replica.get(0))).rejects.toThrow(/Database is not open/)
+    await expect(replica.open()).rejects.toThrow(/Database failed to open/)
   })
 })
