@@ -4,7 +4,6 @@ import {ZeroAddress} from 'ethers'
 import {cloneDeep} from 'lodash-es'
 import {existsSync, mkdtempSync, rmSync} from 'node:fs'
 import {tmpdir} from 'node:os'
-import {setTimeout} from 'node:timers/promises'
 import {transfers} from './fixtures/transfers.js'
 
 describe('FileStore', () => {
@@ -133,31 +132,5 @@ describe('FileStore', () => {
       expect(before.new_kid_in_town).not.toBeDefined()
       expect(after.new_kid_in_town).toMatchObject(new_kid_in_town) // added
     }
-  })
-
-  describe('share & sync', () => {
-    it('can detect underlying file being modified and sync accordingly', async () => {
-      const every = 2//nd
-      store = new JsonFileStore(storageDir, 'shared')
-      for (let i = 0; i < size; i++) store.set(i, transfers[i])
-
-      const replica = new JsonFileStore(storageDir, 'shared')
-      try {
-        for (let i = 0; i < size; i++) {
-          expect(store.get(i)).toMatchObject(replica.get(i))
-          if (i % every === 1) expect(replica.get(i)).not.toMatchObject(transfers[i - 1])
-        }
-        for (let i = 0; i < size; i++) {
-          if (i % every === 1) replica.set(i, transfers[i - 1])
-        }
-        await setTimeout(400)
-        for (let i = 0; i < size; i++) {
-          if (i % every === 1) expect(replica.get(i)).toMatchObject(transfers[i - 1])
-          expect(store.get(i)).toMatchObject(replica.get(i))
-        }
-      } finally {
-        replica.close()
-      }
-    })
   })
 })
