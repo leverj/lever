@@ -44,25 +44,22 @@ export class Deploy {
   }
 
   async deployContracts(chain, options) {
-    const network = this.store.get(chain)
-    const provider = new JsonRpcProvider(network.providerURL)
+    const {providerURL, block} = this.store.get(chain)
+    const provider = new JsonRpcProvider(providerURL)
     const signer = new Wallet(this.config.deployer.privateKey, provider)
     this.config.setContractsConstructors(chain)
     const constructors = this.config.constructors[chain]
-    const deployedContracts = network.contracts
 
     this.logger.log(`deploying contracts: [${Object.keys(constructors)}] `.padEnd(120, '.'))
-    if (!network.block) { // establish start block
-      this.store.update(chain, {block: await provider.getBlockNumber()})
-    }
+    if (!block) this.store.update(chain, {block: await provider.getBlockNumber()}) // establish start block
     for (let [name, {libraries, params}] of Object.entries(constructors)) {
-      const getContractAddress = (name) => deployedContracts[name]?.address
+      const getContractAddress = (name) => this.store.get(chain).contracts[name]?.address
       const translateAddresses = (params = []) => params.map(_ => Array.isArray(_) ? translateAddresses(_) : getContractAddress(_) || _)
       const translateLibraries = (names = []) => names.reduce((result, _) => Object.assign(result, ({[_]: getContractAddress(_)})), {})
 
       libraries = translateLibraries(libraries)
       params = translateAddresses(params)
-      if (!deployedContracts[name]?.address || options.reset) {
+      if (!getContractAddress(name) || options.reset) {
         this.logger.log(`deploying ${name} contract `.padEnd(120, '.'))
         const contract = await deployContract(name, params, {libraries, signer})
         const address = contract.target

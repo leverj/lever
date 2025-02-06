@@ -16,7 +16,13 @@ describe('verify', () => {
 
   beforeEach(async () => {
     config = await configure(schema, postLoad, {env: {NODE_ENV: 'test'}})
-    config.createContractsConstructors = (chain) => ({Bank: {params: [networks[chain].id, info.name]}})
+    config.createContractsConstructors = (chain) => ({
+      ToyMath: {},
+      Bank: {
+        libraries: ['ToyMath'],
+        params: [networks[chain].id, info.name]
+      }
+    })
     rmSync(`${config.deploymentDir}/test`, {recursive: true, force: true})
   })
 
