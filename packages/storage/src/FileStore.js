@@ -16,7 +16,7 @@ export class FileStore extends CachedStore {
     this.useCompoundKey = useCompoundKey
     this.reload()
     this.watcher = new Watcher(this.file).
-      on('change', _ => this.reload()). //fixme: does not seem to matter
+      on('change', _ => this.reload()).
       on('add', _ => this.reload())
   }
 
@@ -26,7 +26,6 @@ export class FileStore extends CachedStore {
   }
   save() { writeFileSync(this.file, this.serializer(this.toObject())) }
   normalize(key) { return Array.isArray(key) ? key.map(_ => _.toString()) : key.toString() }
-  // normalize(key) { return this.useCompoundKey ? key : key.toString() } //fixme:values: check if array?
 
   /*** API ***/
   delete(key) { super.delete(key); this.save() }
