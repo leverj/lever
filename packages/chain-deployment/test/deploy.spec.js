@@ -14,7 +14,13 @@ describe('deploy to multiple chains', () => {
   let processes = []
 
   beforeEach(async () => {
-    config.createContractsConstructors = (chain) => ({Bank: {params: [networks[chain].id, info.name]}})
+    config.createContractsConstructors = (chain) => ({
+      ToyMath: {},
+      Bank: {
+        libraries: ['ToyMath'],
+        params: [networks[chain].id, info.name]
+      }
+    })
     const {ports, providerURLs} = configureDeployment()
     processes = await launchEvms(ports, providerURLs)
     rmSync(`${config.deploymentDir}/test`, {recursive: true, force: true})
