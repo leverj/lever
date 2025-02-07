@@ -11,11 +11,12 @@ export class FileStore extends CachedStore {
     const file = `${path}/${type}${extension}`
     const prior = existsSync(file) ? deserializer(readFileSync(file, 'utf8')) : {}
     super(new (useCompoundKey ? InMemoryCompoundKeyStore : InMemoryStore)(prior))
-    this.file = `${path}/${type}${extension}`
+    this.file = file
     this.deserializer = deserializer
     this.serializer = serializer
   }
 
+  exists() { return existsSync(this.file) }
   save() { writeFileSync(this.file, this.serializer(this.toObject())) }
   normalize(key) { return Array.isArray(key) ? key.map(_ => _.toString()) : key.toString() }
 
