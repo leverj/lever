@@ -2,6 +2,7 @@ import {JsonFileStore} from '@leverj/lever.storage'
 import {default as hardhat} from 'hardhat'
 import {execSync} from 'node:child_process'
 import {setTimeout} from 'node:timers/promises'
+import {inspect} from 'node:util'
 import {verifyContract} from './blockscout.js'
 import {networks} from './networks.js'
 
@@ -28,10 +29,10 @@ export class Deploy {
       this.store.set(chain, Object.assign({}, network, {providerURL}))
     }
 
-    this.logger.log(`${'*'.repeat(30)} starting deploying contracts `.padEnd(120, '*'))
+    this.logger.log(`${'*'.repeat(30)} starting deploying contracts on [${chain} @ ${networks[chain].providerURL}] chain `.padEnd(120, '*'))
     this.logger.log(`${'-'.repeat(60)} config `.padEnd(120, '-'))
-    const {deployer, contracts, ...secureConfig} = this.config
-    this.logger.log(secureConfig)
+    const {env, deploymentDir, constructors} = this.config
+    this.logger.log(inspect({env, deploymentDir, constructors}))
     this.logger.log('-'.repeat(120))
     this.compileContracts()
     await this.deployContracts(chain, options)
