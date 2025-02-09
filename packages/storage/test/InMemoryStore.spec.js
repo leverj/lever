@@ -47,7 +47,7 @@ describe('InMemoryStore', () => {
   })
 
   it('can update values within a deeply nested object', async () => {
-    const {default: _networks_} = await import('./fixtures/networks.json', {assert: {type: 'json'}})
+    const {default: _networks_} = await import('./fixtures/networks.json', {with: {type: 'json'}})
     const networks = cloneDeep(_networks_)
     const chains = ['holesky', 'sepolia']
     const evms = chains.map(_ => networks[_]).map(_ => {

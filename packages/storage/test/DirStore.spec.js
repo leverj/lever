@@ -5,7 +5,7 @@ import {cloneDeep} from 'lodash-es'
 import {existsSync, mkdtempSync, rmSync, writeFileSync} from 'node:fs'
 import {tmpdir} from 'node:os'
 import {setTimeout} from 'node:timers/promises'
-import pWaitFor from 'p-wait-for'
+import waitFor from 'p-wait-for'
 import {transfers} from './fixtures/transfers.js'
 
 describe('DirStore', () => {
@@ -84,7 +84,7 @@ describe('DirStore', () => {
   })
 
   it('can update values within a deeply nested object', async () => {
-    const {default: _networks_} = await import('./fixtures/networks.json', {assert: {type: 'json'}})
+    const {default: _networks_} = await import('./fixtures/networks.json', {with: {type: 'json'}})
     const networks = cloneDeep(_networks_)
     const chains = ['holesky', 'sepolia']
     const evms = chains.map(_ => networks[_]).map(_ => {
@@ -124,7 +124,7 @@ describe('DirStore', () => {
     it('can detect an externally added file and synchronize', async () => {
       store = new JsonDirStore(storageDir)
       for (let i = 0; i < size; i++) writeFileSync(`${storageDir}/${i}.json`, JSON.stringify(transfers[i]))
-      await pWaitFor(() => store.size() === size)
+      await waitFor(() => store.size() === size)
       expect(Object.keys(store.toObject())).toHaveLength(size)
       for (let i = 0; i < size; i++) expect(store.get(i)).toMatchObject(transfers[i])
     })

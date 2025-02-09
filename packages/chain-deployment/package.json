@@ -26,8 +26,7 @@
     "hardhat": "^2.22.18",
     "hardhat-deploy": "~0.14.0",
     "hardhat-deploy-ethers": "^0.4.2",
-    "immutable": "^5.0.3",
-    "yargs": "^17.7.2"
+    "immutable": "^5.0.3"
   },
   "devDependencies": {
     "@leverj/lever.config": "4.4.0",
