@@ -12,6 +12,9 @@ export class Mutex {
     })
   }
 
+  //see: https://github.com/sindresorhus/p-mutex
+  async withLock(task) { return await this.synchronize(task) }
+
   _dequeue() {
     this.busy = true
     const next = this.queue.shift()
