@@ -6,21 +6,21 @@ import {merge} from 'lodash-es'
  * a ContractTracker connects to a contract deployed in an Ethereum-like chain and tracks its events
  */
 export class ContractTracker {
-  static of(chainId, contract, store, polling, onEvent = logger.log, logger = console) {
+  static of(config, chainId, contract, store, onEvent = console.log) {
     store.update([chainId, contract.target], {
       marker: {block: 0, logIndex: -1, blockWasProcessed: false}
     })
-    return new this(chainId, contract, store, polling, onEvent, logger)
+    return new this(config, chainId, contract, store, onEvent)
   }
 
-  constructor(chainId, contract, store, polling, onEvent, logger) {
+  constructor(config, chainId, contract, store, onEvent) {
+    this.config = config
+    this.logger = config.logger || console
     this.chainId = chainId
     this.contract = contract
     this.topics = [contract.interface.fragments.filter(_ => _.type === 'event').map(_ => _.topicHash)]
     this.store = store
-    this.polling = polling
     this.onEvent = onEvent
-    this.logger = logger
     this.isRunning = false
     exitHook(() => this.stop())
   }
@@ -30,6 +30,7 @@ export class ContractTracker {
   get interface() { return this.contract.interface }
   get marker() { return this.store.get(this.key).marker }
   get lastBlock() { return this.marker.block }
+  get polling() { return this.config.polling }
 
   update(state) { this.store.update(this.key, state) }
   updateMarker(state) { this.update({marker: merge(this.marker, state)}) }

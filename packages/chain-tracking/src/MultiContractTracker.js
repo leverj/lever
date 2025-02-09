@@ -1,4 +1,4 @@
-import {getCreationBlock} from '@leverj/lever.common'
+import {getCreationBlock, logger} from '@leverj/lever.common'
 import {InMemoryCompoundKeyStore} from '@leverj/lever.storage'
 import exitHook from 'async-exit-hook'
 import {Contract} from 'ethers'
@@ -10,23 +10,23 @@ import {ContractTracker} from './ContractTracker.js'
  * a MultiContractTracker connects to multiple contracts deployed in an Ethereum-like chain and tracks their respective events
  */
 export class MultiContractTracker {
-  static of(chainId, provider, store, polling, processEvent = logger.log, logger = console) {
+  static of(config, chainId, provider, store, processEvent = console.log) {
     store.update(chainId, {
       marker: {block: 0, logIndex: -1, blockWasProcessed: false},
       abis: [],
       contracts: [],
       toOnboard: [],
     })
-    return new this(chainId, provider, store, polling, processEvent, logger)
+    return new this(config, chainId, provider, store, processEvent)
   }
 
-  constructor(chainId, provider, store, polling, processEvent, logger) {
+  constructor(config, chainId, provider, store, processEvent) {
+    this.config = config
+    this.logger = config.logger || console
     this.chainId = chainId
     this.provider = provider
     this.store = store
-    this.polling = polling
     this.processEvent = processEvent
-    this.logger = logger
     this.contracts = {}
     this.interfaces = {}
     this.topicsByKind = {}
@@ -42,6 +42,7 @@ export class MultiContractTracker {
     exitHook(() => this.stop())
   }
   get lastBlock() { return this.marker.block }
+  get polling() { return this.config.polling }
 
   update(state) { this.store.update(this.chainId, state) }
   updateMarker(state) { this.update({marker: merge(this.marker, state)}) }
@@ -72,7 +73,7 @@ export class MultiContractTracker {
 
   async onboard(contract) {
     const {chainId, provider, polling, processEvent, logger, lastBlock} = this
-    const tracker = ContractTracker.of(chainId, contract, new InMemoryCompoundKeyStore(), polling, processEvent, logger)
+    const tracker = ContractTracker.of({logger, polling}, chainId, contract, new InMemoryCompoundKeyStore(), processEvent)
     const creationBlock = await getCreationBlock(provider, contract.target).catch(_ => 0)
     await tracker.processLogs(creationBlock, lastBlock)
     this.update({

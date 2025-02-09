@@ -9,7 +9,7 @@ import {expect} from 'expect'
 
 describe('ContractTracker / Store interaction', () => {
   const [_, account] = accounts
-  const polling = {interval: 10, retries: 5}
+  const config = {logger, polling: {interval: 10, retries: 5}}
   let tracker
 
   afterEach(() => tracker.stop())
@@ -17,7 +17,7 @@ describe('ContractTracker / Store interaction', () => {
   it('maintain state for ContractTracker', async () => {
     const contract = await ERC20()
     const store = new InMemoryCompoundKeyStore()
-    tracker = ContractTracker.of(chainId, contract, store, polling, _ => _, logger)
+    tracker = ContractTracker.of(config, chainId, contract, store, _ => _)
     const key = tracker.key
     const before = cloneDeep(store.get(key))
     expect(tracker.marker).toEqual(before.marker)
@@ -45,7 +45,7 @@ describe('ContractTracker / Store interaction', () => {
     const contract3 = await ERC721('Three', '333')
 
     const store = new InMemoryStore()
-    tracker = MultiContractTracker.of(chainId, provider, store, polling, _ => _, logger)
+    tracker = MultiContractTracker.of(config, chainId, provider, store, _ => _)
     const before = cloneDeep(store.get(chainId))
     expect(before.abis).toHaveLength(0)
     expect(before.contracts).toHaveLength(0)

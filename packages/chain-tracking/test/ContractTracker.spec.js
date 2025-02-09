@@ -13,8 +13,8 @@ describe('ContractTracker', () => {
   beforeEach(async () => {
     events = []
     contract = await ERC20()
-    const polling = {interval: 10, retries: 5}
-    tracker = ContractTracker.of(chainId, contract, new InMemoryCompoundKeyStore(), polling, _ => _, logger)
+    const config = {logger, polling: {interval: 10, retries: 5}}
+    tracker = ContractTracker.of(config, chainId, contract, new InMemoryCompoundKeyStore(), _ => _)
   })
 
   afterEach(() => tracker.stop())
