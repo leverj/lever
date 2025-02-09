@@ -1146,7 +1146,12 @@ export const networks = {
       name: 'Berascan',
       url: 'https://berascan.com'
     },
-    contracts: {},
+    contracts: {
+      multicall3: {
+        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+        blockCreated: 0
+      }
+    },
     testnet: false
   },
   berachainTestnet: {
@@ -1227,6 +1232,23 @@ export const networks = {
     blockExplorer: {
       name: 'Bifrost Blockscout',
       url: 'https://explorer.mainnet.bifrostnetwork.com'
+    },
+    contracts: {},
+    testnet: false
+  },
+  birdlayer: {
+    id: 53456n,
+    label: 'birdlayer',
+    name: 'BirdLayer',
+    nativeCurrency: {
+      decimals: 18,
+      name: 'Ether',
+      symbol: 'ETH'
+    },
+    providerURL: 'https://rpc.birdlayer.xyz',
+    blockExplorer: {
+      name: 'BirdLayer Explorer',
+      url: 'https://scan.birdlayer.xyz'
     },
     contracts: {},
     testnet: false
@@ -1624,11 +1646,10 @@ export const networks = {
       symbol: 'BTC',
       decimals: 18
     },
-    providerURL: 'https://poa-node.botanixlabs.dev',
+    providerURL: 'https://node.botanixlabs.dev',
     blockExplorer: {
-      name: 'blockscout',
-      url: 'https://blockscout.botanixlabs.dev',
-      apiUrl: 'https://blockscout.botanixlabs.dev'
+      name: 'Botanix Testnet Explorer',
+      url: 'https://testnet.botanixscan.io'
     },
     contracts: {},
     testnet: true
@@ -4488,6 +4509,28 @@ export const networks = {
     },
     testnet: false
   },
+  hashkey: {
+    id: 177n,
+    label: 'hashkey',
+    name: 'HashKey Chain',
+    nativeCurrency: {
+      decimals: 18,
+      name: 'HashKey EcoPoints',
+      symbol: 'HSK'
+    },
+    providerURL: 'https://mainnet.hsk.xyz',
+    blockExplorer: {
+      name: 'HashKey Chain Explorer',
+      url: 'https://hashkey.blockscout.com'
+    },
+    contracts: {
+      multicall3: {
+        address: '0xca11bde05977b3631167028862be2a173976ca11',
+        blockCreated: 0
+      }
+    },
+    testnet: false
+  },
   hashkeyTestnet: {
     id: 133n,
     label: 'hashkeyTestnet',
@@ -5544,7 +5587,12 @@ export const networks = {
       name: 'LightLink Pegasus Explorer',
       url: 'https://pegasus.lightlink.io'
     },
-    contracts: {},
+    contracts: {
+      multicall3: {
+        address: '0xca11bde05977b3631167028862be2a173976ca11',
+        blockCreated: 127188532
+      }
+    },
     testnet: true
   },
   lightlinkPhoenix: {
@@ -5561,7 +5609,12 @@ export const networks = {
       name: 'LightLink Phoenix Explorer',
       url: 'https://phoenix.lightlink.io'
     },
-    contracts: {},
+    contracts: {
+      multicall3: {
+        address: '0xca11bde05977b3631167028862be2a173976ca11',
+        blockCreated: 125499184
+      }
+    },
     testnet: false
   },
   linea: {
@@ -6399,7 +6452,7 @@ export const networks = {
       name: 'Metis',
       symbol: 'METIS'
     },
-    providerURL: 'https://andromeda.metis.io/?owner=1088',
+    providerURL: 'https://metis.rpc.hypersync.xyz',
     blockExplorer: {
       name: 'Metis Explorer',
       url: 'https://explorer.metis.io',
@@ -6432,6 +6485,29 @@ export const networks = {
       multicall3: {
         address: '0xca11bde05977b3631167028862be2a173976ca11',
         blockCreated: 1006207
+      }
+    },
+    testnet: false
+  },
+  metisSepolia: {
+    id: 59902n,
+    label: 'metisSepolia',
+    name: 'Metis Sepolia',
+    nativeCurrency: {
+      decimals: 18,
+      name: 'Test Metis',
+      symbol: 'tMETIS'
+    },
+    providerURL: 'wss://metis-sepolia-rpc.publicnode.com',
+    blockExplorer: {
+      name: 'Metis Sepolia Explorer',
+      url: 'https://sepolia-explorer.metisdevops.link',
+      apiUrl: 'https://sepolia-explorer.metisdevops.link/api-docs'
+    },
+    contracts: {
+      multicall3: {
+        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+        blockCreated: 224185
       }
     },
     testnet: false
@@ -6641,6 +6717,28 @@ export const networks = {
       multicall3: {
         address: '0xBAba8373113Fb7a68f195deF18732e01aF8eDfCF',
         blockCreated: 3019007
+      }
+    },
+    testnet: true
+  },
+  monadTestnet: {
+    id: 10143n,
+    label: 'monadTestnet',
+    name: 'Monad Testnet',
+    nativeCurrency: {
+      name: 'Testnet MON Token',
+      symbol: 'MON',
+      decimals: 18
+    },
+    providerURL: 'https://testnet-rpc.monad.xyz',
+    blockExplorer: {
+      name: 'Monad Testnet explorer',
+      url: 'https://testnet.monadexplorer.com'
+    },
+    contracts: {
+      multicall3: {
+        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+        blockCreated: 251449
       }
     },
     testnet: true
@@ -11300,13 +11398,13 @@ export const networks = {
     name: 'XR One',
     nativeCurrency: {
       decimals: 18,
-      name: 'XR',
-      symbol: 'XR'
+      name: 'XR1',
+      symbol: 'XR1'
     },
-    providerURL: 'https://xr-one.calderachain.xyz/http',
+    providerURL: 'https://xr1.calderachain.xyz/http',
     blockExplorer: {
       name: 'Blockscout',
-      url: 'https://xr-one.calderaexplorer.xyz'
+      url: 'https://xr1.calderaexplorer.xyz'
     },
     contracts: {},
     testnet: false
