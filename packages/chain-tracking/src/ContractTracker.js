@@ -55,12 +55,13 @@ export class ContractTracker {
     this.stop()
   }
 
-  async pollForEvents(attempts = 1) {
+  async pollForEvents(retries = 1) {
+    //fixme: consider using p-retry: https://github.com/sindresorhus/p-retry
     try {
       await this.poll()
     } catch (e) {
-      if (attempts === 1) this.logger.error(`tracker [${this.key}] failed during polling for events`, e, e.cause || '')
-      return attempts === this.polling.attempts ? this.fail(e) : this.pollForEvents(attempts + 1)
+      if (retries === 1) this.logger.error(`tracker [${this.key}] failed during polling for events`, e, e.cause || '')
+      return retries === this.polling.retries ? this.fail(e) : this.pollForEvents(retries + 1)
     }
     if (this.isRunning) this.pollingTimer = setTimeout(_ => this.pollForEvents(_), this.polling.interval)
   }

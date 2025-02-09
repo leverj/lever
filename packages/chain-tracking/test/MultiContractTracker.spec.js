@@ -12,7 +12,7 @@ describe('MultiContractTracker', () => {
 
   beforeEach(() => {
     events = []
-    const polling = {interval: 10, attempts: 5}
+    const polling = {interval: 10, retries: 5}
     tracker = MultiContractTracker.of(chainId, provider, new InMemoryStore(), polling, _ => events.push(_), logger)
   })
 

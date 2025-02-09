@@ -9,7 +9,7 @@ import {expect} from 'expect'
 
 describe('ContractTracker / Store interaction', () => {
   const [_, account] = accounts
-  const polling = {interval: 10, attempts: 5}
+  const polling = {interval: 10, retries: 5}
   let tracker
 
   afterEach(() => tracker.stop())
