@@ -19,7 +19,7 @@ convict.addFormat(
 expand(dotenv.config())
 
 export async function configure(schema, postLoad = _ => _, options = {}) {
-  const configDir = `${options?.env?.PWD || process.env.PWD}/config`
+  const configDir = `${options?.env?.PWD || process.cwd()}/config`
   const config = convict(schema, options)
   const override = async (fileName) => {
     const path = `${configDir}/${fileName}`
