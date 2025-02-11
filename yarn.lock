@@ -747,13 +747,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@leverj/lever.chain-deployment@npm:4.5.1, @leverj/lever.chain-deployment@workspace:packages/chain-deployment":
+"@leverj/lever.chain-deployment@npm:4.5.2, @leverj/lever.chain-deployment@workspace:packages/chain-deployment":
   version: 0.0.0-use.local
   resolution: "@leverj/lever.chain-deployment@workspace:packages/chain-deployment"
   dependencies:
-    "@leverj/lever.common": "npm:4.5.1"
-    "@leverj/lever.config": "npm:4.5.1"
-    "@leverj/lever.storage": "npm:4.5.1"
+    "@leverj/lever.common": "npm:4.5.2"
+    "@leverj/lever.config": "npm:4.5.2"
+    "@leverj/lever.storage": "npm:4.5.2"
     "@nomicfoundation/hardhat-ethers": "npm:^3.0.8"
     "@nomicfoundation/hardhat-network-helpers": "npm:^1.0.12"
     "@nomicfoundation/hardhat-verify": "npm:^2.0.12"
@@ -774,9 +774,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@leverj/lever.chain-tracking@workspace:packages/chain-tracking"
   dependencies:
-    "@leverj/lever.chain-deployment": "npm:4.5.1"
-    "@leverj/lever.common": "npm:4.5.1"
-    "@leverj/lever.storage": "npm:4.5.1"
+    "@leverj/lever.chain-deployment": "npm:4.5.2"
+    "@leverj/lever.common": "npm:4.5.2"
+    "@leverj/lever.storage": "npm:4.5.2"
     "@openzeppelin/contracts": "npm:^5.2.0"
     async-exit-hook: "npm:^2.0.1"
     ethers: "npm:^6.13.5"
@@ -785,7 +785,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@leverj/lever.common@npm:4.5.1, @leverj/lever.common@workspace:packages/common":
+"@leverj/lever.common@npm:4.5.2, @leverj/lever.common@workspace:packages/common":
   version: 0.0.0-use.local
   resolution: "@leverj/lever.common@workspace:packages/common"
   dependencies:
@@ -797,7 +797,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@leverj/lever.config@npm:4.5.1, @leverj/lever.config@workspace:packages/config":
+"@leverj/lever.config@npm:4.5.2, @leverj/lever.config@workspace:packages/config":
   version: 0.0.0-use.local
   resolution: "@leverj/lever.config@workspace:packages/config"
   dependencies:
@@ -809,11 +809,11 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@leverj/lever.storage@npm:4.5.1, @leverj/lever.storage@workspace:packages/storage":
+"@leverj/lever.storage@npm:4.5.2, @leverj/lever.storage@workspace:packages/storage":
   version: 0.0.0-use.local
   resolution: "@leverj/lever.storage@workspace:packages/storage"
   dependencies:
-    "@leverj/lever.common": "npm:4.5.1"
+    "@leverj/lever.common": "npm:4.5.2"
     immutable: "npm:^5.0.3"
     level: "npm:^9.0.0"
     lodash-es: "npm:^4.17.21"
@@ -826,7 +826,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@leverj/lever.telegram@workspace:packages/telegram"
   dependencies:
-    "@leverj/lever.common": "npm:4.5.1"
+    "@leverj/lever.common": "npm:4.5.2"
     axios: "npm:^1.7.9"
   languageName: unknown
   linkType: soft
@@ -835,7 +835,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@leverj/lever.zka@workspace:packages/zka"
   dependencies:
-    "@leverj/lever.common": "npm:4.5.1"
+    "@leverj/lever.common": "npm:4.5.2"
     axios: "npm:^1.7.9"
     ephemeral-cache: "npm:^1.1.0"
     ethers: "npm:^6.13.5"
