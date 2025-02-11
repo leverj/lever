@@ -1150,6 +1150,14 @@ export const networks = {
       multicall3: {
         address: '0xcA11bde05977b3631167028862bE2a173976CA11',
         blockCreated: 0
+      },
+      ensRegistry: {
+        address: '0x5b22280886a2f5e09a49bea7e320eab0e5320e28',
+        blockCreated: 877007
+      },
+      ensUniversalResolver: {
+        address: '0xddfb18888a9466688235887dec2a10c4f5effee9',
+        blockCreated: 877008
       }
     },
     testnet: false
@@ -9853,6 +9861,20 @@ export const networks = {
     contracts: {},
     testnet: false
   },
+  story: {
+    id: 1514n,
+    label: 'story',
+    name: 'Story',
+    nativeCurrency: {
+      decimals: 18,
+      name: 'IP Token',
+      symbol: 'IP'
+    },
+    providerURL: 'https://mainnet.storyrpc.io',
+    blockExplorer: {},
+    contracts: {},
+    testnet: false
+  },
   storyOdyssey: {
     id: 1516n,
     label: 'storyOdyssey',
@@ -10732,6 +10754,29 @@ export const networks = {
     contracts: {},
     testnet: true
   },
+  unichain: {
+    id: 130n,
+    label: 'unichain',
+    name: 'Unichain',
+    nativeCurrency: {
+      name: 'Unichain',
+      symbol: 'ETH',
+      decimals: 18
+    },
+    providerURL: 'https://mainnet.unichain.org/',
+    blockExplorer: {
+      name: 'Uniscan',
+      url: 'https://uniscan.xyz',
+      apiUrl: 'https://api.uniscan.xyz/api'
+    },
+    contracts: {
+      multicall3: {
+        address: '0xca11bde05977b3631167028862be2a173976ca11',
+        blockCreated: 0
+      }
+    },
+    testnet: false
+  },
   unichainSepolia: {
     id: 1301n,
     label: 'unichainSepolia',
@@ -11194,7 +11239,8 @@ export const networks = {
     providerURL: 'https://worldchain-sepolia.g.alchemy.com/public',
     blockExplorer: {
       name: 'Worldscan Sepolia',
-      url: 'https://sepolia.worldscan.org'
+      url: 'https://sepolia.worldscan.org',
+      apiUrl: 'https://api-sepolia.worldscan.org/api'
     },
     contracts: {
       gasPriceOracle: {
@@ -11498,6 +11544,23 @@ export const networks = {
     },
     contracts: {},
     testnet: false
+  },
+  zeroG: {
+    id: 16600n,
+    label: 'zeroG',
+    name: '0G Newton Testnet',
+    nativeCurrency: {
+      name: 'A0GI',
+      symbol: 'A0GI',
+      decimals: 18
+    },
+    providerURL: 'https://evmrpc-testnet.0g.ai',
+    blockExplorer: {
+      name: '0G BlockChain Explorer',
+      url: 'https://chainscan-newton.0g.ai'
+    },
+    contracts: {},
+    testnet: true
   },
   zetachain: {
     id: 7000n,
