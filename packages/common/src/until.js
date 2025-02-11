@@ -1,4 +1,5 @@
-export const until = async (predicate, interval, timeout) => {
+export const until = async (predicate, options) => {
+  const {interval = 20, timeout = Infinity} = options
   const start = Date.now()
   const poll = async (done) => {
     if (Date.now() - start > timeout) return done(null)
