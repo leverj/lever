@@ -4,8 +4,14 @@ import {execSync} from 'node:child_process'
 import {setTimeout} from 'node:timers/promises'
 import {inspect} from 'node:util'
 import {verifyContract} from './blockscout.js'
-import {networks} from './chains.js'
+/*** from https://github.com/blockscout/chainscout/blob/main/data/chains.json ***/
+import blockscoutExplorerUrls_ from './chainscout-chains.json' with {type: 'json'}
+import {networks as networks_} from './networks.js'
 
+const blockscoutExplorerUrls = Object.assign({}, blockscoutExplorerUrls_)
+export const networks = Object.assign({}, networks_)
+export const addBlockScoutExplorerUrl = (id, explorerUrl) => blockscoutExplorerUrls[id] = explorerUrl
+export const addNetwork = (name, network) => networks[name] = network
 const {ethers: {deployContract, JsonRpcProvider, Wallet}} = hardhat
 
 export class Deploy {
@@ -45,7 +51,7 @@ export class Deploy {
   }
 
   async deployContracts(chain, options) {
-    const {providerURL, block} = this.store.get(chain)
+    const {providerURL, block, id} = this.store.get(chain)
     const provider = new JsonRpcProvider(providerURL)
     const signer = new Wallet(this.config.deployer.privateKey, provider)
     this.config.setContractsConstructors(chain)
@@ -70,7 +76,8 @@ export class Deploy {
       }
       if (options.verify) {
         const network = this.store.get(chain)
-        await verifyContract(this.logger, network, name, libraries || {})
+        const explorerUrl = blockscoutExplorerUrls[id]?.explorers[0].url
+        await verifyContract(this.logger, network, name, libraries || {}, explorerUrl)
       }
     }
   }

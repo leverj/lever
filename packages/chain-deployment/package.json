@@ -5,8 +5,6 @@
   "type": "module",
   "exports": {
     ".": "./src/index.js",
-    "./networks": "./src/chains.js",
-    "./chains": "./src/chains.js",
     "./config.schema": "./config.schema.js",
     "./hardhat.config": "./hardhat.config.cjs",
     "./hardhat.help": "./hardhat.help.js"

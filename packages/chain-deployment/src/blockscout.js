@@ -7,8 +7,6 @@ import {Map} from 'immutable'
 import {execSync} from 'node:child_process'
 import {readFileSync} from 'node:fs'
 import {tmpdir} from 'node:os'
-/*** from https://github.com/blockscout/chainscout/blob/main/data/chains.json ***/
-import {blockscoutExplorerUrls} from './chains.js'
 
 const {artifacts, config: {paths}} = hardhat
 const contractFullyQualifiedNames = Map((await artifacts.getAllFullyQualifiedNames()).map(_ => [_.split(':')[1], _])).toJS()
@@ -21,13 +19,12 @@ const getSourceCode = (name) => {
   return flattened_path
 }
 
-export async function verifyContract(logger, network, name, libraries) {
+export async function verifyContract(logger, network, name, libraries, explorerUrl) {
   const chainId = parseInt(network.id)
   const {address, blockCreated} = network.contracts[name]
   const flattenedSourcePath = getSourceCode(name)
   const buildInfo = await artifacts.getBuildInfo(contractFullyQualifiedNames[name])
   const {solcLongVersion, input: {settings: {evmVersion, optimizer}}} = buildInfo
-  const explorerUrl = blockscoutExplorerUrls[chainId]?.explorers[0].url
   if (explorerUrl) {
     const url = `${explorerUrl}/api/v2/smart-contracts/${address}/verification/via/flattened-code`
     const data = {
