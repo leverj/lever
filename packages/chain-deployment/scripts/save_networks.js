@@ -1,7 +1,7 @@
 import {writeFileSync} from 'node:fs'
 import {inspect} from 'util'
 import * as chains from 'viem/chains'
-
+import {execSync} from 'node:child_process'
 const targetDir = `${import.meta.dirname}/../src`
 const networks = {}
 for (const [label, network] of Object.entries(chains)) {
@@ -11,3 +11,4 @@ for (const [label, network] of Object.entries(chains)) {
   networks[label] = {id: BigInt(id), label, name, nativeCurrency, providerURL, blockExplorer, contracts, testnet: testnet || label === 'hardhat' || label === 'localhost'}
 }
 writeFileSync(`${targetDir}/networks.js`, `export const networks = ${inspect(networks, {showHidden: false, compact: false, depth: null})}`)
+execSync('wget https://raw.githubusercontent.com/blockscout/chainscout/main/data/chains.json -O ../src/chainscout-chains.json')
