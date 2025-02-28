@@ -4,7 +4,7 @@ import {execSync} from 'node:child_process'
 import {setTimeout} from 'node:timers/promises'
 import {inspect} from 'node:util'
 import {verifyContract} from './blockscout.js'
-import {networks} from './networks.js'
+import {networks} from './chains.js'
 
 const {ethers: {deployContract, JsonRpcProvider, Wallet}} = hardhat
 
