@@ -11,4 +11,4 @@ for (const [label, network] of Object.entries(chains)) {
   networks[label] = {id: BigInt(id), label, name, nativeCurrency, providerURL, blockExplorer, contracts, testnet: testnet || label === 'hardhat' || label === 'localhost'}
 }
 writeFileSync(`${targetDir}/networks.js`, `export const networks = ${inspect(networks, {showHidden: false, compact: false, depth: null})}`)
-execSync('wget https://raw.githubusercontent.com/blockscout/chainscout/main/data/chains.json -O ../src/chainscout-chains.json')
+execSync('curl https://raw.githubusercontent.com/blockscout/chainscout/main/data/chains.json -o ../src/chainscout-chains.json')

@@ -874,7 +874,7 @@
     "website": "https://bitnet.technology/",
     "explorers": [
       {
-        "url": "https://btnscout.org/",
+        "url": "https://btnscout.com",
         "hostedBy": "self"
       }
     ]
@@ -9957,6 +9957,38 @@
     {
       "url": "https://moonwalker-blockscout.eu-north-2.gateway.fm/",
       "hostedBy": "gateway"
+    }
+  ]
+},
+"420120000": {
+  "name": "Optimism Interop Devnet 0",
+  "description": "Devnet for testing interoperability messages",
+  "logo": "https://uploads-ssl.webflow.com/644a5b7efad46e3cd70deafb/65afe534f95466e8c914ac5b_optimism.png",
+  "ecosystem": "Optimism",
+  "isTestnet": true,
+  "layer": 2,
+  "rollupType": "optimistic",
+  "website": "https://www.optimism.io/",
+  "explorers": [
+    {
+      "url": "https://optimism-interop-alpha-0.blockscout.com/",
+      "hostedBy": "blockscout"
+    }
+  ]
+},
+"420120001": {
+  "name": "Optimism Interop Devnet 1",
+  "description": "Devnet for testing interoperability messages",
+  "logo": "https://uploads-ssl.webflow.com/644a5b7efad46e3cd70deafb/65afe534f95466e8c914ac5b_optimism.png",
+  "ecosystem": "Optimism",
+  "isTestnet": true,
+  "layer": 2,
+  "rollupType": "optimistic",
+  "website": "https://www.optimism.io/",
+  "explorers": [
+    {
+      "url": "https://optimism-interop-alpha-1.blockscout.com/",
+      "hostedBy": "blockscout"
     }
   ]
 },
