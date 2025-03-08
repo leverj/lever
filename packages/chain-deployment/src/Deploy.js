@@ -59,7 +59,7 @@ export class Deploy {
 
     this.logger.log(`deploying contracts: [${Object.keys(constructors)}] `.padEnd(120, '.'))
     if (!block) this.store.update(chain, {block: await provider.getBlockNumber()}) // establish start block
-    for (let [name, {libraries, params}] of Object.entries(constructors)) {
+    for (let [name, {libraries, params, type}] of Object.entries(constructors)) {
       const getContractAddress = (name) => this.store.get(chain).contracts[name]?.address
       const translateAddresses = (params = []) => params.map(_ => Array.isArray(_) ? translateAddresses(_) : getContractAddress(_) || _)
       const translateLibraries = (names = []) => names.reduce((result, _) => Object.assign(result, ({[_]: getContractAddress(_)})), {})
@@ -71,7 +71,7 @@ export class Deploy {
         const contract = await deployContract(name, params, {libraries, signer})
         const address = contract.target
         const blockCreated = await contract.deploymentTransaction().wait().then(_ => _.blockNumber)
-        this.store.update(chain, {contracts: {[name]: {address, blockCreated}}})
+        this.store.update(chain, {contracts: {[name]: {type, address, blockCreated}}})
         await setTimeout(200) // note: must wait a bit to avoid "Nonce too low" error
       }
       if (options.verify) {
