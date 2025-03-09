@@ -20,10 +20,10 @@ describe('deploy to multiple chains', () => {
         libraries: ['ToyMath'],
         params: [networks[chain].id, info.name]
       },
-      Gold: {type: 'ERC20Token', params: []},
-      USDC: {type: 'ERC20Token', params: []},
-      USDT: {type: 'ERC20Token', params: []},
-      WBTC: {type: 'ERC20Token', params: []},
+      Gold: {type: 'ERC20Token'},
+      USDC: {type: 'ERC20Token'},
+      USDT: {type: 'ERC20Token'},
+      WBTC: {type: 'ERC20Token'},
     })
     const {ports, providerURLs} = configureDeployment()
     processes = await launchEvms(ports, providerURLs)
