@@ -86,8 +86,13 @@ describe('deploy to multiple chains', () => {
       await deploy.to(chain)
       const deployed = deploy.store.get(chain).contracts
       for (let each of tokens) {
-        expect(isAddress(deployed[each].address)).toBe(true)
-        expect(deployed[each].type).toEqual('ERC20Token')
+        const {address, type, meta} = deployed[each]
+        expect(isAddress(address)).toBe(true)
+        expect(type).toEqual('ERC20Token')
+        expect(meta).toBeDefined()
+        expect(typeof meta.name).toBe('string')
+        expect(typeof meta.symbol).toBe('string')
+        expect(typeof meta.decimals).toBe('number')
       }
       expect(deployed.Bank.type).toBeUndefined()
     }

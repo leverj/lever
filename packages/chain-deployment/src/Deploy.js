@@ -70,8 +70,13 @@ export class Deploy {
         this.logger.log(`deploying ${name} contract `.padEnd(120, '.'))
         const contract = await deployContract(name, params, {libraries, signer})
         const address = contract.target
+        const meta = type === 'ERC20Token' ? {
+          name: await contract.name(),
+          symbol: await contract.symbol(),
+          decimals: parseInt(await contract.decimals()),
+        } : undefined
         const blockCreated = await contract.deploymentTransaction().wait().then(_ => _.blockNumber)
-        this.store.update(chain, {contracts: {[name]: {type, address, blockCreated}}})
+        this.store.update(chain, {contracts: {[name]: {type, meta, address, blockCreated}}})
         await setTimeout(200) // note: must wait a bit to avoid "Nonce too low" error
       }
       if (options.verify) {
