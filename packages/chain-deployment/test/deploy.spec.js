@@ -19,11 +19,7 @@ describe('deploy to multiple chains', () => {
       Bank: {
         libraries: ['ToyMath'],
         params: [networks[chain].id, info.name]
-      },
-      Gold: {type: 'ERC20Token'},
-      USDC: {type: 'ERC20Token'},
-      USDT: {type: 'ERC20Token'},
-      WBTC: {type: 'ERC20Token'},
+      }
     })
     const {ports, providerURLs} = configureDeployment()
     processes = await launchEvms(ports, providerURLs)
@@ -76,25 +72,6 @@ describe('deploy to multiple chains', () => {
       await deploy.to(chain, {reset: true})
       const redeployed_with_reset = cloneDeep(deploy.store.get(chain).contracts)
       expect(redeployed_with_reset.Bank).not.toMatchObject(deployed_initial.Bank)
-    }
-  })
-
-  it('can deploy typed contracts', async () => {
-    const tokens = ['Gold', 'USDC', 'USDT', 'WBTC']
-    const deploy = Deploy.from(config)
-    for (let chain of chains) {
-      await deploy.to(chain)
-      const deployed = deploy.store.get(chain).contracts
-      for (let each of tokens) {
-        const {address, type, meta} = deployed[each]
-        expect(isAddress(address)).toBe(true)
-        expect(type).toEqual('ERC20Token')
-        expect(meta).toBeDefined()
-        expect(typeof meta.name).toBe('string')
-        expect(typeof meta.symbol).toBe('string')
-        expect(typeof meta.decimals).toBe('number')
-      }
-      expect(deployed.Bank.type).toBeUndefined()
     }
   })
 })

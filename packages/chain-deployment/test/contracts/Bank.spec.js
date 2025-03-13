@@ -4,7 +4,7 @@ import {expect} from 'expect'
 const Bank = async (chainId, name) => deployContract('ToyMath', []).then(
   _ => deployContract('Bank', [chainId, name], {libraries: {ToyMath: _.target}})
 )
-const ERC20 = async (name, symbol, decimals) => deployContract('ERC20Token', [name, symbol, decimals])
+const ERC20 = async (name, symbol) => deployContract('ERC20Mock', [name, symbol])
 
 describe('Bank', () => {
   const [, account] = accounts
@@ -12,7 +12,7 @@ describe('Bank', () => {
 
   it('can deposit & withdraw ERC20 Token', async () => {
     const bank = await Bank(chainId, '🥱')
-    const token = await ERC20('Crap', 'CRAP', 18)
+    const token = await ERC20('Crap', 'CRAP')
     await token.mint(account.address, amount)
     await token.connect(account).approve(bank.target, amount).then(_ => _.wait())
 
