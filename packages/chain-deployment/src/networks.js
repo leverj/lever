@@ -30,16 +30,7 @@ export const networks = {
       name: 'Etherscan',
       url: 'https://abscan.org'
     },
-    contracts: {
-      multicall3: {
-        address: '0xAa4De41dba0Ca5dCBb288b7cC6b708F3aaC759E7',
-        blockCreated: 5288
-      },
-      universalSignatureVerifier: {
-        address: '0xfB688330379976DA81eB64Fe4BF50d7401763B9C',
-        blockCreated: 5263
-      }
-    },
+    contracts: {},
     testnet: false
   },
   abstractTestnet: {
@@ -56,16 +47,7 @@ export const networks = {
       name: 'Etherscan',
       url: 'https://sepolia.abscan.org'
     },
-    contracts: {
-      multicall3: {
-        address: '0xF9cda624FBC7e059355ce98a31693d299FACd963',
-        blockCreated: 358349
-      },
-      universalSignatureVerifier: {
-        address: '0xfB688330379976DA81eB64Fe4BF50d7401763B9C',
-        blockCreated: 431682
-      }
-    },
+    contracts: {},
     testnet: true
   },
   acala: {
@@ -152,12 +134,7 @@ export const networks = {
       url: 'https://evm-explorer.alephzero.org',
       apiUrl: 'https://evm-explorer.alephzero.org/api'
     },
-    contracts: {
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 4603377
-      }
-    },
+    contracts: {},
     testnet: false
   },
   alephZeroTestnet: {
@@ -175,12 +152,7 @@ export const networks = {
       url: 'https://evm-explorer-testnet.alephzero.org',
       apiUrl: 'https://evm-explorer-testnet.alephzero.org/api'
     },
-    contracts: {
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 2861745
-      }
-    },
+    contracts: {},
     testnet: true
   },
   alienx: {
@@ -232,43 +204,7 @@ export const networks = {
       url: 'https://scan.ancient8.gg',
       apiUrl: 'https://scan.ancient8.gg/api'
     },
-    contracts: {
-      gasPriceOracle: {
-        address: '0x420000000000000000000000000000000000000F'
-      },
-      l1Block: {
-        address: '0x4200000000000000000000000000000000000015'
-      },
-      l2CrossDomainMessenger: {
-        address: '0x4200000000000000000000000000000000000007'
-      },
-      l2Erc721Bridge: {
-        address: '0x4200000000000000000000000000000000000014'
-      },
-      l2StandardBridge: {
-        address: '0x4200000000000000000000000000000000000010'
-      },
-      l2ToL1MessagePasser: {
-        address: '0x4200000000000000000000000000000000000016'
-      },
-      l2OutputOracle: {
-        '1': {
-          address: '0xB09DC08428C8b4EFB4ff9C0827386CDF34277996'
-        }
-      },
-      portal: {
-        '1': {
-          address: '0x639F2AECE398Aa76b07e59eF6abe2cFe32bacb68',
-          blockCreated: 19070571
-        }
-      },
-      l1StandardBridge: {
-        '1': {
-          address: '0xd5e3eDf5b68135D559D572E26bF863FBC1950033',
-          blockCreated: 19070571
-        }
-      }
-    },
+    contracts: {},
     testnet: false
   },
   ancient8Sepolia: {
@@ -286,43 +222,7 @@ export const networks = {
       url: 'https://scanv2-testnet.ancient8.gg',
       apiUrl: 'https://scanv2-testnet.ancient8.gg/api'
     },
-    contracts: {
-      gasPriceOracle: {
-        address: '0x420000000000000000000000000000000000000F'
-      },
-      l1Block: {
-        address: '0x4200000000000000000000000000000000000015'
-      },
-      l2CrossDomainMessenger: {
-        address: '0x4200000000000000000000000000000000000007'
-      },
-      l2Erc721Bridge: {
-        address: '0x4200000000000000000000000000000000000014'
-      },
-      l2StandardBridge: {
-        address: '0x4200000000000000000000000000000000000010'
-      },
-      l2ToL1MessagePasser: {
-        address: '0x4200000000000000000000000000000000000016'
-      },
-      l2OutputOracle: {
-        '11155111': {
-          address: '0x942fD5017c0F60575930D8574Eaca13BEcD6e1bB'
-        }
-      },
-      portal: {
-        '11155111': {
-          address: '0xfa1d9E26A6aCD7b22115D27572c1221B9803c960',
-          blockCreated: 4972908
-        }
-      },
-      l1StandardBridge: {
-        '11155111': {
-          address: '0xF6Bc0146d3c74D48306e79Ae134A260E418C9335',
-          blockCreated: 4972908
-        }
-      }
-    },
+    contracts: {},
     testnet: false
   },
   anvil: {
@@ -354,12 +254,7 @@ export const networks = {
       url: 'https://apescan.io',
       apiUrl: 'https://api.apescan.io/api'
     },
-    contracts: {
-      multicall3: {
-        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
-        blockCreated: 20889
-      }
-    },
+    contracts: {},
     testnet: false
   },
   apexTestnet: {
@@ -377,12 +272,7 @@ export const networks = {
       url: 'https://exp-testnet.apexlayer.xyz',
       apiUrl: 'https://exp-testnet.apexlayer.xyz/api'
     },
-    contracts: {
-      multicall3: {
-        address: '0xf7642be33a6b18D16a995657adb5a68CD0438aE2',
-        blockCreated: 283775
-      }
-    },
+    contracts: {},
     testnet: true
   },
   arbitrum: {
@@ -400,12 +290,7 @@ export const networks = {
       url: 'https://arbiscan.io',
       apiUrl: 'https://api.arbiscan.io/api'
     },
-    contracts: {
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 7654707
-      }
-    },
+    contracts: {},
     testnet: false
   },
   arbitrumGoerli: {
@@ -422,12 +307,7 @@ export const networks = {
       name: 'Arbiscan',
       url: 'https://goerli.arbiscan.io'
     },
-    contracts: {
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 88114
-      }
-    },
+    contracts: {},
     testnet: true
   },
   arbitrumNova: {
@@ -445,12 +325,7 @@ export const networks = {
       url: 'https://nova.arbiscan.io',
       apiUrl: 'https://api-nova.arbiscan.io/api'
     },
-    contracts: {
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 1746963
-      }
-    },
+    contracts: {},
     testnet: false
   },
   arbitrumSepolia: {
@@ -468,12 +343,7 @@ export const networks = {
       url: 'https://sepolia.arbiscan.io',
       apiUrl: 'https://api-sepolia.arbiscan.io/api'
     },
-    contracts: {
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 81930
-      }
-    },
+    contracts: {},
     testnet: true
   },
   areonNetwork: {
@@ -490,12 +360,7 @@ export const networks = {
       name: 'Areonscan',
       url: 'https://areonscan.com'
     },
-    contracts: {
-      multicall3: {
-        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
-        blockCreated: 353286
-      }
-    },
+    contracts: {},
     testnet: false
   },
   areonNetworkTestnet: {
@@ -530,12 +395,7 @@ export const networks = {
       url: 'https://betanet-scan.artela.network',
       apiUrl: 'https://betanet-scan.artela.network/api'
     },
-    contracts: {
-      multicall3: {
-        address: '0xd07c8635f76e8745Ee7092fbb6e8fbc5FeF09DD7',
-        blockCreated: 7001871
-      }
-    },
+    contracts: {},
     testnet: true
   },
   arthera: {
@@ -553,12 +413,7 @@ export const networks = {
       url: 'https://explorer.arthera.net',
       apiUrl: 'https://explorer.arthera.net/api'
     },
-    contracts: {
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 4502791
-      }
-    },
+    contracts: {},
     testnet: false
   },
   artheraTestnet: {
@@ -576,12 +431,7 @@ export const networks = {
       url: 'https://explorer-test.arthera.net',
       apiUrl: 'https://explorer-test.arthera.net/api'
     },
-    contracts: {
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 22051
-      }
-    },
+    contracts: {},
     testnet: false
   },
   assetChain: {
@@ -617,12 +467,7 @@ export const networks = {
       url: 'https://scan-testnet.assetchain.org',
       apiUrl: 'https://scan-testnet.assetchain.org/api'
     },
-    contracts: {
-      multicall3: {
-        address: '0x989F832D35988cb5e3eB001Fa2Fe789469EC31Ea',
-        blockCreated: 17177
-      }
-    },
+    contracts: {},
     testnet: true
   },
   astar: {
@@ -639,12 +484,7 @@ export const networks = {
       name: 'Astar Subscan',
       url: 'https://astar.subscan.io'
     },
-    contracts: {
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 761794
-      }
-    },
+    contracts: {},
     testnet: false
   },
   astarZkEVM: {
@@ -661,12 +501,7 @@ export const networks = {
       name: 'Astar zkEVM Explorer',
       url: 'https://astar-zkevm.explorer.startale.com'
     },
-    contracts: {
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 93528
-      }
-    },
+    contracts: {},
     testnet: false
   },
   astarZkyoto: {
@@ -683,12 +518,7 @@ export const networks = {
       name: 'zKyoto Explorer',
       url: 'https://zkyoto.explorer.startale.com'
     },
-    contracts: {
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 196153
-      }
-    },
+    contracts: {},
     testnet: true
   },
   atletaOlympia: {
@@ -706,12 +536,7 @@ export const networks = {
       url: 'https://blockscout.atleta.network',
       apiUrl: 'https://blockscout.atleta.network/api'
     },
-    contracts: {
-      multicall3: {
-        address: '0x1472ec6392180fb84F345d2455bCC75B26577115',
-        blockCreated: 1076473
-      }
-    },
+    contracts: {},
     testnet: true
   },
   aurora: {
@@ -729,12 +554,7 @@ export const networks = {
       url: 'https://aurorascan.dev',
       apiUrl: 'https://aurorascan.dev/api'
     },
-    contracts: {
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 62907816
-      }
-    },
+    contracts: {},
     testnet: false
   },
   auroraTestnet: {
@@ -787,12 +607,7 @@ export const networks = {
       url: 'https://snowtrace.io',
       apiUrl: 'https://api.snowtrace.io'
     },
-    contracts: {
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 11907934
-      }
-    },
+    contracts: {},
     testnet: false
   },
   avalancheFuji: {
@@ -810,12 +625,7 @@ export const networks = {
       url: 'https://testnet.snowtrace.io',
       apiUrl: 'https://api-testnet.snowtrace.io'
     },
-    contracts: {
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 7096959
-      }
-    },
+    contracts: {},
     testnet: true
   },
   b3: {
@@ -832,12 +642,7 @@ export const networks = {
       name: 'Blockscout',
       url: 'https://explorer.b3.fun'
     },
-    contracts: {
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 0
-      }
-    },
+    contracts: {},
     testnet: false
   },
   b3Sepolia: {
@@ -854,12 +659,7 @@ export const networks = {
       name: 'Blockscout',
       url: 'https://sepolia.explorer.b3.fun'
     },
-    contracts: {
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 0
-      }
-    },
+    contracts: {},
     testnet: true
   },
   bahamut: {
@@ -895,52 +695,7 @@ export const networks = {
       url: 'https://basescan.org',
       apiUrl: 'https://api.basescan.org/api'
     },
-    contracts: {
-      gasPriceOracle: {
-        address: '0x420000000000000000000000000000000000000F'
-      },
-      l1Block: {
-        address: '0x4200000000000000000000000000000000000015'
-      },
-      l2CrossDomainMessenger: {
-        address: '0x4200000000000000000000000000000000000007'
-      },
-      l2Erc721Bridge: {
-        address: '0x4200000000000000000000000000000000000014'
-      },
-      l2StandardBridge: {
-        address: '0x4200000000000000000000000000000000000010'
-      },
-      l2ToL1MessagePasser: {
-        address: '0x4200000000000000000000000000000000000016'
-      },
-      disputeGameFactory: {
-        '1': {
-          address: '0x43edB88C4B80fDD2AdFF2412A7BebF9dF42cB40e'
-        }
-      },
-      l2OutputOracle: {
-        '1': {
-          address: '0x56315b90c40730925ec5485cf004d835058518A0'
-        }
-      },
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 5022
-      },
-      portal: {
-        '1': {
-          address: '0x49048044D57e1C92A77f79988d21Fa8fAF74E97e',
-          blockCreated: 17482143
-        }
-      },
-      l1StandardBridge: {
-        '1': {
-          address: '0x3154Cf16ccdb4C6d922629664174b904d80F2C35',
-          blockCreated: 17482143
-        }
-      }
-    },
+    contracts: {},
     testnet: false
   },
   baseGoerli: {
@@ -958,45 +713,7 @@ export const networks = {
       url: 'https://goerli.basescan.org',
       apiUrl: 'https://goerli.basescan.org/api'
     },
-    contracts: {
-      gasPriceOracle: {
-        address: '0x420000000000000000000000000000000000000F'
-      },
-      l1Block: {
-        address: '0x4200000000000000000000000000000000000015'
-      },
-      l2CrossDomainMessenger: {
-        address: '0x4200000000000000000000000000000000000007'
-      },
-      l2Erc721Bridge: {
-        address: '0x4200000000000000000000000000000000000014'
-      },
-      l2StandardBridge: {
-        address: '0x4200000000000000000000000000000000000010'
-      },
-      l2ToL1MessagePasser: {
-        address: '0x4200000000000000000000000000000000000016'
-      },
-      l2OutputOracle: {
-        '5': {
-          address: '0x2A35891ff30313CcFa6CE88dcf3858bb075A2298'
-        }
-      },
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 1376988
-      },
-      portal: {
-        '5': {
-          address: '0xe93c8cD0D409341205A592f8c4Ac1A5fe5585cfA'
-        }
-      },
-      l1StandardBridge: {
-        '5': {
-          address: '0xfA6D8Ee5BE770F84FC001D098C4bD604Fe01284a'
-        }
-      }
-    },
+    contracts: {},
     testnet: true
   },
   baseSepolia: {
@@ -1014,52 +731,7 @@ export const networks = {
       url: 'https://sepolia.basescan.org',
       apiUrl: 'https://api-sepolia.basescan.org/api'
     },
-    contracts: {
-      gasPriceOracle: {
-        address: '0x420000000000000000000000000000000000000F'
-      },
-      l1Block: {
-        address: '0x4200000000000000000000000000000000000015'
-      },
-      l2CrossDomainMessenger: {
-        address: '0x4200000000000000000000000000000000000007'
-      },
-      l2Erc721Bridge: {
-        address: '0x4200000000000000000000000000000000000014'
-      },
-      l2StandardBridge: {
-        address: '0x4200000000000000000000000000000000000010'
-      },
-      l2ToL1MessagePasser: {
-        address: '0x4200000000000000000000000000000000000016'
-      },
-      disputeGameFactory: {
-        '11155111': {
-          address: '0xd6E6dBf4F7EA0ac412fD8b65ED297e64BB7a06E1'
-        }
-      },
-      l2OutputOracle: {
-        '11155111': {
-          address: '0x84457ca9D0163FbC4bbfe4Dfbb20ba46e48DF254'
-        }
-      },
-      portal: {
-        '11155111': {
-          address: '0x49f53e41452c74589e85ca1677426ba426459e85',
-          blockCreated: 4446677
-        }
-      },
-      l1StandardBridge: {
-        '11155111': {
-          address: '0xfd0Bf71F60660E2f608ed56e1659C450eB113120',
-          blockCreated: 4446677
-        }
-      },
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 1059647
-      }
-    },
+    contracts: {},
     testnet: true
   },
   beam: {
@@ -1076,12 +748,7 @@ export const networks = {
       name: 'Beam Explorer',
       url: 'https://subnets.avax.network/beam'
     },
-    contracts: {
-      multicall3: {
-        address: '0x4956f15efdc3dc16645e90cc356eafa65ffc65ec',
-        blockCreated: 1
-      }
-    },
+    contracts: {},
     testnet: false
   },
   beamTestnet: {
@@ -1098,12 +765,7 @@ export const networks = {
       name: 'Beam Explorer',
       url: 'https://subnets-test.avax.network/beam'
     },
-    contracts: {
-      multicall3: {
-        address: '0x9bf49b704ee2a095b95c1f2d4eb9010510c41c9e',
-        blockCreated: 3
-      }
-    },
+    contracts: {},
     testnet: true
   },
   bearNetworkChainMainnet: {
@@ -1156,20 +818,7 @@ export const networks = {
       name: 'Berascan',
       url: 'https://berascan.com'
     },
-    contracts: {
-      multicall3: {
-        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
-        blockCreated: 0
-      },
-      ensRegistry: {
-        address: '0x5b22280886a2f5e09a49bea7e320eab0e5320e28',
-        blockCreated: 877007
-      },
-      ensUniversalResolver: {
-        address: '0xddfb18888a9466688235887dec2a10c4f5effee9',
-        blockCreated: 877008
-      }
-    },
+    contracts: {},
     testnet: false
   },
   berachainBepolia: {
@@ -1186,12 +835,7 @@ export const networks = {
       name: 'Berascan',
       url: 'https://bepolia.beratrail.io'
     },
-    contracts: {
-      multicall3: {
-        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
-        blockCreated: 0
-      }
-    },
+    contracts: {},
     testnet: true
   },
   berachainTestnet: {
@@ -1208,12 +852,7 @@ export const networks = {
       name: 'Berachain',
       url: 'https://artio.beratrail.io'
     },
-    contracts: {
-      multicall3: {
-        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
-        blockCreated: 866924
-      }
-    },
+    contracts: {},
     testnet: true
   },
   berachainTestnetbArtio: {
@@ -1230,20 +869,7 @@ export const networks = {
       name: 'Berachain bArtio Beratrail',
       url: 'https://bartio.beratrail.io'
     },
-    contracts: {
-      multicall3: {
-        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
-        blockCreated: 109269
-      },
-      ensRegistry: {
-        address: '0xB0eef18971290b333450586D33dcA6cE122651D2',
-        blockCreated: 7736794
-      },
-      ensUniversalResolver: {
-        address: '0x41692Ef1EA0C79E6b73077E4A67572D2BDbD7057',
-        blockCreated: 7736795
-      }
-    },
+    contracts: {},
     testnet: true
   },
   bevmMainnet: {
@@ -1313,12 +939,7 @@ export const networks = {
       url: 'https://bttcscan.com',
       apiUrl: 'https://api.bttcscan.com/api'
     },
-    contracts: {
-      multicall3: {
-        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
-        blockCreated: 31078552
-      }
-    },
+    contracts: {},
     testnet: false
   },
   bitTorrentTestnet: {
@@ -1353,12 +974,7 @@ export const networks = {
       name: 'Bitgert Scan',
       url: 'https://brisescan.com'
     },
-    contracts: {
-      multicall3: {
-        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
-        blockCreated: 2118034
-      }
-    },
+    contracts: {},
     testnet: false
   },
   bitkub: {
@@ -1411,12 +1027,7 @@ export const networks = {
       name: 'bitlayer mainnet scan',
       url: 'https://www.btrscan.com'
     },
-    contracts: {
-      multicall3: {
-        address: '0x5B256fE9e993902eCe49D138a5b1162cBb529474',
-        blockCreated: 2421963
-      }
-    },
+    contracts: {},
     testnet: false
   },
   bitlayerTestnet: {
@@ -1433,12 +1044,7 @@ export const networks = {
       name: 'bitlayer testnet scan',
       url: 'https://testnet.btrscan.com'
     },
-    contracts: {
-      multicall3: {
-        address: '0x5B256fE9e993902eCe49D138a5b1162cBb529474',
-        blockCreated: 4135671
-      }
-    },
+    contracts: {},
     testnet: true
   },
   bitrock: {
@@ -1473,30 +1079,7 @@ export const networks = {
       url: 'https://blastscan.io',
       apiUrl: 'https://api.blastscan.io/api'
     },
-    contracts: {
-      gasPriceOracle: {
-        address: '0x420000000000000000000000000000000000000F'
-      },
-      l1Block: {
-        address: '0x4200000000000000000000000000000000000015'
-      },
-      l2CrossDomainMessenger: {
-        address: '0x4200000000000000000000000000000000000007'
-      },
-      l2Erc721Bridge: {
-        address: '0x4200000000000000000000000000000000000014'
-      },
-      l2StandardBridge: {
-        address: '0x4200000000000000000000000000000000000010'
-      },
-      l2ToL1MessagePasser: {
-        address: '0x4200000000000000000000000000000000000016'
-      },
-      multicall3: {
-        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
-        blockCreated: 212929
-      }
-    },
+    contracts: {},
     testnet: false
   },
   blastSepolia: {
@@ -1514,12 +1097,7 @@ export const networks = {
       url: 'https://sepolia.blastscan.io',
       apiUrl: 'https://api-sepolia.blastscan.io/api'
     },
-    contracts: {
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 756690
-      }
-    },
+    contracts: {},
     testnet: true
   },
   bob: {
@@ -1536,42 +1114,7 @@ export const networks = {
       name: 'BOB Explorer',
       url: 'https://explorer.gobob.xyz'
     },
-    contracts: {
-      gasPriceOracle: {
-        address: '0x420000000000000000000000000000000000000F'
-      },
-      l1Block: {
-        address: '0x4200000000000000000000000000000000000015'
-      },
-      l2CrossDomainMessenger: {
-        address: '0x4200000000000000000000000000000000000007'
-      },
-      l2Erc721Bridge: {
-        address: '0x4200000000000000000000000000000000000014'
-      },
-      l2StandardBridge: {
-        address: '0x4200000000000000000000000000000000000010'
-      },
-      l2ToL1MessagePasser: {
-        address: '0x4200000000000000000000000000000000000016'
-      },
-      multicall3: {
-        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
-        blockCreated: 23131
-      },
-      l2OutputOracle: {
-        '1': {
-          address: '0xdDa53E23f8a32640b04D7256e651C1db98dB11C1',
-          blockCreated: 4462615
-        }
-      },
-      portal: {
-        '1': {
-          address: '0x8AdeE124447435fE03e3CD24dF3f4cAE32E65a3E',
-          blockCreated: 4462615
-        }
-      }
-    },
+    contracts: {},
     testnet: false
   },
   bobSepolia: {
@@ -1588,42 +1131,7 @@ export const networks = {
       name: 'BOB Sepolia Explorer',
       url: 'https://bob-sepolia.explorer.gobob.xyz'
     },
-    contracts: {
-      gasPriceOracle: {
-        address: '0x420000000000000000000000000000000000000F'
-      },
-      l1Block: {
-        address: '0x4200000000000000000000000000000000000015'
-      },
-      l2CrossDomainMessenger: {
-        address: '0x4200000000000000000000000000000000000007'
-      },
-      l2Erc721Bridge: {
-        address: '0x4200000000000000000000000000000000000014'
-      },
-      l2StandardBridge: {
-        address: '0x4200000000000000000000000000000000000010'
-      },
-      l2ToL1MessagePasser: {
-        address: '0x4200000000000000000000000000000000000016'
-      },
-      multicall3: {
-        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
-        blockCreated: 35677
-      },
-      l2OutputOracle: {
-        '11155111': {
-          address: '0x14D0069452b4AE2b250B395b8adAb771E4267d2f',
-          blockCreated: 4462615
-        }
-      },
-      portal: {
-        '11155111': {
-          address: '0x867B1Aa872b9C8cB5E9F7755feDC45BB24Ad0ae4',
-          blockCreated: 4462615
-        }
-      }
-    },
+    contracts: {},
     testnet: true
   },
   boba: {
@@ -1640,12 +1148,7 @@ export const networks = {
       name: 'BOBAScan',
       url: 'https://bobascan.com'
     },
-    contracts: {
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 446859
-      }
-    },
+    contracts: {},
     testnet: false
   },
   bobaSepolia: {
@@ -1782,12 +1285,7 @@ export const networks = {
       url: 'https://bscscan.com',
       apiUrl: 'https://api.bscscan.com/api'
     },
-    contracts: {
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 15921452
-      }
-    },
+    contracts: {},
     testnet: false
   },
   bscGreenfield: {
@@ -1822,12 +1320,7 @@ export const networks = {
       url: 'https://testnet.bscscan.com',
       apiUrl: 'https://api-testnet.bscscan.com/api'
     },
-    contracts: {
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 17422483
-      }
-    },
+    contracts: {},
     testnet: true
   },
   bsquared: {
@@ -1962,12 +1455,7 @@ export const networks = {
       name: 'Tuber.Build (Blockscout)',
       url: 'https://tuber.build'
     },
-    contracts: {
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 2905789
-      }
-    },
+    contracts: {},
     testnet: false
   },
   celo: {
@@ -1985,12 +1473,7 @@ export const networks = {
       url: 'https://celoscan.io',
       apiUrl: 'https://api.celoscan.io/api'
     },
-    contracts: {
-      multicall3: {
-        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
-        blockCreated: 13112599
-      }
-    },
+    contracts: {},
     testnet: false
   },
   celoAlfajores: {
@@ -2008,54 +1491,7 @@ export const networks = {
       url: 'https://celo-alfajores.blockscout.com',
       apiUrl: 'https://celo-alfajores.blockscout.com/api'
     },
-    contracts: {
-      gasPriceOracle: {
-        address: '0x420000000000000000000000000000000000000F'
-      },
-      l1Block: {
-        address: '0x4200000000000000000000000000000000000015'
-      },
-      l2CrossDomainMessenger: {
-        address: '0x4200000000000000000000000000000000000007'
-      },
-      l2Erc721Bridge: {
-        address: '0x4200000000000000000000000000000000000014'
-      },
-      l2StandardBridge: {
-        address: '0x4200000000000000000000000000000000000010'
-      },
-      l2ToL1MessagePasser: {
-        address: '0x4200000000000000000000000000000000000016'
-      },
-      multicall3: {
-        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
-        blockCreated: 14569001
-      },
-      portal: {
-        '17000': {
-          address: '0x82527353927d8D069b3B452904c942dA149BA381',
-          blockCreated: 2411324
-        }
-      },
-      disputeGameFactory: {
-        '17000': {
-          address: '0xE28AAdcd9883746c0e5068F58f9ea06027b214cb',
-          blockCreated: 2411324
-        }
-      },
-      l2OutputOracle: {
-        '17000': {
-          address: '0x4a2635e9e4f6e45817b1D402ac4904c1d1752438',
-          blockCreated: 2411324
-        }
-      },
-      l1StandardBridge: {
-        '17000': {
-          address: '0xD1B0E0581973c9eB7f886967A606b9441A897037',
-          blockCreated: 2411324
-        }
-      }
-    },
+    contracts: {},
     testnet: true
   },
   chang: {
@@ -2190,12 +1626,7 @@ export const networks = {
       name: 'ConfluxScan',
       url: 'https://evm.confluxscan.io'
     },
-    contracts: {
-      multicall3: {
-        address: '0xEFf0078910f638cd81996cc117bccD3eDf2B072F',
-        blockCreated: 68602935
-      }
-    },
+    contracts: {},
     testnet: false
   },
   confluxESpaceTestnet: {
@@ -2212,12 +1643,7 @@ export const networks = {
       name: 'ConfluxScan',
       url: 'https://evmtestnet.confluxscan.io'
     },
-    contracts: {
-      multicall3: {
-        address: '0xEFf0078910f638cd81996cc117bccD3eDf2B072F',
-        blockCreated: 117499050
-      }
-    },
+    contracts: {},
     testnet: true
   },
   coreDao: {
@@ -2234,12 +1660,7 @@ export const networks = {
       name: 'CoreDao',
       url: 'https://scan.coredao.org'
     },
-    contracts: {
-      multicall3: {
-        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
-        blockCreated: 11907934
-      }
-    },
+    contracts: {},
     testnet: false
   },
   corn: {
@@ -2257,12 +1678,7 @@ export const networks = {
       url: 'https://cornscan.io',
       apiUrl: 'https://api.routescan.io/v2/network/mainnet/evm/21000000/etherscan/api'
     },
-    contracts: {
-      multicall3: {
-        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
-        blockCreated: 3228
-      }
-    },
+    contracts: {},
     testnet: false
   },
   cornTestnet: {
@@ -2280,12 +1696,7 @@ export const networks = {
       url: 'https://testnet.cornscan.io',
       apiUrl: 'https://api.routescan.io/v2/network/testnet/evm/21000001/etherscan/api'
     },
-    contracts: {
-      multicall3: {
-        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
-        blockCreated: 4886
-      }
-    },
+    contracts: {},
     testnet: true
   },
   crab: {
@@ -2302,12 +1713,7 @@ export const networks = {
       name: 'Blockscout',
       url: 'https://crab-scan.darwinia.network'
     },
-    contracts: {
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 3032593
-      }
-    },
+    contracts: {},
     testnet: false
   },
   creatorTestnet: {
@@ -2324,11 +1730,7 @@ export const networks = {
       name: 'Explorer',
       url: 'https://explorer.creatorchain.io'
     },
-    contracts: {
-      multicall3: {
-        address: '0xcA11bde05977b3631167028862bE2a173976CA11'
-      }
-    },
+    contracts: {},
     testnet: true
   },
   creditCoin3Mainnet: {
@@ -2382,12 +1784,7 @@ export const networks = {
       url: 'https://explorer.cronos.org',
       apiUrl: 'https://explorer-api.cronos.org/mainnet/api'
     },
-    contracts: {
-      multicall3: {
-        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
-        blockCreated: 1963112
-      }
-    },
+    contracts: {},
     testnet: false
   },
   cronosTestnet: {
@@ -2404,12 +1801,7 @@ export const networks = {
       name: 'Cronos Explorer',
       url: 'https://cronos.org/explorer/testnet3'
     },
-    contracts: {
-      multicall3: {
-        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
-        blockCreated: 10191251
-      }
-    },
+    contracts: {},
     testnet: true
   },
   cronoszkEVM: {
@@ -2426,12 +1818,7 @@ export const networks = {
       name: 'Cronos zkEVM (Mainnet) Chain Explorer',
       url: 'https://explorer.zkevm.cronos.org'
     },
-    contracts: {
-      multicall3: {
-        address: '0x06f4487d7c4a5983d2660db965cc6d2565e4cfaa',
-        blockCreated: 72
-      }
-    },
+    contracts: {},
     testnet: false
   },
   cronoszkEVMTestnet: {
@@ -2466,12 +1853,7 @@ export const networks = {
       url: 'https://scan.crossbell.io',
       apiUrl: 'https://scan.crossbell.io/api'
     },
-    contracts: {
-      multicall3: {
-        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
-        blockCreated: 38246031
-      }
-    },
+    contracts: {},
     testnet: false
   },
   curtis: {
@@ -2506,12 +1888,7 @@ export const networks = {
       url: 'https://cyberscan.co',
       apiUrl: 'https://cyberscan.co/api'
     },
-    contracts: {
-      multicall3: {
-        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
-        blockCreated: 0
-      }
-    },
+    contracts: {},
     testnet: false
   },
   cyberTestnet: {
@@ -2529,12 +1906,7 @@ export const networks = {
       url: 'https://testnet.cyberscan.co',
       apiUrl: 'https://testnet.cyberscan.co/api'
     },
-    contracts: {
-      multicall3: {
-        address: '0xffc391F0018269d4758AEA1a144772E8FB99545E',
-        blockCreated: 304545
-      }
-    },
+    contracts: {},
     testnet: true
   },
   dailyNetwork: {
@@ -2585,12 +1957,7 @@ export const networks = {
       name: 'Explorer',
       url: 'https://explorer.darwinia.network'
     },
-    contracts: {
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 69420
-      }
-    },
+    contracts: {},
     testnet: false
   },
   dchain: {
@@ -2608,26 +1975,7 @@ export const networks = {
       url: 'https://dchain-2716446429837000-1.sagaexplorer.io',
       apiUrl: 'https://api-dchain-2716446429837000-1.sagaexplorer.io/api'
     },
-    contracts: {
-      gasPriceOracle: {
-        address: '0x420000000000000000000000000000000000000F'
-      },
-      l1Block: {
-        address: '0x4200000000000000000000000000000000000015'
-      },
-      l2CrossDomainMessenger: {
-        address: '0x4200000000000000000000000000000000000007'
-      },
-      l2Erc721Bridge: {
-        address: '0x4200000000000000000000000000000000000014'
-      },
-      l2StandardBridge: {
-        address: '0x4200000000000000000000000000000000000010'
-      },
-      l2ToL1MessagePasser: {
-        address: '0x4200000000000000000000000000000000000016'
-      }
-    },
+    contracts: {},
     testnet: false
   },
   dchainTestnet: {
@@ -2645,26 +1993,7 @@ export const networks = {
       url: 'https://dchaintestnet-2713017997578000-1.testnet.sagaexplorer.io',
       apiUrl: 'https://api-dchaintestnet-2713017997578000-1.testnet.sagaexplorer.io/api'
     },
-    contracts: {
-      gasPriceOracle: {
-        address: '0x420000000000000000000000000000000000000F'
-      },
-      l1Block: {
-        address: '0x4200000000000000000000000000000000000015'
-      },
-      l2CrossDomainMessenger: {
-        address: '0x4200000000000000000000000000000000000007'
-      },
-      l2Erc721Bridge: {
-        address: '0x4200000000000000000000000000000000000014'
-      },
-      l2StandardBridge: {
-        address: '0x4200000000000000000000000000000000000010'
-      },
-      l2ToL1MessagePasser: {
-        address: '0x4200000000000000000000000000000000000016'
-      }
-    },
+    contracts: {},
     testnet: false
   },
   defichainEvm: {
@@ -2681,12 +2010,7 @@ export const networks = {
       name: 'DeFiScan',
       url: 'https://meta.defiscan.live'
     },
-    contracts: {
-      multicall3: {
-        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
-        blockCreated: 137852
-      }
-    },
+    contracts: {},
     testnet: false
   },
   defichainEvmTestnet: {
@@ -2703,12 +2027,7 @@ export const networks = {
       name: 'DeFiScan',
       url: 'https://meta.defiscan.live/?network=TestNet'
     },
-    contracts: {
-      multicall3: {
-        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
-        blockCreated: 156462
-      }
-    },
+    contracts: {},
     testnet: true
   },
   degen: {
@@ -2743,12 +2062,7 @@ export const networks = {
       name: 'DFKSubnetScan',
       url: 'https://subnets.avax.network/defi-kingdoms'
     },
-    contracts: {
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 14790551
-      }
-    },
+    contracts: {},
     testnet: false
   },
   diode: {
@@ -2817,12 +2131,7 @@ export const networks = {
       url: 'https://explorer.dogechain.dog',
       apiUrl: 'https://explorer.dogechain.dog/api'
     },
-    contracts: {
-      multicall3: {
-        address: '0x68a8609a60a008EFA633dfdec592c03B030cC508',
-        blockCreated: 25384031
-      }
-    },
+    contracts: {},
     testnet: false
   },
   donatuz: {
@@ -2839,12 +2148,7 @@ export const networks = {
       name: 'Donatuz Explorer',
       url: 'https://explorer.donatuz.com'
     },
-    contracts: {
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 0
-      }
-    },
+    contracts: {},
     testnet: false
   },
   dosChain: {
@@ -2862,12 +2166,7 @@ export const networks = {
       url: 'https://doscan.io',
       apiUrl: 'https://api.doscan.io'
     },
-    contracts: {
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 161908
-      }
-    },
+    contracts: {},
     testnet: false
   },
   dosChainTestnet: {
@@ -2885,12 +2184,7 @@ export const networks = {
       url: 'https://test.doscan.io',
       apiUrl: 'https://api-test.doscan.io'
     },
-    contracts: {
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 69623
-      }
-    },
+    contracts: {},
     testnet: true
   },
   dreyerxMainnet: {
@@ -2942,12 +2236,7 @@ export const networks = {
       url: 'https://dustboy.jibl2.com',
       apiUrl: 'https://dustboy.jibl2.com/api'
     },
-    contracts: {
-      multicall3: {
-        address: '0xFFD34aa2C62B2D52E00A361e466C229788f4eD6a',
-        blockCreated: 526569
-      }
-    },
+    contracts: {},
     testnet: false
   },
   dymension: {
@@ -3016,12 +2305,7 @@ export const networks = {
       url: 'https://edgscan.live',
       apiUrl: 'https://edgscan.live/api'
     },
-    contracts: {
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 18117872
-      }
-    },
+    contracts: {},
     testnet: false
   },
   edgewareTestnet: {
@@ -3074,12 +2358,7 @@ export const networks = {
       url: 'https://opencampus-codex.blockscout.com',
       apiUrl: 'https://opencampus-codex.blockscout.com/api'
     },
-    contracts: {
-      multicall3: {
-        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
-        blockCreated: 15514133
-      }
-    },
+    contracts: {},
     testnet: true
   },
   ekta: {
@@ -3200,26 +2479,7 @@ export const networks = {
       name: 'Elysium testnet explorer',
       url: 'https://elysium-explorer.vulcanforged.com'
     },
-    contracts: {
-      gasPriceOracle: {
-        address: '0x420000000000000000000000000000000000000F'
-      },
-      l1Block: {
-        address: '0x4200000000000000000000000000000000000015'
-      },
-      l2CrossDomainMessenger: {
-        address: '0x4200000000000000000000000000000000000007'
-      },
-      l2Erc721Bridge: {
-        address: '0x4200000000000000000000000000000000000014'
-      },
-      l2StandardBridge: {
-        address: '0x4200000000000000000000000000000000000010'
-      },
-      l2ToL1MessagePasser: {
-        address: '0x4200000000000000000000000000000000000016'
-      }
-    },
+    contracts: {},
     testnet: true
   },
   energy: {
@@ -3288,12 +2548,7 @@ export const networks = {
       url: 'https://explorer.evm.eosnetwork.com',
       apiUrl: 'https://explorer.evm.eosnetwork.com/api'
     },
-    contracts: {
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 7943933
-      }
-    },
+    contracts: {},
     testnet: false
   },
   eosTestnet: {
@@ -3311,12 +2566,7 @@ export const networks = {
       url: 'https://explorer.testnet.evm.eosnetwork.com',
       apiUrl: 'https://explorer.testnet.evm.eosnetwork.com/api'
     },
-    contracts: {
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 9067940
-      }
-    },
+    contracts: {},
     testnet: true
   },
   etherlink: {
@@ -3333,12 +2583,7 @@ export const networks = {
       name: 'Etherlink',
       url: 'https://explorer.etherlink.com'
     },
-    contracts: {
-      multicall3: {
-        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
-        blockCreated: 33899
-      }
-    },
+    contracts: {},
     testnet: false
   },
   etherlinkTestnet: {
@@ -3372,12 +2617,7 @@ export const networks = {
       name: 'Ethernity Explorer',
       url: 'https://ernscan.io'
     },
-    contracts: {
-      multicall3: {
-        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
-        blockCreated: 0
-      }
-    },
+    contracts: {},
     testnet: false
   },
   etp: {
@@ -3516,12 +2756,7 @@ export const networks = {
       url: 'https://ftmscan.com',
       apiUrl: 'https://api.ftmscan.com/api'
     },
-    contracts: {
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 33001987
-      }
-    },
+    contracts: {},
     testnet: false
   },
   fantomSonicTestnet: {
@@ -3556,12 +2791,7 @@ export const networks = {
       url: 'https://testnet.ftmscan.com',
       apiUrl: 'https://testnet.ftmscan.com/api'
     },
-    contracts: {
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 8328688
-      }
-    },
+    contracts: {},
     testnet: true
   },
   fibo: {
@@ -3595,12 +2825,7 @@ export const networks = {
       name: 'Filfox',
       url: 'https://filfox.info/en'
     },
-    contracts: {
-      multicall3: {
-        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
-        blockCreated: 3328594
-      }
-    },
+    contracts: {},
     testnet: false
   },
   filecoinCalibration: {
@@ -3669,12 +2894,7 @@ export const networks = {
       url: 'https://flare-explorer.flare.network',
       apiUrl: 'https://flare-explorer.flare.network/api'
     },
-    contracts: {
-      multicall3: {
-        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
-        blockCreated: 3002461
-      }
-    },
+    contracts: {},
     testnet: false
   },
   flareTestnet: {
@@ -3709,12 +2929,7 @@ export const networks = {
       name: 'Mainnet Explorer',
       url: 'https://evm.flowscan.io'
     },
-    contracts: {
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 6205
-      }
-    },
+    contracts: {},
     testnet: false
   },
   flowPreviewnet: {
@@ -3731,12 +2946,7 @@ export const networks = {
       name: 'Previewnet Explorer',
       url: 'https://previewnet.flowdiver.io'
     },
-    contracts: {
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 6205
-      }
-    },
+    contracts: {},
     testnet: false
   },
   flowTestnet: {
@@ -3753,12 +2963,7 @@ export const networks = {
       name: 'Flow Diver',
       url: 'https://evm-testnet.flowscan.io'
     },
-    contracts: {
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 137518
-      }
-    },
+    contracts: {},
     testnet: true
   },
   fluence: {
@@ -3776,12 +2981,7 @@ export const networks = {
       url: 'https://blockscout.mainnet.fluence.dev',
       apiUrl: 'https://blockscout.mainnet.fluence.dev/api'
     },
-    contracts: {
-      multicall3: {
-        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
-        blockCreated: 207583
-      }
-    },
+    contracts: {},
     testnet: false
   },
   fluenceStage: {
@@ -3799,12 +2999,7 @@ export const networks = {
       url: 'https://blockscout.stage.fluence.dev',
       apiUrl: 'https://blockscout.stage.fluence.dev/api'
     },
-    contracts: {
-      multicall3: {
-        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
-        blockCreated: 83227
-      }
-    },
+    contracts: {},
     testnet: true
   },
   fluenceTestnet: {
@@ -3822,12 +3017,7 @@ export const networks = {
       url: 'https://blockscout.testnet.fluence.dev',
       apiUrl: 'https://blockscout.testnet.fluence.dev/api'
     },
-    contracts: {
-      multicall3: {
-        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
-        blockCreated: 96424
-      }
-    },
+    contracts: {},
     testnet: true
   },
   fluentTestnet: {
@@ -3861,54 +3051,7 @@ export const networks = {
       name: 'Form Explorer',
       url: 'https://explorer.form.network'
     },
-    contracts: {
-      gasPriceOracle: {
-        address: '0x420000000000000000000000000000000000000F'
-      },
-      l1Block: {
-        address: '0x4200000000000000000000000000000000000015'
-      },
-      l2CrossDomainMessenger: {
-        address: '0x4200000000000000000000000000000000000007'
-      },
-      l2Erc721Bridge: {
-        address: '0x4200000000000000000000000000000000000014'
-      },
-      l2StandardBridge: {
-        address: '0x4200000000000000000000000000000000000010'
-      },
-      l2ToL1MessagePasser: {
-        address: '0x4200000000000000000000000000000000000016'
-      },
-      addressManager: {
-        '1': {
-          address: '0x15c249E46A2F924C2dB3A1560CF86729bAD1f07B'
-        }
-      },
-      l1CrossDomainMessenger: {
-        '1': {
-          address: '0xF333158DCCad1dF6C3F0a3aEe8BC31fA94d9eD5c'
-        }
-      },
-      l2OutputOracle: {
-        '1': {
-          address: '0x4ccAAF69F41c5810cA875183648B577CaCf1F67E'
-        }
-      },
-      portal: {
-        '1': {
-          address: '0x4E259Ee5F4136408908160dD32295A5031Fa426F'
-        }
-      },
-      l1StandardBridge: {
-        '1': {
-          address: '0xdc20aA63D3DE59574E065957190D8f24e0F7B8Ba'
-        }
-      },
-      multicall3: {
-        address: '0xcA11bde05977b3631167028862bE2a173976CA11'
-      }
-    },
+    contracts: {},
     testnet: false
   },
   formTestnet: {
@@ -3925,54 +3068,7 @@ export const networks = {
       name: 'Form Testnet Explorer',
       url: 'https://sepolia-explorer.form.network'
     },
-    contracts: {
-      gasPriceOracle: {
-        address: '0x420000000000000000000000000000000000000F'
-      },
-      l1Block: {
-        address: '0x4200000000000000000000000000000000000015'
-      },
-      l2CrossDomainMessenger: {
-        address: '0x4200000000000000000000000000000000000007'
-      },
-      l2Erc721Bridge: {
-        address: '0x4200000000000000000000000000000000000014'
-      },
-      l2StandardBridge: {
-        address: '0x4200000000000000000000000000000000000010'
-      },
-      l2ToL1MessagePasser: {
-        address: '0x4200000000000000000000000000000000000016'
-      },
-      addressManager: {
-        '11155111': {
-          address: '0xd5C38fa934f7fd7477D4800F4f38a1c5BFdF1373'
-        }
-      },
-      l1CrossDomainMessenger: {
-        '11155111': {
-          address: '0x37A68565c4BE9700b3E3Ec60cC4416cAC3052FAa'
-        }
-      },
-      l2OutputOracle: {
-        '11155111': {
-          address: '0x9eA2239E65a59EC9C7F1ED4C116dD58Da71Fc1e2'
-        }
-      },
-      portal: {
-        '11155111': {
-          address: '0x60377e3cE15dF4CCA24c4beF076b60314240b032'
-        }
-      },
-      l1StandardBridge: {
-        '11155111': {
-          address: '0xD4531f633942b2725896F47cD2aFd260b44Ab1F7'
-        }
-      },
-      multicall3: {
-        address: '0xcA11bde05977b3631167028862bE2a173976CA11'
-      }
-    },
+    contracts: {},
     testnet: true
   },
   forma: {
@@ -3989,12 +3085,7 @@ export const networks = {
       name: 'Forma Explorer',
       url: 'https://explorer.forma.art'
     },
-    contracts: {
-      multicall3: {
-        address: '0xd53C6FFB123F7349A32980F87faeD8FfDc9ef079',
-        blockCreated: 252705
-      }
-    },
+    contracts: {},
     testnet: false
   },
   forta: {
@@ -4043,46 +3134,7 @@ export const networks = {
       url: 'https://fraxscan.com',
       apiUrl: 'https://api.fraxscan.com/api'
     },
-    contracts: {
-      gasPriceOracle: {
-        address: '0x420000000000000000000000000000000000000F'
-      },
-      l1Block: {
-        address: '0x4200000000000000000000000000000000000015'
-      },
-      l2CrossDomainMessenger: {
-        address: '0x4200000000000000000000000000000000000007'
-      },
-      l2Erc721Bridge: {
-        address: '0x4200000000000000000000000000000000000014'
-      },
-      l2StandardBridge: {
-        address: '0x4200000000000000000000000000000000000010'
-      },
-      l2ToL1MessagePasser: {
-        address: '0x4200000000000000000000000000000000000016'
-      },
-      l2OutputOracle: {
-        '1': {
-          address: '0x66CC916Ed5C6C2FA97014f7D1cD141528Ae171e4'
-        }
-      },
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11'
-      },
-      portal: {
-        '1': {
-          address: '0x36cb65c1967A0Fb0EEE11569C51C2f2aA1Ca6f6D',
-          blockCreated: 19135323
-        }
-      },
-      l1StandardBridge: {
-        '1': {
-          address: '0x34C0bD5877A5Ee7099D0f5688D65F4bB9158BDE2',
-          blockCreated: 19135323
-        }
-      }
-    },
+    contracts: {},
     testnet: false
   },
   fraxtalTestnet: {
@@ -4100,46 +3152,7 @@ export const networks = {
       url: 'https://holesky.fraxscan.com',
       apiUrl: 'https://api-holesky.fraxscan.com/api'
     },
-    contracts: {
-      gasPriceOracle: {
-        address: '0x420000000000000000000000000000000000000F'
-      },
-      l1Block: {
-        address: '0x4200000000000000000000000000000000000015'
-      },
-      l2CrossDomainMessenger: {
-        address: '0x4200000000000000000000000000000000000007'
-      },
-      l2Erc721Bridge: {
-        address: '0x4200000000000000000000000000000000000014'
-      },
-      l2StandardBridge: {
-        address: '0x4200000000000000000000000000000000000010'
-      },
-      l2ToL1MessagePasser: {
-        address: '0x4200000000000000000000000000000000000016'
-      },
-      l2OutputOracle: {
-        '17000': {
-          address: '0x715EA64DA13F4d0831ece4Ad3E8c1aa013167F32'
-        }
-      },
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11'
-      },
-      portal: {
-        '17000': {
-          address: '0xB9c64BfA498d5b9a8398Ed6f46eb76d90dE5505d',
-          blockCreated: 318416
-        }
-      },
-      l1StandardBridge: {
-        '17000': {
-          address: '0x0BaafC217162f64930909aD9f2B27125121d6332',
-          blockCreated: 318416
-        }
-      }
-    },
+    contracts: {},
     testnet: false
   },
   funkiMainnet: {
@@ -4156,26 +3169,7 @@ export const networks = {
       name: 'Funki Mainnet Explorer',
       url: 'https://funkiscan.io'
     },
-    contracts: {
-      gasPriceOracle: {
-        address: '0x420000000000000000000000000000000000000F'
-      },
-      l1Block: {
-        address: '0x4200000000000000000000000000000000000015'
-      },
-      l2CrossDomainMessenger: {
-        address: '0x4200000000000000000000000000000000000007'
-      },
-      l2Erc721Bridge: {
-        address: '0x4200000000000000000000000000000000000014'
-      },
-      l2StandardBridge: {
-        address: '0x4200000000000000000000000000000000000010'
-      },
-      l2ToL1MessagePasser: {
-        address: '0x4200000000000000000000000000000000000016'
-      }
-    },
+    contracts: {},
     testnet: false
   },
   funkiSepolia: {
@@ -4192,30 +3186,7 @@ export const networks = {
       name: 'Funki Sepolia Sandbox Explorer',
       url: 'https://sepolia-sandbox.funkichain.com/'
     },
-    contracts: {
-      gasPriceOracle: {
-        address: '0x420000000000000000000000000000000000000F'
-      },
-      l1Block: {
-        address: '0x4200000000000000000000000000000000000015'
-      },
-      l2CrossDomainMessenger: {
-        address: '0x4200000000000000000000000000000000000007'
-      },
-      l2Erc721Bridge: {
-        address: '0x4200000000000000000000000000000000000014'
-      },
-      l2StandardBridge: {
-        address: '0x4200000000000000000000000000000000000010'
-      },
-      l2ToL1MessagePasser: {
-        address: '0x4200000000000000000000000000000000000016'
-      },
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 1620204
-      }
-    },
+    contracts: {},
     testnet: true
   },
   fuse: {
@@ -4233,12 +3204,7 @@ export const networks = {
       url: 'https://explorer.fuse.io',
       apiUrl: 'https://explorer.fuse.io/api'
     },
-    contracts: {
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 16146628
-      }
-    },
+    contracts: {},
     testnet: false
   },
   fuseSparknet: {
@@ -4273,12 +3239,7 @@ export const networks = {
       name: 'FSNscan',
       url: 'https://fsnscan.com'
     },
-    contracts: {
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 10441605
-      }
-    },
+    contracts: {},
     testnet: false
   },
   fusionTestnet: {
@@ -4295,12 +3256,7 @@ export const networks = {
       name: 'FSNscan',
       url: 'https://testnet.fsnscan.com'
     },
-    contracts: {
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 10428309
-      }
-    },
+    contracts: {},
     testnet: true
   },
   garnet: {
@@ -4317,47 +3273,7 @@ export const networks = {
       name: 'Blockscout',
       url: 'https://explorer.garnetchain.com'
     },
-    contracts: {
-      gasPriceOracle: {
-        address: '0x420000000000000000000000000000000000000F'
-      },
-      l1Block: {
-        address: '0x4200000000000000000000000000000000000015'
-      },
-      l2CrossDomainMessenger: {
-        address: '0x4200000000000000000000000000000000000007'
-      },
-      l2Erc721Bridge: {
-        address: '0x4200000000000000000000000000000000000014'
-      },
-      l2StandardBridge: {
-        address: '0x4200000000000000000000000000000000000010'
-      },
-      l2ToL1MessagePasser: {
-        address: '0x4200000000000000000000000000000000000016'
-      },
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11'
-      },
-      portal: {
-        '17000': {
-          address: '0x57ee40586fbE286AfC75E67cb69511A6D9aF5909',
-          blockCreated: 1274684
-        }
-      },
-      l2OutputOracle: {
-        '17000': {
-          address: '0xCb8E7AC561b8EF04F2a15865e9fbc0766FEF569B',
-          blockCreated: 1274684
-        }
-      },
-      l1StandardBridge: {
-        '17000': {
-          address: '0x09bcDd311FE398F80a78BE37E489f5D440DB95DE',
-          blockCreated: 1274684
-        }
-      }
-    },
+    contracts: {},
     testnet: true
   },
   geist: {
@@ -4374,12 +3290,7 @@ export const networks = {
       name: 'Blockscout',
       url: 'https://geist-mainnet.explorer.alchemy.com'
     },
-    contracts: {
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 660735
-      }
-    },
+    contracts: {},
     testnet: false
   },
   genesys: {
@@ -4448,12 +3359,7 @@ export const networks = {
       url: 'https://gnosisscan.io',
       apiUrl: 'https://api.gnosisscan.io/api'
     },
-    contracts: {
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 21022491
-      }
-    },
+    contracts: {},
     testnet: false
   },
   gnosisChiado: {
@@ -4471,12 +3377,7 @@ export const networks = {
       url: 'https://blockscout.chiadochain.net',
       apiUrl: 'https://blockscout.chiadochain.net/api'
     },
-    contracts: {
-      multicall3: {
-        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
-        blockCreated: 4967313
-      }
-    },
+    contracts: {},
     testnet: true
   },
   goChain: {
@@ -4510,12 +3411,7 @@ export const networks = {
       name: 'Goat Explorer',
       url: 'https://explorer.goat.network'
     },
-    contracts: {
-      multicall3: {
-        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
-        blockCreated: 0
-      }
-    },
+    contracts: {},
     testnet: false
   },
   gobi: {
@@ -4549,12 +3445,7 @@ export const networks = {
       name: 'GW Scan',
       url: 'https://v1.gwscan.com'
     },
-    contracts: {
-      multicall3: {
-        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
-        blockCreated: 15034
-      }
-    },
+    contracts: {},
     testnet: false
   },
   goerli: {
@@ -4572,19 +3463,7 @@ export const networks = {
       url: 'https://goerli.etherscan.io',
       apiUrl: 'https://api-goerli.etherscan.io/api'
     },
-    contracts: {
-      ensRegistry: {
-        address: '0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e'
-      },
-      ensUniversalResolver: {
-        address: '0xfc4AC75C46C914aF5892d6d3eFFcebD7917293F1',
-        blockCreated: 10339206
-      },
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 6507670
-      }
-    },
+    contracts: {},
     testnet: true
   },
   gravity: {
@@ -4602,12 +3481,7 @@ export const networks = {
       url: 'https://explorer.gravity.xyz',
       apiUrl: 'https://explorer.gravity.xyz/api'
     },
-    contracts: {
-      multicall3: {
-        address: '0xf8ac4BEB2F75d2cFFb588c63251347fdD629B92c',
-        blockCreated: 16851
-      }
-    },
+    contracts: {},
     testnet: false
   },
   guruNetwork: {
@@ -4624,12 +3498,7 @@ export const networks = {
       name: 'Guruscan',
       url: 'https://scan.gurunetwork.ai'
     },
-    contracts: {
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 271691
-      }
-    },
+    contracts: {},
     testnet: false
   },
   guruTestnet: {
@@ -4681,12 +3550,7 @@ export const networks = {
       name: 'Happy Chain Testnet Explorer',
       url: 'https://happy-testnet-sepolia.explorer.caldera.xyz/'
     },
-    contracts: {
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 1
-      }
-    },
+    contracts: {},
     testnet: true
   },
   haqqMainnet: {
@@ -4753,12 +3617,7 @@ export const networks = {
       name: 'Harmony Explorer',
       url: 'https://explorer.harmony.one'
     },
-    contracts: {
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 24185753
-      }
-    },
+    contracts: {},
     testnet: false
   },
   hashkey: {
@@ -4775,12 +3634,7 @@ export const networks = {
       name: 'HashKey Chain Explorer',
       url: 'https://hashkey.blockscout.com'
     },
-    contracts: {
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 0
-      }
-    },
+    contracts: {},
     testnet: false
   },
   hashkeyTestnet: {
@@ -4934,20 +3788,7 @@ export const networks = {
       url: 'https://holesky.etherscan.io',
       apiUrl: 'https://api-holesky.etherscan.io/api'
     },
-    contracts: {
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 77
-      },
-      ensRegistry: {
-        address: '0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e',
-        blockCreated: 801613
-      },
-      ensUniversalResolver: {
-        address: '0xa6AC935D4971E3CD133b950aE053bECD16fE7f3b',
-        blockCreated: 973484
-      }
-    },
+    contracts: {},
     testnet: true
   },
   hpb: {
@@ -5017,12 +3858,7 @@ export const networks = {
       name: 'Subscan',
       url: 'https://humanode.subscan.io'
     },
-    contracts: {
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 4413097
-      }
-    },
+    contracts: {},
     testnet: false
   },
   humanodeTestnet5: {
@@ -5036,11 +3872,7 @@ export const networks = {
     },
     providerURL: 'https://explorer-rpc-http.testnet5.stages.humanode.io',
     blockExplorer: {},
-    contracts: {
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11'
-      }
-    },
+    contracts: {},
     testnet: false
   },
   hychain: {
@@ -5126,12 +3958,7 @@ export const networks = {
       url: 'https://explorer.immutable.com',
       apiUrl: 'https://explorer.immutable.com/api'
     },
-    contracts: {
-      multicall3: {
-        address: '0x236bdA4589e44e6850f5aC6a74BfCa398a86c6c0',
-        blockCreated: 4335972
-      }
-    },
+    contracts: {},
     testnet: false
   },
   immutableZkEvmTestnet: {
@@ -5148,12 +3975,7 @@ export const networks = {
       name: 'Immutable Testnet Explorer',
       url: 'https://explorer.testnet.immutable.com/'
     },
-    contracts: {
-      multicall3: {
-        address: '0x2CC787Ed364600B0222361C4188308Fa8E68bA60',
-        blockCreated: 5977391
-      }
-    },
+    contracts: {},
     testnet: true
   },
   inEVM: {
@@ -5171,12 +3993,7 @@ export const networks = {
       url: 'https://inevm.calderaexplorer.xyz',
       apiUrl: 'https://inevm.calderaexplorer.xyz/api/v2'
     },
-    contracts: {
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 118606
-      }
-    },
+    contracts: {},
     testnet: false
   },
   initVerse: {
@@ -5194,12 +4011,7 @@ export const networks = {
       url: 'https://www.iniscan.com',
       apiUrl: 'https://explorer-api.inichain.com/api'
     },
-    contracts: {
-      multicall3: {
-        address: '0x83466BE48A067115FFF91f7b892Ed1726d032e47',
-        blockCreated: 2318
-      }
-    },
+    contracts: {},
     testnet: false
   },
   initVerseGenesis: {
@@ -5217,12 +4029,7 @@ export const networks = {
       url: 'https://genesis-testnet.iniscan.com',
       apiUrl: 'https://explorer-testnet-api.inichain.com/api'
     },
-    contracts: {
-      multicall3: {
-        address: '0x0cF32CBDd6c437331EA4f85ed2d881A5379B5a6F',
-        blockCreated: 16361
-      }
-    },
+    contracts: {},
     testnet: true
   },
   ink: {
@@ -5240,41 +4047,7 @@ export const networks = {
       url: 'https://explorer.inkonchain.com',
       apiUrl: 'https://explorer.inkonchain.com/api/v2'
     },
-    contracts: {
-      gasPriceOracle: {
-        address: '0x420000000000000000000000000000000000000F'
-      },
-      l1Block: {
-        address: '0x4200000000000000000000000000000000000015'
-      },
-      l2CrossDomainMessenger: {
-        address: '0x4200000000000000000000000000000000000007'
-      },
-      l2Erc721Bridge: {
-        address: '0x4200000000000000000000000000000000000014'
-      },
-      l2StandardBridge: {
-        address: '0x4200000000000000000000000000000000000010'
-      },
-      l2ToL1MessagePasser: {
-        address: '0x4200000000000000000000000000000000000016'
-      },
-      disputeGameFactory: {
-        '1': {
-          address: '0x10d7b35078d3baabb96dd45a9143b94be65b12cd'
-        }
-      },
-      portal: {
-        '1': {
-          address: '0x5d66c1782664115999c47c9fa5cd031f495d3e4f'
-        }
-      },
-      l1StandardBridge: {
-        '1': {
-          address: '0x88ff1e5b602916615391f55854588efcbb7663f0'
-        }
-      }
-    },
+    contracts: {},
     testnet: false
   },
   inkSepolia: {
@@ -5292,41 +4065,7 @@ export const networks = {
       url: 'https://explorer-sepolia.inkonchain.com/',
       apiUrl: 'https://explorer-sepolia.inkonchain.com/api/v2'
     },
-    contracts: {
-      gasPriceOracle: {
-        address: '0x420000000000000000000000000000000000000F'
-      },
-      l1Block: {
-        address: '0x4200000000000000000000000000000000000015'
-      },
-      l2CrossDomainMessenger: {
-        address: '0x4200000000000000000000000000000000000007'
-      },
-      l2Erc721Bridge: {
-        address: '0x4200000000000000000000000000000000000014'
-      },
-      l2StandardBridge: {
-        address: '0x4200000000000000000000000000000000000010'
-      },
-      l2ToL1MessagePasser: {
-        address: '0x4200000000000000000000000000000000000016'
-      },
-      disputeGameFactory: {
-        '11155111': {
-          address: '0x860e626c700af381133d9f4af31412a2d1db3d5d'
-        }
-      },
-      portal: {
-        '11155111': {
-          address: '0x5c1d29c6c9c8b0800692acc95d700bcb4966a1d7'
-        }
-      },
-      l1StandardBridge: {
-        '11155111': {
-          address: '0x33f60714bbd74d62b66d79213c348614de51901c'
-        }
-      }
-    },
+    contracts: {},
     testnet: true
   },
   iota: {
@@ -5344,12 +4083,7 @@ export const networks = {
       url: 'https://explorer.evm.iota.org',
       apiUrl: 'https://explorer.evm.iota.org/api'
     },
-    contracts: {
-      multicall3: {
-        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
-        blockCreated: 25022
-      }
-    },
+    contracts: {},
     testnet: false
   },
   iotaTestnet: {
@@ -5384,12 +4118,7 @@ export const networks = {
       name: 'IoTeXScan',
       url: 'https://iotexscan.io'
     },
-    contracts: {
-      multicall3: {
-        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
-        blockCreated: 22163670
-      }
-    },
+    contracts: {},
     testnet: false
   },
   iotexTestnet: {
@@ -5406,12 +4135,7 @@ export const networks = {
       name: 'IoTeXScan',
       url: 'https://testnet.iotexscan.io'
     },
-    contracts: {
-      multicall3: {
-        address: '0xb5cecD6894c6f473Ec726A176f1512399A2e355d',
-        blockCreated: 24347592
-      }
-    },
+    contracts: {},
     testnet: true
   },
   jbc: {
@@ -5429,12 +4153,7 @@ export const networks = {
       url: 'https://exp-l1.jibchain.net',
       apiUrl: 'https://exp-l1.jibchain.net/api'
     },
-    contracts: {
-      multicall3: {
-        address: '0xc0C8C486D1466C57Efe13C2bf000d4c56F47CBdC',
-        blockCreated: 2299048
-      }
-    },
+    contracts: {},
     testnet: false
   },
   jbcTestnet: {
@@ -5452,12 +4171,7 @@ export const networks = {
       url: 'https://exp.testnet.jibchain.net',
       apiUrl: 'https://exp.testnet.jibchain.net/api'
     },
-    contracts: {
-      multicall3: {
-        address: '0xa1a858ad9041B4741e620355a3F96B3c78e70ecE',
-        blockCreated: 32848
-      }
-    },
+    contracts: {},
     testnet: true
   },
   juneo: {
@@ -5493,12 +4207,7 @@ export const networks = {
       url: 'https://kaiascan.io',
       apiUrl: 'https://api-cypress.klaytnscope.com/api'
     },
-    contracts: {
-      multicall3: {
-        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
-        blockCreated: 96002415
-      }
-    },
+    contracts: {},
     testnet: false
   },
   kairos: {
@@ -5515,12 +4224,7 @@ export const networks = {
       name: 'KaiaScan',
       url: 'https://kairos.kaiascan.io'
     },
-    contracts: {
-      multicall3: {
-        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
-        blockCreated: 123390593
-      }
-    },
+    contracts: {},
     testnet: true
   },
   kakarotSepolia: {
@@ -5607,12 +4311,7 @@ export const networks = {
       url: 'https://kavascan.com',
       apiUrl: 'https://kavascan.com/api'
     },
-    contracts: {
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 3661165
-      }
-    },
+    contracts: {},
     testnet: false
   },
   kavaTestnet: {
@@ -5630,12 +4329,7 @@ export const networks = {
       url: 'https://testnet.kavascan.com/',
       apiUrl: 'https://testnet.kavascan.com/api'
     },
-    contracts: {
-      multicall3: {
-        address: '0xDf1D724A7166261eEB015418fe8c7679BBEa7fd6',
-        blockCreated: 7242179
-      }
-    },
+    contracts: {},
     testnet: true
   },
   kcc: {
@@ -5652,12 +4346,7 @@ export const networks = {
       name: 'KCC Explorer',
       url: 'https://explorer.kcc.io'
     },
-    contracts: {
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 11760430
-      }
-    },
+    contracts: {},
     testnet: false
   },
   kinto: {
@@ -5691,12 +4380,7 @@ export const networks = {
       name: 'KlaytnScope',
       url: 'https://scope.klaytn.com'
     },
-    contracts: {
-      multicall3: {
-        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
-        blockCreated: 96002415
-      }
-    },
+    contracts: {},
     testnet: false
   },
   klaytnBaobab: {
@@ -5713,12 +4397,7 @@ export const networks = {
       name: 'KlaytnScope',
       url: 'https://baobab.klaytnscope.com'
     },
-    contracts: {
-      multicall3: {
-        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
-        blockCreated: 123390593
-      }
-    },
+    contracts: {},
     testnet: true
   },
   koi: {
@@ -5735,12 +4414,7 @@ export const networks = {
       name: 'Blockscout',
       url: 'https://koi-scan.darwinia.network'
     },
-    contracts: {
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 180001
-      }
-    },
+    contracts: {},
     testnet: true
   },
   kroma: {
@@ -5758,12 +4432,7 @@ export const networks = {
       url: 'https://blockscout.kroma.network',
       apiUrl: 'https://blockscout.kroma.network/api'
     },
-    contracts: {
-      multicall3: {
-        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
-        blockCreated: 16054868
-      }
-    },
+    contracts: {},
     testnet: false
   },
   kromaSepolia: {
@@ -5781,12 +4450,7 @@ export const networks = {
       url: 'https://blockscout.sepolia.kroma.network',
       apiUrl: 'https://blockscout.sepolia.kroma.network/api'
     },
-    contracts: {
-      multicall3: {
-        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
-        blockCreated: 8900914
-      }
-    },
+    contracts: {},
     testnet: true
   },
   l3x: {
@@ -5874,12 +4538,7 @@ export const networks = {
       name: 'LightLink Pegasus Explorer',
       url: 'https://pegasus.lightlink.io'
     },
-    contracts: {
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 127188532
-      }
-    },
+    contracts: {},
     testnet: true
   },
   lightlinkPhoenix: {
@@ -5896,12 +4555,7 @@ export const networks = {
       name: 'LightLink Phoenix Explorer',
       url: 'https://phoenix.lightlink.io'
     },
-    contracts: {
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 125499184
-      }
-    },
+    contracts: {},
     testnet: false
   },
   linea: {
@@ -5919,12 +4573,7 @@ export const networks = {
       url: 'https://lineascan.build',
       apiUrl: 'https://api.lineascan.build/api'
     },
-    contracts: {
-      multicall3: {
-        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
-        blockCreated: 42
-      }
-    },
+    contracts: {},
     testnet: false
   },
   lineaGoerli: {
@@ -5942,12 +4591,7 @@ export const networks = {
       url: 'https://goerli.lineascan.build',
       apiUrl: 'https://api-goerli.lineascan.build/api'
     },
-    contracts: {
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 498623
-      }
-    },
+    contracts: {},
     testnet: true
   },
   lineaSepolia: {
@@ -5965,12 +4609,7 @@ export const networks = {
       url: 'https://sepolia.lineascan.build',
       apiUrl: 'https://api-sepolia.lineascan.build/api'
     },
-    contracts: {
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 227427
-      }
-    },
+    contracts: {},
     testnet: true
   },
   lineaTestnet: {
@@ -5988,12 +4627,7 @@ export const networks = {
       url: 'https://goerli.lineascan.build',
       apiUrl: 'https://goerli.lineascan.build/api'
     },
-    contracts: {
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 498623
-      }
-    },
+    contracts: {},
     testnet: true
   },
   lisk: {
@@ -6011,44 +4645,7 @@ export const networks = {
       url: 'https://blockscout.lisk.com',
       apiUrl: 'https://blockscout.lisk.com/api'
     },
-    contracts: {
-      gasPriceOracle: {
-        address: '0x420000000000000000000000000000000000000F'
-      },
-      l1Block: {
-        address: '0x4200000000000000000000000000000000000015'
-      },
-      l2CrossDomainMessenger: {
-        address: '0x4200000000000000000000000000000000000007'
-      },
-      l2Erc721Bridge: {
-        address: '0x4200000000000000000000000000000000000014'
-      },
-      l2StandardBridge: {
-        address: '0x4200000000000000000000000000000000000010'
-      },
-      l2ToL1MessagePasser: {
-        address: '0x4200000000000000000000000000000000000016'
-      },
-      multicall3: {
-        address: '0xA9d71E1dd7ca26F26e656E66d6AA81ed7f745bf0'
-      },
-      l2OutputOracle: {
-        '1': {
-          address: '0x113cB99283AF242Da0A0C54347667edF531Aa7d6'
-        }
-      },
-      portal: {
-        '1': {
-          address: '0x26dB93F8b8b4f7016240af62F7730979d353f9A7'
-        }
-      },
-      l1StandardBridge: {
-        '1': {
-          address: '0x2658723Bf70c7667De6B25F99fcce13A16D25d08'
-        }
-      }
-    },
+    contracts: {},
     testnet: false
   },
   liskSepolia: {
@@ -6066,44 +4663,7 @@ export const networks = {
       url: 'https://sepolia-blockscout.lisk.com',
       apiUrl: 'https://sepolia-blockscout.lisk.com/api'
     },
-    contracts: {
-      gasPriceOracle: {
-        address: '0x420000000000000000000000000000000000000F'
-      },
-      l1Block: {
-        address: '0x4200000000000000000000000000000000000015'
-      },
-      l2CrossDomainMessenger: {
-        address: '0x4200000000000000000000000000000000000007'
-      },
-      l2Erc721Bridge: {
-        address: '0x4200000000000000000000000000000000000014'
-      },
-      l2StandardBridge: {
-        address: '0x4200000000000000000000000000000000000010'
-      },
-      l2ToL1MessagePasser: {
-        address: '0x4200000000000000000000000000000000000016'
-      },
-      l2OutputOracle: {
-        '11155111': {
-          address: '0xA0E35F56C318DE1bD5D9ca6A94Fe7e37C5663348'
-        }
-      },
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11'
-      },
-      portal: {
-        '11155111': {
-          address: '0xe3d90F21490686Ec7eF37BE788E02dfC12787264'
-        }
-      },
-      l1StandardBridge: {
-        '11155111': {
-          address: '0x1Fb30e446eA791cd1f011675E5F3f5311b70faF5'
-        }
-      }
-    },
+    contracts: {},
     testnet: true
   },
   localhost: {
@@ -6152,12 +4712,7 @@ export const networks = {
       url: 'https://explorer.execution.mainnet.lukso.network',
       apiUrl: 'https://api.explorer.execution.mainnet.lukso.network/api'
     },
-    contracts: {
-      multicall3: {
-        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
-        blockCreated: 468183
-      }
-    },
+    contracts: {},
     testnet: false
   },
   luksoTestnet: {
@@ -6175,12 +4730,7 @@ export const networks = {
       url: 'https://explorer.execution.testnet.lukso.network',
       apiUrl: 'https://api.explorer.execution.testnet.lukso.network/api'
     },
-    contracts: {
-      multicall3: {
-        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
-        blockCreated: 605348
-      }
-    },
+    contracts: {},
     testnet: true
   },
   lumiaMainnet: {
@@ -6197,12 +4747,7 @@ export const networks = {
       name: 'Lumia Explorer',
       url: 'https://explorer.lumia.org/'
     },
-    contracts: {
-      multicall3: {
-        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
-        blockCreated: 3975939
-      }
-    },
+    contracts: {},
     testnet: false
   },
   lumiaTestnet: {
@@ -6219,12 +4764,7 @@ export const networks = {
       name: 'Lumia Testnet Explorer',
       url: 'https://testnet-explorer.lumia.org/'
     },
-    contracts: {
-      multicall3: {
-        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
-        blockCreated: 2235063
-      }
-    },
+    contracts: {},
     testnet: true
   },
   lumoz: {
@@ -6290,12 +4830,7 @@ export const networks = {
       url: 'https://explorer.lyra.finance',
       apiUrl: 'https://explorer.lyra.finance/api/v2'
     },
-    contracts: {
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 1935198
-      }
-    },
+    contracts: {},
     testnet: false
   },
   mainnet: {
@@ -6313,19 +4848,7 @@ export const networks = {
       url: 'https://etherscan.io',
       apiUrl: 'https://api.etherscan.io/api'
     },
-    contracts: {
-      ensRegistry: {
-        address: '0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e'
-      },
-      ensUniversalResolver: {
-        address: '0xce01f8eee7E479C928F8919abD53E553a36CeF67',
-        blockCreated: 19258213
-      },
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 14353601
-      }
-    },
+    contracts: {},
     testnet: false
   },
   mandala: {
@@ -6361,12 +4884,7 @@ export const networks = {
       url: 'https://pacific-explorer.manta.network',
       apiUrl: 'https://pacific-explorer.manta.network/api'
     },
-    contracts: {
-      multicall3: {
-        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
-        blockCreated: 332890
-      }
-    },
+    contracts: {},
     testnet: false
   },
   mantaSepoliaTestnet: {
@@ -6384,12 +4902,7 @@ export const networks = {
       url: 'https://pacific-explorer.sepolia-testnet.manta.network',
       apiUrl: 'https://pacific-explorer.sepolia-testnet.manta.network/api'
     },
-    contracts: {
-      multicall3: {
-        address: '0xca54918f7B525C8df894668846506767412b53E3',
-        blockCreated: 479584
-      }
-    },
+    contracts: {},
     testnet: true
   },
   mantaTestnet: {
@@ -6407,12 +4920,7 @@ export const networks = {
       url: 'https://pacific-explorer.testnet.manta.network',
       apiUrl: 'https://pacific-explorer.testnet.manta.network/api'
     },
-    contracts: {
-      multicall3: {
-        address: '0x211B1643b95Fe76f11eD8880EE810ABD9A4cf56C',
-        blockCreated: 419915
-      }
-    },
+    contracts: {},
     testnet: true
   },
   mantle: {
@@ -6430,12 +4938,7 @@ export const networks = {
       url: 'https://mantlescan.xyz/',
       apiUrl: 'https://api.mantlescan.xyz/api'
     },
-    contracts: {
-      multicall3: {
-        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
-        blockCreated: 304717
-      }
-    },
+    contracts: {},
     testnet: false
   },
   mantleSepoliaTestnet: {
@@ -6453,12 +4956,7 @@ export const networks = {
       url: 'https://explorer.sepolia.mantle.xyz/',
       apiUrl: 'https://explorer.sepolia.mantle.xyz/api'
     },
-    contracts: {
-      multicall3: {
-        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
-        blockCreated: 4584012
-      }
-    },
+    contracts: {},
     testnet: true
   },
   mantleTestnet: {
@@ -6476,12 +4974,7 @@ export const networks = {
       url: 'https://explorer.testnet.mantle.xyz',
       apiUrl: 'https://explorer.testnet.mantle.xyz/api'
     },
-    contracts: {
-      multicall3: {
-        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
-        blockCreated: 561333
-      }
-    },
+    contracts: {},
     testnet: true
   },
   mapProtocol: {
@@ -6584,12 +5077,7 @@ export const networks = {
       name: 'MELDscan',
       url: 'https://meldscan.io'
     },
-    contracts: {
-      multicall3: {
-        address: '0x769ee5a8e82c15c1b6e358f62ac8eb6e3abe8dc5',
-        blockCreated: 360069
-      }
-    },
+    contracts: {},
     testnet: false
   },
   merlin: {
@@ -6624,12 +5112,7 @@ export const networks = {
       name: 'MetaExplorer',
       url: 'https://explorer.metatime.com'
     },
-    contracts: {
-      multicall3: {
-        address: '0x0000000000000000000000000000000000003001',
-        blockCreated: 0
-      }
-    },
+    contracts: {},
     testnet: false
   },
   metachainIstanbul: {
@@ -6646,12 +5129,7 @@ export const networks = {
       name: 'MetaExplorer',
       url: 'https://istanbul-explorer.metachain.dev'
     },
-    contracts: {
-      multicall3: {
-        address: '0x0000000000000000000000000000000000003001',
-        blockCreated: 0
-      }
-    },
+    contracts: {},
     testnet: true
   },
   metadium: {
@@ -6686,45 +5164,7 @@ export const networks = {
       url: 'https://explorer.metall2.com',
       apiUrl: 'https://explorer.metall2.com/api'
     },
-    contracts: {
-      gasPriceOracle: {
-        address: '0x420000000000000000000000000000000000000F'
-      },
-      l1Block: {
-        address: '0x4200000000000000000000000000000000000015'
-      },
-      l2CrossDomainMessenger: {
-        address: '0x4200000000000000000000000000000000000007'
-      },
-      l2Erc721Bridge: {
-        address: '0x4200000000000000000000000000000000000014'
-      },
-      l2StandardBridge: {
-        address: '0x4200000000000000000000000000000000000010'
-      },
-      l2ToL1MessagePasser: {
-        address: '0x4200000000000000000000000000000000000016'
-      },
-      l2OutputOracle: {
-        '1': {
-          address: '0x3B1F7aDa0Fcc26B13515af752Dd07fB1CAc11426'
-        }
-      },
-      multicall3: {
-        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
-        blockCreated: 0
-      },
-      portal: {
-        '1': {
-          address: '0x3F37aBdE2C6b5B2ed6F8045787Df1ED1E3753956'
-        }
-      },
-      l1StandardBridge: {
-        '1': {
-          address: '0x6d0f65D59b55B0FEC5d2d15365154DcADC140BF3'
-        }
-      }
-    },
+    contracts: {},
     testnet: false
   },
   meter: {
@@ -6776,12 +5216,7 @@ export const networks = {
       url: 'https://explorer.metis.io',
       apiUrl: 'https://api.routescan.io/v2/network/mainnet/evm/1088/etherscan/api'
     },
-    contracts: {
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 2338552
-      }
-    },
+    contracts: {},
     testnet: false
   },
   metisGoerli: {
@@ -6799,12 +5234,7 @@ export const networks = {
       url: 'https://goerli.explorer.metisdevops.link',
       apiUrl: 'https://goerli.explorer.metisdevops.link/api'
     },
-    contracts: {
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 1006207
-      }
-    },
+    contracts: {},
     testnet: false
   },
   metisSepolia: {
@@ -6822,12 +5252,7 @@ export const networks = {
       url: 'https://sepolia-explorer.metisdevops.link',
       apiUrl: 'https://sepolia-explorer.metisdevops.link/api-docs'
     },
-    contracts: {
-      multicall3: {
-        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
-        blockCreated: 224185
-      }
-    },
+    contracts: {},
     testnet: false
   },
   mev: {
@@ -6844,12 +5269,7 @@ export const networks = {
       name: 'Explorer',
       url: 'https://www.meversescan.io'
     },
-    contracts: {
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 86881340
-      }
-    },
+    contracts: {},
     testnet: false
   },
   mevTestnet: {
@@ -6866,12 +5286,7 @@ export const networks = {
       name: 'Explorer',
       url: 'https://testnet.meversescan.io/'
     },
-    contracts: {
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 64371115
-      }
-    },
+    contracts: {},
     testnet: true
   },
   mint: {
@@ -6939,45 +5354,7 @@ export const networks = {
       name: 'Modescan',
       url: 'https://modescan.io'
     },
-    contracts: {
-      gasPriceOracle: {
-        address: '0x420000000000000000000000000000000000000F'
-      },
-      l1Block: {
-        address: '0x4200000000000000000000000000000000000015'
-      },
-      l2CrossDomainMessenger: {
-        address: '0x4200000000000000000000000000000000000007'
-      },
-      l2Erc721Bridge: {
-        address: '0x4200000000000000000000000000000000000014'
-      },
-      l2StandardBridge: {
-        address: '0x4200000000000000000000000000000000000010'
-      },
-      l2ToL1MessagePasser: {
-        address: '0x4200000000000000000000000000000000000016'
-      },
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 2465882
-      },
-      l2OutputOracle: {
-        '1': {
-          address: '0x4317ba146D4933D889518a3e5E11Fe7a53199b04'
-        }
-      },
-      portal: {
-        '1': {
-          address: '0x8B34b14c7c7123459Cf3076b8Cb929BE097d0C07'
-        }
-      },
-      l1StandardBridge: {
-        '1': {
-          address: '0x735aDBbE72226BD52e818E7181953f42E3b0FF21'
-        }
-      }
-    },
+    contracts: {},
     testnet: false
   },
   modeTestnet: {
@@ -6995,48 +5372,7 @@ export const networks = {
       url: 'https://sepolia.explorer.mode.network',
       apiUrl: 'https://sepolia.explorer.mode.network/api'
     },
-    contracts: {
-      gasPriceOracle: {
-        address: '0x420000000000000000000000000000000000000F'
-      },
-      l1Block: {
-        address: '0x4200000000000000000000000000000000000015'
-      },
-      l2CrossDomainMessenger: {
-        address: '0x4200000000000000000000000000000000000007'
-      },
-      l2Erc721Bridge: {
-        address: '0x4200000000000000000000000000000000000014'
-      },
-      l2StandardBridge: {
-        address: '0x4200000000000000000000000000000000000010'
-      },
-      l2ToL1MessagePasser: {
-        address: '0x4200000000000000000000000000000000000016'
-      },
-      l2OutputOracle: {
-        '11155111': {
-          address: '0x2634BD65ba27AB63811c74A63118ACb312701Bfa',
-          blockCreated: 3778393
-        }
-      },
-      portal: {
-        '11155111': {
-          address: '0x320e1580effF37E008F1C92700d1eBa47c1B23fD',
-          blockCreated: 3778395
-        }
-      },
-      l1StandardBridge: {
-        '11155111': {
-          address: '0xbC5C679879B2965296756CD959C3C739769995E2',
-          blockCreated: 3778392
-        }
-      },
-      multicall3: {
-        address: '0xBAba8373113Fb7a68f195deF18732e01aF8eDfCF',
-        blockCreated: 3019007
-      }
-    },
+    contracts: {},
     testnet: true
   },
   monadTestnet: {
@@ -7053,12 +5389,7 @@ export const networks = {
       name: 'Monad Testnet explorer',
       url: 'https://testnet.monadexplorer.com'
     },
-    contracts: {
-      multicall3: {
-        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
-        blockCreated: 251449
-      }
-    },
+    contracts: {},
     testnet: true
   },
   moonbaseAlpha: {
@@ -7076,12 +5407,7 @@ export const networks = {
       url: 'https://moonbase.moonscan.io',
       apiUrl: 'https://moonbase.moonscan.io/api'
     },
-    contracts: {
-      multicall3: {
-        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
-        blockCreated: 1850686
-      }
-    },
+    contracts: {},
     testnet: true
   },
   moonbeam: {
@@ -7099,12 +5425,7 @@ export const networks = {
       url: 'https://moonscan.io',
       apiUrl: 'https://api-moonbeam.moonscan.io/api'
     },
-    contracts: {
-      multicall3: {
-        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
-        blockCreated: 609002
-      }
-    },
+    contracts: {},
     testnet: false
   },
   moonbeamDev: {
@@ -7136,12 +5457,7 @@ export const networks = {
       url: 'https://moonriver.moonscan.io',
       apiUrl: 'https://api-moonriver.moonscan.io/api'
     },
-    contracts: {
-      multicall3: {
-        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
-        blockCreated: 1597904
-      }
-    },
+    contracts: {},
     testnet: false
   },
   morph: {
@@ -7279,12 +5595,7 @@ export const networks = {
       name: 'Neonscan',
       url: 'https://devnet.neonscan.org'
     },
-    contracts: {
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 205206112
-      }
-    },
+    contracts: {},
     testnet: true
   },
   neonMainnet: {
@@ -7301,12 +5612,7 @@ export const networks = {
       name: 'Neonscan',
       url: 'https://neonscan.org'
     },
-    contracts: {
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 206545524
-      }
-    },
+    contracts: {},
     testnet: false
   },
   neoxMainnet: {
@@ -7375,12 +5681,7 @@ export const networks = {
       url: 'https://www.nexiscan.com',
       apiUrl: 'https://www.nexiscan.com/api'
     },
-    contracts: {
-      multicall3: {
-        address: '0x0277A46Cc69A57eE3A6C8c158bA874832F718B8E',
-        blockCreated: 25770160
-      }
-    },
+    contracts: {},
     testnet: false
   },
   nexilix: {
@@ -7397,12 +5698,7 @@ export const networks = {
       name: 'NexilixScan',
       url: 'https://scan.nexilix.com'
     },
-    contracts: {
-      multicall3: {
-        address: '0x58381c8e2BF9d0C2C4259cA14BdA9Afe02831244',
-        blockCreated: 74448
-      }
-    },
+    contracts: {},
     testnet: false
   },
   oasisTestnet: {
@@ -7473,12 +5769,7 @@ export const networks = {
       name: 'oklink',
       url: 'https://www.oklink.com/okc'
     },
-    contracts: {
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 10364792
-      }
-    },
+    contracts: {},
     testnet: false
   },
   omax: {
@@ -7547,45 +5838,7 @@ export const networks = {
       url: 'https://opbnb.bscscan.com',
       apiUrl: 'https://api-opbnb.bscscan.com/api'
     },
-    contracts: {
-      gasPriceOracle: {
-        address: '0x420000000000000000000000000000000000000F'
-      },
-      l1Block: {
-        address: '0x4200000000000000000000000000000000000015'
-      },
-      l2CrossDomainMessenger: {
-        address: '0x4200000000000000000000000000000000000007'
-      },
-      l2Erc721Bridge: {
-        address: '0x4200000000000000000000000000000000000014'
-      },
-      l2StandardBridge: {
-        address: '0x4200000000000000000000000000000000000010'
-      },
-      l2ToL1MessagePasser: {
-        address: '0x4200000000000000000000000000000000000016'
-      },
-      multicall3: {
-        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
-        blockCreated: 512881
-      },
-      l2OutputOracle: {
-        '56': {
-          address: '0x153CAB79f4767E2ff862C94aa49573294B13D169'
-        }
-      },
-      portal: {
-        '56': {
-          address: '0x1876EA7702C0ad0C6A2ae6036DE7733edfBca519'
-        }
-      },
-      l1StandardBridge: {
-        '56': {
-          address: '0xF05F0e4362859c3331Cb9395CBC201E3Fa6757Ea'
-        }
-      }
-    },
+    contracts: {},
     testnet: false
   },
   opBNBTestnet: {
@@ -7602,45 +5855,7 @@ export const networks = {
       name: 'opbnbscan',
       url: 'https://testnet.opbnbscan.com'
     },
-    contracts: {
-      gasPriceOracle: {
-        address: '0x420000000000000000000000000000000000000F'
-      },
-      l1Block: {
-        address: '0x4200000000000000000000000000000000000015'
-      },
-      l2CrossDomainMessenger: {
-        address: '0x4200000000000000000000000000000000000007'
-      },
-      l2Erc721Bridge: {
-        address: '0x4200000000000000000000000000000000000014'
-      },
-      l2StandardBridge: {
-        address: '0x4200000000000000000000000000000000000010'
-      },
-      l2ToL1MessagePasser: {
-        address: '0x4200000000000000000000000000000000000016'
-      },
-      multicall3: {
-        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
-        blockCreated: 3705108
-      },
-      l2OutputOracle: {
-        '97': {
-          address: '0xFf2394Bb843012562f4349C6632a0EcB92fC8810'
-        }
-      },
-      portal: {
-        '97': {
-          address: '0x4386C8ABf2009aC0c263462Da568DD9d46e52a31'
-        }
-      },
-      l1StandardBridge: {
-        '97': {
-          address: '0x677311Fd2cCc511Bbc0f581E8d9a07B033D5E840'
-        }
-      }
-    },
+    contracts: {},
     testnet: true
   },
   optimism: {
@@ -7658,50 +5873,7 @@ export const networks = {
       url: 'https://optimistic.etherscan.io',
       apiUrl: 'https://api-optimistic.etherscan.io/api'
     },
-    contracts: {
-      gasPriceOracle: {
-        address: '0x420000000000000000000000000000000000000F'
-      },
-      l1Block: {
-        address: '0x4200000000000000000000000000000000000015'
-      },
-      l2CrossDomainMessenger: {
-        address: '0x4200000000000000000000000000000000000007'
-      },
-      l2Erc721Bridge: {
-        address: '0x4200000000000000000000000000000000000014'
-      },
-      l2StandardBridge: {
-        address: '0x4200000000000000000000000000000000000010'
-      },
-      l2ToL1MessagePasser: {
-        address: '0x4200000000000000000000000000000000000016'
-      },
-      disputeGameFactory: {
-        '1': {
-          address: '0xe5965Ab5962eDc7477C8520243A95517CD252fA9'
-        }
-      },
-      l2OutputOracle: {
-        '1': {
-          address: '0xdfe97868233d1aa22e815a266982f2cf17685a27'
-        }
-      },
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 4286263
-      },
-      portal: {
-        '1': {
-          address: '0xbEb5Fc579115071764c7423A4f12eDde41f106Ed'
-        }
-      },
-      l1StandardBridge: {
-        '1': {
-          address: '0x99C9fc46f92E8a1c0deC1b1747d010903E884bE1'
-        }
-      }
-    },
+    contracts: {},
     testnet: false
   },
   optimismGoerli: {
@@ -7719,45 +5891,7 @@ export const networks = {
       url: 'https://goerli-optimism.etherscan.io',
       apiUrl: 'https://goerli-optimism.etherscan.io/api'
     },
-    contracts: {
-      gasPriceOracle: {
-        address: '0x420000000000000000000000000000000000000F'
-      },
-      l1Block: {
-        address: '0x4200000000000000000000000000000000000015'
-      },
-      l2CrossDomainMessenger: {
-        address: '0x4200000000000000000000000000000000000007'
-      },
-      l2Erc721Bridge: {
-        address: '0x4200000000000000000000000000000000000014'
-      },
-      l2StandardBridge: {
-        address: '0x4200000000000000000000000000000000000010'
-      },
-      l2ToL1MessagePasser: {
-        address: '0x4200000000000000000000000000000000000016'
-      },
-      l2OutputOracle: {
-        '5': {
-          address: '0xE6Dfba0953616Bacab0c9A8ecb3a9BBa77FC15c0'
-        }
-      },
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 49461
-      },
-      portal: {
-        '5': {
-          address: '0x5b47E1A08Ea6d985D6649300584e6722Ec4B1383'
-        }
-      },
-      l1StandardBridge: {
-        '5': {
-          address: '0x636Af16bf2f682dD3109e60102b8E1A089FedAa8'
-        }
-      }
-    },
+    contracts: {},
     testnet: true
   },
   optimismSepolia: {
@@ -7775,50 +5909,7 @@ export const networks = {
       url: 'https://optimism-sepolia.blockscout.com',
       apiUrl: 'https://optimism-sepolia.blockscout.com/api'
     },
-    contracts: {
-      gasPriceOracle: {
-        address: '0x420000000000000000000000000000000000000F'
-      },
-      l1Block: {
-        address: '0x4200000000000000000000000000000000000015'
-      },
-      l2CrossDomainMessenger: {
-        address: '0x4200000000000000000000000000000000000007'
-      },
-      l2Erc721Bridge: {
-        address: '0x4200000000000000000000000000000000000014'
-      },
-      l2StandardBridge: {
-        address: '0x4200000000000000000000000000000000000010'
-      },
-      l2ToL1MessagePasser: {
-        address: '0x4200000000000000000000000000000000000016'
-      },
-      disputeGameFactory: {
-        '11155111': {
-          address: '0x05F9613aDB30026FFd634f38e5C4dFd30a197Fa1'
-        }
-      },
-      l2OutputOracle: {
-        '11155111': {
-          address: '0x90E9c4f8a994a250F6aEfd61CAFb4F2e895D458F'
-        }
-      },
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 1620204
-      },
-      portal: {
-        '11155111': {
-          address: '0x16Fc5058F25648194471939df75CF27A2fdC48BC'
-        }
-      },
-      l1StandardBridge: {
-        '11155111': {
-          address: '0xFBb0621E0B23b5478B630BD55a5f21f67730B0F1'
-        }
-      }
-    },
+    contracts: {},
     testnet: true
   },
   optopia: {
@@ -7900,11 +5991,7 @@ export const networks = {
     },
     providerURL: 'http://devnet.otim.xyz',
     blockExplorer: {},
-    contracts: {
-      batchInvoker: {
-        address: '0x5FbDB2315678afecb367f032d93F642f64180aa3'
-      }
-    },
+    contracts: {},
     testnet: false
   },
   palm: {
@@ -7921,12 +6008,7 @@ export const networks = {
       name: 'Chainlens',
       url: 'https://palm.chainlens.com'
     },
-    contracts: {
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 15429248
-      }
-    },
+    contracts: {},
     testnet: false
   },
   palmTestnet: {
@@ -7943,12 +6025,7 @@ export const networks = {
       name: 'Chainlens',
       url: 'https://palm.chainlens.com'
     },
-    contracts: {
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 15429248
-      }
-    },
+    contracts: {},
     testnet: true
   },
   peaq: {
@@ -7965,12 +6042,7 @@ export const networks = {
       name: 'Subscan',
       url: 'https://peaq.subscan.io'
     },
-    contracts: {
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 3566354
-      }
-    },
+    contracts: {},
     testnet: false
   },
   pgn: {
@@ -7988,27 +6060,7 @@ export const networks = {
       url: 'https://explorer.publicgoods.network',
       apiUrl: 'https://explorer.publicgoods.network/api'
     },
-    contracts: {
-      l2OutputOracle: {
-        '1': {
-          address: '0x9E6204F750cD866b299594e2aC9eA824E2e5f95c'
-        }
-      },
-      multicall3: {
-        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
-        blockCreated: 3380209
-      },
-      portal: {
-        '1': {
-          address: '0xb26Fd985c5959bBB382BAFdD0b879E149e48116c'
-        }
-      },
-      l1StandardBridge: {
-        '1': {
-          address: '0xD0204B9527C1bA7bD765Fa5CCD9355d38338272b'
-        }
-      }
-    },
+    contracts: {},
     testnet: false
   },
   pgnTestnet: {
@@ -8026,27 +6078,7 @@ export const networks = {
       url: 'https://explorer.sepolia.publicgoods.network',
       apiUrl: 'https://explorer.sepolia.publicgoods.network/api'
     },
-    contracts: {
-      l2OutputOracle: {
-        '11155111': {
-          address: '0xD5bAc3152ffC25318F848B3DD5dA6C85171BaEEe'
-        }
-      },
-      portal: {
-        '11155111': {
-          address: '0xF04BdD5353Bb0EFF6CA60CfcC78594278eBfE179'
-        }
-      },
-      l1StandardBridge: {
-        '11155111': {
-          address: '0xFaE6abCAF30D23e233AC7faF747F2fC3a5a6Bfa3'
-        }
-      },
-      multicall3: {
-        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
-        blockCreated: 3754925
-      }
-    },
+    contracts: {},
     testnet: true
   },
   phoenix: {
@@ -8064,12 +6096,7 @@ export const networks = {
       url: 'https://phoenixplorer.com',
       apiUrl: 'https://phoenixplorer.com/api'
     },
-    contracts: {
-      multicall3: {
-        address: '0x498cF757a575cFF2c2Ed9f532f56Efa797f86442',
-        blockCreated: 5620192
-      }
-    },
+    contracts: {},
     testnet: false
   },
   planq: {
@@ -8103,11 +6130,7 @@ export const networks = {
       name: 'PlayFi Albireo Explorer',
       url: 'https://albireo-explorer.playfi.ai'
     },
-    contracts: {
-      multicall3: {
-        address: '0xF9cda624FBC7e059355ce98a31693d299FACd963'
-      }
-    },
+    contracts: {},
     testnet: true
   },
   plinga: {
@@ -8124,12 +6147,7 @@ export const networks = {
       name: 'Plgscan',
       url: 'https://www.plgscan.com'
     },
-    contracts: {
-      multicall3: {
-        address: '0x0989576160f2e7092908BB9479631b901060b6e4',
-        blockCreated: 204489
-      }
-    },
+    contracts: {},
     testnet: false
   },
   plume: {
@@ -8147,12 +6165,7 @@ export const networks = {
       url: 'https://explorer.plumenetwork.xyz',
       apiUrl: 'https://explorer.plumenetwork.xyz/api'
     },
-    contracts: {
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 48577
-      }
-    },
+    contracts: {},
     testnet: false
   },
   plumeDevnet: {
@@ -8170,12 +6183,7 @@ export const networks = {
       url: 'https://test-explorer.plumenetwork.xyz',
       apiUrl: 'https://test-explorer.plumenetwork.xyz/api'
     },
-    contracts: {
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 481948
-      }
-    },
+    contracts: {},
     testnet: true
   },
   plumeTestnet: {
@@ -8210,12 +6218,7 @@ export const networks = {
       name: 'Blockscout',
       url: 'https://polter-testnet.explorer.alchemy.com'
     },
-    contracts: {
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 11245
-      }
-    },
+    contracts: {},
     testnet: true
   },
   polygon: {
@@ -8233,12 +6236,7 @@ export const networks = {
       url: 'https://polygonscan.com',
       apiUrl: 'https://api.polygonscan.com/api'
     },
-    contracts: {
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 25770160
-      }
-    },
+    contracts: {},
     testnet: false
   },
   polygonAmoy: {
@@ -8256,12 +6254,7 @@ export const networks = {
       url: 'https://amoy.polygonscan.com',
       apiUrl: 'https://api-amoy.polygonscan.com/api'
     },
-    contracts: {
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 3127388
-      }
-    },
+    contracts: {},
     testnet: true
   },
   polygonMumbai: {
@@ -8279,12 +6272,7 @@ export const networks = {
       url: 'https://mumbai.polygonscan.com',
       apiUrl: 'https://api-testnet.polygonscan.com/api'
     },
-    contracts: {
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 25770160
-      }
-    },
+    contracts: {},
     testnet: true
   },
   polygonZkEvm: {
@@ -8302,12 +6290,7 @@ export const networks = {
       url: 'https://zkevm.polygonscan.com',
       apiUrl: 'https://api-zkevm.polygonscan.com/api'
     },
-    contracts: {
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 57746
-      }
-    },
+    contracts: {},
     testnet: false
   },
   polygonZkEvmCardona: {
@@ -8325,12 +6308,7 @@ export const networks = {
       url: 'https://cardona-zkevm.polygonscan.com',
       apiUrl: 'https://cardona-zkevm.polygonscan.com/api'
     },
-    contracts: {
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 114091
-      }
-    },
+    contracts: {},
     testnet: true
   },
   polygonZkEvmTestnet: {
@@ -8348,12 +6326,7 @@ export const networks = {
       url: 'https://testnet-zkevm.polygonscan.com',
       apiUrl: 'https://testnet-zkevm.polygonscan.com/api'
     },
-    contracts: {
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 525686
-      }
-    },
+    contracts: {},
     testnet: true
   },
   polynomial: {
@@ -8370,11 +6343,7 @@ export const networks = {
       name: 'Polynomial Scan',
       url: 'https://polynomialscan.io'
     },
-    contracts: {
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11'
-      }
-    },
+    contracts: {},
     testnet: false
   },
   polynomialSepolia: {
@@ -8391,11 +6360,7 @@ export const networks = {
       name: 'Polynomial Scan',
       url: 'https://sepolia.polynomialscan.io'
     },
-    contracts: {
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11'
-      }
-    },
+    contracts: {},
     testnet: true
   },
   premiumBlockTestnet: {
@@ -8430,15 +6395,7 @@ export const networks = {
       url: 'https://scan.pulsechain.com',
       apiUrl: 'https://api.scan.pulsechain.com/api'
     },
-    contracts: {
-      ensRegistry: {
-        address: '0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e'
-      },
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 14353601
-      }
-    },
+    contracts: {},
     testnet: false
   },
   pulsechainV4: {
@@ -8456,15 +6413,7 @@ export const networks = {
       url: 'https://scan.v4.testnet.pulsechain.com',
       apiUrl: 'https://scan.v4.testnet.pulsechain.com/api'
     },
-    contracts: {
-      ensRegistry: {
-        address: '0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e'
-      },
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 14353601
-      }
-    },
+    contracts: {},
     testnet: true
   },
   pumpfiTestnet: {
@@ -8534,11 +6483,7 @@ export const networks = {
       name: 'Ql1 Explorer',
       url: 'https://scan.qom.one'
     },
-    contracts: {
-      multicall3: {
-        address: '0x7A52370716ea730585884F5BDB0f6E60C39b8C64'
-      }
-    },
+    contracts: {},
     testnet: false
   },
   real: {
@@ -8556,12 +6501,7 @@ export const networks = {
       url: 'https://explorer.re.al',
       apiUrl: 'https://explorer.re.al/api/v2'
     },
-    contracts: {
-      multicall3: {
-        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
-        blockCreated: 695
-      }
-    },
+    contracts: {},
     testnet: false
   },
   redbellyMainnet: {
@@ -8632,47 +6572,7 @@ export const networks = {
       name: 'Blockscout',
       url: 'https://explorer.redstone.xyz'
     },
-    contracts: {
-      gasPriceOracle: {
-        address: '0x420000000000000000000000000000000000000F'
-      },
-      l1Block: {
-        address: '0x4200000000000000000000000000000000000015'
-      },
-      l2CrossDomainMessenger: {
-        address: '0x4200000000000000000000000000000000000007'
-      },
-      l2Erc721Bridge: {
-        address: '0x4200000000000000000000000000000000000014'
-      },
-      l2StandardBridge: {
-        address: '0x4200000000000000000000000000000000000010'
-      },
-      l2ToL1MessagePasser: {
-        address: '0x4200000000000000000000000000000000000016'
-      },
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11'
-      },
-      portal: {
-        '1': {
-          address: '0xC7bCb0e8839a28A1cFadd1CF716de9016CdA51ae',
-          blockCreated: 19578329
-        }
-      },
-      l2OutputOracle: {
-        '1': {
-          address: '0xa426A052f657AEEefc298b3B5c35a470e4739d69',
-          blockCreated: 19578337
-        }
-      },
-      l1StandardBridge: {
-        '1': {
-          address: '0xc473ca7E02af24c129c2eEf51F2aDf0411c1Df69',
-          blockCreated: 19578331
-        }
-      }
-    },
+    contracts: {},
     testnet: false
   },
   rei: {
@@ -8741,12 +6641,7 @@ export const networks = {
       url: 'https://explorer.rollux.com',
       apiUrl: 'https://explorer.rollux.com/api'
     },
-    contracts: {
-      multicall3: {
-        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
-        blockCreated: 119222
-      }
-    },
+    contracts: {},
     testnet: false
   },
   rolluxTestnet: {
@@ -8764,12 +6659,7 @@ export const networks = {
       url: 'https://rollux.tanenbaum.io',
       apiUrl: 'https://rollux.tanenbaum.io/api'
     },
-    contracts: {
-      multicall3: {
-        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
-        blockCreated: 1813675
-      }
-    },
+    contracts: {},
     testnet: false
   },
   ronin: {
@@ -8786,12 +6676,7 @@ export const networks = {
       name: 'Ronin Explorer',
       url: 'https://app.roninchain.com'
     },
-    contracts: {
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 26023535
-      }
-    },
+    contracts: {},
     testnet: false
   },
   root: {
@@ -8808,12 +6693,7 @@ export const networks = {
       name: 'Rootscan',
       url: 'https://rootscan.io'
     },
-    contracts: {
-      multicall3: {
-        address: '0xc9C2E2429AeC354916c476B30d729deDdC94988d',
-        blockCreated: 9218338
-      }
-    },
+    contracts: {},
     testnet: false
   },
   rootPorcini: {
@@ -8830,12 +6710,7 @@ export const networks = {
       name: 'Rootscan',
       url: 'https://porcini.rootscan.io'
     },
-    contracts: {
-      multicall3: {
-        address: '0xc9C2E2429AeC354916c476B30d729deDdC94988d',
-        blockCreated: 10555692
-      }
-    },
+    contracts: {},
     testnet: true
   },
   rootstock: {
@@ -8852,12 +6727,7 @@ export const networks = {
       name: 'RSK Explorer',
       url: 'https://explorer.rsk.co'
     },
-    contracts: {
-      multicall3: {
-        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
-        blockCreated: 4249540
-      }
-    },
+    contracts: {},
     testnet: false
   },
   rootstockTestnet: {
@@ -8874,12 +6744,7 @@ export const networks = {
       name: 'RSK Explorer',
       url: 'https://explorer.testnet.rootstock.io'
     },
-    contracts: {
-      multicall3: {
-        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
-        blockCreated: 2771150
-      }
-    },
+    contracts: {},
     testnet: true
   },
   rss3: {
@@ -8897,46 +6762,7 @@ export const networks = {
       url: 'https://scan.rss3.io',
       apiUrl: 'https://scan.rss3.io/api'
     },
-    contracts: {
-      gasPriceOracle: {
-        address: '0x420000000000000000000000000000000000000F'
-      },
-      l1Block: {
-        address: '0x4200000000000000000000000000000000000015'
-      },
-      l2CrossDomainMessenger: {
-        address: '0x4200000000000000000000000000000000000007'
-      },
-      l2Erc721Bridge: {
-        address: '0x4200000000000000000000000000000000000014'
-      },
-      l2StandardBridge: {
-        address: '0x4200000000000000000000000000000000000010'
-      },
-      l2ToL1MessagePasser: {
-        address: '0x4200000000000000000000000000000000000016'
-      },
-      l2OutputOracle: {
-        '1': {
-          address: '0xE6f24d2C32B3109B18ed33cF08eFb490b1e09C10'
-        }
-      },
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 14193
-      },
-      portal: {
-        '1': {
-          address: '0x6A12432491bbbE8d3babf75F759766774C778Db4',
-          blockCreated: 19387057
-        }
-      },
-      l1StandardBridge: {
-        '1': {
-          address: '0x4cbab69108Aa72151EDa5A3c164eA86845f18438'
-        }
-      }
-    },
+    contracts: {},
     testnet: false
   },
   rss3Sepolia: {
@@ -8954,46 +6780,7 @@ export const networks = {
       url: 'https://scan.testnet.rss3.io',
       apiUrl: 'https://scan.testnet.rss3.io/api'
     },
-    contracts: {
-      gasPriceOracle: {
-        address: '0x420000000000000000000000000000000000000F'
-      },
-      l1Block: {
-        address: '0x4200000000000000000000000000000000000015'
-      },
-      l2CrossDomainMessenger: {
-        address: '0x4200000000000000000000000000000000000007'
-      },
-      l2Erc721Bridge: {
-        address: '0x4200000000000000000000000000000000000014'
-      },
-      l2StandardBridge: {
-        address: '0x4200000000000000000000000000000000000010'
-      },
-      l2ToL1MessagePasser: {
-        address: '0x4200000000000000000000000000000000000016'
-      },
-      l2OutputOracle: {
-        '11155111': {
-          address: '0xDb5c46C3Eaa6Ed6aE8b2379785DF7dd029C0dC81'
-        }
-      },
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 55697
-      },
-      portal: {
-        '11155111': {
-          address: '0xcBD77E8E1E7F06B25baDe67142cdE82652Da7b57',
-          blockCreated: 5345035
-        }
-      },
-      l1StandardBridge: {
-        '11155111': {
-          address: '0xdDD29bb63B0839FB1cE0eE439Ff027738595D07B'
-        }
-      }
-    },
+    contracts: {},
     testnet: true
   },
   saakuru: {
@@ -9027,12 +6814,7 @@ export const networks = {
       name: 'Saga Explorer',
       url: 'https://sagaevm.sagaexplorer.io'
     },
-    contracts: {
-      multicall3: {
-        address: '0x864DDc9B50B9A0dF676d826c9B9EDe9F8913a160',
-        blockCreated: 467530
-      }
-    },
+    contracts: {},
     testnet: false
   },
   saigon: {
@@ -9049,12 +6831,7 @@ export const networks = {
       name: 'Saigon Explorer',
       url: 'https://saigon-app.roninchain.com'
     },
-    contracts: {
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 18736871
-      }
-    },
+    contracts: {},
     testnet: true
   },
   sanko: {
@@ -9071,12 +6848,7 @@ export const networks = {
       name: 'Sanko Explorer',
       url: 'https://explorer.sanko.xyz'
     },
-    contracts: {
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 37
-      }
-    },
+    contracts: {},
     testnet: false
   },
   sapphire: {
@@ -9093,12 +6865,7 @@ export const networks = {
       name: 'Oasis Explorer',
       url: 'https://explorer.oasis.io/mainnet/sapphire'
     },
-    contracts: {
-      multicall3: {
-        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
-        blockCreated: 734531
-      }
-    },
+    contracts: {},
     testnet: false
   },
   sapphireTestnet: {
@@ -9169,12 +6936,7 @@ export const networks = {
       url: 'https://scrollscan.com',
       apiUrl: 'https://api.scrollscan.com/api'
     },
-    contracts: {
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 14
-      }
-    },
+    contracts: {},
     testnet: false
   },
   scrollSepolia: {
@@ -9192,12 +6954,7 @@ export const networks = {
       url: 'https://sepolia.scrollscan.com',
       apiUrl: 'https://api-sepolia.scrollscan.com/api'
     },
-    contracts: {
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 9473
-      }
-    },
+    contracts: {},
     testnet: true
   },
   sei: {
@@ -9215,11 +6972,7 @@ export const networks = {
       url: 'https://seitrace.com',
       apiUrl: 'https://seitrace.com/pacific-1/api'
     },
-    contracts: {
-      multicall3: {
-        address: '0xcA11bde05977b3631167028862bE2a173976CA11'
-      }
-    },
+    contracts: {},
     testnet: false
   },
   seiDevnet: {
@@ -9271,19 +7024,7 @@ export const networks = {
       url: 'https://sepolia.etherscan.io',
       apiUrl: 'https://api-sepolia.etherscan.io/api'
     },
-    contracts: {
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 751532
-      },
-      ensRegistry: {
-        address: '0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e'
-      },
-      ensUniversalResolver: {
-        address: '0xc8Af999e38273D658BE1b921b88A9Ddf005769cC',
-        blockCreated: 5317080
-      }
-    },
+    contracts: {},
     testnet: true
   },
   shape: {
@@ -9301,48 +7042,7 @@ export const networks = {
       url: 'https://shapescan.xyz',
       apiUrl: 'https://shapescan.xyz/api'
     },
-    contracts: {
-      gasPriceOracle: {
-        address: '0x420000000000000000000000000000000000000F'
-      },
-      l1Block: {
-        address: '0x4200000000000000000000000000000000000015'
-      },
-      l2CrossDomainMessenger: {
-        address: '0x4200000000000000000000000000000000000007'
-      },
-      l2Erc721Bridge: {
-        address: '0x4200000000000000000000000000000000000014'
-      },
-      l2StandardBridge: {
-        address: '0x4200000000000000000000000000000000000010'
-      },
-      l2ToL1MessagePasser: {
-        address: '0x4200000000000000000000000000000000000016'
-      },
-      l2OutputOracle: {
-        '1': {
-          address: '0x6Ef8c69CfE4635d866e3E02732068022c06e724D',
-          blockCreated: 20369940
-        }
-      },
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 1
-      },
-      portal: {
-        '1': {
-          address: '0xEB06fFa16011B5628BaB98E29776361c83741dd3',
-          blockCreated: 20369933
-        }
-      },
-      l1StandardBridge: {
-        '1': {
-          address: '0x62Edd5f4930Ea92dCa3fB81689bDD9b9d076b57B',
-          blockCreated: 20369935
-        }
-      }
-    },
+    contracts: {},
     testnet: false
   },
   shapeSepolia: {
@@ -9360,30 +7060,7 @@ export const networks = {
       url: 'https://explorer-sepolia.shape.network/',
       apiUrl: 'https://explorer-sepolia.shape.network/api/v2'
     },
-    contracts: {
-      gasPriceOracle: {
-        address: '0x420000000000000000000000000000000000000F'
-      },
-      l1Block: {
-        address: '0x4200000000000000000000000000000000000015'
-      },
-      l2CrossDomainMessenger: {
-        address: '0x4200000000000000000000000000000000000007'
-      },
-      l2Erc721Bridge: {
-        address: '0x4200000000000000000000000000000000000014'
-      },
-      l2StandardBridge: {
-        address: '0x4200000000000000000000000000000000000010'
-      },
-      l2ToL1MessagePasser: {
-        address: '0x4200000000000000000000000000000000000016'
-      },
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 1
-      }
-    },
+    contracts: {},
     testnet: true
   },
   shardeumSphinx: {
@@ -9417,12 +7094,7 @@ export const networks = {
       name: 'Blockscout',
       url: 'https://shibariumscan.io'
     },
-    contracts: {
-      multicall3: {
-        address: '0x864Bf681ADD6052395188A89101A1B37d3B4C961',
-        blockCreated: 265900
-      }
-    },
+    contracts: {},
     testnet: false
   },
   shibariumTestnet: {
@@ -9440,12 +7112,7 @@ export const networks = {
       url: 'https://puppyscan.shib.io',
       apiUrl: 'https://puppyscan.shib.io/api'
     },
-    contracts: {
-      multicall3: {
-        address: '0xA4029b74FBA366c926eDFA7Dd10B21C621170a4c',
-        blockCreated: 3035769
-      }
-    },
+    contracts: {},
     testnet: true
   },
   shiden: {
@@ -9600,12 +7267,7 @@ export const networks = {
       name: 'SKALE Explorer',
       url: 'https://honorable-steel-rasalhague.explorer.mainnet.skalenodes.com'
     },
-    contracts: {
-      multicall3: {
-        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
-        blockCreated: 3107626
-      }
-    },
+    contracts: {},
     testnet: false
   },
   skaleCalypsoTestnet: {
@@ -9622,12 +7284,7 @@ export const networks = {
       name: 'SKALE Explorer',
       url: 'https://giant-half-dual-testnet.explorer.testnet.skalenodes.com'
     },
-    contracts: {
-      multicall3: {
-        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
-        blockCreated: 103220
-      }
-    },
+    contracts: {},
     testnet: true
   },
   skaleCryptoBlades: {
@@ -9678,12 +7335,7 @@ export const networks = {
       name: 'SKALE Explorer',
       url: 'https://elated-tan-skat.explorer.mainnet.skalenodes.com'
     },
-    contracts: {
-      multicall3: {
-        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
-        blockCreated: 3113495
-      }
-    },
+    contracts: {},
     testnet: false
   },
   skaleEuropaTestnet: {
@@ -9700,12 +7352,7 @@ export const networks = {
       name: 'SKALE Explorer',
       url: 'https://juicy-low-small-testnet.explorer.testnet.skalenodes.com'
     },
-    contracts: {
-      multicall3: {
-        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
-        blockCreated: 110858
-      }
-    },
+    contracts: {},
     testnet: true
   },
   skaleExorde: {
@@ -9756,12 +7403,7 @@ export const networks = {
       name: 'SKALE Explorer',
       url: 'https://green-giddy-denebola.explorer.mainnet.skalenodes.com'
     },
-    contracts: {
-      multicall3: {
-        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
-        blockCreated: 2372986
-      }
-    },
+    contracts: {},
     testnet: false
   },
   skaleNebulaTestnet: {
@@ -9778,12 +7420,7 @@ export const networks = {
       name: 'SKALE Explorer',
       url: 'https://lanky-ill-funny-testnet.explorer.testnet.skalenodes.com'
     },
-    contracts: {
-      multicall3: {
-        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
-        blockCreated: 105141
-      }
-    },
+    contracts: {},
     testnet: true
   },
   skaleRazor: {
@@ -9817,12 +7454,7 @@ export const networks = {
       name: 'SKALE Explorer',
       url: 'https://parallel-stormy-spica.explorer.mainnet.skalenodes.com'
     },
-    contracts: {
-      multicall3: {
-        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
-        blockCreated: 2076458
-      }
-    },
+    contracts: {},
     testnet: false
   },
   skaleTitanTestnet: {
@@ -9839,12 +7471,7 @@ export const networks = {
       name: 'SKALE Explorer',
       url: 'https://aware-fake-trim-testnet.explorer.testnet.skalenodes.com'
     },
-    contracts: {
-      multicall3: {
-        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
-        blockCreated: 104072
-      }
-    },
+    contracts: {},
     testnet: true
   },
   sketchpad: {
@@ -9879,49 +7506,7 @@ export const networks = {
       url: 'https://explorer.snaxchain.io',
       apiUrl: 'https://explorer.snaxchain.io/api'
     },
-    contracts: {
-      gasPriceOracle: {
-        address: '0x420000000000000000000000000000000000000F'
-      },
-      l1Block: {
-        address: '0x4200000000000000000000000000000000000015'
-      },
-      l2CrossDomainMessenger: {
-        address: '0x4200000000000000000000000000000000000007'
-      },
-      l2Erc721Bridge: {
-        address: '0x4200000000000000000000000000000000000014'
-      },
-      l2StandardBridge: {
-        address: '0x4200000000000000000000000000000000000010'
-      },
-      l2ToL1MessagePasser: {
-        address: '0x4200000000000000000000000000000000000016'
-      },
-      disputeGameFactory: {
-        '1': {
-          address: '0x472562Fcf26D6b2793f8E0b0fB660ba0E5e08A46'
-        }
-      },
-      l2OutputOracle: {
-        '1': {
-          address: '0x2172e492Fc807F5d5645D0E3543f139ECF539294'
-        }
-      },
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11'
-      },
-      portal: {
-        '1': {
-          address: '0x79f446D024d74D0Bb6E699C131c703463c5D65E9'
-        }
-      },
-      l1StandardBridge: {
-        '1': {
-          address: '0x6534Bdb6b5c060d3e6aa833433333135eFE8E0aA'
-        }
-      }
-    },
+    contracts: {},
     testnet: false
   },
   snaxTestnet: {
@@ -9939,49 +7524,7 @@ export const networks = {
       url: 'https://testnet-explorer.snaxchain.io',
       apiUrl: 'https://testnet-explorer.snaxchain.io/api'
     },
-    contracts: {
-      gasPriceOracle: {
-        address: '0x420000000000000000000000000000000000000F'
-      },
-      l1Block: {
-        address: '0x4200000000000000000000000000000000000015'
-      },
-      l2CrossDomainMessenger: {
-        address: '0x4200000000000000000000000000000000000007'
-      },
-      l2Erc721Bridge: {
-        address: '0x4200000000000000000000000000000000000014'
-      },
-      l2StandardBridge: {
-        address: '0x4200000000000000000000000000000000000010'
-      },
-      l2ToL1MessagePasser: {
-        address: '0x4200000000000000000000000000000000000016'
-      },
-      disputeGameFactory: {
-        '11155111': {
-          address: '0x206a75d89d45F146C54020F132FF93bEDD09f55E'
-        }
-      },
-      l2OutputOracle: {
-        '11155111': {
-          address: '0x60e3A368a4cdCEf85ffB964e372726F56A46221e'
-        }
-      },
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11'
-      },
-      portal: {
-        '11155111': {
-          address: '0xb5afdd0E8dDF081Ef90e8A3e0c7b5798e66E954E'
-        }
-      },
-      l1StandardBridge: {
-        '11155111': {
-          address: '0xbd37E1a59D4C00C9A46F75018dffd84061bC5f74'
-        }
-      }
-    },
+    contracts: {},
     testnet: true
   },
   soneium: {
@@ -9999,52 +7542,7 @@ export const networks = {
       url: 'https://soneium.blockscout.com',
       apiUrl: 'https://soneium.blockscout.com/api'
     },
-    contracts: {
-      gasPriceOracle: {
-        address: '0x420000000000000000000000000000000000000F'
-      },
-      l1Block: {
-        address: '0x4200000000000000000000000000000000000015'
-      },
-      l2CrossDomainMessenger: {
-        address: '0x4200000000000000000000000000000000000007'
-      },
-      l2Erc721Bridge: {
-        address: '0x4200000000000000000000000000000000000014'
-      },
-      l2StandardBridge: {
-        address: '0x4200000000000000000000000000000000000010'
-      },
-      l2ToL1MessagePasser: {
-        address: '0x4200000000000000000000000000000000000016'
-      },
-      disputeGameFactory: {
-        '1': {
-          address: '0x512a3d2c7a43bd9261d2b8e8c9c70d4bd4d503c0'
-        }
-      },
-      l2OutputOracle: {
-        '1': {
-          address: '0x0000000000000000000000000000000000000000'
-        }
-      },
-      portal: {
-        '1': {
-          address: '0x88e529a6ccd302c948689cd5156c83d4614fae92',
-          blockCreated: 7061266
-        }
-      },
-      l1StandardBridge: {
-        '1': {
-          address: '0xeb9bf100225c214efc3e7c651ebbadcf85177607',
-          blockCreated: 7061266
-        }
-      },
-      multicall3: {
-        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
-        blockCreated: 1
-      }
-    },
+    contracts: {},
     testnet: false
   },
   soneiumMinato: {
@@ -10062,52 +7560,7 @@ export const networks = {
       url: 'https://soneium-minato.blockscout.com',
       apiUrl: 'https://soneium-minato.blockscout.com/api'
     },
-    contracts: {
-      gasPriceOracle: {
-        address: '0x420000000000000000000000000000000000000F'
-      },
-      l1Block: {
-        address: '0x4200000000000000000000000000000000000015'
-      },
-      l2CrossDomainMessenger: {
-        address: '0x4200000000000000000000000000000000000007'
-      },
-      l2Erc721Bridge: {
-        address: '0x4200000000000000000000000000000000000014'
-      },
-      l2StandardBridge: {
-        address: '0x4200000000000000000000000000000000000010'
-      },
-      l2ToL1MessagePasser: {
-        address: '0x4200000000000000000000000000000000000016'
-      },
-      disputeGameFactory: {
-        '11155111': {
-          address: '0xB3Ad2c38E6e0640d7ce6aA952AB3A60E81bf7a01'
-        }
-      },
-      l2OutputOracle: {
-        '11155111': {
-          address: '0x710e5286C746eC38beeB7538d0146f60D27be343'
-        }
-      },
-      portal: {
-        '11155111': {
-          address: '0x65ea1489741A5D72fFdD8e6485B216bBdcC15Af3',
-          blockCreated: 6466136
-        }
-      },
-      l1StandardBridge: {
-        '11155111': {
-          address: '0x5f5a404A5edabcDD80DB05E8e54A78c9EBF000C2',
-          blockCreated: 6466136
-        }
-      },
-      multicall3: {
-        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
-        blockCreated: 1
-      }
-    },
+    contracts: {},
     testnet: true
   },
   songbird: {
@@ -10125,12 +7578,7 @@ export const networks = {
       url: 'https://songbird-explorer.flare.network',
       apiUrl: 'https://songbird-explorer.flare.network/api'
     },
-    contracts: {
-      multicall3: {
-        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
-        blockCreated: 13382504
-      }
-    },
+    contracts: {},
     testnet: false
   },
   songbirdTestnet: {
@@ -10165,12 +7613,7 @@ export const networks = {
       name: 'Sonic Explorer',
       url: 'https://sonicscan.org/'
     },
-    contracts: {
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 60
-      }
-    },
+    contracts: {},
     testnet: false
   },
   sonicBlazeTestnet: {
@@ -10221,12 +7664,7 @@ export const networks = {
       name: 'Sophon Block Explorer',
       url: 'https://explorer.sophon.xyz'
     },
-    contracts: {
-      multicall3: {
-        address: '0x5f4867441d2416cA88B1b3fd38f21811680CD2C8',
-        blockCreated: 116
-      }
-    },
+    contracts: {},
     testnet: false
   },
   sophonTestnet: {
@@ -10243,12 +7681,7 @@ export const networks = {
       name: 'Sophon Block Explorer',
       url: 'https://explorer.testnet.sophon.xyz'
     },
-    contracts: {
-      multicall3: {
-        address: '0x83c04d112adedA2C6D9037bb6ecb42E7f0b108Af',
-        blockCreated: 15642
-      }
-    },
+    contracts: {},
     testnet: true
   },
   spicy: {
@@ -10283,12 +7716,7 @@ export const networks = {
       name: 'Blockscout',
       url: 'https://sepoliascan.status.network'
     },
-    contracts: {
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 1578364
-      }
-    },
+    contracts: {},
     testnet: true
   },
   statusSepolia: {
@@ -10305,12 +7733,7 @@ export const networks = {
       name: 'Blockscout',
       url: 'https://sepoliascan.status.network'
     },
-    contracts: {
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 1578364
-      }
-    },
+    contracts: {},
     testnet: true
   },
   step: {
@@ -10362,12 +7785,7 @@ export const networks = {
       name: 'Story Aeneid Explorer',
       url: 'https://aeneid.storyscan.xyz'
     },
-    contracts: {
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 1792
-      }
-    },
+    contracts: {},
     testnet: true
   },
   storyOdyssey: {
@@ -10452,12 +7870,7 @@ export const networks = {
       name: 'Superposition Explorer',
       url: 'https://explorer.superposition.so'
     },
-    contracts: {
-      multicall3: {
-        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
-        blockCreated: 39
-      }
-    },
+    contracts: {},
     testnet: false
   },
   superseed: {
@@ -10475,53 +7888,7 @@ export const networks = {
       url: 'https://explorer.superseed.xyz',
       apiUrl: 'https://explorer.superseed.xyz/api/v2'
     },
-    contracts: {
-      gasPriceOracle: {
-        address: '0x420000000000000000000000000000000000000F'
-      },
-      l1Block: {
-        address: '0x4200000000000000000000000000000000000015'
-      },
-      l2CrossDomainMessenger: {
-        address: '0x4200000000000000000000000000000000000007'
-      },
-      l2Erc721Bridge: {
-        address: '0x4200000000000000000000000000000000000014'
-      },
-      l2StandardBridge: {
-        address: '0x4200000000000000000000000000000000000010'
-      },
-      l2ToL1MessagePasser: {
-        address: '0x4200000000000000000000000000000000000016'
-      },
-      disputeGameFactory: {
-        '1': {
-          address: '0x8b097CF1f9BbD9cbFD0DD561858a1FCbC8857Be0',
-          blockCreated: 20737481
-        }
-      },
-      l2OutputOracle: {
-        '1': {
-          address: '0x693A0F8854F458D282DE3C5b69E8eE5EEE8aA949',
-          blockCreated: 20737481
-        }
-      },
-      portal: {
-        '1': {
-          address: '0x2c2150aa5c75A24fB93d4fD2F2a895D618054f07',
-          blockCreated: 20737481
-        }
-      },
-      l1StandardBridge: {
-        '1': {
-          address: '0x8b0576E39F1233679109F9b40cFcC2a7E0901Ede',
-          blockCreated: 20737481
-        }
-      },
-      multicall3: {
-        address: '0xcA11bde05977b3631167028862bE2a173976CA11'
-      }
-    },
+    contracts: {},
     testnet: false
   },
   superseedSepolia: {
@@ -10539,41 +7906,7 @@ export const networks = {
       url: 'https://sepolia-explorer.superseed.xyz',
       apiUrl: 'https://sepolia-explorer.superseed.xyz/api/v2'
     },
-    contracts: {
-      gasPriceOracle: {
-        address: '0x420000000000000000000000000000000000000F'
-      },
-      l1Block: {
-        address: '0x4200000000000000000000000000000000000015'
-      },
-      l2CrossDomainMessenger: {
-        address: '0x4200000000000000000000000000000000000007'
-      },
-      l2Erc721Bridge: {
-        address: '0x4200000000000000000000000000000000000014'
-      },
-      l2StandardBridge: {
-        address: '0x4200000000000000000000000000000000000010'
-      },
-      l2ToL1MessagePasser: {
-        address: '0x4200000000000000000000000000000000000016'
-      },
-      multicall3: {
-        address: '0xcA11bde05977b3631167028862bE2a173976CA11'
-      },
-      portal: {
-        '11155111': {
-          address: '0x7A0db8C51432d2C3eb4e8f360a2EeB26FF2809fB',
-          blockCreated: 5523438
-        }
-      },
-      l1StandardBridge: {
-        '11155111': {
-          address: '0x2B227A603fAAdB3De0ED050b63ADD232B5f2c28C',
-          blockCreated: 5523442
-        }
-      }
-    },
+    contracts: {},
     testnet: true
   },
   swan: {
@@ -10642,30 +7975,7 @@ export const networks = {
       url: 'https://explorer.swellnetwork.io',
       apiUrl: 'https://explorer.swellnetwork.io/api'
     },
-    contracts: {
-      gasPriceOracle: {
-        address: '0x420000000000000000000000000000000000000F'
-      },
-      l1Block: {
-        address: '0x4200000000000000000000000000000000000015'
-      },
-      l2CrossDomainMessenger: {
-        address: '0x4200000000000000000000000000000000000007'
-      },
-      l2Erc721Bridge: {
-        address: '0x4200000000000000000000000000000000000014'
-      },
-      l2StandardBridge: {
-        address: '0x4200000000000000000000000000000000000010'
-      },
-      l2ToL1MessagePasser: {
-        address: '0x4200000000000000000000000000000000000016'
-      },
-      multicall3: {
-        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
-        blockCreated: 1
-      }
-    },
+    contracts: {},
     testnet: false
   },
   swissdlt: {
@@ -10700,12 +8010,7 @@ export const networks = {
       url: 'https://explorer.syscoin.org',
       apiUrl: 'https://explorer.syscoin.org/api'
     },
-    contracts: {
-      multicall3: {
-        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
-        blockCreated: 287139
-      }
-    },
+    contracts: {},
     testnet: false
   },
   syscoinTestnet: {
@@ -10722,12 +8027,7 @@ export const networks = {
       name: 'SyscoinTestnetExplorer',
       url: 'https://tanenbaum.io'
     },
-    contracts: {
-      multicall3: {
-        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
-        blockCreated: 271288
-      }
-    },
+    contracts: {},
     testnet: false
   },
   taiko: {
@@ -10745,11 +8045,7 @@ export const networks = {
       url: 'https://taikoscan.io',
       apiUrl: 'https://api.taikoscan.io/api'
     },
-    contracts: {
-      multicall3: {
-        address: '0xcb2436774C3e191c85056d248EF4260ce5f27A9D'
-      }
-    },
+    contracts: {},
     testnet: false
   },
   taikoHekla: {
@@ -10766,12 +8062,7 @@ export const networks = {
       name: 'Taikoscan',
       url: 'https://hekla.taikoscan.network'
     },
-    contracts: {
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 59757
-      }
-    },
+    contracts: {},
     testnet: true
   },
   taikoJolnir: {
@@ -10788,12 +8079,7 @@ export const networks = {
       name: 'blockscout',
       url: 'https://explorer.jolnir.taiko.xyz'
     },
-    contracts: {
-      multicall3: {
-        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
-        blockCreated: 732706
-      }
-    },
+    contracts: {},
     testnet: true
   },
   taikoKatla: {
@@ -10895,12 +8181,7 @@ export const networks = {
       name: 'Teloscan',
       url: 'https://www.teloscan.io/'
     },
-    contracts: {
-      multicall3: {
-        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
-        blockCreated: 246530709
-      }
-    },
+    contracts: {},
     testnet: false
   },
   telosTestnet: {
@@ -10970,12 +8251,7 @@ export const networks = {
       url: 'https://exp.thaichain.org',
       apiUrl: 'https://exp.thaichain.org/api'
     },
-    contracts: {
-      multicall3: {
-        address: '0x0DaD6130e832c21719C5CE3bae93454E16A84826',
-        blockCreated: 4806386
-      }
-    },
+    contracts: {},
     testnet: false
   },
   that: {
@@ -11043,12 +8319,7 @@ export const networks = {
       name: 'ThunderCore Explorer',
       url: 'https://explorer-mainnet.thundercore.com'
     },
-    contracts: {
-      multicall3: {
-        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
-        blockCreated: 0
-      }
-    },
+    contracts: {},
     testnet: false
   },
   thunderTestnet: {
@@ -11116,12 +8387,7 @@ export const networks = {
       name: 'Treasure Block Explorer',
       url: 'https://treasurescan.io'
     },
-    contracts: {
-      multicall3: {
-        address: '0x2e29fe39496a56856D8698bD43e1dF4D0CE6266a',
-        blockCreated: 101
-      }
-    },
+    contracts: {},
     testnet: false
   },
   treasureTopaz: {
@@ -11138,12 +8404,7 @@ export const networks = {
       name: 'Treasure Topaz Block Explorer',
       url: 'https://topaz.treasurescan.io'
     },
-    contracts: {
-      multicall3: {
-        address: '0xF9cda624FBC7e059355ce98a31693d299FACd963',
-        blockCreated: 108112
-      }
-    },
+    contracts: {},
     testnet: true
   },
   tron: {
@@ -11264,45 +8525,7 @@ export const networks = {
       url: 'https://uniscan.xyz',
       apiUrl: 'https://api.uniscan.xyz/api'
     },
-    contracts: {
-      gasPriceOracle: {
-        address: '0x420000000000000000000000000000000000000F'
-      },
-      l1Block: {
-        address: '0x4200000000000000000000000000000000000015'
-      },
-      l2CrossDomainMessenger: {
-        address: '0x4200000000000000000000000000000000000007'
-      },
-      l2Erc721Bridge: {
-        address: '0x4200000000000000000000000000000000000014'
-      },
-      l2StandardBridge: {
-        address: '0x4200000000000000000000000000000000000010'
-      },
-      l2ToL1MessagePasser: {
-        address: '0x4200000000000000000000000000000000000016'
-      },
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 0
-      },
-      disputeGameFactory: {
-        '1': {
-          address: '0x2F12d621a16e2d3285929C9996f478508951dFe4'
-        }
-      },
-      portal: {
-        '1': {
-          address: '0x0bd48f6B86a26D3a217d0Fa6FfE2B491B956A7a2'
-        }
-      },
-      l1StandardBridge: {
-        '1': {
-          address: '0x81014F44b0a345033bB2b3B21C7a1A308B35fEeA'
-        }
-      }
-    },
+    contracts: {},
     testnet: false
   },
   unichainSepolia: {
@@ -11320,45 +8543,7 @@ export const networks = {
       url: 'https://sepolia.uniscan.xyz',
       apiUrl: 'https://api-sepolia.uniscan.xyz/api'
     },
-    contracts: {
-      gasPriceOracle: {
-        address: '0x420000000000000000000000000000000000000F'
-      },
-      l1Block: {
-        address: '0x4200000000000000000000000000000000000015'
-      },
-      l2CrossDomainMessenger: {
-        address: '0x4200000000000000000000000000000000000007'
-      },
-      l2Erc721Bridge: {
-        address: '0x4200000000000000000000000000000000000014'
-      },
-      l2StandardBridge: {
-        address: '0x4200000000000000000000000000000000000010'
-      },
-      l2ToL1MessagePasser: {
-        address: '0x4200000000000000000000000000000000000016'
-      },
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 0
-      },
-      portal: {
-        '11155111': {
-          address: '0x0d83dab629f0e0F9d36c0Cbc89B69a489f0751bD'
-        }
-      },
-      l1StandardBridge: {
-        '11155111': {
-          address: '0xea58fcA6849d79EAd1f26608855c2D6407d54Ce2'
-        }
-      },
-      disputeGameFactory: {
-        '11155111': {
-          address: '0xeff73e5aa3B9AEC32c659Aa3E00444d20a84394b'
-        }
-      }
-    },
+    contracts: {},
     testnet: true
   },
   unique: {
@@ -11427,12 +8612,7 @@ export const networks = {
       url: 'https://unreal.blockscout.com',
       apiUrl: 'https://unreal.blockscout.com/api/v2'
     },
-    contracts: {
-      multicall3: {
-        address: '0x8b6B0e60D8CD84898Ea8b981065A12F876eA5677',
-        blockCreated: 1745
-      }
-    },
+    contracts: {},
     testnet: true
   },
   vanar: {
@@ -11483,12 +8663,7 @@ export const networks = {
       name: 'Velas Explorer',
       url: 'https://evmexplorer.velas.com'
     },
-    contracts: {
-      multicall3: {
-        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
-        blockCreated: 55883577
-      }
-    },
+    contracts: {},
     testnet: false
   },
   viction: {
@@ -11522,12 +8697,7 @@ export const networks = {
       name: 'VIC Scan',
       url: 'https://testnet.vicscan.xyz'
     },
-    contracts: {
-      multicall3: {
-        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
-        blockCreated: 12170179
-      }
-    },
+    contracts: {},
     testnet: true
   },
   vision: {
@@ -11578,12 +8748,7 @@ export const networks = {
       name: 'WanScan',
       url: 'https://wanscan.org'
     },
-    contracts: {
-      multicall3: {
-        address: '0xcDF6A1566e78EB4594c86Fe73Fcdc82429e97fbB',
-        blockCreated: 25312390
-      }
-    },
+    contracts: {},
     testnet: false
   },
   wanchainTestnet: {
@@ -11600,12 +8765,7 @@ export const networks = {
       name: 'WanScanTest',
       url: 'https://wanscan.org'
     },
-    contracts: {
-      multicall3: {
-        address: '0x11c89bF4496c39FB80535Ffb4c92715839CC5324',
-        blockCreated: 24743448
-      }
-    },
+    contracts: {},
     testnet: true
   },
   weaveVMAlphanet: {
@@ -11709,50 +8869,7 @@ export const networks = {
       url: 'https://worldscan.org',
       apiUrl: 'https://api.worldscan.org/api'
     },
-    contracts: {
-      gasPriceOracle: {
-        address: '0x420000000000000000000000000000000000000F'
-      },
-      l1Block: {
-        address: '0x4200000000000000000000000000000000000015'
-      },
-      l2CrossDomainMessenger: {
-        address: '0x4200000000000000000000000000000000000007'
-      },
-      l2Erc721Bridge: {
-        address: '0x4200000000000000000000000000000000000014'
-      },
-      l2StandardBridge: {
-        address: '0x4200000000000000000000000000000000000010'
-      },
-      l2ToL1MessagePasser: {
-        address: '0x4200000000000000000000000000000000000016'
-      },
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 0
-      },
-      disputeGameFactory: {
-        '1': {
-          address: '0x069c4c579671f8c120b1327a73217D01Ea2EC5ea'
-        }
-      },
-      l2OutputOracle: {
-        '1': {
-          address: '0x19A6d1E9034596196295CF148509796978343c5D'
-        }
-      },
-      portal: {
-        '1': {
-          address: '0xd5ec14a83B7d95BE1E2Ac12523e2dEE12Cbeea6C'
-        }
-      },
-      l1StandardBridge: {
-        '1': {
-          address: '0x470458C91978D2d929704489Ad730DC3E3001113'
-        }
-      }
-    },
+    contracts: {},
     testnet: false
   },
   worldchainSepolia: {
@@ -11770,50 +8887,7 @@ export const networks = {
       url: 'https://sepolia.worldscan.org',
       apiUrl: 'https://api-sepolia.worldscan.org/api'
     },
-    contracts: {
-      gasPriceOracle: {
-        address: '0x420000000000000000000000000000000000000F'
-      },
-      l1Block: {
-        address: '0x4200000000000000000000000000000000000015'
-      },
-      l2CrossDomainMessenger: {
-        address: '0x4200000000000000000000000000000000000007'
-      },
-      l2Erc721Bridge: {
-        address: '0x4200000000000000000000000000000000000014'
-      },
-      l2StandardBridge: {
-        address: '0x4200000000000000000000000000000000000010'
-      },
-      l2ToL1MessagePasser: {
-        address: '0x4200000000000000000000000000000000000016'
-      },
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 0
-      },
-      disputeGameFactory: {
-        '11155111': {
-          address: '0x8cF97Ee616C986a070F5020d973b456D0120C253'
-        }
-      },
-      l2OutputOracle: {
-        '11155111': {
-          address: '0xc8886f8BAb6Eaeb215aDB5f1c686BF699248300e'
-        }
-      },
-      portal: {
-        '11155111': {
-          address: '0xFf6EBa109271fe6d4237EeeD4bAb1dD9A77dD1A4'
-        }
-      },
-      l1StandardBridge: {
-        '11155111': {
-          address: '0xd7DF54b3989855eb66497301a4aAEc33Dbb3F8DE'
-        }
-      }
-    },
+    contracts: {},
     testnet: true
   },
   x1Testnet: {
@@ -11830,12 +8904,7 @@ export const networks = {
       name: 'OKLink',
       url: 'https://www.oklink.com/xlayer-test'
     },
-    contracts: {
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 624344
-      }
-    },
+    contracts: {},
     testnet: true
   },
   xLayer: {
@@ -11853,12 +8922,7 @@ export const networks = {
       url: 'https://www.oklink.com/xlayer',
       apiUrl: 'https://www.oklink.com/api/v5/explorer/xlayer/api'
     },
-    contracts: {
-      multicall3: {
-        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
-        blockCreated: 47416
-      }
-    },
+    contracts: {},
     testnet: false
   },
   xLayerTestnet: {
@@ -11875,12 +8939,7 @@ export const networks = {
       name: 'OKLink',
       url: 'https://www.oklink.com/xlayer-test'
     },
-    contracts: {
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 624344
-      }
-    },
+    contracts: {},
     testnet: true
   },
   xai: {
@@ -11897,12 +8956,7 @@ export const networks = {
       name: 'Blockscout',
       url: 'https://explorer.xai-chain.net'
     },
-    contracts: {
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 222549
-      }
-    },
+    contracts: {},
     testnet: false
   },
   xaiTestnet: {
@@ -11936,12 +8990,7 @@ export const networks = {
       name: 'XDCScan',
       url: 'https://xdcscan.com'
     },
-    contracts: {
-      multicall3: {
-        address: '0x0B1795ccA8E4eC4df02346a082df54D437F8D9aF',
-        blockCreated: 75884020
-      }
-    },
+    contracts: {},
     testnet: false
   },
   xdcTestnet: {
@@ -11958,12 +9007,7 @@ export const networks = {
       name: 'XDCScan',
       url: 'https://testnet.xdcscan.com'
     },
-    contracts: {
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 59765389
-      }
-    },
+    contracts: {},
     testnet: false
   },
   xrOne: {
@@ -12048,12 +9092,7 @@ export const networks = {
       name: 'Zentrace',
       url: 'https://zentrace.io'
     },
-    contracts: {
-      multicall3: {
-        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
-        blockCreated: 230019
-      }
-    },
+    contracts: {},
     testnet: true
   },
   zeniq: {
@@ -12121,12 +9160,7 @@ export const networks = {
       name: 'ZetaScan',
       url: 'https://explorer.zetachain.com'
     },
-    contracts: {
-      multicall3: {
-        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
-        blockCreated: 1632781
-      }
-    },
+    contracts: {},
     testnet: false
   },
   zetachainAthensTestnet: {
@@ -12143,12 +9177,7 @@ export const networks = {
       name: 'ZetaScan',
       url: 'https://athens.explorer.zetachain.com'
     },
-    contracts: {
-      multicall3: {
-        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
-        blockCreated: 2715217
-      }
-    },
+    contracts: {},
     testnet: true
   },
   zhejiang: {
@@ -12216,26 +9245,7 @@ export const networks = {
       name: 'Zircuit Explorer',
       url: 'https://explorer.zircuit.com'
     },
-    contracts: {
-      multicall3: {
-        address: '0xcA11bde05977b3631167028862bE2a173976CA11'
-      },
-      l2OutputOracle: {
-        '1': {
-          address: '0x92Ef6Af472b39F1b363da45E35530c24619245A4'
-        }
-      },
-      portal: {
-        '1': {
-          address: '0x17bfAfA932d2e23Bd9B909Fd5B4D2e2a27043fb1'
-        }
-      },
-      l1StandardBridge: {
-        '1': {
-          address: '0x386B76D9cA5F5Fb150B6BFB35CF5379B22B26dd8'
-        }
-      }
-    },
+    contracts: {},
     testnet: false
   },
   zircuitTestnet: {
@@ -12252,27 +9262,7 @@ export const networks = {
       name: 'Zircuit Testnet Explorer',
       url: 'https://explorer.testnet.zircuit.com'
     },
-    contracts: {
-      multicall3: {
-        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
-        blockCreated: 6040287
-      },
-      l2OutputOracle: {
-        '11155111': {
-          address: '0x740C2dac453aEf7140809F80b72bf0e647af8148'
-        }
-      },
-      portal: {
-        '11155111': {
-          address: '0x787f1C8c5924178689E0560a43D848bF8E54b23e'
-        }
-      },
-      l1StandardBridge: {
-        '11155111': {
-          address: '0x0545c5fe980098C16fcD0eCB5E79753afa6d9af9'
-        }
-      }
-    },
+    contracts: {},
     testnet: true
   },
   zkFair: {
@@ -12290,12 +9280,7 @@ export const networks = {
       url: 'https://scan.zkfair.io',
       apiUrl: 'https://scan.zkfair.io/api'
     },
-    contracts: {
-      multicall3: {
-        address: '0xca11bde05977b3631167028862be2a173976ca11',
-        blockCreated: 6090959
-      }
-    },
+    contracts: {},
     testnet: false
   },
   zkFairTestnet: {
@@ -12364,15 +9349,7 @@ export const networks = {
       url: 'https://era.zksync.network/',
       apiUrl: 'https://api-era.zksync.network/api'
     },
-    contracts: {
-      multicall3: {
-        address: '0xF9cda624FBC7e059355ce98a31693d299FACd963'
-      },
-      universalSignatureVerifier: {
-        address: '0xfB688330379976DA81eB64Fe4BF50d7401763B9C',
-        blockCreated: 45659388
-      }
-    },
+    contracts: {},
     testnet: false
   },
   zkSyncInMemoryNode: {
@@ -12418,15 +9395,7 @@ export const networks = {
       url: 'https://sepolia-era.zksync.network/',
       apiUrl: 'https://api-sepolia-era.zksync.network/api'
     },
-    contracts: {
-      multicall3: {
-        address: '0xF9cda624FBC7e059355ce98a31693d299FACd963'
-      },
-      universalSignatureVerifier: {
-        address: '0xfB688330379976DA81eB64Fe4BF50d7401763B9C',
-        blockCreated: 3855712
-      }
-    },
+    contracts: {},
     testnet: true
   },
   zksync: {
@@ -12444,15 +9413,7 @@ export const networks = {
       url: 'https://era.zksync.network/',
       apiUrl: 'https://api-era.zksync.network/api'
     },
-    contracts: {
-      multicall3: {
-        address: '0xF9cda624FBC7e059355ce98a31693d299FACd963'
-      },
-      universalSignatureVerifier: {
-        address: '0xfB688330379976DA81eB64Fe4BF50d7401763B9C',
-        blockCreated: 45659388
-      }
-    },
+    contracts: {},
     testnet: false
   },
   zksyncInMemoryNode: {
@@ -12552,15 +9513,7 @@ export const networks = {
       url: 'https://sepolia-era.zksync.network/',
       apiUrl: 'https://api-sepolia-era.zksync.network/api'
     },
-    contracts: {
-      multicall3: {
-        address: '0xF9cda624FBC7e059355ce98a31693d299FACd963'
-      },
-      universalSignatureVerifier: {
-        address: '0xfB688330379976DA81eB64Fe4BF50d7401763B9C',
-        blockCreated: 3855712
-      }
-    },
+    contracts: {},
     testnet: true
   },
   zora: {
@@ -12578,45 +9531,7 @@ export const networks = {
       url: 'https://explorer.zora.energy',
       apiUrl: 'https://explorer.zora.energy/api'
     },
-    contracts: {
-      gasPriceOracle: {
-        address: '0x420000000000000000000000000000000000000F'
-      },
-      l1Block: {
-        address: '0x4200000000000000000000000000000000000015'
-      },
-      l2CrossDomainMessenger: {
-        address: '0x4200000000000000000000000000000000000007'
-      },
-      l2Erc721Bridge: {
-        address: '0x4200000000000000000000000000000000000014'
-      },
-      l2StandardBridge: {
-        address: '0x4200000000000000000000000000000000000010'
-      },
-      l2ToL1MessagePasser: {
-        address: '0x4200000000000000000000000000000000000016'
-      },
-      l2OutputOracle: {
-        '1': {
-          address: '0x9E6204F750cD866b299594e2aC9eA824E2e5f95c'
-        }
-      },
-      multicall3: {
-        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
-        blockCreated: 5882
-      },
-      portal: {
-        '1': {
-          address: '0x1a0ad011913A150f69f6A19DF447A0CfD9551054'
-        }
-      },
-      l1StandardBridge: {
-        '1': {
-          address: '0x3e2Ea9B92B7E48A52296fD261dc26fd995284631'
-        }
-      }
-    },
+    contracts: {},
     testnet: false
   },
   zoraSepolia: {
@@ -12634,45 +9549,7 @@ export const networks = {
       url: 'https://sepolia.explorer.zora.energy/',
       apiUrl: 'https://sepolia.explorer.zora.energy/api'
     },
-    contracts: {
-      gasPriceOracle: {
-        address: '0x420000000000000000000000000000000000000F'
-      },
-      l1Block: {
-        address: '0x4200000000000000000000000000000000000015'
-      },
-      l2CrossDomainMessenger: {
-        address: '0x4200000000000000000000000000000000000007'
-      },
-      l2Erc721Bridge: {
-        address: '0x4200000000000000000000000000000000000014'
-      },
-      l2StandardBridge: {
-        address: '0x4200000000000000000000000000000000000010'
-      },
-      l2ToL1MessagePasser: {
-        address: '0x4200000000000000000000000000000000000016'
-      },
-      l2OutputOracle: {
-        '11155111': {
-          address: '0x2615B481Bd3E5A1C0C7Ca3Da1bdc663E8615Ade9'
-        }
-      },
-      multicall3: {
-        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
-        blockCreated: 83160
-      },
-      portal: {
-        '11155111': {
-          address: '0xeffE2C6cA9Ab797D418f0D91eA60807713f3536f'
-        }
-      },
-      l1StandardBridge: {
-        '11155111': {
-          address: '0x5376f1D543dcbB5BD416c56C189e4cB7399fCcCB'
-        }
-      }
-    },
+    contracts: {},
     testnet: true
   },
   zoraTestnet: {
@@ -12690,35 +9567,7 @@ export const networks = {
       url: 'https://testnet.explorer.zora.energy',
       apiUrl: 'https://testnet.explorer.zora.energy/api'
     },
-    contracts: {
-      gasPriceOracle: {
-        address: '0x420000000000000000000000000000000000000F'
-      },
-      l1Block: {
-        address: '0x4200000000000000000000000000000000000015'
-      },
-      l2CrossDomainMessenger: {
-        address: '0x4200000000000000000000000000000000000007'
-      },
-      l2Erc721Bridge: {
-        address: '0x4200000000000000000000000000000000000014'
-      },
-      l2StandardBridge: {
-        address: '0x4200000000000000000000000000000000000010'
-      },
-      l2ToL1MessagePasser: {
-        address: '0x4200000000000000000000000000000000000016'
-      },
-      multicall3: {
-        address: '0xcA11bde05977b3631167028862bE2a173976CA11',
-        blockCreated: 189123
-      },
-      portal: {
-        '5': {
-          address: '0xDb9F51790365e7dc196e7D072728df39Be958ACe'
-        }
-      }
-    },
+    contracts: {},
     testnet: true
   }
 }

@@ -5,9 +5,10 @@ import {execSync} from 'node:child_process'
 const targetDir = `${import.meta.dirname}/../src`
 const networks = {}
 for (const [label, network] of Object.entries(chains)) {
-  const {id, name, nativeCurrency, rpcUrls, blockExplorers, contracts = {}, testnet = false} = network
+  const {id, name, nativeCurrency, rpcUrls, blockExplorers, testnet = false} = network
   const providerURL = rpcUrls.default.http[0]
   const blockExplorer = blockExplorers?.default || {}
+  const contracts = {}
   networks[label] = {id: BigInt(id), label, name, nativeCurrency, providerURL, blockExplorer, contracts, testnet: testnet || label === 'hardhat' || label === 'localhost'}
 }
 writeFileSync(`${targetDir}/networks.js`, `export const networks = ${inspect(networks, {showHidden: false, compact: false, depth: null})}`)
