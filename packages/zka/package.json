@@ -18,6 +18,5 @@
   },
   "devDependencies": {
     "sinon": "^19.0.2"
-  },
-  "gitHead": "f99238eb1fc0569fba827b3105997e83297bc42b"
+  }
 }

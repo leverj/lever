@@ -32,6 +32,5 @@
   },
   "devDependencies": {
     "randomhex": "^0.1.5"
-  },
-  "gitHead": "f99238eb1fc0569fba827b3105997e83297bc42b"
+  }
 }

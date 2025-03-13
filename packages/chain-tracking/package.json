@@ -23,6 +23,5 @@
   "devDependencies": {
     "@leverj/lever.chain-deployment": "4.5.12",
     "@openzeppelin/contracts": "^5.2.0"
-  },
-  "gitHead": "f99238eb1fc0569fba827b3105997e83297bc42b"
+  }
 }

@@ -10,6 +10,5 @@
   "dependencies": {
     "@leverj/lever.common": "4.5.12",
     "axios": "^1.8.2"
-  },
-  "gitHead": "f99238eb1fc0569fba827b3105997e83297bc42b"
+  }
 }
