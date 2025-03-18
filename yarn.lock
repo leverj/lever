@@ -756,16 +756,16 @@ __metadata:
     "@nomicfoundation/hardhat-ethers": "npm:^3.0.8"
     "@nomicfoundation/hardhat-network-helpers": "npm:^1.0.12"
     "@nomicfoundation/hardhat-verify": "npm:^2.0.13"
-    axios: "npm:^1.8.2"
+    axios: "npm:^1.8.3"
     ethers: "npm:^6.13.5"
     glob: "npm:^11.0.1"
     hardhat: "npm:^2.22.19"
-    hardhat-deploy: "npm:~0.14.0"
+    hardhat-deploy: "npm:~0.14.1"
     hardhat-deploy-ethers: "npm:^0.4.2"
     immutable: "npm:^5.0.3"
     lodash-es: "npm:^4.17.21"
-    viem: "npm:^2.23.8"
-    wait-on: "npm:^8.0.2"
+    viem: "npm:^2.23.12"
+    wait-on: "npm:^8.0.3"
   languageName: unknown
   linkType: soft
 
@@ -826,7 +826,7 @@ __metadata:
   resolution: "@leverj/lever.telegram@workspace:packages/telegram"
   dependencies:
     "@leverj/lever.common": "npm:4.5.12"
-    axios: "npm:^1.8.2"
+    axios: "npm:^1.8.3"
   languageName: unknown
   linkType: soft
 
@@ -835,7 +835,7 @@ __metadata:
   resolution: "@leverj/lever.zka@workspace:packages/zka"
   dependencies:
     "@leverj/lever.common": "npm:4.5.12"
-    axios: "npm:^1.8.2"
+    axios: "npm:^1.8.3"
     ephemeral-cache: "npm:^1.1.0"
     ethers: "npm:^6.13.5"
     lodash-es: "npm:^4.17.21"
@@ -851,7 +851,7 @@ __metadata:
     depcheck: "npm:^1.4.7"
     expect: "npm:^29.7.0"
     lerna: "npm:^8.2.1"
-    mocha: "npm:^11.1.0"
+    mocha: "npm:^11.2.0"
     yargs: "npm:^17.7.2"
   languageName: unknown
   linkType: soft
@@ -2461,7 +2461,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"axios@npm:^1.7.4, axios@npm:^1.7.9":
+"axios@npm:^1.7.4":
   version: 1.7.9
   resolution: "axios@npm:1.7.9"
   dependencies:
@@ -2480,6 +2480,17 @@ __metadata:
     form-data: "npm:^4.0.0"
     proxy-from-env: "npm:^1.1.0"
   checksum: 10c0/d8c2969e4642dc6d39555ac58effe06c051ba7aac2bd40cad7a9011c019fb2f16ee011c5a6906cb25b8a4f87258c359314eb981f852e60ad445ecaeb793c7aa2
+  languageName: node
+  linkType: hard
+
+"axios@npm:^1.8.3":
+  version: 1.8.3
+  resolution: "axios@npm:1.8.3"
+  dependencies:
+    follow-redirects: "npm:^1.15.6"
+    form-data: "npm:^4.0.0"
+    proxy-from-env: "npm:^1.1.0"
+  checksum: 10c0/de75da9859adf0a6481d4af2b687db357a054d20f0d69b99d502b71dae3578326b1fdc0951dabaef769827484941cda93d3f89150bf9e04f05f6615fb8316780
   languageName: node
   linkType: hard
 
@@ -4639,9 +4650,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"hardhat-deploy@npm:~0.14.0":
-  version: 0.14.0
-  resolution: "hardhat-deploy@npm:0.14.0"
+"hardhat-deploy@npm:~0.14.1":
+  version: 0.14.1
+  resolution: "hardhat-deploy@npm:0.14.1"
   dependencies:
     "@ethersproject/abi": "npm:^5.7.0"
     "@ethersproject/abstract-signer": "npm:^5.7.0"
@@ -4667,7 +4678,7 @@ __metadata:
     murmur-128: "npm:^0.2.1"
     qs: "npm:^6.9.4"
     zksync-ethers: "npm:^5.0.0"
-  checksum: 10c0/40268970daaf1d510f5612aa09bc69b3c6199ade887b6c7c3cdba8fc7bd340e7d19530e76451dfa254dc1624639ada59c29b31a4580ceadadf63bdf8da11d220
+  checksum: 10c0/d221e648012cb43ae6bf29927f07155565cfe8f8b7fc7454982aed286e74f5c19aa155b32a1a8d62eb73f8629eeb32f454b9e9e78d3b852405d7b1d48bccd25b
   languageName: node
   linkType: hard
 
@@ -6377,9 +6388,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mocha@npm:^11.1.0":
-  version: 11.1.0
-  resolution: "mocha@npm:11.1.0"
+"mocha@npm:^11.2.0":
+  version: 11.2.0
+  resolution: "mocha@npm:11.2.0"
   dependencies:
     ansi-colors: "npm:^4.1.3"
     browser-stdout: "npm:^1.3.1"
@@ -6404,7 +6415,7 @@ __metadata:
   bin:
     _mocha: bin/_mocha
     mocha: bin/mocha.js
-  checksum: 10c0/46e063fb014bef8c7f290094325ee2666ef9f63a918573f5278781631d4b3d04e45abe35f776307ff19e837bc2b42e4f2a7c60c53b69517539890636cf8e49ec
+  checksum: 10c0/81b80aa45a43c715c0761872a863b31a03232d1e01266ac3b344cadc2f959903d6aee63e53291a5007e35794b41670856f0e0945885e1d578eb011ea3c4341a3
   languageName: node
   linkType: hard
 
@@ -6940,9 +6951,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ox@npm:0.6.7":
-  version: 0.6.7
-  resolution: "ox@npm:0.6.7"
+"ox@npm:0.6.9":
+  version: 0.6.9
+  resolution: "ox@npm:0.6.9"
   dependencies:
     "@adraffy/ens-normalize": "npm:^1.10.1"
     "@noble/curves": "npm:^1.6.0"
@@ -6956,7 +6967,7 @@ __metadata:
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: 10c0/f556804e7246cc8aa56e43c6bb91302a792649638afe086a86ed3a71a5a583c05d3ad4318b212835cb8167fe561024db1625253c118018380393e161af3c3edf
+  checksum: 10c0/02a7ea9795eaac0a7a672e983094f62ae6f19b7d0c786e6d7ef4584683faf535b5b133e42452dd3abb77115382e16b2cb5c0f629d5a0f2b80832c47756e0ecd1
   languageName: node
   linkType: hard
 
@@ -7866,12 +7877,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rxjs@npm:^7.5.5, rxjs@npm:^7.8.1":
+"rxjs@npm:^7.5.5":
   version: 7.8.1
   resolution: "rxjs@npm:7.8.1"
   dependencies:
     tslib: "npm:^2.1.0"
   checksum: 10c0/3c49c1ecd66170b175c9cacf5cef67f8914dcbc7cd0162855538d365c83fea631167cacb644b3ce533b2ea0e9a4d0b12175186985f89d75abe73dbd8f7f06f68
+  languageName: node
+  linkType: hard
+
+"rxjs@npm:^7.8.2":
+  version: 7.8.2
+  resolution: "rxjs@npm:7.8.2"
+  dependencies:
+    tslib: "npm:^2.1.0"
+  checksum: 10c0/1fcd33d2066ada98ba8f21fcbbcaee9f0b271de1d38dc7f4e256bfbc6ffcdde68c8bfb69093de7eeb46f24b1fb820620bf0223706cff26b4ab99a7ff7b2e2c45
   languageName: node
   linkType: hard
 
@@ -8954,9 +8974,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"viem@npm:^2.23.8":
-  version: 2.23.8
-  resolution: "viem@npm:2.23.8"
+"viem@npm:^2.23.12":
+  version: 2.23.12
+  resolution: "viem@npm:2.23.12"
   dependencies:
     "@noble/curves": "npm:1.8.1"
     "@noble/hashes": "npm:1.7.1"
@@ -8964,29 +8984,29 @@ __metadata:
     "@scure/bip39": "npm:1.5.4"
     abitype: "npm:1.0.8"
     isows: "npm:1.0.6"
-    ox: "npm:0.6.7"
-    ws: "npm:8.18.0"
+    ox: "npm:0.6.9"
+    ws: "npm:8.18.1"
   peerDependencies:
     typescript: ">=5.0.4"
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: 10c0/c9e455e3fda4cff2b890a0fbca632a6176136e0514db96a8a6e419747bf62559f0676710508cb7b8726213f4348aacdaef37ee40ae3ac2eeb64570bea4805ba2
+  checksum: 10c0/4bed6d5266879ce49e4a4d3cbd8ef310505fb4c605e4ae59a539a7387ce2d7bfa7c5dcad2e3a5adb6fb282d547fb5a5efbf6aeb27042490384e864798aeb751d
   languageName: node
   linkType: hard
 
-"wait-on@npm:^8.0.2":
-  version: 8.0.2
-  resolution: "wait-on@npm:8.0.2"
+"wait-on@npm:^8.0.3":
+  version: 8.0.3
+  resolution: "wait-on@npm:8.0.3"
   dependencies:
-    axios: "npm:^1.7.9"
+    axios: "npm:^1.8.2"
     joi: "npm:^17.13.3"
     lodash: "npm:^4.17.21"
     minimist: "npm:^1.2.8"
-    rxjs: "npm:^7.8.1"
+    rxjs: "npm:^7.8.2"
   bin:
     wait-on: bin/wait-on
-  checksum: 10c0/7a2a2193f601eb30d3125595fbed1abeb3ce0c9e164146aed27d12469d9b665273dc8e508a3a869c997f37b92d93478c202b38253a95c5c29e6fc64d0a317f5b
+  checksum: 10c0/7f14086c3bb6fc055207ab591d2faefc045f718aa7c959353a54af05cf08c53c25d9af80d4d5f6934a169cc0d97ebd1dcf024b13583d09b9a935c36bd745bd7b
   languageName: node
   linkType: hard
 
@@ -9226,9 +9246,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ws@npm:8.18.0":
-  version: 8.18.0
-  resolution: "ws@npm:8.18.0"
+"ws@npm:8.18.1":
+  version: 8.18.1
+  resolution: "ws@npm:8.18.1"
   peerDependencies:
     bufferutil: ^4.0.1
     utf-8-validate: ">=5.0.2"
@@ -9237,7 +9257,7 @@ __metadata:
       optional: true
     utf-8-validate:
       optional: true
-  checksum: 10c0/25eb33aff17edcb90721ed6b0eb250976328533ad3cd1a28a274bd263682e7296a6591ff1436d6cbc50fa67463158b062f9d1122013b361cec99a05f84680e06
+  checksum: 10c0/e498965d6938c63058c4310ffb6967f07d4fa06789d3364829028af380d299fe05762961742971c764973dce3d1f6a2633fe8b2d9410c9b52e534b4b882a99fa
   languageName: node
   linkType: hard
 
