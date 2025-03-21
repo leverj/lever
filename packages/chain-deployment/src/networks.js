@@ -1296,7 +1296,7 @@ export const networks = {
       name: 'BNB',
       symbol: 'BNB'
     },
-    providerURL: 'https://rpc.ankr.com/bsc',
+    providerURL: 'https://56.rpc.thirdweb.com',
     blockExplorer: {
       name: 'BscScan',
       url: 'https://bscscan.com',
@@ -1537,7 +1537,7 @@ export const networks = {
       name: 'CHZ',
       symbol: 'CHZ'
     },
-    providerURL: 'https://rpc.ankr.com/chiliz',
+    providerURL: 'https://chiliz-rpc.publicnode.com',
     blockExplorer: {
       name: 'Chiliz Explorer',
       url: 'https://scan.chiliz.com',
@@ -1689,7 +1689,7 @@ export const networks = {
       name: 'Bitcorn',
       symbol: 'BTCN'
     },
-    providerURL: 'https://rpc.ankr.com/corn_maizenet',
+    providerURL: 'https://21000000.rpc.thirdweb.com',
     blockExplorer: {
       name: 'Corn Explorer',
       url: 'https://cornscan.io',
@@ -1707,7 +1707,7 @@ export const networks = {
       name: 'Bitcorn',
       symbol: 'BTCN'
     },
-    providerURL: 'https://rpc.ankr.com/corn_testnet',
+    providerURL: 'https://21000001.rpc.thirdweb.com',
     blockExplorer: {
       name: 'Corn Testnet Explorer',
       url: 'https://testnet.cornscan.io',
@@ -2615,7 +2615,7 @@ export const networks = {
     providerURL: 'https://node.ghostnet.etherlink.com',
     blockExplorer: {
       name: 'Etherlink Testnet',
-      url: 'https://testnet-explorer.etherlink.com'
+      url: 'https://testnet.explorer.etherlink.com'
     },
     contracts: {},
     testnet: true
@@ -2767,7 +2767,7 @@ export const networks = {
       name: 'Fantom',
       symbol: 'FTM'
     },
-    providerURL: 'https://rpc.ankr.com/fantom',
+    providerURL: 'https://250.rpc.thirdweb.com',
     blockExplorer: {
       name: 'FTMScan',
       url: 'https://ftmscan.com',
@@ -3474,7 +3474,7 @@ export const networks = {
       symbol: 'ETH',
       decimals: 18
     },
-    providerURL: 'https://rpc.ankr.com/eth_goerli',
+    providerURL: 'https://5.rpc.thirdweb.com',
     blockExplorer: {
       name: 'Etherscan',
       url: 'https://goerli.etherscan.io',
@@ -3629,7 +3629,7 @@ export const networks = {
       symbol: 'ONE',
       decimals: 18
     },
-    providerURL: 'https://rpc.ankr.com/harmony',
+    providerURL: 'https://1666600000.rpc.thirdweb.com',
     blockExplorer: {
       name: 'Harmony Explorer',
       url: 'https://explorer.harmony.one'
@@ -5132,6 +5132,24 @@ export const networks = {
     contracts: {},
     testnet: false
   },
+  merlinErigonTestnet: {
+    id: 4203n,
+    label: 'merlinErigonTestnet',
+    name: 'Merlin Erigon Testnet',
+    nativeCurrency: {
+      name: 'BTC',
+      symbol: 'BTC',
+      decimals: 18
+    },
+    providerURL: 'https://testnet-erigon-rpc.merlinchain.io',
+    blockExplorer: {
+      name: 'blockscout',
+      url: 'https://testnet-erigon-scan.merlinchain.io',
+      apiUrl: 'https://testnet-erigon-scan.merlinchain.io/api'
+    },
+    contracts: {},
+    testnet: true
+  },
   metachain: {
     id: 571n,
     label: 'metachain',
@@ -6335,7 +6353,7 @@ export const networks = {
       symbol: 'MATIC',
       decimals: 18
     },
-    providerURL: 'https://rpc.ankr.com/polygon_mumbai',
+    providerURL: 'https://80001.rpc.thirdweb.com',
     blockExplorer: {
       name: 'PolygonScan',
       url: 'https://mumbai.polygonscan.com',
@@ -9969,6 +9987,7 @@ export const chainsById = {
   '4200': 'merlin',
   '4201': 'luksoTestnet',
   '4202': 'liskSepolia',
+  '4203': 'merlinErigonTestnet',
   '4242': 'nexi',
   '4337': 'beam',
   '4460': 'orderlySepolia',

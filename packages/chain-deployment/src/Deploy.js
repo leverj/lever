@@ -6,12 +6,13 @@ import {inspect} from 'node:util'
 import {verifyContract} from './blockscout.js'
 /*** from https://github.com/blockscout/chainscout/blob/main/data/chains.json ***/
 import blockscoutExplorerUrls_ from './chainscout-chains.json' with {type: 'json'}
+//fixme: eliminate the need to generate networks.js
 import {networks as networks_} from './networks.js'
 
 const blockscoutExplorerUrls = Object.assign({}, blockscoutExplorerUrls_)
 export const networks = Object.assign({}, networks_)
 export const addBlockScoutExplorerUrl = (id, explorerUrl) => blockscoutExplorerUrls[id] = explorerUrl
-export const addNetwork = (name, network) => networks[name] = network
+export const addNetwork = (label, network) => networks[label] = network
 const {ethers: {deployContract, JsonRpcProvider, Wallet}} = hardhat
 
 export class Deploy {

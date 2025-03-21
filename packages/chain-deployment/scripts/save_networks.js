@@ -16,6 +16,7 @@ for (const [label, network] of Object.entries(chains)) {
   const contracts = {}
   networks[label] = {id: BigInt(id), label, name, nativeCurrency, providerURL, blockExplorer, contracts, testnet: testnet || label === 'hardhat' || label === 'localhost'}
 }
+//fixme: eliminate the need to generate networks.js
 writeFileSync(`${targetDir}/networks.js`,
 `export const networks = ${inspect(networks, {showHidden: false, compact: false, depth: null})}\n
 export const chainsById = ${inspect(chainsById, {showHidden: false, compact: false, depth: null})}\n`)
