@@ -3808,6 +3808,23 @@ export const networks = {
     contracts: {},
     testnet: true
   },
+  hoodi: {
+    id: 560048n,
+    label: 'hoodi',
+    name: 'Hoodi',
+    nativeCurrency: {
+      name: 'Hoodi Ether',
+      symbol: 'ETH',
+      decimals: 18
+    },
+    providerURL: 'https://rpc.hoodi.ethpandaops.io',
+    blockExplorer: {
+      name: 'Blockscout',
+      url: 'https://hoodi.cloud.blockscout.com'
+    },
+    contracts: {},
+    testnet: true
+  },
   hpb: {
     id: 269n,
     label: 'hpb',
@@ -4194,7 +4211,7 @@ export const networks = {
   juneo: {
     id: 45003n,
     label: 'juneo',
-    name: 'JUNE-Chain',
+    name: 'Juneo JUNE-Chain',
     nativeCurrency: {
       decimals: 18,
       name: 'JUNE-Chain',
@@ -4208,6 +4225,24 @@ export const networks = {
     },
     contracts: {},
     testnet: false
+  },
+  juneoSocotraTestnet: {
+    id: 101003n,
+    label: 'juneoSocotraTestnet',
+    name: 'Socotra JUNE-Chain',
+    nativeCurrency: {
+      decimals: 18,
+      name: 'Socotra JUNE-Chain',
+      symbol: 'JUNE'
+    },
+    providerURL: 'https://rpc.socotra-testnet.network/ext/bc/JUNE/rpc',
+    blockExplorer: {
+      name: 'Juneo Scan',
+      url: 'https://socotra.juneoscan.io/chain/2',
+      apiUrl: 'https://socotra.juneoscan.io/chain/2/api'
+    },
+    contracts: {},
+    testnet: true
   },
   kaia: {
     id: 8217n,
@@ -6222,7 +6257,7 @@ export const networks = {
   plume: {
     id: 98865n,
     label: 'plume',
-    name: 'Plume',
+    name: 'Plume (Legacy)',
     nativeCurrency: {
       name: 'Plume Ether',
       symbol: 'ETH',
@@ -6240,7 +6275,7 @@ export const networks = {
   plumeDevnet: {
     id: 98864n,
     label: 'plumeDevnet',
-    name: 'Plume Devnet',
+    name: 'Plume Devnet (Legacy)',
     nativeCurrency: {
       name: 'Plume Sepolia Ether',
       symbol: 'ETH',
@@ -6258,7 +6293,7 @@ export const networks = {
   plumeMainnet: {
     id: 98866n,
     label: 'plumeMainnet',
-    name: 'Plume Mainnet',
+    name: 'Plume',
     nativeCurrency: {
       name: 'Plume',
       symbol: 'PLUME',
@@ -6273,10 +6308,28 @@ export const networks = {
     contracts: {},
     testnet: false
   },
+  plumeSepolia: {
+    id: 98867n,
+    label: 'plumeSepolia',
+    name: 'Plume Testnet',
+    nativeCurrency: {
+      name: 'Plume',
+      symbol: 'PLUME',
+      decimals: 18
+    },
+    providerURL: 'https://testnet-rpc.plumenetwork.xyz',
+    blockExplorer: {
+      name: 'Blockscout',
+      url: 'https://testnet-explorer.plumenetwork.xyz',
+      apiUrl: 'https://testnet-explorer.plumenetwork.xyz/api'
+    },
+    contracts: {},
+    testnet: true
+  },
   plumeTestnet: {
     id: 161221135n,
     label: 'plumeTestnet',
-    name: 'Plume Testnet',
+    name: 'Plume Testnet (Legacy)',
     nativeCurrency: {
       name: 'Plume Sepolia Ether',
       symbol: 'ETH',
@@ -9218,6 +9271,41 @@ export const networks = {
     contracts: {},
     testnet: true
   },
+  xrplevmDevnet: {
+    id: 1440002n,
+    label: 'xrplevmDevnet',
+    name: 'XRPL EVM Devnet',
+    nativeCurrency: {
+      name: 'XRP',
+      symbol: 'XRP',
+      decimals: 18
+    },
+    providerURL: 'https://rpc.xrplevm.org/',
+    blockExplorer: {
+      name: 'XRPLEVM Devnet Explorer',
+      url: 'https://explorer.xrplevm.org/'
+    },
+    contracts: {},
+    testnet: true
+  },
+  xrplevmTestnet: {
+    id: 1449000n,
+    label: 'xrplevmTestnet',
+    name: 'XRPL EVM Testnet',
+    nativeCurrency: {
+      name: 'XRP',
+      symbol: 'XRP',
+      decimals: 18
+    },
+    providerURL: 'https://rpc.testnet.xrplevm.org',
+    blockExplorer: {
+      name: 'blockscout',
+      url: 'https://explorer.testnet.xrplevm.org',
+      apiUrl: 'https://explorer.testnet.xrplevm.org/api/v2'
+    },
+    contracts: {},
+    testnet: true
+  },
   yooldoVerse: {
     id: 50005n,
     label: 'yooldoVerse',
@@ -9414,13 +9502,30 @@ export const networks = {
       name: 'Ether',
       symbol: 'ETH'
     },
-    providerURL: 'https://zircuit1-mainnet.p2pify.com',
+    providerURL: 'https://mainnet.zircuit.com',
     blockExplorer: {
       name: 'Zircuit Explorer',
       url: 'https://explorer.zircuit.com'
     },
     contracts: {},
     testnet: false
+  },
+  zircuitGarfieldTestnet: {
+    id: 48898n,
+    label: 'zircuitGarfieldTestnet',
+    name: 'Zircuit Garfield Testnet',
+    nativeCurrency: {
+      name: 'ETH',
+      symbol: 'ETH',
+      decimals: 18
+    },
+    providerURL: 'https://garfield-testnet.zircuit.com/',
+    blockExplorer: {
+      name: 'Zircuit Garfield Testnet Explorer',
+      url: 'https://explorer.garfield-testnet.zircuit.com'
+    },
+    contracts: {},
+    testnet: true
   },
   zircuitTestnet: {
     id: 48899n,
@@ -9431,7 +9536,7 @@ export const networks = {
       symbol: 'ETH',
       decimals: 18
     },
-    providerURL: 'https://zircuit1-testnet.p2pify.com',
+    providerURL: 'https://testnet.zircuit.com',
     blockExplorer: {
       name: 'Zircuit Testnet Explorer',
       url: 'https://explorer.testnet.zircuit.com'
@@ -10126,6 +10231,7 @@ export const chainsById = {
   '46688': 'fusionTestnet',
   '47763': 'neoxMainnet',
   '47805': 'rei',
+  '48898': 'zircuitGarfieldTestnet',
   '48899': 'zircuitTestnet',
   '48900': 'zircuit',
   '50005': 'yooldoVerse',
@@ -10177,7 +10283,9 @@ export const chainsById = {
   '98864': 'plumeDevnet',
   '98865': 'plume',
   '98866': 'plumeMainnet',
+  '98867': 'plumeSepolia',
   '100009': 'vechain',
+  '101003': 'juneoSocotraTestnet',
   '102030': 'creditCoin3Mainnet',
   '102031': 'creditCoin3Testnet',
   '105105': 'stratis',
@@ -10205,6 +10313,7 @@ export const chainsById = {
   '534352': 'scroll',
   '543210': 'zeroNetwork',
   '555888': 'dustboyIoT',
+  '560048': 'hoodi',
   '631571': 'polterTestnet',
   '641230': 'bearNetworkChainMainnet',
   '656476': 'eduChainTestnet',
@@ -10226,6 +10335,8 @@ export const chainsById = {
   '984122': 'forma',
   '984123': 'sketchpad',
   '1337803': 'zhejiang',
+  '1440002': 'xrplevmDevnet',
+  '1449000': 'xrplevmTestnet',
   '1612127': 'playfiAlbireo',
   '2524852': 'huddle01Testnet',
   '3397901': 'funkiSepolia',
