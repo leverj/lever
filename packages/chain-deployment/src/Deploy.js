@@ -1,19 +1,31 @@
 import {JsonFileStore} from '@leverj/lever.storage'
+import {Map} from 'immutable'
 import {default as hardhat} from 'hardhat'
+import {cloneDeep} from 'lodash-es'
 import {execSync} from 'node:child_process'
 import {setTimeout} from 'node:timers/promises'
 import {inspect} from 'node:util'
+import * as networksByChain from 'viem/chains'
 import {verifyContract} from './blockscout.js'
+
 /*** from https://github.com/blockscout/chainscout/blob/main/data/chains.json ***/
 import blockscoutExplorerUrls_ from './chainscout-chains.json' with {type: 'json'}
-//fixme: eliminate the need to generate networks.js
-import {networks as networks_} from './networks.js'
+
+const {ethers: {deployContract, JsonRpcProvider, Wallet}} = hardhat
+
+export const networks = Map(networksByChain).map((network, chain) => {
+  const {id, name, rpcUrls, blockExplorers} = cloneDeep(network)
+  if (!id || !name || !rpcUrls) return null
+  const providerURL = rpcUrls.default.http[0]
+  const blockExplorer = blockExplorers?.default || {}
+  const contracts = {}
+  const testnet = !!network.testnet || chain === 'hardhat' || chain === 'localhost'
+  return {id: BigInt(id), chain, name, providerURL, blockExplorer, contracts, testnet}
+}).filter(_ => !!_).toJS()
 
 const blockscoutExplorerUrls = Object.assign({}, blockscoutExplorerUrls_)
-export const networks = Object.assign({}, networks_)
 export const addBlockScoutExplorerUrl = (id, explorerUrl) => blockscoutExplorerUrls[id] = explorerUrl
 export const addNetwork = (chain, network) => networks[chain] = network
-const {ethers: {deployContract, JsonRpcProvider, Wallet}} = hardhat
 
 export class Deploy {
   static from(config) {

@@ -29,7 +29,8 @@ describe('verify', () => {
   it('attempt to verify unsupported chain', async () => {
     const chain = 'hardhat'
     const evm = exec(`npx hardhat node`)
-    await waitOn({resources: [networks[chain].providerURL], timeout: 10000})
+    const network = networks[chain]
+    await waitOn({resources: [network.providerURL], timeout: 10000})
     try {
       const logger = new CapturingLogger()
       const deploy = Deploy.from(merge(config, {logger}))
