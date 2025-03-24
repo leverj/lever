@@ -6,15 +6,16 @@ import * as chains from 'viem/chains'
 
 const targetDir = `${import.meta.dirname}/../src`
 
-const chainsById = Map(chains).mapEntries(([label, _]) => [_.id, label]).toJS()
+const chainsById = Map(chains).mapEntries(([chain, _]) => [_.id, chain]).toJS()
 delete chainsById.undefined
 const networks = {}
-for (const [label, network] of Object.entries(chains)) {
-  const {id, name, nativeCurrency, rpcUrls, blockExplorers, testnet = false} = network
+for (const [chain, network] of Object.entries(chains)) {
+  const {id, name, rpcUrls, blockExplorers} = network
   const providerURL = rpcUrls.default.http[0]
   const blockExplorer = blockExplorers?.default || {}
   const contracts = {}
-  networks[label] = {id: BigInt(id), label, name, nativeCurrency, providerURL, blockExplorer, contracts, testnet: testnet || label === 'hardhat' || label === 'localhost'}
+  const testnet = !!network.testnet || chain === 'hardhat' || chain === 'localhost'
+  networks[chain] = {id: BigInt(id), chain, name, providerURL, blockExplorer, contracts, testnet}
 }
 //fixme: eliminate the need to generate networks.js
 writeFileSync(`${targetDir}/networks.js`,

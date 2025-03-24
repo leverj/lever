@@ -12,7 +12,7 @@ import {networks as networks_} from './networks.js'
 const blockscoutExplorerUrls = Object.assign({}, blockscoutExplorerUrls_)
 export const networks = Object.assign({}, networks_)
 export const addBlockScoutExplorerUrl = (id, explorerUrl) => blockscoutExplorerUrls[id] = explorerUrl
-export const addNetwork = (label, network) => networks[label] = network
+export const addNetwork = (chain, network) => networks[chain] = network
 const {ethers: {deployContract, JsonRpcProvider, Wallet}} = hardhat
 
 export class Deploy {

@@ -1,13 +1,8 @@
 export const networks = {
   abey: {
     id: 179n,
-    label: 'abey',
+    chain: 'abey',
     name: 'ABEY Mainnet',
-    nativeCurrency: {
-      name: 'ABEY',
-      symbol: 'ABEY',
-      decimals: 18
-    },
     providerURL: 'https://rpc.abeychain.com',
     blockExplorer: {
       name: 'Abey Scan',
@@ -18,13 +13,8 @@ export const networks = {
   },
   abstract: {
     id: 2741n,
-    label: 'abstract',
+    chain: 'abstract',
     name: 'Abstract',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'ETH',
-      symbol: 'ETH'
-    },
     providerURL: 'https://api.mainnet.abs.xyz',
     blockExplorer: {
       name: 'Etherscan',
@@ -35,13 +25,8 @@ export const networks = {
   },
   abstractTestnet: {
     id: 11124n,
-    label: 'abstractTestnet',
+    chain: 'abstractTestnet',
     name: 'Abstract Testnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'ETH',
-      symbol: 'ETH'
-    },
     providerURL: 'https://api.testnet.abs.xyz',
     blockExplorer: {
       name: 'Etherscan',
@@ -52,13 +37,8 @@ export const networks = {
   },
   acala: {
     id: 787n,
-    label: 'acala',
+    chain: 'acala',
     name: 'Acala',
-    nativeCurrency: {
-      name: 'Acala',
-      symbol: 'ACA',
-      decimals: 18
-    },
     providerURL: 'https://eth-rpc-acala.aca-api.network',
     blockExplorer: {
       name: 'Acala Blockscout',
@@ -70,13 +50,8 @@ export const networks = {
   },
   acria: {
     id: 47n,
-    label: 'acria',
+    chain: 'acria',
     name: 'Acria IntelliChain',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'ACRIA',
-      symbol: 'ACRIA'
-    },
     providerURL: 'https://aic.acria.ai',
     blockExplorer: {
       name: 'Acria Explorer',
@@ -87,13 +62,8 @@ export const networks = {
   },
   adf: {
     id: 1215n,
-    label: 'adf',
+    chain: 'adf',
     name: 'ADF Chain',
-    nativeCurrency: {
-      name: 'ADDFILL',
-      symbol: 'ADF',
-      decimals: 18
-    },
     providerURL: 'https://mainnet.adftechnology.com',
     blockExplorer: {
       name: 'ADF Mainnet Explorer',
@@ -104,13 +74,8 @@ export const networks = {
   },
   aioz: {
     id: 168n,
-    label: 'aioz',
+    chain: 'aioz',
     name: 'AIOZ Network',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'AIOZ',
-      symbol: 'AIOZ'
-    },
     providerURL: 'https://eth-dataseed.aioz.network',
     blockExplorer: {
       name: 'AIOZ Explorer',
@@ -121,13 +86,8 @@ export const networks = {
   },
   alephZero: {
     id: 41455n,
-    label: 'alephZero',
+    chain: 'alephZero',
     name: 'Aleph Zero',
-    nativeCurrency: {
-      name: 'Aleph Zero',
-      symbol: 'AZERO',
-      decimals: 18
-    },
     providerURL: 'https://rpc.alephzero.raas.gelato.cloud',
     blockExplorer: {
       name: 'Aleph Zero EVM Explorer',
@@ -139,13 +99,8 @@ export const networks = {
   },
   alephZeroTestnet: {
     id: 2039n,
-    label: 'alephZeroTestnet',
+    chain: 'alephZeroTestnet',
     name: 'Aleph Zero Testnet',
-    nativeCurrency: {
-      name: 'TZERO',
-      symbol: 'TZERO',
-      decimals: 18
-    },
     providerURL: 'https://rpc.alephzero-testnet.gelato.digital',
     blockExplorer: {
       name: 'Aleph Zero EVM Testnet explorer',
@@ -157,13 +112,8 @@ export const networks = {
   },
   alienx: {
     id: 10241024n,
-    label: 'alienx',
+    chain: 'alienx',
     name: 'AlienX Mainnet',
-    nativeCurrency: {
-      name: 'Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://rpc.alienxchain.io/http',
     blockExplorer: {
       name: 'AlienX Explorer',
@@ -174,13 +124,8 @@ export const networks = {
   },
   alienxHalTestnet: {
     id: 10241025n,
-    label: 'alienxHalTestnet',
+    chain: 'alienxHalTestnet',
     name: 'ALIENX Hal Testnet',
-    nativeCurrency: {
-      name: 'Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://hal-rpc.alienxchain.io/http',
     blockExplorer: {
       name: 'AlienX Explorer',
@@ -191,13 +136,8 @@ export const networks = {
   },
   ancient8: {
     id: 888888888n,
-    label: 'ancient8',
+    chain: 'ancient8',
     name: 'Ancient8',
-    nativeCurrency: {
-      name: 'Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://rpc.ancient8.gg',
     blockExplorer: {
       name: 'Ancient8 explorer',
@@ -209,13 +149,8 @@ export const networks = {
   },
   ancient8Sepolia: {
     id: 28122024n,
-    label: 'ancient8Sepolia',
+    chain: 'ancient8Sepolia',
     name: 'Ancient8 Testnet',
-    nativeCurrency: {
-      name: 'Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://rpcv2-testnet.ancient8.gg',
     blockExplorer: {
       name: 'Ancient8 Celestia Testnet explorer',
@@ -227,13 +162,8 @@ export const networks = {
   },
   anvil: {
     id: 31337n,
-    label: 'anvil',
+    chain: 'anvil',
     name: 'Anvil',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Ether',
-      symbol: 'ETH'
-    },
     providerURL: 'http://127.0.0.1:8545',
     blockExplorer: {},
     contracts: {},
@@ -241,13 +171,8 @@ export const networks = {
   },
   apeChain: {
     id: 33139n,
-    label: 'apeChain',
+    chain: 'apeChain',
     name: 'Ape Chain',
-    nativeCurrency: {
-      name: 'ApeCoin',
-      symbol: 'APE',
-      decimals: 18
-    },
     providerURL: 'https://rpc.apechain.com/http',
     blockExplorer: {
       name: 'Apescan',
@@ -259,13 +184,8 @@ export const networks = {
   },
   apexTestnet: {
     id: 3993n,
-    label: 'apexTestnet',
+    chain: 'apexTestnet',
     name: 'APEX Testnet',
-    nativeCurrency: {
-      name: 'Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://rpc-testnet.apexlayer.xyz',
     blockExplorer: {
       name: 'Blockscout',
@@ -277,13 +197,8 @@ export const networks = {
   },
   arbitrum: {
     id: 42161n,
-    label: 'arbitrum',
+    chain: 'arbitrum',
     name: 'Arbitrum One',
-    nativeCurrency: {
-      name: 'Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://arb1.arbitrum.io/rpc',
     blockExplorer: {
       name: 'Arbiscan',
@@ -295,13 +210,8 @@ export const networks = {
   },
   arbitrumGoerli: {
     id: 421613n,
-    label: 'arbitrumGoerli',
+    chain: 'arbitrumGoerli',
     name: 'Arbitrum Goerli',
-    nativeCurrency: {
-      name: 'Arbitrum Goerli Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://goerli-rollup.arbitrum.io/rpc',
     blockExplorer: {
       name: 'Arbiscan',
@@ -312,13 +222,8 @@ export const networks = {
   },
   arbitrumNova: {
     id: 42170n,
-    label: 'arbitrumNova',
+    chain: 'arbitrumNova',
     name: 'Arbitrum Nova',
-    nativeCurrency: {
-      name: 'Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://nova.arbitrum.io/rpc',
     blockExplorer: {
       name: 'Arbiscan',
@@ -330,13 +235,8 @@ export const networks = {
   },
   arbitrumSepolia: {
     id: 421614n,
-    label: 'arbitrumSepolia',
+    chain: 'arbitrumSepolia',
     name: 'Arbitrum Sepolia',
-    nativeCurrency: {
-      name: 'Arbitrum Sepolia Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://sepolia-rollup.arbitrum.io/rpc',
     blockExplorer: {
       name: 'Arbiscan',
@@ -348,13 +248,8 @@ export const networks = {
   },
   areonNetwork: {
     id: 463n,
-    label: 'areonNetwork',
+    chain: 'areonNetwork',
     name: 'Areon Network',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'AREA',
-      symbol: 'AREA'
-    },
     providerURL: 'https://mainnet-rpc.areon.network',
     blockExplorer: {
       name: 'Areonscan',
@@ -365,13 +260,8 @@ export const networks = {
   },
   areonNetworkTestnet: {
     id: 462n,
-    label: 'areonNetworkTestnet',
+    chain: 'areonNetworkTestnet',
     name: 'Areon Network Testnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'TAREA',
-      symbol: 'TAREA'
-    },
     providerURL: 'https://testnet-rpc.areon.network',
     blockExplorer: {
       name: 'Areonscan',
@@ -382,13 +272,8 @@ export const networks = {
   },
   artelaTestnet: {
     id: 11822n,
-    label: 'artelaTestnet',
+    chain: 'artelaTestnet',
     name: 'Artela Testnet',
-    nativeCurrency: {
-      name: 'ART',
-      symbol: 'ART',
-      decimals: 18
-    },
     providerURL: 'https://betanet-rpc1.artela.network',
     blockExplorer: {
       name: 'Artela',
@@ -400,13 +285,8 @@ export const networks = {
   },
   arthera: {
     id: 10242n,
-    label: 'arthera',
+    chain: 'arthera',
     name: 'Arthera',
-    nativeCurrency: {
-      name: 'Arthera',
-      symbol: 'AA',
-      decimals: 18
-    },
     providerURL: 'https://rpc.arthera.net',
     blockExplorer: {
       name: 'Arthera EVM Explorer',
@@ -418,13 +298,8 @@ export const networks = {
   },
   artheraTestnet: {
     id: 10243n,
-    label: 'artheraTestnet',
+    chain: 'artheraTestnet',
     name: 'Arthera Testnet',
-    nativeCurrency: {
-      name: 'Arthera',
-      symbol: 'AA',
-      decimals: 18
-    },
     providerURL: 'https://rpc-test.arthera.net',
     blockExplorer: {
       name: 'Arthera EVM Explorer',
@@ -436,13 +311,8 @@ export const networks = {
   },
   assetChain: {
     id: 42420n,
-    label: 'assetChain',
+    chain: 'assetChain',
     name: 'AssetChain Mainnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Real World Asset',
-      symbol: 'RWA'
-    },
     providerURL: 'https://mainnet-rpc.assetchain.org',
     blockExplorer: {
       name: 'Asset Chain Explorer',
@@ -454,13 +324,8 @@ export const networks = {
   },
   assetChainTestnet: {
     id: 42421n,
-    label: 'assetChainTestnet',
+    chain: 'assetChainTestnet',
     name: 'AssetChain Testnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Real World Asset',
-      symbol: 'RWA'
-    },
     providerURL: 'https://enugu-rpc.assetchain.org',
     blockExplorer: {
       name: 'Asset Chain Testnet Explorer',
@@ -472,13 +337,8 @@ export const networks = {
   },
   astar: {
     id: 592n,
-    label: 'astar',
+    chain: 'astar',
     name: 'Astar',
-    nativeCurrency: {
-      name: 'Astar',
-      symbol: 'ASTR',
-      decimals: 18
-    },
     providerURL: 'https://astar.api.onfinality.io/public',
     blockExplorer: {
       name: 'Astar Subscan',
@@ -489,13 +349,8 @@ export const networks = {
   },
   astarZkEVM: {
     id: 3776n,
-    label: 'astarZkEVM',
+    chain: 'astarZkEVM',
     name: 'Astar zkEVM',
-    nativeCurrency: {
-      name: 'Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://rpc-zkevm.astar.network',
     blockExplorer: {
       name: 'Astar zkEVM Explorer',
@@ -506,13 +361,8 @@ export const networks = {
   },
   astarZkyoto: {
     id: 6038361n,
-    label: 'astarZkyoto',
+    chain: 'astarZkyoto',
     name: 'Astar zkEVM Testnet zKyoto',
-    nativeCurrency: {
-      name: 'Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://rpc.startale.com/zkyoto',
     blockExplorer: {
       name: 'zKyoto Explorer',
@@ -523,13 +373,8 @@ export const networks = {
   },
   atletaOlympia: {
     id: 2340n,
-    label: 'atletaOlympia',
+    chain: 'atletaOlympia',
     name: 'Atleta Olympia',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Atla',
-      symbol: 'ATLA'
-    },
     providerURL: 'https://testnet-rpc.atleta.network:9944',
     blockExplorer: {
       name: 'Atleta Olympia Explorer',
@@ -541,13 +386,8 @@ export const networks = {
   },
   aurora: {
     id: 1313161554n,
-    label: 'aurora',
+    chain: 'aurora',
     name: 'Aurora',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Ether',
-      symbol: 'ETH'
-    },
     providerURL: 'https://mainnet.aurora.dev',
     blockExplorer: {
       name: 'Aurorascan',
@@ -559,13 +399,8 @@ export const networks = {
   },
   auroraTestnet: {
     id: 1313161555n,
-    label: 'auroraTestnet',
+    chain: 'auroraTestnet',
     name: 'Aurora Testnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Ether',
-      symbol: 'ETH'
-    },
     providerURL: 'https://testnet.aurora.dev',
     blockExplorer: {
       name: 'Aurorascan',
@@ -577,13 +412,8 @@ export const networks = {
   },
   auroria: {
     id: 205205n,
-    label: 'auroria',
+    chain: 'auroria',
     name: 'Auroria Testnet',
-    nativeCurrency: {
-      name: 'Auroria Stratis',
-      symbol: 'tSTRAX',
-      decimals: 18
-    },
     providerURL: 'https://auroria.rpc.stratisevm.com',
     blockExplorer: {
       name: 'Auroria Testnet Explorer',
@@ -594,13 +424,8 @@ export const networks = {
   },
   avalanche: {
     id: 43114n,
-    label: 'avalanche',
+    chain: 'avalanche',
     name: 'Avalanche',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Avalanche',
-      symbol: 'AVAX'
-    },
     providerURL: 'https://api.avax.network/ext/bc/C/rpc',
     blockExplorer: {
       name: 'SnowTrace',
@@ -612,13 +437,8 @@ export const networks = {
   },
   avalancheFuji: {
     id: 43113n,
-    label: 'avalancheFuji',
+    chain: 'avalancheFuji',
     name: 'Avalanche Fuji',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Avalanche Fuji',
-      symbol: 'AVAX'
-    },
     providerURL: 'https://api.avax-test.network/ext/bc/C/rpc',
     blockExplorer: {
       name: 'SnowTrace',
@@ -630,13 +450,8 @@ export const networks = {
   },
   b3: {
     id: 8333n,
-    label: 'b3',
+    chain: 'b3',
     name: 'B3',
-    nativeCurrency: {
-      name: 'Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://mainnet-rpc.b3.fun/http',
     blockExplorer: {
       name: 'Blockscout',
@@ -647,13 +462,8 @@ export const networks = {
   },
   b3Sepolia: {
     id: 1993n,
-    label: 'b3Sepolia',
+    chain: 'b3Sepolia',
     name: 'B3 Sepolia',
-    nativeCurrency: {
-      name: 'Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://sepolia.b3.fun/http',
     blockExplorer: {
       name: 'Blockscout',
@@ -664,13 +474,8 @@ export const networks = {
   },
   bahamut: {
     id: 5165n,
-    label: 'bahamut',
+    chain: 'bahamut',
     name: 'Bahamut',
-    nativeCurrency: {
-      name: 'Fasttoken',
-      symbol: 'FTN',
-      decimals: 18
-    },
     providerURL: 'https://rpc1.bahamut.io',
     blockExplorer: {
       name: 'Ftnscan',
@@ -682,13 +487,8 @@ export const networks = {
   },
   base: {
     id: 8453n,
-    label: 'base',
+    chain: 'base',
     name: 'Base',
-    nativeCurrency: {
-      name: 'Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://mainnet.base.org',
     blockExplorer: {
       name: 'Basescan',
@@ -700,13 +500,8 @@ export const networks = {
   },
   baseGoerli: {
     id: 84531n,
-    label: 'baseGoerli',
+    chain: 'baseGoerli',
     name: 'Base Goerli',
-    nativeCurrency: {
-      name: 'Goerli Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://goerli.base.org',
     blockExplorer: {
       name: 'Basescan',
@@ -718,13 +513,8 @@ export const networks = {
   },
   baseSepolia: {
     id: 84532n,
-    label: 'baseSepolia',
+    chain: 'baseSepolia',
     name: 'Base Sepolia',
-    nativeCurrency: {
-      name: 'Sepolia Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://sepolia.base.org',
     blockExplorer: {
       name: 'Basescan',
@@ -736,13 +526,8 @@ export const networks = {
   },
   basecampTestnet: {
     id: 123420001114n,
-    label: 'basecampTestnet',
+    chain: 'basecampTestnet',
     name: 'Basecamp Testnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Camp',
-      symbol: 'CAMP'
-    },
     providerURL: 'https://rpc.basecamp.t.raas.gelato.cloud',
     blockExplorer: {
       name: 'basecamp',
@@ -753,13 +538,8 @@ export const networks = {
   },
   beam: {
     id: 4337n,
-    label: 'beam',
+    chain: 'beam',
     name: 'Beam',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Beam',
-      symbol: 'BEAM'
-    },
     providerURL: 'https://build.onbeam.com/rpc',
     blockExplorer: {
       name: 'Beam Explorer',
@@ -770,13 +550,8 @@ export const networks = {
   },
   beamTestnet: {
     id: 13337n,
-    label: 'beamTestnet',
+    chain: 'beamTestnet',
     name: 'Beam Testnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Beam',
-      symbol: 'BEAM'
-    },
     providerURL: 'https://build.onbeam.com/rpc/testnet',
     blockExplorer: {
       name: 'Beam Explorer',
@@ -787,13 +562,8 @@ export const networks = {
   },
   bearNetworkChainMainnet: {
     id: 641230n,
-    label: 'bearNetworkChainMainnet',
+    chain: 'bearNetworkChainMainnet',
     name: 'Bear Network Chain Mainnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'BearNetworkChain',
-      symbol: 'BRNKC'
-    },
     providerURL: 'https://brnkc-mainnet.bearnetwork.net',
     blockExplorer: {
       name: 'BrnkScan',
@@ -805,13 +575,8 @@ export const networks = {
   },
   bearNetworkChainTestnet: {
     id: 751230n,
-    label: 'bearNetworkChainTestnet',
+    chain: 'bearNetworkChainTestnet',
     name: 'Bear Network Chain Testnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'tBRNKC',
-      symbol: 'tBRNKC'
-    },
     providerURL: 'https://brnkc-test.bearnetwork.net',
     blockExplorer: {
       name: 'BrnkTestScan',
@@ -823,13 +588,8 @@ export const networks = {
   },
   berachain: {
     id: 80094n,
-    label: 'berachain',
+    chain: 'berachain',
     name: 'Berachain',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'BERA Token',
-      symbol: 'BERA'
-    },
     providerURL: 'https://rpc.berachain.com',
     blockExplorer: {
       name: 'Berascan',
@@ -840,13 +600,8 @@ export const networks = {
   },
   berachainBepolia: {
     id: 80069n,
-    label: 'berachainBepolia',
+    chain: 'berachainBepolia',
     name: 'Berachain Bepolia',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'BERA Token',
-      symbol: 'BERA'
-    },
     providerURL: 'https://bepolia.rpc.berachain.com',
     blockExplorer: {
       name: 'Berascan',
@@ -857,13 +612,8 @@ export const networks = {
   },
   berachainTestnet: {
     id: 80085n,
-    label: 'berachainTestnet',
+    chain: 'berachainTestnet',
     name: 'Berachain Artio',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'BERA Token',
-      symbol: 'BERA'
-    },
     providerURL: 'https://artio.rpc.berachain.com',
     blockExplorer: {
       name: 'Berachain',
@@ -874,13 +624,8 @@ export const networks = {
   },
   berachainTestnetbArtio: {
     id: 80084n,
-    label: 'berachainTestnetbArtio',
+    chain: 'berachainTestnetbArtio',
     name: 'Berachain bArtio',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'BERA Token',
-      symbol: 'BERA'
-    },
     providerURL: 'https://bartio.rpc.berachain.com',
     blockExplorer: {
       name: 'Berachain bArtio Beratrail',
@@ -891,13 +636,8 @@ export const networks = {
   },
   bevmMainnet: {
     id: 11501n,
-    label: 'bevmMainnet',
+    chain: 'bevmMainnet',
     name: 'BEVM Mainnet',
-    nativeCurrency: {
-      name: 'Bitcoin',
-      symbol: 'BTC',
-      decimals: 18
-    },
     providerURL: 'https://rpc-mainnet-1.bevm.io',
     blockExplorer: {
       name: 'Bevmscan',
@@ -909,13 +649,8 @@ export const networks = {
   },
   bifrost: {
     id: 3068n,
-    label: 'bifrost',
+    chain: 'bifrost',
     name: 'Bifrost Mainnet',
-    nativeCurrency: {
-      name: 'BFC',
-      symbol: 'BFC',
-      decimals: 18
-    },
     providerURL: 'https://public-01.mainnet.bifrostnetwork.com/rpc',
     blockExplorer: {
       name: 'Bifrost Blockscout',
@@ -926,13 +661,8 @@ export const networks = {
   },
   birdlayer: {
     id: 53456n,
-    label: 'birdlayer',
+    chain: 'birdlayer',
     name: 'BirdLayer',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Ether',
-      symbol: 'ETH'
-    },
     providerURL: 'https://rpc.birdlayer.xyz',
     blockExplorer: {
       name: 'BirdLayer Explorer',
@@ -943,13 +673,8 @@ export const networks = {
   },
   bitTorrent: {
     id: 199n,
-    label: 'bitTorrent',
+    chain: 'bitTorrent',
     name: 'BitTorrent',
-    nativeCurrency: {
-      name: 'BitTorrent',
-      symbol: 'BTT',
-      decimals: 18
-    },
     providerURL: 'https://rpc.bittorrentchain.io',
     blockExplorer: {
       name: 'Bttcscan',
@@ -961,13 +686,8 @@ export const networks = {
   },
   bitTorrentTestnet: {
     id: 1028n,
-    label: 'bitTorrentTestnet',
+    chain: 'bitTorrentTestnet',
     name: 'BitTorrent Chain Testnet',
-    nativeCurrency: {
-      name: 'BitTorrent',
-      symbol: 'BTT',
-      decimals: 18
-    },
     providerURL: 'https://testrpc.bittorrentchain.io',
     blockExplorer: {
       name: 'Bttcscan',
@@ -979,13 +699,8 @@ export const networks = {
   },
   bitgert: {
     id: 32520n,
-    label: 'bitgert',
+    chain: 'bitgert',
     name: 'Bitgert Mainnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Brise',
-      symbol: 'Brise'
-    },
     providerURL: 'https://rpc-bitgert.icecreamswap.com',
     blockExplorer: {
       name: 'Bitgert Scan',
@@ -996,13 +711,8 @@ export const networks = {
   },
   bitkub: {
     id: 96n,
-    label: 'bitkub',
+    chain: 'bitkub',
     name: 'Bitkub',
-    nativeCurrency: {
-      name: 'Bitkub',
-      symbol: 'KUB',
-      decimals: 18
-    },
     providerURL: 'https://rpc.bitkubchain.io',
     blockExplorer: {
       name: 'Bitkub Chain Mainnet Explorer',
@@ -1014,13 +724,8 @@ export const networks = {
   },
   bitkubTestnet: {
     id: 25925n,
-    label: 'bitkubTestnet',
+    chain: 'bitkubTestnet',
     name: 'Bitkub Testnet',
-    nativeCurrency: {
-      name: 'Bitkub Test',
-      symbol: 'tKUB',
-      decimals: 18
-    },
     providerURL: 'https://rpc-testnet.bitkubchain.io',
     blockExplorer: {
       name: 'Bitkub Chain Testnet Explorer',
@@ -1032,13 +737,8 @@ export const networks = {
   },
   bitlayer: {
     id: 200901n,
-    label: 'bitlayer',
+    chain: 'bitlayer',
     name: 'Bitlayer Mainnet',
-    nativeCurrency: {
-      name: 'BTC',
-      symbol: 'BTC',
-      decimals: 18
-    },
     providerURL: 'https://rpc.bitlayer.org',
     blockExplorer: {
       name: 'bitlayer mainnet scan',
@@ -1049,13 +749,8 @@ export const networks = {
   },
   bitlayerTestnet: {
     id: 200810n,
-    label: 'bitlayerTestnet',
+    chain: 'bitlayerTestnet',
     name: 'Bitlayer Testnet',
-    nativeCurrency: {
-      name: 'BTC',
-      symbol: 'BTC',
-      decimals: 18
-    },
     providerURL: 'https://testnet-rpc.bitlayer.org',
     blockExplorer: {
       name: 'bitlayer testnet scan',
@@ -1066,13 +761,8 @@ export const networks = {
   },
   bitrock: {
     id: 7171n,
-    label: 'bitrock',
+    chain: 'bitrock',
     name: 'Bitrock Mainnet',
-    nativeCurrency: {
-      name: 'BROCK',
-      symbol: 'BROCK',
-      decimals: 18
-    },
     providerURL: 'https://brockrpc.io',
     blockExplorer: {
       name: 'Bitrock Explorer',
@@ -1083,13 +773,8 @@ export const networks = {
   },
   blast: {
     id: 81457n,
-    label: 'blast',
+    chain: 'blast',
     name: 'Blast',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Ether',
-      symbol: 'ETH'
-    },
     providerURL: 'https://rpc.blast.io',
     blockExplorer: {
       name: 'Blastscan',
@@ -1101,13 +786,8 @@ export const networks = {
   },
   blastSepolia: {
     id: 168587773n,
-    label: 'blastSepolia',
+    chain: 'blastSepolia',
     name: 'Blast Sepolia',
-    nativeCurrency: {
-      name: 'Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://sepolia.blast.io',
     blockExplorer: {
       name: 'Blastscan',
@@ -1119,13 +799,8 @@ export const networks = {
   },
   bob: {
     id: 60808n,
-    label: 'bob',
+    chain: 'bob',
     name: 'BOB',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'ETH',
-      symbol: 'ETH'
-    },
     providerURL: 'https://rpc.gobob.xyz',
     blockExplorer: {
       name: 'BOB Explorer',
@@ -1136,13 +811,8 @@ export const networks = {
   },
   bobSepolia: {
     id: 808813n,
-    label: 'bobSepolia',
+    chain: 'bobSepolia',
     name: 'BOB Sepolia',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'ETH',
-      symbol: 'ETH'
-    },
     providerURL: 'https://bob-sepolia.rpc.gobob.xyz',
     blockExplorer: {
       name: 'BOB Sepolia Explorer',
@@ -1153,13 +823,8 @@ export const networks = {
   },
   boba: {
     id: 288n,
-    label: 'boba',
+    chain: 'boba',
     name: 'Boba Network',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Ether',
-      symbol: 'ETH'
-    },
     providerURL: 'https://mainnet.boba.network',
     blockExplorer: {
       name: 'BOBAScan',
@@ -1170,13 +835,8 @@ export const networks = {
   },
   bobaSepolia: {
     id: 28882n,
-    label: 'bobaSepolia',
+    chain: 'bobaSepolia',
     name: 'Boba Sepolia',
-    nativeCurrency: {
-      name: 'Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://sepolia.boba.network',
     blockExplorer: {
       name: 'BOBAScan',
@@ -1187,13 +847,8 @@ export const networks = {
   },
   boolBetaMainnet: {
     id: 11100n,
-    label: 'boolBetaMainnet',
+    chain: 'boolBetaMainnet',
     name: 'Bool Beta Mainnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'BOL',
-      symbol: 'BOL'
-    },
     providerURL: 'https://beta-rpc-node-http.bool.network',
     blockExplorer: {
       name: 'BoolScan',
@@ -1204,13 +859,8 @@ export const networks = {
   },
   botanixTestnet: {
     id: 3636n,
-    label: 'botanixTestnet',
+    chain: 'botanixTestnet',
     name: 'Botanix Testnet',
-    nativeCurrency: {
-      name: 'Botanix',
-      symbol: 'BTC',
-      decimals: 18
-    },
     providerURL: 'https://node.botanixlabs.dev',
     blockExplorer: {
       name: 'Botanix Testnet Explorer',
@@ -1221,13 +871,8 @@ export const networks = {
   },
   bounceBit: {
     id: 6001n,
-    label: 'bounceBit',
+    chain: 'bounceBit',
     name: 'BounceBit Mainnet',
-    nativeCurrency: {
-      name: 'BounceBit',
-      symbol: 'BB',
-      decimals: 18
-    },
     providerURL: 'https://fullnode-mainnet.bouncebitapi.com',
     blockExplorer: {
       name: 'BB Scan',
@@ -1238,13 +883,8 @@ export const networks = {
   },
   bounceBitTestnet: {
     id: 6000n,
-    label: 'bounceBitTestnet',
+    chain: 'bounceBitTestnet',
     name: 'BounceBit Testnet',
-    nativeCurrency: {
-      name: 'BounceBit',
-      symbol: 'BB',
-      decimals: 18
-    },
     providerURL: 'https://fullnode-testnet.bouncebitapi.com',
     blockExplorer: {
       name: 'BB Scan',
@@ -1255,13 +895,8 @@ export const networks = {
   },
   bronos: {
     id: 1039n,
-    label: 'bronos',
+    chain: 'bronos',
     name: 'Bronos',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'BRO',
-      symbol: 'BRO'
-    },
     providerURL: 'https://evm.bronos.org',
     blockExplorer: {
       name: 'BronoScan',
@@ -1272,13 +907,8 @@ export const networks = {
   },
   bronosTestnet: {
     id: 1038n,
-    label: 'bronosTestnet',
+    chain: 'bronosTestnet',
     name: 'Bronos Testnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Bronos Coin',
-      symbol: 'tBRO'
-    },
     providerURL: 'https://evm-testnet.bronos.org',
     blockExplorer: {
       name: 'BronoScan',
@@ -1289,13 +919,8 @@ export const networks = {
   },
   bsc: {
     id: 56n,
-    label: 'bsc',
+    chain: 'bsc',
     name: 'BNB Smart Chain',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'BNB',
-      symbol: 'BNB'
-    },
     providerURL: 'https://56.rpc.thirdweb.com',
     blockExplorer: {
       name: 'BscScan',
@@ -1307,13 +932,8 @@ export const networks = {
   },
   bscGreenfield: {
     id: 1017n,
-    label: 'bscGreenfield',
+    chain: 'bscGreenfield',
     name: 'BNB Greenfield Chain',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'BNB',
-      symbol: 'BNB'
-    },
     providerURL: 'https://greenfield-chain.bnbchain.org',
     blockExplorer: {
       name: 'BNB Greenfield Mainnet Scan',
@@ -1324,13 +944,8 @@ export const networks = {
   },
   bscTestnet: {
     id: 97n,
-    label: 'bscTestnet',
+    chain: 'bscTestnet',
     name: 'Binance Smart Chain Testnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'BNB',
-      symbol: 'tBNB'
-    },
     providerURL: 'https://data-seed-prebsc-1-s1.bnbchain.org:8545',
     blockExplorer: {
       name: 'BscScan',
@@ -1342,13 +957,8 @@ export const networks = {
   },
   bsquared: {
     id: 223n,
-    label: 'bsquared',
+    chain: 'bsquared',
     name: 'B2',
-    nativeCurrency: {
-      name: 'Bitcoin',
-      symbol: 'BTC',
-      decimals: 18
-    },
     providerURL: 'https://rpc.bsquared.network',
     blockExplorer: {
       name: 'blockscout',
@@ -1359,13 +969,8 @@ export const networks = {
   },
   bsquaredTestnet: {
     id: 1123n,
-    label: 'bsquaredTestnet',
+    chain: 'bsquaredTestnet',
     name: 'B2 Testnet',
-    nativeCurrency: {
-      name: 'Bitcoin',
-      symbol: 'BTC',
-      decimals: 18
-    },
     providerURL: 'https://testnet-rpc.bsquared.network',
     blockExplorer: {
       name: 'blockscout',
@@ -1376,13 +981,8 @@ export const networks = {
   },
   btr: {
     id: 200901n,
-    label: 'btr',
+    chain: 'btr',
     name: 'Bitlayer',
-    nativeCurrency: {
-      name: 'Bitcoin',
-      symbol: 'BTC',
-      decimals: 18
-    },
     providerURL: 'https://rpc.bitlayer.org',
     blockExplorer: {
       name: 'Bitlayer(BTR) Scan',
@@ -1393,13 +993,8 @@ export const networks = {
   },
   btrTestnet: {
     id: 200810n,
-    label: 'btrTestnet',
+    chain: 'btrTestnet',
     name: 'Bitlayer Testnet',
-    nativeCurrency: {
-      name: 'Bitcoin',
-      symbol: 'BTC',
-      decimals: 18
-    },
     providerURL: 'https://testnet-rpc.bitlayer.org',
     blockExplorer: {
       name: 'Bitlayer(BTR) Scan',
@@ -1410,13 +1005,8 @@ export const networks = {
   },
   bxn: {
     id: 4999n,
-    label: 'bxn',
+    chain: 'bxn',
     name: 'BlackFort Exchange Network',
-    nativeCurrency: {
-      name: 'BlackFort Token',
-      symbol: 'BXN',
-      decimals: 18
-    },
     providerURL: 'https://mainnet.blackfort.network/rpc',
     blockExplorer: {
       name: 'Blockscout',
@@ -1428,13 +1018,8 @@ export const networks = {
   },
   bxnTestnet: {
     id: 4777n,
-    label: 'bxnTestnet',
+    chain: 'bxnTestnet',
     name: 'BlackFort Exchange Network Testnet',
-    nativeCurrency: {
-      name: 'BlackFort Testnet Token',
-      symbol: 'TBXN',
-      decimals: 18
-    },
     providerURL: 'https://testnet.blackfort.network/rpc',
     blockExplorer: {
       name: 'Blockscout',
@@ -1446,13 +1031,8 @@ export const networks = {
   },
   cannon: {
     id: 13370n,
-    label: 'cannon',
+    chain: 'cannon',
     name: 'Cannon',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Ether',
-      symbol: 'ETH'
-    },
     providerURL: 'http://127.0.0.1:8545',
     blockExplorer: {},
     contracts: {},
@@ -1460,13 +1040,8 @@ export const networks = {
   },
   canto: {
     id: 7700n,
-    label: 'canto',
+    chain: 'canto',
     name: 'Canto',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Canto',
-      symbol: 'CANTO'
-    },
     providerURL: 'https://canto.gravitychain.io',
     blockExplorer: {
       name: 'Tuber.Build (Blockscout)',
@@ -1477,13 +1052,8 @@ export const networks = {
   },
   celo: {
     id: 42220n,
-    label: 'celo',
+    chain: 'celo',
     name: 'Celo',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'CELO',
-      symbol: 'CELO'
-    },
     providerURL: 'https://forno.celo.org',
     blockExplorer: {
       name: 'Celo Explorer',
@@ -1495,13 +1065,8 @@ export const networks = {
   },
   celoAlfajores: {
     id: 44787n,
-    label: 'celoAlfajores',
+    chain: 'celoAlfajores',
     name: 'Alfajores',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'CELO',
-      symbol: 'A-CELO'
-    },
     providerURL: 'https://alfajores-forno.celo-testnet.org',
     blockExplorer: {
       name: 'Celo Alfajores Explorer',
@@ -1513,13 +1078,8 @@ export const networks = {
   },
   chang: {
     id: 5858n,
-    label: 'chang',
+    chain: 'chang',
     name: 'Chang Chain Foundation Mainnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'CTH',
-      symbol: 'CTH'
-    },
     providerURL: 'https://rpc.cthscan.com',
     blockExplorer: {
       name: 'Chang Chain explorer',
@@ -1530,13 +1090,8 @@ export const networks = {
   },
   chiliz: {
     id: 88888n,
-    label: 'chiliz',
+    chain: 'chiliz',
     name: 'Chiliz Chain',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'CHZ',
-      symbol: 'CHZ'
-    },
     providerURL: 'https://chiliz-rpc.publicnode.com',
     blockExplorer: {
       name: 'Chiliz Explorer',
@@ -1548,13 +1103,8 @@ export const networks = {
   },
   chips: {
     id: 2882n,
-    label: 'chips',
+    chain: 'chips',
     name: 'Chips Network',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'IOTA',
-      symbol: 'IOTA'
-    },
     providerURL: 'https://node.chips.ooo/wasp/api/v1/chains/iota1pp3d3mnap3ufmgqnjsnw344sqmf5svjh26y2khnmc89sv6788y3r207a8fn/evm',
     blockExplorer: {},
     contracts: {},
@@ -1562,13 +1112,8 @@ export const networks = {
   },
   citreaTestnet: {
     id: 5115n,
-    label: 'citreaTestnet',
+    chain: 'citreaTestnet',
     name: 'Citrea Testnet',
-    nativeCurrency: {
-      name: 'cBTC',
-      symbol: 'cBTC',
-      decimals: 18
-    },
     providerURL: 'https://rpc.testnet.citrea.xyz',
     blockExplorer: {
       name: 'Citrea Explorer',
@@ -1580,13 +1125,8 @@ export const networks = {
   },
   classic: {
     id: 61n,
-    label: 'classic',
+    chain: 'classic',
     name: 'Ethereum Classic',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'ETC',
-      symbol: 'ETC'
-    },
     providerURL: 'https://etc.rivet.link',
     blockExplorer: {
       name: 'Blockscout',
@@ -1597,13 +1137,8 @@ export const networks = {
   },
   coinbit: {
     id: 112n,
-    label: 'coinbit',
+    chain: 'coinbit',
     name: 'Coinbit Mainnet',
-    nativeCurrency: {
-      name: 'GIDR',
-      symbol: 'GIDR',
-      decimals: 18
-    },
     providerURL: 'https://coinbit-rpc-mainnet.chain.sbcrypto.app',
     blockExplorer: {
       name: 'Coinbit Explorer',
@@ -1614,13 +1149,8 @@ export const networks = {
   },
   coinex: {
     id: 52n,
-    label: 'coinex',
+    chain: 'coinex',
     name: 'CoinEx Mainnet',
-    nativeCurrency: {
-      name: 'cet',
-      symbol: 'cet',
-      decimals: 18
-    },
     providerURL: 'https://rpc.coinex.net',
     blockExplorer: {
       name: 'CoinEx Explorer',
@@ -1631,13 +1161,8 @@ export const networks = {
   },
   confluxESpace: {
     id: 1030n,
-    label: 'confluxESpace',
+    chain: 'confluxESpace',
     name: 'Conflux eSpace',
-    nativeCurrency: {
-      name: 'Conflux',
-      symbol: 'CFX',
-      decimals: 18
-    },
     providerURL: 'https://evm.confluxrpc.com',
     blockExplorer: {
       name: 'ConfluxScan',
@@ -1648,13 +1173,8 @@ export const networks = {
   },
   confluxESpaceTestnet: {
     id: 71n,
-    label: 'confluxESpaceTestnet',
+    chain: 'confluxESpaceTestnet',
     name: 'Conflux eSpace Testnet',
-    nativeCurrency: {
-      name: 'Conflux',
-      symbol: 'CFX',
-      decimals: 18
-    },
     providerURL: 'https://evmtestnet.confluxrpc.com',
     blockExplorer: {
       name: 'ConfluxScan',
@@ -1665,13 +1185,8 @@ export const networks = {
   },
   coreDao: {
     id: 1116n,
-    label: 'coreDao',
+    chain: 'coreDao',
     name: 'Core Dao',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Core',
-      symbol: 'CORE'
-    },
     providerURL: 'https://rpc.coredao.org',
     blockExplorer: {
       name: 'CoreDao',
@@ -1682,13 +1197,8 @@ export const networks = {
   },
   corn: {
     id: 21000000n,
-    label: 'corn',
+    chain: 'corn',
     name: 'Corn',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Bitcorn',
-      symbol: 'BTCN'
-    },
     providerURL: 'https://21000000.rpc.thirdweb.com',
     blockExplorer: {
       name: 'Corn Explorer',
@@ -1700,13 +1210,8 @@ export const networks = {
   },
   cornTestnet: {
     id: 21000001n,
-    label: 'cornTestnet',
+    chain: 'cornTestnet',
     name: 'Corn Testnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Bitcorn',
-      symbol: 'BTCN'
-    },
     providerURL: 'https://21000001.rpc.thirdweb.com',
     blockExplorer: {
       name: 'Corn Testnet Explorer',
@@ -1718,13 +1223,8 @@ export const networks = {
   },
   crab: {
     id: 44n,
-    label: 'crab',
+    chain: 'crab',
     name: 'Crab Network',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Crab Network Native Token',
-      symbol: 'CRAB'
-    },
     providerURL: 'https://crab-rpc.darwinia.network',
     blockExplorer: {
       name: 'Blockscout',
@@ -1735,13 +1235,8 @@ export const networks = {
   },
   creatorTestnet: {
     id: 66665n,
-    label: 'creatorTestnet',
+    chain: 'creatorTestnet',
     name: 'Creator',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Ether',
-      symbol: 'ETH'
-    },
     providerURL: 'https://rpc.creatorchain.io',
     blockExplorer: {
       name: 'Explorer',
@@ -1752,13 +1247,8 @@ export const networks = {
   },
   creditCoin3Mainnet: {
     id: 102030n,
-    label: 'creditCoin3Mainnet',
+    chain: 'creditCoin3Mainnet',
     name: 'Creditcoin3 Mainnet',
-    nativeCurrency: {
-      name: 'Creditcoin3 Mainnet',
-      symbol: 'CTC',
-      decimals: 18
-    },
     providerURL: 'https://mainnet3.creditcoin.network',
     blockExplorer: {
       name: 'Blockscout',
@@ -1770,13 +1260,8 @@ export const networks = {
   },
   creditCoin3Testnet: {
     id: 102031n,
-    label: 'creditCoin3Testnet',
+    chain: 'creditCoin3Testnet',
     name: 'Creditcoin3 Testnet',
-    nativeCurrency: {
-      name: 'Creditcoin3 Testnet',
-      symbol: 'TCTC',
-      decimals: 18
-    },
     providerURL: 'https://rpc.cc3-testnet.creditcoin.network',
     blockExplorer: {
       name: 'Blockscout',
@@ -1788,13 +1273,8 @@ export const networks = {
   },
   cronos: {
     id: 25n,
-    label: 'cronos',
+    chain: 'cronos',
     name: 'Cronos Mainnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Cronos',
-      symbol: 'CRO'
-    },
     providerURL: 'https://evm.cronos.org',
     blockExplorer: {
       name: 'Cronos Explorer',
@@ -1806,13 +1286,8 @@ export const networks = {
   },
   cronosTestnet: {
     id: 338n,
-    label: 'cronosTestnet',
+    chain: 'cronosTestnet',
     name: 'Cronos Testnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'CRO',
-      symbol: 'tCRO'
-    },
     providerURL: 'https://evm-t3.cronos.org',
     blockExplorer: {
       name: 'Cronos Explorer',
@@ -1823,13 +1298,8 @@ export const networks = {
   },
   cronoszkEVM: {
     id: 388n,
-    label: 'cronoszkEVM',
+    chain: 'cronoszkEVM',
     name: 'Cronos zkEVM Mainnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Cronos zkEVM CRO',
-      symbol: 'zkCRO'
-    },
     providerURL: 'https://mainnet.zkevm.cronos.org',
     blockExplorer: {
       name: 'Cronos zkEVM (Mainnet) Chain Explorer',
@@ -1840,13 +1310,8 @@ export const networks = {
   },
   cronoszkEVMTestnet: {
     id: 282n,
-    label: 'cronoszkEVMTestnet',
+    chain: 'cronoszkEVMTestnet',
     name: 'Cronos zkEVM Testnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Cronos zkEVM Test Coin',
-      symbol: 'zkTCRO'
-    },
     providerURL: 'https://testnet.zkevm.cronos.org',
     blockExplorer: {
       name: 'Cronos zkEVM Testnet Explorer',
@@ -1857,13 +1322,8 @@ export const networks = {
   },
   crossbell: {
     id: 3737n,
-    label: 'crossbell',
+    chain: 'crossbell',
     name: 'Crossbell',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'CSB',
-      symbol: 'CSB'
-    },
     providerURL: 'https://rpc.crossbell.io',
     blockExplorer: {
       name: 'CrossScan',
@@ -1875,13 +1335,8 @@ export const networks = {
   },
   curtis: {
     id: 33111n,
-    label: 'curtis',
+    chain: 'curtis',
     name: 'Curtis',
-    nativeCurrency: {
-      name: 'ApeCoin',
-      symbol: 'APE',
-      decimals: 18
-    },
     providerURL: 'https://rpc.curtis.apechain.com',
     blockExplorer: {
       name: 'Curtis Explorer',
@@ -1892,13 +1347,8 @@ export const networks = {
   },
   cyber: {
     id: 7560n,
-    label: 'cyber',
+    chain: 'cyber',
     name: 'Cyber',
-    nativeCurrency: {
-      name: 'Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://cyber.alt.technology',
     blockExplorer: {
       name: 'Blockscout',
@@ -1910,13 +1360,8 @@ export const networks = {
   },
   cyberTestnet: {
     id: 111557560n,
-    label: 'cyberTestnet',
+    chain: 'cyberTestnet',
     name: 'Cyber Testnet',
-    nativeCurrency: {
-      name: 'Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://cyber-testnet.alt.technology',
     blockExplorer: {
       name: 'Blockscout',
@@ -1928,13 +1373,8 @@ export const networks = {
   },
   dailyNetwork: {
     id: 824n,
-    label: 'dailyNetwork',
+    chain: 'dailyNetwork',
     name: 'Daily Network Mainnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Daily',
-      symbol: 'DLY'
-    },
     providerURL: 'https://rpc.mainnet.dailycrypto.net',
     blockExplorer: {
       name: 'Daily Mainnet Explorer',
@@ -1945,13 +1385,8 @@ export const networks = {
   },
   dailyNetworkTestnet: {
     id: 825n,
-    label: 'dailyNetworkTestnet',
+    chain: 'dailyNetworkTestnet',
     name: 'Daily Network Testnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Daily',
-      symbol: 'DLY'
-    },
     providerURL: 'https://rpc.testnet.dailycrypto.net',
     blockExplorer: {
       name: 'Daily Testnet Explorer',
@@ -1962,13 +1397,8 @@ export const networks = {
   },
   darwinia: {
     id: 46n,
-    label: 'darwinia',
+    chain: 'darwinia',
     name: 'Darwinia Network',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'RING',
-      symbol: 'RING'
-    },
     providerURL: 'https://rpc.darwinia.network',
     blockExplorer: {
       name: 'Explorer',
@@ -1979,13 +1409,8 @@ export const networks = {
   },
   dchain: {
     id: 2716446429837000n,
-    label: 'dchain',
+    chain: 'dchain',
     name: 'Dchain',
-    nativeCurrency: {
-      name: 'Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://dchain-2716446429837000-1.jsonrpc.sagarpc.io',
     blockExplorer: {
       name: 'Dchain Explorer',
@@ -1997,13 +1422,8 @@ export const networks = {
   },
   dchainTestnet: {
     id: 2713017997578000n,
-    label: 'dchainTestnet',
+    chain: 'dchainTestnet',
     name: 'Dchain Testnet',
-    nativeCurrency: {
-      name: 'Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://dchaintestnet-2713017997578000-1.jsonrpc.testnet.sagarpc.io',
     blockExplorer: {
       name: 'Dchain Explorer',
@@ -2015,13 +1435,8 @@ export const networks = {
   },
   defichainEvm: {
     id: 1130n,
-    label: 'defichainEvm',
+    chain: 'defichainEvm',
     name: 'DeFiChain EVM Mainnet',
-    nativeCurrency: {
-      name: 'DeFiChain',
-      symbol: 'DFI',
-      decimals: 18
-    },
     providerURL: 'https://eth.mainnet.ocean.jellyfishsdk.com',
     blockExplorer: {
       name: 'DeFiScan',
@@ -2032,13 +1447,8 @@ export const networks = {
   },
   defichainEvmTestnet: {
     id: 1131n,
-    label: 'defichainEvmTestnet',
+    chain: 'defichainEvmTestnet',
     name: 'DeFiChain EVM Testnet',
-    nativeCurrency: {
-      name: 'DeFiChain',
-      symbol: 'DFI',
-      decimals: 18
-    },
     providerURL: 'https://eth.testnet.ocean.jellyfishsdk.com',
     blockExplorer: {
       name: 'DeFiScan',
@@ -2049,13 +1459,8 @@ export const networks = {
   },
   degen: {
     id: 666666666n,
-    label: 'degen',
+    chain: 'degen',
     name: 'Degen',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Degen',
-      symbol: 'DEGEN'
-    },
     providerURL: 'https://rpc.degen.tips',
     blockExplorer: {
       name: 'Degen Chain Explorer',
@@ -2067,13 +1472,8 @@ export const networks = {
   },
   dfk: {
     id: 53935n,
-    label: 'dfk',
+    chain: 'dfk',
     name: 'DFK Chain',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Jewel',
-      symbol: 'JEWEL'
-    },
     providerURL: 'https://subnets.avax.network/defi-kingdoms/dfk-chain/rpc',
     blockExplorer: {
       name: 'DFKSubnetScan',
@@ -2084,13 +1484,8 @@ export const networks = {
   },
   diode: {
     id: 15n,
-    label: 'diode',
+    chain: 'diode',
     name: 'Diode Prenet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'DIODE',
-      symbol: 'DIODE'
-    },
     providerURL: 'https://prenet.diode.io:8443',
     blockExplorer: {
       name: 'Diode Explorer',
@@ -2101,13 +1496,8 @@ export const networks = {
   },
   disChain: {
     id: 513100n,
-    label: 'disChain',
+    chain: 'disChain',
     name: 'DisChain',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'DIS',
-      symbol: 'DIS'
-    },
     providerURL: 'https://rpc.dischain.xyz',
     blockExplorer: {
       name: 'DisChain Explorer',
@@ -2118,13 +1508,8 @@ export const networks = {
   },
   dodochainTestnet: {
     id: 53457n,
-    label: 'dodochainTestnet',
+    chain: 'dodochainTestnet',
     name: 'DODOchain Testnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'DODO',
-      symbol: 'DODO'
-    },
     providerURL: 'https://dodochain-testnet.alt.technology',
     blockExplorer: {
       name: 'DODOchain Testnet (Sepolia) Explorer',
@@ -2135,13 +1520,8 @@ export const networks = {
   },
   dogechain: {
     id: 2000n,
-    label: 'dogechain',
+    chain: 'dogechain',
     name: 'Dogechain',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Wrapped Dogecoin',
-      symbol: 'WDOGE'
-    },
     providerURL: 'https://rpc.dogechain.dog',
     blockExplorer: {
       name: 'DogeChainExplorer',
@@ -2153,13 +1533,8 @@ export const networks = {
   },
   donatuz: {
     id: 42026n,
-    label: 'donatuz',
+    chain: 'donatuz',
     name: 'Donatuz',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Ether',
-      symbol: 'ETH'
-    },
     providerURL: 'https://rpc.donatuz.com',
     blockExplorer: {
       name: 'Donatuz Explorer',
@@ -2170,13 +1545,8 @@ export const networks = {
   },
   dosChain: {
     id: 7979n,
-    label: 'dosChain',
+    chain: 'dosChain',
     name: 'DOS Chain',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'DOS Chain',
-      symbol: 'DOS'
-    },
     providerURL: 'https://main.doschain.com',
     blockExplorer: {
       name: 'DOS Chain Explorer',
@@ -2188,13 +1558,8 @@ export const networks = {
   },
   dosChainTestnet: {
     id: 3939n,
-    label: 'dosChainTestnet',
+    chain: 'dosChainTestnet',
     name: 'DOS Chain Testnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'DOS Chain Testnet',
-      symbol: 'DOS'
-    },
     providerURL: 'https://test.doschain.com',
     blockExplorer: {
       name: 'DOS Chain Testnet Explorer',
@@ -2206,13 +1571,8 @@ export const networks = {
   },
   dreyerxMainnet: {
     id: 23451n,
-    label: 'dreyerxMainnet',
+    chain: 'dreyerxMainnet',
     name: 'DreyerX Mainnet',
-    nativeCurrency: {
-      name: 'DreyerX',
-      symbol: 'DRX',
-      decimals: 18
-    },
     providerURL: 'https://rpc.dreyerx.com',
     blockExplorer: {
       name: 'DreyerX Scan',
@@ -2223,13 +1583,8 @@ export const networks = {
   },
   dreyerxTestnet: {
     id: 23452n,
-    label: 'dreyerxTestnet',
+    chain: 'dreyerxTestnet',
     name: 'DreyerX Testnet',
-    nativeCurrency: {
-      name: 'DreyerX',
-      symbol: 'DRX',
-      decimals: 18
-    },
     providerURL: 'http://testnet-rpc.dreyerx.com',
     blockExplorer: {
       name: 'DreyerX Testnet Scan',
@@ -2240,13 +1595,8 @@ export const networks = {
   },
   dustboyIoT: {
     id: 555888n,
-    label: 'dustboyIoT',
+    chain: 'dustboyIoT',
     name: 'DustBoy IoT',
-    nativeCurrency: {
-      name: 'Ether',
-      symbol: 'DST',
-      decimals: 18
-    },
     providerURL: 'https://dustboy-rpc.jibl2.com',
     blockExplorer: {
       name: 'Blockscout',
@@ -2258,13 +1608,8 @@ export const networks = {
   },
   dymension: {
     id: 1100n,
-    label: 'dymension',
+    chain: 'dymension',
     name: 'Dymension',
-    nativeCurrency: {
-      name: 'DYM',
-      symbol: 'DYM',
-      decimals: 18
-    },
     providerURL: 'https://dymension-evm-rpc.publicnode.com',
     blockExplorer: {
       name: 'Dym FYI',
@@ -2275,13 +1620,8 @@ export const networks = {
   },
   edgeless: {
     id: 2026n,
-    label: 'edgeless',
+    chain: 'edgeless',
     name: 'Edgeless Network',
-    nativeCurrency: {
-      name: 'Edgeless Wrapped ETH',
-      symbol: 'EwETH',
-      decimals: 18
-    },
     providerURL: 'https://rpc.edgeless.network/http',
     blockExplorer: {
       name: 'Edgeless Explorer',
@@ -2292,13 +1632,8 @@ export const networks = {
   },
   edgelessTestnet: {
     id: 202n,
-    label: 'edgelessTestnet',
+    chain: 'edgelessTestnet',
     name: 'Edgeless Testnet',
-    nativeCurrency: {
-      name: 'Edgeless Wrapped ETH',
-      symbol: 'EwETH',
-      decimals: 18
-    },
     providerURL: 'https://edgeless-testnet.rpc.caldera.xyz/http',
     blockExplorer: {
       name: 'Edgeless Testnet Explorer',
@@ -2309,13 +1644,8 @@ export const networks = {
   },
   edgeware: {
     id: 2021n,
-    label: 'edgeware',
+    chain: 'edgeware',
     name: 'Edgeware EdgeEVM Mainnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Edgeware',
-      symbol: 'EDG'
-    },
     providerURL: 'https://edgeware-evm.jelliedowl.net',
     blockExplorer: {
       name: 'Edgscan by Bharathcoorg',
@@ -2327,13 +1657,8 @@ export const networks = {
   },
   edgewareTestnet: {
     id: 2022n,
-    label: 'edgewareTestnet',
+    chain: 'edgewareTestnet',
     name: 'Beresheet BereEVM Testnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Testnet EDG',
-      symbol: 'tEDG'
-    },
     providerURL: 'https://beresheet-evm.jelliedowl.net',
     blockExplorer: {
       name: 'Edgscan by Bharathcoorg',
@@ -2345,13 +1670,8 @@ export const networks = {
   },
   eduChain: {
     id: 41923n,
-    label: 'eduChain',
+    chain: 'eduChain',
     name: 'EDU Chain',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'EDU',
-      symbol: 'EDU'
-    },
     providerURL: 'https://rpc.edu-chain.raas.gelato.cloud',
     blockExplorer: {
       name: 'EDU Chain Explorer',
@@ -2362,13 +1682,8 @@ export const networks = {
   },
   eduChainTestnet: {
     id: 656476n,
-    label: 'eduChainTestnet',
+    chain: 'eduChainTestnet',
     name: 'EDU Chain Testnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'EDU',
-      symbol: 'EDU'
-    },
     providerURL: 'https://rpc.open-campus-codex.gelato.digital/',
     blockExplorer: {
       name: 'EDU Chain Testnet Explorer',
@@ -2380,13 +1695,8 @@ export const networks = {
   },
   ekta: {
     id: 1994n,
-    label: 'ekta',
+    chain: 'ekta',
     name: 'Ekta',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'EKTA',
-      symbol: 'EKTA'
-    },
     providerURL: 'https://main.ekta.io',
     blockExplorer: {
       name: 'Ektascan',
@@ -2398,13 +1708,8 @@ export const networks = {
   },
   ektaTestnet: {
     id: 1004n,
-    label: 'ektaTestnet',
+    chain: 'ektaTestnet',
     name: 'Ekta Testnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'EKTA',
-      symbol: 'EKTA'
-    },
     providerURL: 'https://test.ekta.io:8545',
     blockExplorer: {
       name: 'Test Ektascan',
@@ -2416,13 +1721,8 @@ export const networks = {
   },
   elastos: {
     id: 20n,
-    label: 'elastos',
+    chain: 'elastos',
     name: 'Elastos Smart Chain',
-    nativeCurrency: {
-      name: 'ELA',
-      symbol: 'ELA',
-      decimals: 18
-    },
     providerURL: 'https://api2.elastos.io/eth',
     blockExplorer: {
       name: 'Elastos Explorer',
@@ -2433,13 +1733,8 @@ export const networks = {
   },
   elastosTestnet: {
     id: 21n,
-    label: 'elastosTestnet',
+    chain: 'elastosTestnet',
     name: 'Elastos Smart Chain Testnet',
-    nativeCurrency: {
-      name: 'tELA',
-      symbol: 'tELA',
-      decimals: 18
-    },
     providerURL: 'https://api-testnet.elastos.io/eth',
     blockExplorer: {
       name: 'Elastos Explorer',
@@ -2450,13 +1745,8 @@ export const networks = {
   },
   electroneum: {
     id: 52014n,
-    label: 'electroneum',
+    chain: 'electroneum',
     name: 'Electroneum Mainnet',
-    nativeCurrency: {
-      name: 'ETN',
-      symbol: 'ETN',
-      decimals: 18
-    },
     providerURL: 'https://rpc.electroneum.com',
     blockExplorer: {
       name: 'Electroneum Block Explorer',
@@ -2467,13 +1757,8 @@ export const networks = {
   },
   electroneumTestnet: {
     id: 5201420n,
-    label: 'electroneumTestnet',
+    chain: 'electroneumTestnet',
     name: 'Electroneum Testnet',
-    nativeCurrency: {
-      name: 'ETN',
-      symbol: 'ETN',
-      decimals: 18
-    },
     providerURL: 'https://testnet-rpc.electroneum.com',
     blockExplorer: {
       name: 'Electroneum Block Explorer',
@@ -2484,13 +1769,8 @@ export const networks = {
   },
   elysiumTestnet: {
     id: 1338n,
-    label: 'elysiumTestnet',
+    chain: 'elysiumTestnet',
     name: 'Elysium Testnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'LAVA',
-      symbol: 'LAVA'
-    },
     providerURL: 'https://elysium-test-rpc.vulcanforged.com',
     blockExplorer: {
       name: 'Elysium testnet explorer',
@@ -2501,13 +1781,8 @@ export const networks = {
   },
   energy: {
     id: 246n,
-    label: 'energy',
+    chain: 'energy',
     name: 'Energy Mainnet',
-    nativeCurrency: {
-      name: 'EWT',
-      symbol: 'EWT',
-      decimals: 18
-    },
     providerURL: 'https://rpc.energyweb.org',
     blockExplorer: {
       name: 'EnergyWeb Explorer',
@@ -2518,13 +1793,8 @@ export const networks = {
   },
   enuls: {
     id: 119n,
-    label: 'enuls',
+    chain: 'enuls',
     name: 'ENULS Mainnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'NULS',
-      symbol: 'NULS'
-    },
     providerURL: 'https://evmapi2.nuls.io',
     blockExplorer: {
       name: 'ENULS Explorer',
@@ -2535,13 +1805,8 @@ export const networks = {
   },
   eon: {
     id: 7332n,
-    label: 'eon',
+    chain: 'eon',
     name: 'Horizen EON',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'ZEN',
-      symbol: 'ZEN'
-    },
     providerURL: 'https://eon-rpc.horizenlabs.io/ethv1',
     blockExplorer: {
       name: 'EON Explorer',
@@ -2552,13 +1817,8 @@ export const networks = {
   },
   eos: {
     id: 17777n,
-    label: 'eos',
+    chain: 'eos',
     name: 'EOS EVM',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'EOS',
-      symbol: 'EOS'
-    },
     providerURL: 'https://api.evm.eosnetwork.com',
     blockExplorer: {
       name: 'EOS EVM Explorer',
@@ -2570,13 +1830,8 @@ export const networks = {
   },
   eosTestnet: {
     id: 15557n,
-    label: 'eosTestnet',
+    chain: 'eosTestnet',
     name: 'EOS EVM Testnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'EOS',
-      symbol: 'EOS'
-    },
     providerURL: 'https://api.testnet.evm.eosnetwork.com',
     blockExplorer: {
       name: 'EOS EVM Testnet Explorer',
@@ -2588,13 +1843,8 @@ export const networks = {
   },
   etherlink: {
     id: 42793n,
-    label: 'etherlink',
+    chain: 'etherlink',
     name: 'Etherlink',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Tez',
-      symbol: 'XTZ'
-    },
     providerURL: 'https://node.mainnet.etherlink.com',
     blockExplorer: {
       name: 'Etherlink',
@@ -2605,13 +1855,8 @@ export const networks = {
   },
   etherlinkTestnet: {
     id: 128123n,
-    label: 'etherlinkTestnet',
+    chain: 'etherlinkTestnet',
     name: 'Etherlink Testnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Tez',
-      symbol: 'XTZ'
-    },
     providerURL: 'https://node.ghostnet.etherlink.com',
     blockExplorer: {
       name: 'Etherlink Testnet',
@@ -2622,13 +1867,8 @@ export const networks = {
   },
   ethernity: {
     id: 183n,
-    label: 'ethernity',
+    chain: 'ethernity',
     name: 'Ethernity',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Ether',
-      symbol: 'ETH'
-    },
     providerURL: 'https://mainnet.ethernitychain.io',
     blockExplorer: {
       name: 'Ethernity Explorer',
@@ -2639,13 +1879,8 @@ export const networks = {
   },
   etp: {
     id: 20256789n,
-    label: 'etp',
+    chain: 'etp',
     name: 'ETP Mainnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'ETP Chain Native Token',
-      symbol: 'ETP'
-    },
     providerURL: 'https://rpc.etpscan.xyz',
     blockExplorer: {
       name: 'ETP Scan',
@@ -2656,13 +1891,8 @@ export const networks = {
   },
   evmos: {
     id: 9001n,
-    label: 'evmos',
+    chain: 'evmos',
     name: 'Evmos',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Evmos',
-      symbol: 'EVMOS'
-    },
     providerURL: 'https://eth.bd.evmos.org:8545',
     blockExplorer: {
       name: 'Evmos Block Explorer',
@@ -2673,13 +1903,8 @@ export const networks = {
   },
   evmosTestnet: {
     id: 9000n,
-    label: 'evmosTestnet',
+    chain: 'evmosTestnet',
     name: 'Evmos Testnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Evmos',
-      symbol: 'EVMOS'
-    },
     providerURL: 'https://eth.bd.evmos.dev:8545',
     blockExplorer: {
       name: 'Evmos Testnet Block Explorer',
@@ -2690,13 +1915,8 @@ export const networks = {
   },
   excelonMainnet: {
     id: 22052002n,
-    label: 'excelonMainnet',
+    chain: 'excelonMainnet',
     name: 'Excelon Mainnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Excelon',
-      symbol: 'xlon'
-    },
     providerURL: 'https://edgewallet1.xlon.org',
     blockExplorer: {
       name: 'Excelon explorer',
@@ -2707,13 +1927,8 @@ export const networks = {
   },
   expanse: {
     id: 2n,
-    label: 'expanse',
+    chain: 'expanse',
     name: 'Expanse Network',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'EXP',
-      symbol: 'EXP'
-    },
     providerURL: 'https://node.expanse.tech',
     blockExplorer: {
       name: 'Expanse Explorer',
@@ -2724,13 +1939,8 @@ export const networks = {
   },
   exsat: {
     id: 7200n,
-    label: 'exsat',
+    chain: 'exsat',
     name: 'exSat Network',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'BTC',
-      symbol: 'BTC'
-    },
     providerURL: 'https://evm.exsat.network',
     blockExplorer: {
       name: 'exSat Explorer',
@@ -2742,13 +1952,8 @@ export const networks = {
   },
   exsatTestnet: {
     id: 839999n,
-    label: 'exsatTestnet',
+    chain: 'exsatTestnet',
     name: 'exSat Testnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'BTC',
-      symbol: 'BTC'
-    },
     providerURL: 'https://evm-tst3.exsat.network',
     blockExplorer: {
       name: 'exSat Explorer',
@@ -2760,13 +1965,8 @@ export const networks = {
   },
   fantom: {
     id: 250n,
-    label: 'fantom',
+    chain: 'fantom',
     name: 'Fantom',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Fantom',
-      symbol: 'FTM'
-    },
     providerURL: 'https://250.rpc.thirdweb.com',
     blockExplorer: {
       name: 'FTMScan',
@@ -2778,13 +1978,8 @@ export const networks = {
   },
   fantomSonicTestnet: {
     id: 64240n,
-    label: 'fantomSonicTestnet',
+    chain: 'fantomSonicTestnet',
     name: 'Fantom Sonic Open Testnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Fantom',
-      symbol: 'FTM'
-    },
     providerURL: 'https://rpcapi.sonic.fantom.network',
     blockExplorer: {
       name: 'Fantom Sonic Open Testnet Explorer',
@@ -2795,13 +1990,8 @@ export const networks = {
   },
   fantomTestnet: {
     id: 4002n,
-    label: 'fantomTestnet',
+    chain: 'fantomTestnet',
     name: 'Fantom Testnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Fantom',
-      symbol: 'FTM'
-    },
     providerURL: 'https://rpc.testnet.fantom.network',
     blockExplorer: {
       name: 'FTMScan',
@@ -2813,13 +2003,8 @@ export const networks = {
   },
   fibo: {
     id: 12306n,
-    label: 'fibo',
+    chain: 'fibo',
     name: 'Fibo Chain',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'fibo',
-      symbol: 'FIBO'
-    },
     providerURL: 'https://network.hzroc.art',
     blockExplorer: {
       name: 'FiboScan',
@@ -2830,13 +2015,8 @@ export const networks = {
   },
   filecoin: {
     id: 314n,
-    label: 'filecoin',
+    chain: 'filecoin',
     name: 'Filecoin Mainnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'filecoin',
-      symbol: 'FIL'
-    },
     providerURL: 'https://api.node.glif.io/rpc/v1',
     blockExplorer: {
       name: 'Filfox',
@@ -2847,13 +2027,8 @@ export const networks = {
   },
   filecoinCalibration: {
     id: 314159n,
-    label: 'filecoinCalibration',
+    chain: 'filecoinCalibration',
     name: 'Filecoin Calibration',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'testnet filecoin',
-      symbol: 'tFIL'
-    },
     providerURL: 'https://api.calibration.node.glif.io/rpc/v1',
     blockExplorer: {
       name: 'Filscan',
@@ -2864,13 +2039,8 @@ export const networks = {
   },
   filecoinHyperspace: {
     id: 3141n,
-    label: 'filecoinHyperspace',
+    chain: 'filecoinHyperspace',
     name: 'Filecoin Hyperspace',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'testnet filecoin',
-      symbol: 'tFIL'
-    },
     providerURL: 'https://api.hyperspace.node.glif.io/rpc/v1',
     blockExplorer: {
       name: 'Filfox',
@@ -2881,13 +2051,8 @@ export const networks = {
   },
   fireChain: {
     id: 995n,
-    label: 'fireChain',
+    chain: 'fireChain',
     name: '5ireChain',
-    nativeCurrency: {
-      name: '5ire Token',
-      symbol: '5IRE',
-      decimals: 18
-    },
     providerURL: 'https://rpc.5ire.network',
     blockExplorer: {
       name: '5ireChain Mainnet Explorer',
@@ -2898,13 +2063,8 @@ export const networks = {
   },
   flare: {
     id: 14n,
-    label: 'flare',
+    chain: 'flare',
     name: 'Flare Mainnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Flare',
-      symbol: 'FLR'
-    },
     providerURL: 'https://flare-api.flare.network/ext/C/rpc',
     blockExplorer: {
       name: 'Flare Explorer',
@@ -2916,13 +2076,8 @@ export const networks = {
   },
   flareTestnet: {
     id: 114n,
-    label: 'flareTestnet',
+    chain: 'flareTestnet',
     name: 'Flare Testnet Coston2',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Coston2 Flare',
-      symbol: 'C2FLR'
-    },
     providerURL: 'https://coston2-api.flare.network/ext/C/rpc',
     blockExplorer: {
       name: 'Coston2 Explorer',
@@ -2934,13 +2089,8 @@ export const networks = {
   },
   flowMainnet: {
     id: 747n,
-    label: 'flowMainnet',
+    chain: 'flowMainnet',
     name: 'Flow EVM Mainnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Flow',
-      symbol: 'FLOW'
-    },
     providerURL: 'https://mainnet.evm.nodes.onflow.org',
     blockExplorer: {
       name: 'Mainnet Explorer',
@@ -2951,13 +2101,8 @@ export const networks = {
   },
   flowPreviewnet: {
     id: 646n,
-    label: 'flowPreviewnet',
+    chain: 'flowPreviewnet',
     name: 'Flow EVM Previewnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Flow',
-      symbol: 'FLOW'
-    },
     providerURL: 'https://previewnet.evm.nodes.onflow.org',
     blockExplorer: {
       name: 'Previewnet Explorer',
@@ -2968,13 +2113,8 @@ export const networks = {
   },
   flowTestnet: {
     id: 545n,
-    label: 'flowTestnet',
+    chain: 'flowTestnet',
     name: 'Flow EVM Testnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Flow',
-      symbol: 'FLOW'
-    },
     providerURL: 'https://testnet.evm.nodes.onflow.org',
     blockExplorer: {
       name: 'Flow Diver',
@@ -2985,13 +2125,8 @@ export const networks = {
   },
   fluence: {
     id: 9999999n,
-    label: 'fluence',
+    chain: 'fluence',
     name: 'Fluence',
-    nativeCurrency: {
-      name: 'FLT',
-      symbol: 'FLT',
-      decimals: 18
-    },
     providerURL: 'https://rpc.mainnet.fluence.dev',
     blockExplorer: {
       name: 'Blockscout',
@@ -3003,13 +2138,8 @@ export const networks = {
   },
   fluenceStage: {
     id: 123420000220n,
-    label: 'fluenceStage',
+    chain: 'fluenceStage',
     name: 'Fluence Stage',
-    nativeCurrency: {
-      name: 'tFLT',
-      symbol: 'tFLT',
-      decimals: 18
-    },
     providerURL: 'https://rpc.stage.fluence.dev',
     blockExplorer: {
       name: 'Blockscout',
@@ -3021,13 +2151,8 @@ export const networks = {
   },
   fluenceTestnet: {
     id: 52164803n,
-    label: 'fluenceTestnet',
+    chain: 'fluenceTestnet',
     name: 'Fluence Testnet',
-    nativeCurrency: {
-      name: 'tFLT',
-      symbol: 'tFLT',
-      decimals: 18
-    },
     providerURL: 'https://rpc.testnet.fluence.dev',
     blockExplorer: {
       name: 'Blockscout',
@@ -3039,13 +2164,8 @@ export const networks = {
   },
   fluentTestnet: {
     id: 20993n,
-    label: 'fluentTestnet',
+    chain: 'fluentTestnet',
     name: 'Fluent Testnet',
-    nativeCurrency: {
-      name: 'Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://rpc.dev.gblend.xyz',
     blockExplorer: {
       name: 'Fluent Explorer',
@@ -3056,13 +2176,8 @@ export const networks = {
   },
   form: {
     id: 478n,
-    label: 'form',
+    chain: 'form',
     name: 'Form Network',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Ethereum',
-      symbol: 'ETH'
-    },
     providerURL: 'https://rpc.form.network/http',
     blockExplorer: {
       name: 'Form Explorer',
@@ -3073,13 +2188,8 @@ export const networks = {
   },
   formTestnet: {
     id: 132902n,
-    label: 'formTestnet',
+    chain: 'formTestnet',
     name: 'Form Testnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Ethereum',
-      symbol: 'ETH'
-    },
     providerURL: 'https://sepolia-rpc.form.network/http',
     blockExplorer: {
       name: 'Form Testnet Explorer',
@@ -3090,13 +2200,8 @@ export const networks = {
   },
   forma: {
     id: 984122n,
-    label: 'forma',
+    chain: 'forma',
     name: 'Forma',
-    nativeCurrency: {
-      symbol: 'TIA',
-      name: 'TIA',
-      decimals: 18
-    },
     providerURL: 'https://rpc.forma.art',
     blockExplorer: {
       name: 'Forma Explorer',
@@ -3107,13 +2212,8 @@ export const networks = {
   },
   forta: {
     id: 80931n,
-    label: 'forta',
+    chain: 'forta',
     name: 'Forta Chain',
-    nativeCurrency: {
-      symbol: 'FORT',
-      name: 'FORT',
-      decimals: 18
-    },
     providerURL: 'https://rpc-forta-chain-8gj1qndmfc.t.conduit.xyz',
     blockExplorer: {
       name: 'Forta Explorer',
@@ -3124,13 +2224,8 @@ export const networks = {
   },
   foundry: {
     id: 31337n,
-    label: 'foundry',
+    chain: 'foundry',
     name: 'Foundry',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Ether',
-      symbol: 'ETH'
-    },
     providerURL: 'http://127.0.0.1:8545',
     blockExplorer: {},
     contracts: {},
@@ -3138,13 +2233,8 @@ export const networks = {
   },
   fraxtal: {
     id: 252n,
-    label: 'fraxtal',
+    chain: 'fraxtal',
     name: 'Fraxtal',
-    nativeCurrency: {
-      name: 'Frax Ether',
-      symbol: 'frxETH',
-      decimals: 18
-    },
     providerURL: 'https://rpc.frax.com',
     blockExplorer: {
       name: 'fraxscan',
@@ -3156,13 +2246,8 @@ export const networks = {
   },
   fraxtalTestnet: {
     id: 2522n,
-    label: 'fraxtalTestnet',
+    chain: 'fraxtalTestnet',
     name: 'Fraxtal Testnet',
-    nativeCurrency: {
-      name: 'Frax Ether',
-      symbol: 'frxETH',
-      decimals: 18
-    },
     providerURL: 'https://rpc.testnet.frax.com',
     blockExplorer: {
       name: 'fraxscan testnet',
@@ -3174,13 +2259,8 @@ export const networks = {
   },
   funkiMainnet: {
     id: 33979n,
-    label: 'funkiMainnet',
+    chain: 'funkiMainnet',
     name: 'Funki',
-    nativeCurrency: {
-      name: 'Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://rpc-mainnet.funkichain.com',
     blockExplorer: {
       name: 'Funki Mainnet Explorer',
@@ -3191,13 +2271,8 @@ export const networks = {
   },
   funkiSepolia: {
     id: 3397901n,
-    label: 'funkiSepolia',
+    chain: 'funkiSepolia',
     name: 'Funki Sepolia Sandbox',
-    nativeCurrency: {
-      name: 'Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://funki-testnet.alt.technology',
     blockExplorer: {
       name: 'Funki Sepolia Sandbox Explorer',
@@ -3208,13 +2283,8 @@ export const networks = {
   },
   fuse: {
     id: 122n,
-    label: 'fuse',
+    chain: 'fuse',
     name: 'Fuse',
-    nativeCurrency: {
-      name: 'Fuse',
-      symbol: 'FUSE',
-      decimals: 18
-    },
     providerURL: 'https://rpc.fuse.io',
     blockExplorer: {
       name: 'Fuse Explorer',
@@ -3226,13 +2296,8 @@ export const networks = {
   },
   fuseSparknet: {
     id: 123n,
-    label: 'fuseSparknet',
+    chain: 'fuseSparknet',
     name: 'Fuse Sparknet',
-    nativeCurrency: {
-      name: 'Spark',
-      symbol: 'SPARK',
-      decimals: 18
-    },
     providerURL: 'https://rpc.fusespark.io',
     blockExplorer: {
       name: 'Sparkent Explorer',
@@ -3244,13 +2309,8 @@ export const networks = {
   },
   fusion: {
     id: 32659n,
-    label: 'fusion',
+    chain: 'fusion',
     name: 'Fusion Mainnet',
-    nativeCurrency: {
-      name: 'Fusion',
-      symbol: 'FSN',
-      decimals: 18
-    },
     providerURL: 'https://mainnet.fusionnetwork.io',
     blockExplorer: {
       name: 'FSNscan',
@@ -3261,13 +2321,8 @@ export const networks = {
   },
   fusionTestnet: {
     id: 46688n,
-    label: 'fusionTestnet',
+    chain: 'fusionTestnet',
     name: 'Fusion Testnet',
-    nativeCurrency: {
-      name: 'Fusion',
-      symbol: 'FSN',
-      decimals: 18
-    },
     providerURL: 'https://testnet.fusionnetwork.io',
     blockExplorer: {
       name: 'FSNscan',
@@ -3278,13 +2333,8 @@ export const networks = {
   },
   garnet: {
     id: 17069n,
-    label: 'garnet',
+    chain: 'garnet',
     name: 'Garnet Testnet',
-    nativeCurrency: {
-      name: 'Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://rpc.garnetchain.com',
     blockExplorer: {
       name: 'Blockscout',
@@ -3295,13 +2345,8 @@ export const networks = {
   },
   geist: {
     id: 63157n,
-    label: 'geist',
+    chain: 'geist',
     name: 'Geist Mainnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Aavegotchi GHST Token',
-      symbol: 'GHST'
-    },
     providerURL: 'https://geist-mainnet.g.alchemy.com/public',
     blockExplorer: {
       name: 'Blockscout',
@@ -3312,13 +2357,8 @@ export const networks = {
   },
   genesys: {
     id: 16507n,
-    label: 'genesys',
+    chain: 'genesys',
     name: 'Genesys Mainnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'GSYS',
-      symbol: 'GSYS'
-    },
     providerURL: 'https://rpc.genesys.network',
     blockExplorer: {
       name: 'Genesys Explorer',
@@ -3329,13 +2369,8 @@ export const networks = {
   },
   glideL1Protocol: {
     id: 251n,
-    label: 'glideL1Protocol',
+    chain: 'glideL1Protocol',
     name: 'Glide L1 Protocol XP',
-    nativeCurrency: {
-      name: 'GLXP',
-      symbol: 'GLXP',
-      decimals: 18
-    },
     providerURL: 'https://rpc-api.glideprotocol.xyz/l1-rpc',
     blockExplorer: {
       name: 'Glide Protocol Explore',
@@ -3346,13 +2381,8 @@ export const networks = {
   },
   glideL2Protocol: {
     id: 253n,
-    label: 'glideL2Protocol',
+    chain: 'glideL2Protocol',
     name: 'Glide L2 Protocol XP',
-    nativeCurrency: {
-      name: 'GLXP',
-      symbol: 'GLXP',
-      decimals: 18
-    },
     providerURL: 'https://rpc-api.glideprotocol.xyz/l2-rpc',
     blockExplorer: {
       name: 'Glide Protocol Explore',
@@ -3363,13 +2393,8 @@ export const networks = {
   },
   gnosis: {
     id: 100n,
-    label: 'gnosis',
+    chain: 'gnosis',
     name: 'Gnosis',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'xDAI',
-      symbol: 'XDAI'
-    },
     providerURL: 'https://rpc.gnosischain.com',
     blockExplorer: {
       name: 'Gnosisscan',
@@ -3381,13 +2406,8 @@ export const networks = {
   },
   gnosisChiado: {
     id: 10200n,
-    label: 'gnosisChiado',
+    chain: 'gnosisChiado',
     name: 'Gnosis Chiado',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Gnosis',
-      symbol: 'xDAI'
-    },
     providerURL: 'https://rpc.chiadochain.net',
     blockExplorer: {
       name: 'Blockscout',
@@ -3399,13 +2419,8 @@ export const networks = {
   },
   goChain: {
     id: 60n,
-    label: 'goChain',
+    chain: 'goChain',
     name: 'GoChain',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'GO',
-      symbol: 'GO'
-    },
     providerURL: 'https://rpc.gochain.io',
     blockExplorer: {
       name: 'GoChain Explorer',
@@ -3416,13 +2431,8 @@ export const networks = {
   },
   goat: {
     id: 2345n,
-    label: 'goat',
+    chain: 'goat',
     name: 'GOAT',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Bitcoin',
-      symbol: 'BTC'
-    },
     providerURL: 'https://rpc.goat.network',
     blockExplorer: {
       name: 'Goat Explorer',
@@ -3433,13 +2443,8 @@ export const networks = {
   },
   gobi: {
     id: 1663n,
-    label: 'gobi',
+    chain: 'gobi',
     name: 'Horizen Gobi Testnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Test ZEN',
-      symbol: 'tZEN'
-    },
     providerURL: 'https://gobi-testnet.horizenlabs.io/ethv1',
     blockExplorer: {
       name: 'Gobi Explorer',
@@ -3450,13 +2455,8 @@ export const networks = {
   },
   godwoken: {
     id: 71402n,
-    label: 'godwoken',
+    chain: 'godwoken',
     name: 'Godwoken Mainnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'pCKB',
-      symbol: 'pCKB'
-    },
     providerURL: 'https://v1.mainnet.godwoken.io/rpc',
     blockExplorer: {
       name: 'GW Scan',
@@ -3467,13 +2467,8 @@ export const networks = {
   },
   goerli: {
     id: 5n,
-    label: 'goerli',
+    chain: 'goerli',
     name: 'Goerli',
-    nativeCurrency: {
-      name: 'Goerli Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://5.rpc.thirdweb.com',
     blockExplorer: {
       name: 'Etherscan',
@@ -3485,13 +2480,8 @@ export const networks = {
   },
   gravity: {
     id: 1625n,
-    label: 'gravity',
+    chain: 'gravity',
     name: 'Gravity Alpha Mainnet',
-    nativeCurrency: {
-      name: 'G',
-      symbol: 'G',
-      decimals: 18
-    },
     providerURL: 'https://rpc.gravity.xyz',
     blockExplorer: {
       name: 'Gravity Explorer',
@@ -3503,13 +2493,8 @@ export const networks = {
   },
   guruNetwork: {
     id: 260n,
-    label: 'guruNetwork',
+    chain: 'guruNetwork',
     name: 'Guru Network Mainnet',
-    nativeCurrency: {
-      name: 'GURU Token',
-      symbol: 'GURU',
-      decimals: 18
-    },
     providerURL: 'https://rpc-main.gurunetwork.ai',
     blockExplorer: {
       name: 'Guruscan',
@@ -3520,13 +2505,8 @@ export const networks = {
   },
   guruTestnet: {
     id: 261n,
-    label: 'guruTestnet',
+    chain: 'guruTestnet',
     name: 'Guru Network Testnet',
-    nativeCurrency: {
-      name: 'tGURU Token',
-      symbol: 'tGURU',
-      decimals: 18
-    },
     providerURL: 'https://rpc-test.gurunetwork.ai',
     blockExplorer: {
       name: 'Guruscan',
@@ -3537,13 +2517,8 @@ export const networks = {
   },
   ham: {
     id: 5112n,
-    label: 'ham',
+    chain: 'ham',
     name: 'Ham',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Ham',
-      symbol: 'ETH'
-    },
     providerURL: 'https://rpc.ham.fun',
     blockExplorer: {
       name: 'Ham Chain Explorer',
@@ -3555,13 +2530,8 @@ export const networks = {
   },
   happychainTestnet: {
     id: 216n,
-    label: 'happychainTestnet',
+    chain: 'happychainTestnet',
     name: 'Happychain Testnet',
-    nativeCurrency: {
-      symbol: 'HAPPY',
-      name: 'HAPPY',
-      decimals: 18
-    },
     providerURL: 'https://rpc.testnet.happy.tech/http',
     blockExplorer: {
       name: 'Happy Chain Testnet Explorer',
@@ -3572,13 +2542,8 @@ export const networks = {
   },
   haqqMainnet: {
     id: 11235n,
-    label: 'haqqMainnet',
+    chain: 'haqqMainnet',
     name: 'HAQQ Mainnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Islamic Coin',
-      symbol: 'ISLM'
-    },
     providerURL: 'https://rpc.eth.haqq.network',
     blockExplorer: {
       name: 'HAQQ Explorer',
@@ -3590,13 +2555,8 @@ export const networks = {
   },
   haqqTestedge2: {
     id: 54211n,
-    label: 'haqqTestedge2',
+    chain: 'haqqTestedge2',
     name: 'HAQQ Testedge 2',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Islamic Coin',
-      symbol: 'ISLMT'
-    },
     providerURL: 'https://rpc.eth.testedge2.haqq.network',
     blockExplorer: {
       name: 'HAQQ Explorer',
@@ -3608,13 +2568,8 @@ export const networks = {
   },
   hardhat: {
     id: 31337n,
-    label: 'hardhat',
+    chain: 'hardhat',
     name: 'Hardhat',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Ether',
-      symbol: 'ETH'
-    },
     providerURL: 'http://127.0.0.1:8545',
     blockExplorer: {},
     contracts: {},
@@ -3622,13 +2577,8 @@ export const networks = {
   },
   harmonyOne: {
     id: 1666600000n,
-    label: 'harmonyOne',
+    chain: 'harmonyOne',
     name: 'Harmony One',
-    nativeCurrency: {
-      name: 'Harmony',
-      symbol: 'ONE',
-      decimals: 18
-    },
     providerURL: 'https://1666600000.rpc.thirdweb.com',
     blockExplorer: {
       name: 'Harmony Explorer',
@@ -3639,13 +2589,8 @@ export const networks = {
   },
   hashkey: {
     id: 177n,
-    label: 'hashkey',
+    chain: 'hashkey',
     name: 'HashKey Chain',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'HashKey EcoPoints',
-      symbol: 'HSK'
-    },
     providerURL: 'https://mainnet.hsk.xyz',
     blockExplorer: {
       name: 'HashKey Chain Explorer',
@@ -3656,13 +2601,8 @@ export const networks = {
   },
   hashkeyTestnet: {
     id: 133n,
-    label: 'hashkeyTestnet',
+    chain: 'hashkeyTestnet',
     name: 'HashKey Chain Testnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'HashKey EcoPoints',
-      symbol: 'HSK'
-    },
     providerURL: 'https://hashkeychain-testnet.alt.technology',
     blockExplorer: {
       name: 'HashKey Chain Explorer',
@@ -3673,13 +2613,8 @@ export const networks = {
   },
   haustTestnet: {
     id: 1523903251n,
-    label: 'haustTestnet',
+    chain: 'haustTestnet',
     name: 'Haust Network Testnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'HAUST',
-      symbol: 'HAUST'
-    },
     providerURL: 'https://rpc-testnet.haust.app',
     blockExplorer: {
       name: 'Haust Network Testnet Explorer',
@@ -3690,13 +2625,8 @@ export const networks = {
   },
   hedera: {
     id: 295n,
-    label: 'hedera',
+    chain: 'hedera',
     name: 'Hedera Mainnet',
-    nativeCurrency: {
-      symbol: 'HBAR',
-      name: 'HBAR',
-      decimals: 18
-    },
     providerURL: 'https://mainnet.hashio.io/api',
     blockExplorer: {
       name: 'Hashscan',
@@ -3707,13 +2637,8 @@ export const networks = {
   },
   hederaPreviewnet: {
     id: 297n,
-    label: 'hederaPreviewnet',
+    chain: 'hederaPreviewnet',
     name: 'Hedera Previewnet',
-    nativeCurrency: {
-      symbol: 'HBAR',
-      name: 'HBAR',
-      decimals: 18
-    },
     providerURL: 'https://previewnet.hashio.io/api',
     blockExplorer: {
       name: 'Hashscan',
@@ -3724,13 +2649,8 @@ export const networks = {
   },
   hederaTestnet: {
     id: 296n,
-    label: 'hederaTestnet',
+    chain: 'hederaTestnet',
     name: 'Hedera Testnet',
-    nativeCurrency: {
-      symbol: 'HBAR',
-      name: 'HBAR',
-      decimals: 18
-    },
     providerURL: 'https://testnet.hashio.io/api',
     blockExplorer: {
       name: 'Hashscan',
@@ -3741,13 +2661,8 @@ export const networks = {
   },
   hela: {
     id: 8668n,
-    label: 'hela',
+    chain: 'hela',
     name: 'Hela Mainnet',
-    nativeCurrency: {
-      name: 'HLUSD',
-      symbol: 'HLUSD',
-      decimals: 18
-    },
     providerURL: 'https://mainnet-rpc.helachain.com',
     blockExplorer: {
       name: 'Hela explorer',
@@ -3758,13 +2673,8 @@ export const networks = {
   },
   hemi: {
     id: 43111n,
-    label: 'hemi',
+    chain: 'hemi',
     name: 'Hemi',
-    nativeCurrency: {
-      name: 'Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://rpc.hemi.network/rpc',
     blockExplorer: {
       name: 'blockscout',
@@ -3775,13 +2685,8 @@ export const networks = {
   },
   hemiSepolia: {
     id: 743111n,
-    label: 'hemiSepolia',
+    chain: 'hemiSepolia',
     name: 'Hemi Sepolia',
-    nativeCurrency: {
-      name: 'Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://testnet.rpc.hemi.network/rpc',
     blockExplorer: {
       name: 'Hemi Sepolia explorer',
@@ -3792,13 +2697,8 @@ export const networks = {
   },
   holesky: {
     id: 17000n,
-    label: 'holesky',
+    chain: 'holesky',
     name: 'Holesky',
-    nativeCurrency: {
-      name: 'Holesky Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://ethereum-holesky-rpc.publicnode.com',
     blockExplorer: {
       name: 'Etherscan',
@@ -3810,13 +2710,8 @@ export const networks = {
   },
   hoodi: {
     id: 560048n,
-    label: 'hoodi',
+    chain: 'hoodi',
     name: 'Hoodi',
-    nativeCurrency: {
-      name: 'Hoodi Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://rpc.hoodi.ethpandaops.io',
     blockExplorer: {
       name: 'Blockscout',
@@ -3827,13 +2722,8 @@ export const networks = {
   },
   hpb: {
     id: 269n,
-    label: 'hpb',
+    chain: 'hpb',
     name: 'High Performance Blockchain',
-    nativeCurrency: {
-      name: 'HPB',
-      symbol: 'HPB',
-      decimals: 18
-    },
     providerURL: 'https://hpbnode.com',
     blockExplorer: {
       name: 'hpbScan',
@@ -3844,13 +2734,8 @@ export const networks = {
   },
   huddle01Mainnet: {
     id: 12323n,
-    label: 'huddle01Mainnet',
+    chain: 'huddle01Mainnet',
     name: 'Huddle01 dRTC Chain',
-    nativeCurrency: {
-      name: 'Ethereum',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://huddle01.calderachain.xyz/http',
     blockExplorer: {
       name: 'Huddle01 Caldera Explorer',
@@ -3862,13 +2747,8 @@ export const networks = {
   },
   huddle01Testnet: {
     id: 2524852n,
-    label: 'huddle01Testnet',
+    chain: 'huddle01Testnet',
     name: 'Huddle01 dRTC Chain Testnet',
-    nativeCurrency: {
-      name: 'Ethereum',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://huddle-testnet.rpc.caldera.xyz/http',
     blockExplorer: {
       name: 'Huddle01 Caldera Explorer',
@@ -3880,13 +2760,8 @@ export const networks = {
   },
   humanode: {
     id: 5234n,
-    label: 'humanode',
+    chain: 'humanode',
     name: 'Humanode',
-    nativeCurrency: {
-      name: 'HMND',
-      symbol: 'HMND',
-      decimals: 18
-    },
     providerURL: 'https://explorer-rpc-http.mainnet.stages.humanode.io',
     blockExplorer: {
       name: 'Subscan',
@@ -3897,13 +2772,8 @@ export const networks = {
   },
   humanodeTestnet5: {
     id: 14853n,
-    label: 'humanodeTestnet5',
+    chain: 'humanodeTestnet5',
     name: 'Humanode Testnet 5',
-    nativeCurrency: {
-      name: 'HMND',
-      symbol: 'HMND',
-      decimals: 18
-    },
     providerURL: 'https://explorer-rpc-http.testnet5.stages.humanode.io',
     blockExplorer: {},
     contracts: {},
@@ -3911,13 +2781,8 @@ export const networks = {
   },
   hychain: {
     id: 2911n,
-    label: 'hychain',
+    chain: 'hychain',
     name: 'HYCHAIN',
-    nativeCurrency: {
-      name: 'HYTOPIA',
-      symbol: 'TOPIA',
-      decimals: 18
-    },
     providerURL: 'https://rpc.hychain.com/http',
     blockExplorer: {
       name: 'HYCHAIN Explorer',
@@ -3928,13 +2793,8 @@ export const networks = {
   },
   hychainTestnet: {
     id: 29112n,
-    label: 'hychainTestnet',
+    chain: 'hychainTestnet',
     name: 'HYCHAIN Testnet',
-    nativeCurrency: {
-      name: 'HYTOPIA',
-      symbol: 'TOPIA',
-      decimals: 18
-    },
     providerURL: 'https://rpc.hychain.com/http',
     blockExplorer: {
       name: 'HYCHAIN Explorer',
@@ -3945,13 +2805,8 @@ export const networks = {
   },
   iSunCoin: {
     id: 8017n,
-    label: 'iSunCoin',
+    chain: 'iSunCoin',
     name: 'iSunCoin Mainnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'ISC',
-      symbol: 'ISC'
-    },
     providerURL: 'https://mainnet.isuncoin.com',
     blockExplorer: {
       name: 'iSunCoin Explorer',
@@ -3962,13 +2817,8 @@ export const networks = {
   },
   idchain: {
     id: 74n,
-    label: 'idchain',
+    chain: 'idchain',
     name: 'IDChain Mainnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'EIDI',
-      symbol: 'EIDI'
-    },
     providerURL: 'https://idchain.one/rpc',
     blockExplorer: {
       name: 'IDChain Explorer',
@@ -3979,13 +2829,8 @@ export const networks = {
   },
   immutableZkEvm: {
     id: 13371n,
-    label: 'immutableZkEvm',
+    chain: 'immutableZkEvm',
     name: 'Immutable zkEVM',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Immutable Coin',
-      symbol: 'IMX'
-    },
     providerURL: 'https://rpc.immutable.com',
     blockExplorer: {
       name: 'Immutable Explorer',
@@ -3997,13 +2842,8 @@ export const networks = {
   },
   immutableZkEvmTestnet: {
     id: 13473n,
-    label: 'immutableZkEvmTestnet',
+    chain: 'immutableZkEvmTestnet',
     name: 'Immutable zkEVM Testnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Immutable Coin',
-      symbol: 'IMX'
-    },
     providerURL: 'https://rpc.testnet.immutable.com',
     blockExplorer: {
       name: 'Immutable Testnet Explorer',
@@ -4014,13 +2854,8 @@ export const networks = {
   },
   inEVM: {
     id: 2525n,
-    label: 'inEVM',
+    chain: 'inEVM',
     name: 'inEVM Mainnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Injective',
-      symbol: 'INJ'
-    },
     providerURL: 'https://mainnet.rpc.inevm.com/http',
     blockExplorer: {
       name: 'inEVM Explorer',
@@ -4032,13 +2867,8 @@ export const networks = {
   },
   initVerse: {
     id: 7233n,
-    label: 'initVerse',
+    chain: 'initVerse',
     name: 'InitVerse Mainnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'InitVerse',
-      symbol: 'INI'
-    },
     providerURL: 'https://rpc-mainnet.inichain.com',
     blockExplorer: {
       name: 'InitVerseScan',
@@ -4050,13 +2880,8 @@ export const networks = {
   },
   initVerseGenesis: {
     id: 7234n,
-    label: 'initVerseGenesis',
+    chain: 'initVerseGenesis',
     name: 'InitVerse Genesis Testnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'InitVerse',
-      symbol: 'INI'
-    },
     providerURL: 'https://rpc-testnet.inichain.com',
     blockExplorer: {
       name: 'InitVerseGenesisScan',
@@ -4068,13 +2893,8 @@ export const networks = {
   },
   ink: {
     id: 57073n,
-    label: 'ink',
+    chain: 'ink',
     name: 'Ink',
-    nativeCurrency: {
-      name: 'Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://rpc-gel.inkonchain.com',
     blockExplorer: {
       name: 'Blockscout',
@@ -4086,13 +2906,8 @@ export const networks = {
   },
   inkSepolia: {
     id: 763373n,
-    label: 'inkSepolia',
+    chain: 'inkSepolia',
     name: 'Ink Sepolia',
-    nativeCurrency: {
-      name: 'Sepolia Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://rpc-gel-sepolia.inkonchain.com',
     blockExplorer: {
       name: 'Blockscout',
@@ -4104,13 +2919,8 @@ export const networks = {
   },
   iota: {
     id: 8822n,
-    label: 'iota',
+    chain: 'iota',
     name: 'IOTA EVM',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'IOTA',
-      symbol: 'IOTA'
-    },
     providerURL: 'https://json-rpc.evm.iotaledger.net',
     blockExplorer: {
       name: 'Explorer',
@@ -4122,13 +2932,8 @@ export const networks = {
   },
   iotaTestnet: {
     id: 1075n,
-    label: 'iotaTestnet',
+    chain: 'iotaTestnet',
     name: 'IOTA EVM Testnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'IOTA',
-      symbol: 'IOTA'
-    },
     providerURL: 'https://json-rpc.evm.testnet.iotaledger.net',
     blockExplorer: {
       name: 'Explorer',
@@ -4140,13 +2945,8 @@ export const networks = {
   },
   iotex: {
     id: 4689n,
-    label: 'iotex',
+    chain: 'iotex',
     name: 'IoTeX',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'IoTeX',
-      symbol: 'IOTX'
-    },
     providerURL: 'https://babel-api.mainnet.iotex.io',
     blockExplorer: {
       name: 'IoTeXScan',
@@ -4157,13 +2957,8 @@ export const networks = {
   },
   iotexTestnet: {
     id: 4690n,
-    label: 'iotexTestnet',
+    chain: 'iotexTestnet',
     name: 'IoTeX Testnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'IoTeX',
-      symbol: 'IOTX'
-    },
     providerURL: 'https://babel-api.testnet.iotex.io',
     blockExplorer: {
       name: 'IoTeXScan',
@@ -4174,13 +2969,8 @@ export const networks = {
   },
   jbc: {
     id: 8899n,
-    label: 'jbc',
+    chain: 'jbc',
     name: 'JIBCHAIN L1',
-    nativeCurrency: {
-      name: 'JBC',
-      symbol: 'JBC',
-      decimals: 18
-    },
     providerURL: 'https://rpc-l1.jibchain.net',
     blockExplorer: {
       name: 'Blockscout',
@@ -4192,13 +2982,8 @@ export const networks = {
   },
   jbcTestnet: {
     id: 88991n,
-    label: 'jbcTestnet',
+    chain: 'jbcTestnet',
     name: 'Jibchain Testnet',
-    nativeCurrency: {
-      name: 'tJBC',
-      symbol: 'tJBC',
-      decimals: 18
-    },
     providerURL: 'https://rpc.testnet.jibchain.net',
     blockExplorer: {
       name: 'Blockscout',
@@ -4210,13 +2995,8 @@ export const networks = {
   },
   juneo: {
     id: 45003n,
-    label: 'juneo',
+    chain: 'juneo',
     name: 'Juneo JUNE-Chain',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'JUNE-Chain',
-      symbol: 'JUNE'
-    },
     providerURL: 'https://rpc.juneo-mainnet.network/ext/bc/JUNE/rpc',
     blockExplorer: {
       name: 'Juneo Scan',
@@ -4228,13 +3008,8 @@ export const networks = {
   },
   juneoSocotraTestnet: {
     id: 101003n,
-    label: 'juneoSocotraTestnet',
+    chain: 'juneoSocotraTestnet',
     name: 'Socotra JUNE-Chain',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Socotra JUNE-Chain',
-      symbol: 'JUNE'
-    },
     providerURL: 'https://rpc.socotra-testnet.network/ext/bc/JUNE/rpc',
     blockExplorer: {
       name: 'Juneo Scan',
@@ -4246,13 +3021,8 @@ export const networks = {
   },
   kaia: {
     id: 8217n,
-    label: 'kaia',
+    chain: 'kaia',
     name: 'Kaia',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Kaia',
-      symbol: 'KAIA'
-    },
     providerURL: 'https://public-en.node.kaia.io',
     blockExplorer: {
       name: 'KaiaScan',
@@ -4264,13 +3034,8 @@ export const networks = {
   },
   kairos: {
     id: 1001n,
-    label: 'kairos',
+    chain: 'kairos',
     name: 'Kairos Testnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Kairos KAIA',
-      symbol: 'KAIA'
-    },
     providerURL: 'https://public-en-kairos.node.kaia.io',
     blockExplorer: {
       name: 'KaiaScan',
@@ -4281,13 +3046,8 @@ export const networks = {
   },
   kakarotSepolia: {
     id: 1802203764n,
-    label: 'kakarotSepolia',
+    chain: 'kakarotSepolia',
     name: 'Kakarot Sepolia',
-    nativeCurrency: {
-      name: 'Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://sepolia-rpc.kakarot.org',
     blockExplorer: {
       name: 'Kakarot Scan',
@@ -4298,13 +3058,8 @@ export const networks = {
   },
   kakarotStarknetSepolia: {
     id: 920637907288165n,
-    label: 'kakarotStarknetSepolia',
+    chain: 'kakarotStarknetSepolia',
     name: 'Kakarot Starknet Sepolia',
-    nativeCurrency: {
-      name: 'Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://sepolia-rpc.kakarot.org',
     blockExplorer: {
       name: 'Kakarot Scan',
@@ -4315,13 +3070,8 @@ export const networks = {
   },
   kardiaChain: {
     id: 24n,
-    label: 'kardiaChain',
+    chain: 'kardiaChain',
     name: 'KardiaChain Mainnet',
-    nativeCurrency: {
-      name: 'KAI',
-      symbol: 'KAI',
-      decimals: 18
-    },
     providerURL: 'https://rpc.kardiachain.io',
     blockExplorer: {
       name: 'KardiaChain Explorer',
@@ -4332,13 +3082,8 @@ export const networks = {
   },
   karura: {
     id: 686n,
-    label: 'karura',
+    chain: 'karura',
     name: 'Karura',
-    nativeCurrency: {
-      name: 'Karura',
-      symbol: 'KAR',
-      decimals: 18
-    },
     providerURL: 'https://eth-rpc-karura.aca-api.network',
     blockExplorer: {
       name: 'Karura Blockscout',
@@ -4350,13 +3095,8 @@ export const networks = {
   },
   kava: {
     id: 2222n,
-    label: 'kava',
+    chain: 'kava',
     name: 'Kava EVM',
-    nativeCurrency: {
-      name: 'Kava',
-      symbol: 'KAVA',
-      decimals: 18
-    },
     providerURL: 'https://evm.kava.io',
     blockExplorer: {
       name: 'Kava EVM Explorer',
@@ -4368,13 +3108,8 @@ export const networks = {
   },
   kavaTestnet: {
     id: 2221n,
-    label: 'kavaTestnet',
+    chain: 'kavaTestnet',
     name: 'Kava EVM Testnet',
-    nativeCurrency: {
-      name: 'Kava',
-      symbol: 'KAVA',
-      decimals: 18
-    },
     providerURL: 'https://evm.testnet.kava.io',
     blockExplorer: {
       name: 'Kava EVM Testnet Explorer',
@@ -4386,13 +3121,8 @@ export const networks = {
   },
   kcc: {
     id: 321n,
-    label: 'kcc',
+    chain: 'kcc',
     name: 'KCC Mainnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'KCS',
-      symbol: 'KCS'
-    },
     providerURL: 'https://kcc-rpc.com',
     blockExplorer: {
       name: 'KCC Explorer',
@@ -4403,13 +3133,8 @@ export const networks = {
   },
   kinto: {
     id: 7887n,
-    label: 'kinto',
+    chain: 'kinto',
     name: 'Kinto Mainnet',
-    nativeCurrency: {
-      name: 'Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://rpc.kinto.xyz/http',
     blockExplorer: {
       name: 'Kinto Explorer',
@@ -4420,13 +3145,8 @@ export const networks = {
   },
   klaytn: {
     id: 8217n,
-    label: 'klaytn',
+    chain: 'klaytn',
     name: 'Klaytn',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Klaytn',
-      symbol: 'KLAY'
-    },
     providerURL: 'https://public-en-cypress.klaytn.net',
     blockExplorer: {
       name: 'KlaytnScope',
@@ -4437,13 +3157,8 @@ export const networks = {
   },
   klaytnBaobab: {
     id: 1001n,
-    label: 'klaytnBaobab',
+    chain: 'klaytnBaobab',
     name: 'Klaytn Baobab Testnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Baobab Klaytn',
-      symbol: 'KLAY'
-    },
     providerURL: 'https://public-en-baobab.klaytn.net',
     blockExplorer: {
       name: 'KlaytnScope',
@@ -4454,13 +3169,8 @@ export const networks = {
   },
   koi: {
     id: 701n,
-    label: 'koi',
+    chain: 'koi',
     name: 'Koi Network',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Koi Network Native Token',
-      symbol: 'KRING'
-    },
     providerURL: 'https://koi-rpc.darwinia.network',
     blockExplorer: {
       name: 'Blockscout',
@@ -4471,13 +3181,8 @@ export const networks = {
   },
   kroma: {
     id: 255n,
-    label: 'kroma',
+    chain: 'kroma',
     name: 'Kroma',
-    nativeCurrency: {
-      name: 'ETH',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://api.kroma.network',
     blockExplorer: {
       name: 'Kroma Explorer',
@@ -4489,13 +3194,8 @@ export const networks = {
   },
   kromaSepolia: {
     id: 2358n,
-    label: 'kromaSepolia',
+    chain: 'kromaSepolia',
     name: 'Kroma Sepolia',
-    nativeCurrency: {
-      name: 'Sepolia Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://api.sepolia.kroma.network',
     blockExplorer: {
       name: 'Kroma Sepolia Explorer',
@@ -4507,13 +3207,8 @@ export const networks = {
   },
   l3x: {
     id: 12324n,
-    label: 'l3x',
+    chain: 'l3x',
     name: 'L3X Protocol',
-    nativeCurrency: {
-      name: 'Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://rpc-mainnet.l3x.com',
     blockExplorer: {
       name: 'L3X Mainnet Explorer',
@@ -4525,13 +3220,8 @@ export const networks = {
   },
   l3xTestnet: {
     id: 12325n,
-    label: 'l3xTestnet',
+    chain: 'l3xTestnet',
     name: 'L3X Protocol Testnet',
-    nativeCurrency: {
-      name: 'Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://rpc-testnet.l3x.com',
     blockExplorer: {
       name: 'L3X Testnet Explorer',
@@ -4543,13 +3233,8 @@ export const networks = {
   },
   lavita: {
     id: 360890n,
-    label: 'lavita',
+    chain: 'lavita',
     name: 'LAVITA Mainnet',
-    nativeCurrency: {
-      name: 'vTFUEL',
-      symbol: 'vTFUEL',
-      decimals: 18
-    },
     providerURL: 'https://tsub360890-eth-rpc.thetatoken.org/rpc',
     blockExplorer: {
       name: 'LAVITA Explorer',
@@ -4560,13 +3245,8 @@ export const networks = {
   },
   lensTestnet: {
     id: 37111n,
-    label: 'lensTestnet',
+    chain: 'lensTestnet',
     name: 'Lens Testnet',
-    nativeCurrency: {
-      name: 'GRASS',
-      symbol: 'GRASS',
-      decimals: 18
-    },
     providerURL: 'https://rpc.testnet.lens.dev',
     blockExplorer: {
       name: 'Lens Block Explorer',
@@ -4578,13 +3258,8 @@ export const networks = {
   },
   lightlinkPegasus: {
     id: 1891n,
-    label: 'lightlinkPegasus',
+    chain: 'lightlinkPegasus',
     name: 'LightLink Pegasus Testnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Ether',
-      symbol: 'ETH'
-    },
     providerURL: 'https://replicator.pegasus.lightlink.io/rpc/v1',
     blockExplorer: {
       name: 'LightLink Pegasus Explorer',
@@ -4595,13 +3270,8 @@ export const networks = {
   },
   lightlinkPhoenix: {
     id: 1890n,
-    label: 'lightlinkPhoenix',
+    chain: 'lightlinkPhoenix',
     name: 'LightLink Phoenix Mainnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Ether',
-      symbol: 'ETH'
-    },
     providerURL: 'https://replicator.phoenix.lightlink.io/rpc/v1',
     blockExplorer: {
       name: 'LightLink Phoenix Explorer',
@@ -4612,13 +3282,8 @@ export const networks = {
   },
   linea: {
     id: 59144n,
-    label: 'linea',
+    chain: 'linea',
     name: 'Linea Mainnet',
-    nativeCurrency: {
-      name: 'Linea Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://rpc.linea.build',
     blockExplorer: {
       name: 'Etherscan',
@@ -4630,13 +3295,8 @@ export const networks = {
   },
   lineaGoerli: {
     id: 59140n,
-    label: 'lineaGoerli',
+    chain: 'lineaGoerli',
     name: 'Linea Goerli Testnet',
-    nativeCurrency: {
-      name: 'Linea Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://rpc.goerli.linea.build',
     blockExplorer: {
       name: 'Etherscan',
@@ -4648,13 +3308,8 @@ export const networks = {
   },
   lineaSepolia: {
     id: 59141n,
-    label: 'lineaSepolia',
+    chain: 'lineaSepolia',
     name: 'Linea Sepolia Testnet',
-    nativeCurrency: {
-      name: 'Linea Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://rpc.sepolia.linea.build',
     blockExplorer: {
       name: 'Etherscan',
@@ -4666,13 +3321,8 @@ export const networks = {
   },
   lineaTestnet: {
     id: 59140n,
-    label: 'lineaTestnet',
+    chain: 'lineaTestnet',
     name: 'Linea Goerli Testnet',
-    nativeCurrency: {
-      name: 'Linea Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://rpc.goerli.linea.build',
     blockExplorer: {
       name: 'Etherscan',
@@ -4684,13 +3334,8 @@ export const networks = {
   },
   lisk: {
     id: 1135n,
-    label: 'lisk',
+    chain: 'lisk',
     name: 'Lisk',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Ether',
-      symbol: 'ETH'
-    },
     providerURL: 'https://rpc.api.lisk.com',
     blockExplorer: {
       name: 'Blockscout',
@@ -4702,13 +3347,8 @@ export const networks = {
   },
   liskSepolia: {
     id: 4202n,
-    label: 'liskSepolia',
+    chain: 'liskSepolia',
     name: 'Lisk Sepolia',
-    nativeCurrency: {
-      name: 'Sepolia Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://rpc.sepolia-api.lisk.com',
     blockExplorer: {
       name: 'Blockscout',
@@ -4720,13 +3360,8 @@ export const networks = {
   },
   localhost: {
     id: 1337n,
-    label: 'localhost',
+    chain: 'localhost',
     name: 'Localhost',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Ether',
-      symbol: 'ETH'
-    },
     providerURL: 'http://127.0.0.1:8545',
     blockExplorer: {},
     contracts: {},
@@ -4734,13 +3369,8 @@ export const networks = {
   },
   loop: {
     id: 15551n,
-    label: 'loop',
+    chain: 'loop',
     name: 'LoopNetwork Mainnet',
-    nativeCurrency: {
-      name: 'LOOP',
-      symbol: 'LOOP',
-      decimals: 18
-    },
     providerURL: 'https://api.mainnetloop.com',
     blockExplorer: {
       name: 'LoopNetwork Blockchain Explorer',
@@ -4751,13 +3381,8 @@ export const networks = {
   },
   lukso: {
     id: 42n,
-    label: 'lukso',
+    chain: 'lukso',
     name: 'LUKSO',
-    nativeCurrency: {
-      name: 'LUKSO',
-      symbol: 'LYX',
-      decimals: 18
-    },
     providerURL: 'https://rpc.mainnet.lukso.network',
     blockExplorer: {
       name: 'LUKSO Mainnet Explorer',
@@ -4769,13 +3394,8 @@ export const networks = {
   },
   luksoTestnet: {
     id: 4201n,
-    label: 'luksoTestnet',
+    chain: 'luksoTestnet',
     name: 'LUKSO Testnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'LUKSO Testnet',
-      symbol: 'LYXt'
-    },
     providerURL: 'https://rpc.testnet.lukso.network',
     blockExplorer: {
       name: 'LUKSO Testnet Explorer',
@@ -4787,13 +3407,8 @@ export const networks = {
   },
   lumiaMainnet: {
     id: 994873017n,
-    label: 'lumiaMainnet',
+    chain: 'lumiaMainnet',
     name: 'Lumia Mainnet',
-    nativeCurrency: {
-      name: 'Lumia',
-      symbol: 'LUMIA',
-      decimals: 18
-    },
     providerURL: 'https://mainnet-rpc.lumia.org',
     blockExplorer: {
       name: 'Lumia Explorer',
@@ -4804,13 +3419,8 @@ export const networks = {
   },
   lumiaTestnet: {
     id: 1952959480n,
-    label: 'lumiaTestnet',
+    chain: 'lumiaTestnet',
     name: 'Lumia Testnet',
-    nativeCurrency: {
-      name: 'Lumia',
-      symbol: 'LUMIA',
-      decimals: 18
-    },
     providerURL: 'https://testnet-rpc.lumia.org',
     blockExplorer: {
       name: 'Lumia Testnet Explorer',
@@ -4821,13 +3431,8 @@ export const networks = {
   },
   lumoz: {
     id: 96370n,
-    label: 'lumoz',
+    chain: 'lumoz',
     name: 'Lumoz',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Lumoz Token',
-      symbol: 'MOZ'
-    },
     providerURL: 'https://rpc.lumoz.org',
     blockExplorer: {
       name: 'Lumoz Scan',
@@ -4838,13 +3443,8 @@ export const networks = {
   },
   lumozTestnet: {
     id: 105363n,
-    label: 'lumozTestnet',
+    chain: 'lumozTestnet',
     name: 'Lumoz Testnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Lumoz Testnet Token',
-      symbol: 'MOZ'
-    },
     providerURL: 'https://testnet-rpc.lumoz.org',
     blockExplorer: {},
     contracts: {},
@@ -4852,13 +3452,8 @@ export const networks = {
   },
   lycan: {
     id: 721n,
-    label: 'lycan',
+    chain: 'lycan',
     name: 'Lycan',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Lycan',
-      symbol: 'LYC'
-    },
     providerURL: 'https://rpc.lycanchain.com',
     blockExplorer: {
       name: 'Lycan Explorer',
@@ -4869,13 +3464,8 @@ export const networks = {
   },
   lyra: {
     id: 957n,
-    label: 'lyra',
+    chain: 'lyra',
     name: 'Lyra Chain',
-    nativeCurrency: {
-      name: 'Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://rpc.lyra.finance',
     blockExplorer: {
       name: 'Lyra Explorer',
@@ -4887,13 +3477,8 @@ export const networks = {
   },
   mainnet: {
     id: 1n,
-    label: 'mainnet',
+    chain: 'mainnet',
     name: 'Ethereum',
-    nativeCurrency: {
-      name: 'Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://eth.merkle.io',
     blockExplorer: {
       name: 'Etherscan',
@@ -4905,13 +3490,8 @@ export const networks = {
   },
   mandala: {
     id: 595n,
-    label: 'mandala',
+    chain: 'mandala',
     name: 'Mandala TC9',
-    nativeCurrency: {
-      name: 'Mandala',
-      symbol: 'mACA',
-      decimals: 18
-    },
     providerURL: 'https://eth-rpc-tc9.aca-staging.network',
     blockExplorer: {
       name: 'Mandala Blockscout',
@@ -4923,13 +3503,8 @@ export const networks = {
   },
   manta: {
     id: 169n,
-    label: 'manta',
+    chain: 'manta',
     name: 'Manta Pacific Mainnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'ETH',
-      symbol: 'ETH'
-    },
     providerURL: 'https://pacific-rpc.manta.network/http',
     blockExplorer: {
       name: 'Manta Explorer',
@@ -4941,13 +3516,8 @@ export const networks = {
   },
   mantaSepoliaTestnet: {
     id: 3441006n,
-    label: 'mantaSepoliaTestnet',
+    chain: 'mantaSepoliaTestnet',
     name: 'Manta Pacific Sepolia Testnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'ETH',
-      symbol: 'ETH'
-    },
     providerURL: 'https://pacific-rpc.sepolia-testnet.manta.network/http',
     blockExplorer: {
       name: 'Manta Sepolia Testnet Explorer',
@@ -4959,13 +3529,8 @@ export const networks = {
   },
   mantaTestnet: {
     id: 3441005n,
-    label: 'mantaTestnet',
+    chain: 'mantaTestnet',
     name: 'Manta Pacific Testnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'ETH',
-      symbol: 'ETH'
-    },
     providerURL: 'https://manta-testnet.calderachain.xyz/http',
     blockExplorer: {
       name: 'Manta Testnet Explorer',
@@ -4977,13 +3542,8 @@ export const networks = {
   },
   mantle: {
     id: 5000n,
-    label: 'mantle',
+    chain: 'mantle',
     name: 'Mantle',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'MNT',
-      symbol: 'MNT'
-    },
     providerURL: 'https://rpc.mantle.xyz',
     blockExplorer: {
       name: 'Mantle Explorer',
@@ -4995,13 +3555,8 @@ export const networks = {
   },
   mantleSepoliaTestnet: {
     id: 5003n,
-    label: 'mantleSepoliaTestnet',
+    chain: 'mantleSepoliaTestnet',
     name: 'Mantle Sepolia Testnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'MNT',
-      symbol: 'MNT'
-    },
     providerURL: 'https://rpc.sepolia.mantle.xyz',
     blockExplorer: {
       name: 'Mantle Testnet Explorer',
@@ -5013,13 +3568,8 @@ export const networks = {
   },
   mantleTestnet: {
     id: 5001n,
-    label: 'mantleTestnet',
+    chain: 'mantleTestnet',
     name: 'Mantle Testnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'MNT',
-      symbol: 'MNT'
-    },
     providerURL: 'https://rpc.testnet.mantle.xyz',
     blockExplorer: {
       name: 'Mantle Testnet Explorer',
@@ -5031,13 +3581,8 @@ export const networks = {
   },
   mapProtocol: {
     id: 22776n,
-    label: 'mapProtocol',
+    chain: 'mapProtocol',
     name: 'MAP Protocol',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'MAPO',
-      symbol: 'MAPO'
-    },
     providerURL: 'https://rpc.maplabs.io',
     blockExplorer: {
       name: 'MAPO Scan',
@@ -5048,13 +3593,8 @@ export const networks = {
   },
   matchain: {
     id: 698n,
-    label: 'matchain',
+    chain: 'matchain',
     name: 'Matchain',
-    nativeCurrency: {
-      name: 'BNB',
-      symbol: 'BNB',
-      decimals: 18
-    },
     providerURL: 'https://rpc.matchain.io',
     blockExplorer: {
       name: 'Matchain Scan',
@@ -5065,13 +3605,8 @@ export const networks = {
   },
   matchainTestnet: {
     id: 699n,
-    label: 'matchainTestnet',
+    chain: 'matchainTestnet',
     name: 'Matchain Testnet',
-    nativeCurrency: {
-      name: 'BNB',
-      symbol: 'BNB',
-      decimals: 18
-    },
     providerURL: 'https://testnet-rpc.matchain.io',
     blockExplorer: {
       name: 'Matchain Scan',
@@ -5082,13 +3617,8 @@ export const networks = {
   },
   mchVerse: {
     id: 29548n,
-    label: 'mchVerse',
+    chain: 'mchVerse',
     name: 'MCH Verse',
-    nativeCurrency: {
-      name: 'Oasys',
-      symbol: 'OAS',
-      decimals: 18
-    },
     providerURL: 'https://rpc.oasys.mycryptoheroes.net',
     blockExplorer: {
       name: 'MCH Verse Explorer',
@@ -5100,13 +3630,8 @@ export const networks = {
   },
   megaethTestnet: {
     id: 6342n,
-    label: 'megaethTestnet',
+    chain: 'megaethTestnet',
     name: 'MegaETH Testnet',
-    nativeCurrency: {
-      name: 'MegaETH Testnet Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://carrot.megaeth.com/rpc',
     blockExplorer: {
       name: 'MegaETH Testnet Explorer',
@@ -5117,13 +3642,8 @@ export const networks = {
   },
   mekong: {
     id: 7078815900n,
-    label: 'mekong',
+    chain: 'mekong',
     name: 'Mekong Pectra Devnet',
-    nativeCurrency: {
-      name: 'eth',
-      symbol: 'eth',
-      decimals: 18
-    },
     providerURL: 'https://rpc.mekong.ethpandaops.io',
     blockExplorer: {
       name: 'Block Explorer',
@@ -5134,13 +3654,8 @@ export const networks = {
   },
   meld: {
     id: 333000333n,
-    label: 'meld',
+    chain: 'meld',
     name: 'Meld',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Meld',
-      symbol: 'MELD'
-    },
     providerURL: 'https://rpc-1.meld.com',
     blockExplorer: {
       name: 'MELDscan',
@@ -5151,13 +3666,8 @@ export const networks = {
   },
   merlin: {
     id: 4200n,
-    label: 'merlin',
+    chain: 'merlin',
     name: 'Merlin',
-    nativeCurrency: {
-      name: 'BTC',
-      symbol: 'BTC',
-      decimals: 18
-    },
     providerURL: 'https://rpc.merlinchain.io',
     blockExplorer: {
       name: 'blockscout',
@@ -5169,13 +3679,8 @@ export const networks = {
   },
   merlinErigonTestnet: {
     id: 4203n,
-    label: 'merlinErigonTestnet',
+    chain: 'merlinErigonTestnet',
     name: 'Merlin Erigon Testnet',
-    nativeCurrency: {
-      name: 'BTC',
-      symbol: 'BTC',
-      decimals: 18
-    },
     providerURL: 'https://testnet-erigon-rpc.merlinchain.io',
     blockExplorer: {
       name: 'blockscout',
@@ -5187,13 +3692,8 @@ export const networks = {
   },
   metachain: {
     id: 571n,
-    label: 'metachain',
+    chain: 'metachain',
     name: 'MetaChain Mainnet',
-    nativeCurrency: {
-      name: 'Metatime Coin',
-      symbol: 'MTC',
-      decimals: 18
-    },
     providerURL: 'https://rpc.metatime.com',
     blockExplorer: {
       name: 'MetaExplorer',
@@ -5204,13 +3704,8 @@ export const networks = {
   },
   metachainIstanbul: {
     id: 1453n,
-    label: 'metachainIstanbul',
+    chain: 'metachainIstanbul',
     name: 'MetaChain Istanbul',
-    nativeCurrency: {
-      name: 'Metatime Coin',
-      symbol: 'MTC',
-      decimals: 18
-    },
     providerURL: 'https://istanbul-rpc.metachain.dev',
     blockExplorer: {
       name: 'MetaExplorer',
@@ -5221,13 +3716,8 @@ export const networks = {
   },
   metadium: {
     id: 11n,
-    label: 'metadium',
+    chain: 'metadium',
     name: 'Metadium Network',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'META',
-      symbol: 'META'
-    },
     providerURL: 'https://api.metadium.com/prod',
     blockExplorer: {
       name: 'Metadium Explorer',
@@ -5238,13 +3728,8 @@ export const networks = {
   },
   metalL2: {
     id: 1750n,
-    label: 'metalL2',
+    chain: 'metalL2',
     name: 'Metal L2',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Ether',
-      symbol: 'ETH'
-    },
     providerURL: 'https://rpc.metall2.com',
     blockExplorer: {
       name: 'Explorer',
@@ -5256,13 +3741,8 @@ export const networks = {
   },
   meter: {
     id: 82n,
-    label: 'meter',
+    chain: 'meter',
     name: 'Meter',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'MTR',
-      symbol: 'MTR'
-    },
     providerURL: 'https://rpc.meter.io',
     blockExplorer: {
       name: 'MeterScan',
@@ -5273,13 +3753,8 @@ export const networks = {
   },
   meterTestnet: {
     id: 83n,
-    label: 'meterTestnet',
+    chain: 'meterTestnet',
     name: 'Meter Testnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'MTR',
-      symbol: 'MTR'
-    },
     providerURL: 'https://rpctest.meter.io',
     blockExplorer: {
       name: 'MeterTestnetScan',
@@ -5290,13 +3765,8 @@ export const networks = {
   },
   metis: {
     id: 1088n,
-    label: 'metis',
+    chain: 'metis',
     name: 'Metis',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Metis',
-      symbol: 'METIS'
-    },
     providerURL: 'https://metis.rpc.hypersync.xyz',
     blockExplorer: {
       name: 'Metis Explorer',
@@ -5308,13 +3778,8 @@ export const networks = {
   },
   metisGoerli: {
     id: 599n,
-    label: 'metisGoerli',
+    chain: 'metisGoerli',
     name: 'Metis Goerli',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Metis Goerli',
-      symbol: 'METIS'
-    },
     providerURL: 'https://goerli.gateway.metisdevops.link',
     blockExplorer: {
       name: 'Metis Goerli Explorer',
@@ -5326,13 +3791,8 @@ export const networks = {
   },
   metisSepolia: {
     id: 59902n,
-    label: 'metisSepolia',
+    chain: 'metisSepolia',
     name: 'Metis Sepolia',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Test Metis',
-      symbol: 'tMETIS'
-    },
     providerURL: 'wss://metis-sepolia-rpc.publicnode.com',
     blockExplorer: {
       name: 'Metis Sepolia Explorer',
@@ -5344,13 +3804,8 @@ export const networks = {
   },
   mev: {
     id: 7518n,
-    label: 'mev',
+    chain: 'mev',
     name: 'MEVerse Chain Mainnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'MEVerse',
-      symbol: 'MEV'
-    },
     providerURL: 'https://rpc.meversemainnet.io',
     blockExplorer: {
       name: 'Explorer',
@@ -5361,13 +3816,8 @@ export const networks = {
   },
   mevTestnet: {
     id: 4759n,
-    label: 'mevTestnet',
+    chain: 'mevTestnet',
     name: 'MEVerse Chain Testnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'MEVerse',
-      symbol: 'MEV'
-    },
     providerURL: 'https://rpc.meversetestnet.io',
     blockExplorer: {
       name: 'Explorer',
@@ -5378,13 +3828,8 @@ export const networks = {
   },
   mint: {
     id: 185n,
-    label: 'mint',
+    chain: 'mint',
     name: 'Mint Mainnet',
-    nativeCurrency: {
-      name: 'Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://rpc.mintchain.io',
     blockExplorer: {
       name: 'Mintchain explorer',
@@ -5395,13 +3840,8 @@ export const networks = {
   },
   mintSepoliaTestnet: {
     id: 1686n,
-    label: 'mintSepoliaTestnet',
+    chain: 'mintSepoliaTestnet',
     name: 'Mint Sepolia Testnet',
-    nativeCurrency: {
-      name: 'Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://testnet-rpc.mintchain.io',
     blockExplorer: {
       name: 'Mintchain Testnet explorer',
@@ -5412,13 +3852,8 @@ export const networks = {
   },
   mitosisTestnet: {
     id: 124832n,
-    label: 'mitosisTestnet',
+    chain: 'mitosisTestnet',
     name: 'Mitosis Testnet',
-    nativeCurrency: {
-      name: 'MITO',
-      symbol: 'MITO',
-      decimals: 18
-    },
     providerURL: 'https://rpc.testnet.mitosis.org',
     blockExplorer: {
       name: 'Mitosis testnet explorer',
@@ -5429,13 +3864,8 @@ export const networks = {
   },
   mode: {
     id: 34443n,
-    label: 'mode',
+    chain: 'mode',
     name: 'Mode Mainnet',
-    nativeCurrency: {
-      name: 'Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://mainnet.mode.network',
     blockExplorer: {
       name: 'Modescan',
@@ -5446,13 +3876,8 @@ export const networks = {
   },
   modeTestnet: {
     id: 919n,
-    label: 'modeTestnet',
+    chain: 'modeTestnet',
     name: 'Mode Testnet',
-    nativeCurrency: {
-      name: 'Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://sepolia.mode.network',
     blockExplorer: {
       name: 'Blockscout',
@@ -5464,13 +3889,8 @@ export const networks = {
   },
   monadTestnet: {
     id: 10143n,
-    label: 'monadTestnet',
+    chain: 'monadTestnet',
     name: 'Monad Testnet',
-    nativeCurrency: {
-      name: 'Testnet MON Token',
-      symbol: 'MON',
-      decimals: 18
-    },
     providerURL: 'https://testnet-rpc.monad.xyz',
     blockExplorer: {
       name: 'Monad Testnet explorer',
@@ -5481,13 +3901,8 @@ export const networks = {
   },
   moonbaseAlpha: {
     id: 1287n,
-    label: 'moonbaseAlpha',
+    chain: 'moonbaseAlpha',
     name: 'Moonbase Alpha',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'DEV',
-      symbol: 'DEV'
-    },
     providerURL: 'https://rpc.api.moonbase.moonbeam.network',
     blockExplorer: {
       name: 'Moonscan',
@@ -5499,13 +3914,8 @@ export const networks = {
   },
   moonbeam: {
     id: 1284n,
-    label: 'moonbeam',
+    chain: 'moonbeam',
     name: 'Moonbeam',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'GLMR',
-      symbol: 'GLMR'
-    },
     providerURL: 'https://moonbeam.public.blastapi.io',
     blockExplorer: {
       name: 'Moonscan',
@@ -5517,13 +3927,8 @@ export const networks = {
   },
   moonbeamDev: {
     id: 1281n,
-    label: 'moonbeamDev',
+    chain: 'moonbeamDev',
     name: 'Moonbeam Development Node',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'DEV',
-      symbol: 'DEV'
-    },
     providerURL: 'http://127.0.0.1:9944',
     blockExplorer: {},
     contracts: {},
@@ -5531,13 +3936,8 @@ export const networks = {
   },
   moonriver: {
     id: 1285n,
-    label: 'moonriver',
+    chain: 'moonriver',
     name: 'Moonriver',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'MOVR',
-      symbol: 'MOVR'
-    },
     providerURL: 'https://moonriver.public.blastapi.io',
     blockExplorer: {
       name: 'Moonscan',
@@ -5549,13 +3949,8 @@ export const networks = {
   },
   morph: {
     id: 2818n,
-    label: 'morph',
+    chain: 'morph',
     name: 'Morph',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Ether',
-      symbol: 'ETH'
-    },
     providerURL: 'https://rpc.morphl2.io',
     blockExplorer: {
       name: 'Morph Explorer',
@@ -5566,13 +3961,8 @@ export const networks = {
   },
   morphHolesky: {
     id: 2810n,
-    label: 'morphHolesky',
+    chain: 'morphHolesky',
     name: 'Morph Holesky',
-    nativeCurrency: {
-      name: 'Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://rpc-quicknode-holesky.morphl2.io',
     blockExplorer: {
       name: 'Morph Holesky Explorer',
@@ -5584,13 +3974,8 @@ export const networks = {
   },
   morphSepolia: {
     id: 2710n,
-    label: 'morphSepolia',
+    chain: 'morphSepolia',
     name: 'Morph Sepolia',
-    nativeCurrency: {
-      name: 'Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://rpc-testnet.morphl2.io',
     blockExplorer: {
       name: 'Morph Testnet Explorer',
@@ -5602,13 +3987,8 @@ export const networks = {
   },
   nahmii: {
     id: 5551n,
-    label: 'nahmii',
+    chain: 'nahmii',
     name: 'Nahmii 2 Mainnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'ETH',
-      symbol: 'ETH'
-    },
     providerURL: 'https://l2.nahmii.io',
     blockExplorer: {
       name: 'Nahmii 2 Explorer',
@@ -5619,13 +3999,8 @@ export const networks = {
   },
   nautilus: {
     id: 22222n,
-    label: 'nautilus',
+    chain: 'nautilus',
     name: 'Nautilus Mainnet',
-    nativeCurrency: {
-      name: 'ZBC',
-      symbol: 'ZBC',
-      decimals: 9
-    },
     providerURL: 'https://api.nautilus.nautchain.xyz',
     blockExplorer: {
       name: 'NautScan',
@@ -5636,13 +4011,8 @@ export const networks = {
   },
   near: {
     id: 397n,
-    label: 'near',
+    chain: 'near',
     name: 'NEAR Protocol',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'NEAR',
-      symbol: 'NEAR'
-    },
     providerURL: 'https://eth-rpc.mainnet.near.org',
     blockExplorer: {
       name: 'NEAR Explorer',
@@ -5653,13 +4023,8 @@ export const networks = {
   },
   nearTestnet: {
     id: 398n,
-    label: 'nearTestnet',
+    chain: 'nearTestnet',
     name: 'NEAR Protocol Testnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'NEAR',
-      symbol: 'NEAR'
-    },
     providerURL: 'https://eth-rpc.testnet.near.org',
     blockExplorer: {
       name: 'NEAR Explorer',
@@ -5670,13 +4035,8 @@ export const networks = {
   },
   neonDevnet: {
     id: 245022926n,
-    label: 'neonDevnet',
+    chain: 'neonDevnet',
     name: 'Neon EVM DevNet',
-    nativeCurrency: {
-      name: 'NEON',
-      symbol: 'NEON',
-      decimals: 18
-    },
     providerURL: 'https://devnet.neonevm.org',
     blockExplorer: {
       name: 'Neonscan',
@@ -5687,13 +4047,8 @@ export const networks = {
   },
   neonMainnet: {
     id: 245022934n,
-    label: 'neonMainnet',
+    chain: 'neonMainnet',
     name: 'Neon EVM MainNet',
-    nativeCurrency: {
-      name: 'NEON',
-      symbol: 'NEON',
-      decimals: 18
-    },
     providerURL: 'https://neon-proxy-mainnet.solana.p2p.org',
     blockExplorer: {
       name: 'Neonscan',
@@ -5704,13 +4059,8 @@ export const networks = {
   },
   neoxMainnet: {
     id: 47763n,
-    label: 'neoxMainnet',
+    chain: 'neoxMainnet',
     name: 'Neo X Mainnet',
-    nativeCurrency: {
-      name: 'Gas',
-      symbol: 'GAS',
-      decimals: 18
-    },
     providerURL: 'https://mainnet-1.rpc.banelabs.org',
     blockExplorer: {
       name: 'Neo X - Explorer',
@@ -5721,13 +4071,8 @@ export const networks = {
   },
   neoxT4: {
     id: 12227332n,
-    label: 'neoxT4',
+    chain: 'neoxT4',
     name: 'Neo X Testnet T4',
-    nativeCurrency: {
-      name: 'Gas',
-      symbol: 'GAS',
-      decimals: 18
-    },
     providerURL: 'https://testnet.rpc.banelabs.org/',
     blockExplorer: {
       name: 'neox-scan',
@@ -5738,13 +4083,8 @@ export const networks = {
   },
   newton: {
     id: 1012n,
-    label: 'newton',
+    chain: 'newton',
     name: 'Newton',
-    nativeCurrency: {
-      name: 'Newton',
-      symbol: 'NEW',
-      decimals: 18
-    },
     providerURL: 'hhttps://global.rpc.mainnet.newtonproject.org',
     blockExplorer: {
       name: 'NewFi explorer',
@@ -5755,13 +4095,8 @@ export const networks = {
   },
   nexi: {
     id: 4242n,
-    label: 'nexi',
+    chain: 'nexi',
     name: 'Nexi',
-    nativeCurrency: {
-      name: 'Nexi',
-      symbol: 'NEXI',
-      decimals: 18
-    },
     providerURL: 'https://rpc.chain.nexi.technology',
     blockExplorer: {
       name: 'NexiScan',
@@ -5773,13 +4108,8 @@ export const networks = {
   },
   nexilix: {
     id: 240n,
-    label: 'nexilix',
+    chain: 'nexilix',
     name: 'Nexilix Smart Chain',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Nexilix',
-      symbol: 'NEXILIX'
-    },
     providerURL: 'https://rpcurl.pos.nexilix.com',
     blockExplorer: {
       name: 'NexilixScan',
@@ -5790,13 +4120,8 @@ export const networks = {
   },
   nibiru: {
     id: 6900n,
-    label: 'nibiru',
+    chain: 'nibiru',
     name: 'Nibiru',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'NIBI',
-      symbol: 'NIBI'
-    },
     providerURL: 'https://evm-rpc.nibiru.fi',
     blockExplorer: {
       name: 'NibiScan',
@@ -5807,13 +4132,8 @@ export const networks = {
   },
   oasisTestnet: {
     id: 4090n,
-    label: 'oasisTestnet',
+    chain: 'oasisTestnet',
     name: 'Oasis Testnet',
-    nativeCurrency: {
-      name: 'Fasttoken',
-      symbol: 'FTN',
-      decimals: 18
-    },
     providerURL: 'https://rpc1.oasis.bahamutchain.com',
     blockExplorer: {
       name: 'Ftnscan',
@@ -5825,13 +4145,8 @@ export const networks = {
   },
   oasys: {
     id: 248n,
-    label: 'oasys',
+    chain: 'oasys',
     name: 'Oasys',
-    nativeCurrency: {
-      name: 'Oasys',
-      symbol: 'OAS',
-      decimals: 18
-    },
     providerURL: 'https://rpc.mainnet.oasys.games',
     blockExplorer: {
       name: 'OasysScan',
@@ -5843,13 +4158,8 @@ export const networks = {
   },
   odysseyTestnet: {
     id: 911867n,
-    label: 'odysseyTestnet',
+    chain: 'odysseyTestnet',
     name: 'Odyssey Testnet',
-    nativeCurrency: {
-      name: 'Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://odyssey.ithaca.xyz',
     blockExplorer: {
       name: 'Odyssey Explorer',
@@ -5861,13 +4171,8 @@ export const networks = {
   },
   okc: {
     id: 66n,
-    label: 'okc',
+    chain: 'okc',
     name: 'OKC',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'OKT',
-      symbol: 'OKT'
-    },
     providerURL: 'https://exchainrpc.okex.org',
     blockExplorer: {
       name: 'oklink',
@@ -5878,13 +4183,8 @@ export const networks = {
   },
   omax: {
     id: 311n,
-    label: 'omax',
+    chain: 'omax',
     name: 'Omax Mainnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'OMAX',
-      symbol: 'OMAX'
-    },
     providerURL: 'https://mainapi.omaxray.com',
     blockExplorer: {
       name: 'Omax Explorer',
@@ -5895,13 +4195,8 @@ export const networks = {
   },
   oneWorld: {
     id: 309075n,
-    label: 'oneWorld',
+    chain: 'oneWorld',
     name: 'One World Chain Mainnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'OWCT',
-      symbol: 'OWCT'
-    },
     providerURL: 'https://mainnet-rpc.oneworldchain.org',
     blockExplorer: {
       name: 'One World Explorer',
@@ -5912,13 +4207,8 @@ export const networks = {
   },
   oortMainnetDev: {
     id: 9700n,
-    label: 'oortMainnetDev',
+    chain: 'oortMainnetDev',
     name: 'OORT MainnetDev',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'OORT',
-      symbol: 'OORT'
-    },
     providerURL: 'https://dev-rpc.oortech.com',
     blockExplorer: {
       name: 'OORT MainnetDev Explorer',
@@ -5929,13 +4219,8 @@ export const networks = {
   },
   opBNB: {
     id: 204n,
-    label: 'opBNB',
+    chain: 'opBNB',
     name: 'opBNB',
-    nativeCurrency: {
-      name: 'BNB',
-      symbol: 'BNB',
-      decimals: 18
-    },
     providerURL: 'https://opbnb-mainnet-rpc.bnbchain.org',
     blockExplorer: {
       name: 'opBNB (BSCScan)',
@@ -5947,13 +4232,8 @@ export const networks = {
   },
   opBNBTestnet: {
     id: 5611n,
-    label: 'opBNBTestnet',
+    chain: 'opBNBTestnet',
     name: 'opBNB Testnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'tBNB',
-      symbol: 'tBNB'
-    },
     providerURL: 'https://opbnb-testnet-rpc.bnbchain.org',
     blockExplorer: {
       name: 'opbnbscan',
@@ -5964,13 +4244,8 @@ export const networks = {
   },
   optimism: {
     id: 10n,
-    label: 'optimism',
+    chain: 'optimism',
     name: 'OP Mainnet',
-    nativeCurrency: {
-      name: 'Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://mainnet.optimism.io',
     blockExplorer: {
       name: 'Optimism Explorer',
@@ -5982,13 +4257,8 @@ export const networks = {
   },
   optimismGoerli: {
     id: 420n,
-    label: 'optimismGoerli',
+    chain: 'optimismGoerli',
     name: 'Optimism Goerli',
-    nativeCurrency: {
-      name: 'Goerli Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://goerli.optimism.io',
     blockExplorer: {
       name: 'Etherscan',
@@ -6000,13 +4270,8 @@ export const networks = {
   },
   optimismSepolia: {
     id: 11155420n,
-    label: 'optimismSepolia',
+    chain: 'optimismSepolia',
     name: 'OP Sepolia',
-    nativeCurrency: {
-      name: 'Sepolia Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://sepolia.optimism.io',
     blockExplorer: {
       name: 'Blockscout',
@@ -6018,13 +4283,8 @@ export const networks = {
   },
   optopia: {
     id: 62050n,
-    label: 'optopia',
+    chain: 'optopia',
     name: 'Optopia',
-    nativeCurrency: {
-      name: 'Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://rpc-mainnet.optopia.ai',
     blockExplorer: {
       name: 'Optopia Explorer',
@@ -6035,13 +4295,8 @@ export const networks = {
   },
   optopiaTestnet: {
     id: 62049n,
-    label: 'optopiaTestnet',
+    chain: 'optopiaTestnet',
     name: 'Optopia Testnet',
-    nativeCurrency: {
-      name: 'Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://rpc-testnet.optopia.ai',
     blockExplorer: {
       name: 'Optopia Explorer',
@@ -6052,13 +4307,8 @@ export const networks = {
   },
   orderly: {
     id: 291n,
-    label: 'orderly',
+    chain: 'orderly',
     name: 'Orderly',
-    nativeCurrency: {
-      name: 'Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://rpc.orderly.network',
     blockExplorer: {
       name: 'Orderly Explorer',
@@ -6069,13 +4319,8 @@ export const networks = {
   },
   orderlySepolia: {
     id: 4460n,
-    label: 'orderlySepolia',
+    chain: 'orderlySepolia',
     name: 'Orderly Sepolia',
-    nativeCurrency: {
-      name: 'Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://l2-orderly-l2-4460-sepolia-8tc3sd7dvy.t.conduit.xyz',
     blockExplorer: {
       name: 'Orderly Explorer',
@@ -6086,13 +4331,8 @@ export const networks = {
   },
   otimDevnet: {
     id: 41144114n,
-    label: 'otimDevnet',
+    chain: 'otimDevnet',
     name: 'Otim Devnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'ETH',
-      symbol: 'ETH'
-    },
     providerURL: 'http://devnet.otim.xyz',
     blockExplorer: {},
     contracts: {},
@@ -6100,13 +4340,8 @@ export const networks = {
   },
   palm: {
     id: 11297108109n,
-    label: 'palm',
+    chain: 'palm',
     name: 'Palm',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'PALM',
-      symbol: 'PALM'
-    },
     providerURL: 'https://palm-mainnet.public.blastapi.io',
     blockExplorer: {
       name: 'Chainlens',
@@ -6117,13 +4352,8 @@ export const networks = {
   },
   palmTestnet: {
     id: 11297108099n,
-    label: 'palmTestnet',
+    chain: 'palmTestnet',
     name: 'Palm Testnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'PALM',
-      symbol: 'PALM'
-    },
     providerURL: 'https://palm-mainnet.public.blastapi.io',
     blockExplorer: {
       name: 'Chainlens',
@@ -6134,13 +4364,8 @@ export const networks = {
   },
   peaq: {
     id: 3338n,
-    label: 'peaq',
+    chain: 'peaq',
     name: 'Peaq',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'peaq',
-      symbol: 'PEAQ'
-    },
     providerURL: 'https://peaq.api.onfinality.io/public',
     blockExplorer: {
       name: 'Subscan',
@@ -6151,13 +4376,8 @@ export const networks = {
   },
   pgn: {
     id: 424n,
-    label: 'pgn',
+    chain: 'pgn',
     name: 'PGN',
-    nativeCurrency: {
-      name: 'Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://rpc.publicgoods.network',
     blockExplorer: {
       name: 'PGN Explorer',
@@ -6169,13 +4389,8 @@ export const networks = {
   },
   pgnTestnet: {
     id: 58008n,
-    label: 'pgnTestnet',
+    chain: 'pgnTestnet',
     name: 'PGN ',
-    nativeCurrency: {
-      name: 'Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://sepolia.publicgoods.network',
     blockExplorer: {
       name: 'PGN Testnet Explorer',
@@ -6187,13 +4402,8 @@ export const networks = {
   },
   phoenix: {
     id: 13381n,
-    label: 'phoenix',
+    chain: 'phoenix',
     name: 'Phoenix Blockchain',
-    nativeCurrency: {
-      name: 'Phoenix',
-      symbol: 'PHX',
-      decimals: 18
-    },
     providerURL: 'https://rpc.phoenixplorer.com',
     blockExplorer: {
       name: 'Phoenixplorer',
@@ -6205,13 +4415,8 @@ export const networks = {
   },
   planq: {
     id: 7070n,
-    label: 'planq',
+    chain: 'planq',
     name: 'Planq Mainnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'PLQ',
-      symbol: 'PLQ'
-    },
     providerURL: 'https://planq-rpc.nodies.app',
     blockExplorer: {
       name: 'Planq Explorer',
@@ -6222,13 +4427,8 @@ export const networks = {
   },
   playfiAlbireo: {
     id: 1612127n,
-    label: 'playfiAlbireo',
+    chain: 'playfiAlbireo',
     name: 'PlayFi Albireo Testnet',
-    nativeCurrency: {
-      name: 'Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://albireo-rpc.playfi.ai',
     blockExplorer: {
       name: 'PlayFi Albireo Explorer',
@@ -6239,13 +4439,8 @@ export const networks = {
   },
   plinga: {
     id: 242n,
-    label: 'plinga',
+    chain: 'plinga',
     name: 'Plinga',
-    nativeCurrency: {
-      name: 'Plinga',
-      symbol: 'PLINGA',
-      decimals: 18
-    },
     providerURL: 'https://rpcurl.mainnet.plgchain.com',
     blockExplorer: {
       name: 'Plgscan',
@@ -6256,13 +4451,8 @@ export const networks = {
   },
   plume: {
     id: 98865n,
-    label: 'plume',
+    chain: 'plume',
     name: 'Plume (Legacy)',
-    nativeCurrency: {
-      name: 'Plume Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://rpc.plumenetwork.xyz',
     blockExplorer: {
       name: 'Blockscout',
@@ -6274,13 +4464,8 @@ export const networks = {
   },
   plumeDevnet: {
     id: 98864n,
-    label: 'plumeDevnet',
+    chain: 'plumeDevnet',
     name: 'Plume Devnet (Legacy)',
-    nativeCurrency: {
-      name: 'Plume Sepolia Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://test-rpc.plumenetwork.xyz',
     blockExplorer: {
       name: 'Blockscout',
@@ -6292,13 +4477,8 @@ export const networks = {
   },
   plumeMainnet: {
     id: 98866n,
-    label: 'plumeMainnet',
+    chain: 'plumeMainnet',
     name: 'Plume',
-    nativeCurrency: {
-      name: 'Plume',
-      symbol: 'PLUME',
-      decimals: 18
-    },
     providerURL: 'https://phoenix-rpc.plumenetwork.xyz',
     blockExplorer: {
       name: 'Blockscout',
@@ -6310,13 +4490,8 @@ export const networks = {
   },
   plumeSepolia: {
     id: 98867n,
-    label: 'plumeSepolia',
+    chain: 'plumeSepolia',
     name: 'Plume Testnet',
-    nativeCurrency: {
-      name: 'Plume',
-      symbol: 'PLUME',
-      decimals: 18
-    },
     providerURL: 'https://testnet-rpc.plumenetwork.xyz',
     blockExplorer: {
       name: 'Blockscout',
@@ -6328,13 +4503,8 @@ export const networks = {
   },
   plumeTestnet: {
     id: 161221135n,
-    label: 'plumeTestnet',
+    chain: 'plumeTestnet',
     name: 'Plume Testnet (Legacy)',
-    nativeCurrency: {
-      name: 'Plume Sepolia Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://testnet-rpc.plumenetwork.xyz/http',
     blockExplorer: {
       name: 'Blockscout',
@@ -6346,13 +4516,8 @@ export const networks = {
   },
   polterTestnet: {
     id: 631571n,
-    label: 'polterTestnet',
+    chain: 'polterTestnet',
     name: 'Polter Testnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Polter GHST',
-      symbol: 'GHST'
-    },
     providerURL: 'https://geist-polter.g.alchemy.com/public',
     blockExplorer: {
       name: 'Blockscout',
@@ -6363,13 +4528,8 @@ export const networks = {
   },
   polygon: {
     id: 137n,
-    label: 'polygon',
+    chain: 'polygon',
     name: 'Polygon',
-    nativeCurrency: {
-      name: 'POL',
-      symbol: 'POL',
-      decimals: 18
-    },
     providerURL: 'https://polygon-rpc.com',
     blockExplorer: {
       name: 'PolygonScan',
@@ -6381,13 +4541,8 @@ export const networks = {
   },
   polygonAmoy: {
     id: 80002n,
-    label: 'polygonAmoy',
+    chain: 'polygonAmoy',
     name: 'Polygon Amoy',
-    nativeCurrency: {
-      name: 'POL',
-      symbol: 'POL',
-      decimals: 18
-    },
     providerURL: 'https://rpc-amoy.polygon.technology',
     blockExplorer: {
       name: 'PolygonScan',
@@ -6399,13 +4554,8 @@ export const networks = {
   },
   polygonMumbai: {
     id: 80001n,
-    label: 'polygonMumbai',
+    chain: 'polygonMumbai',
     name: 'Polygon Mumbai',
-    nativeCurrency: {
-      name: 'MATIC',
-      symbol: 'MATIC',
-      decimals: 18
-    },
     providerURL: 'https://80001.rpc.thirdweb.com',
     blockExplorer: {
       name: 'PolygonScan',
@@ -6417,13 +4567,8 @@ export const networks = {
   },
   polygonZkEvm: {
     id: 1101n,
-    label: 'polygonZkEvm',
+    chain: 'polygonZkEvm',
     name: 'Polygon zkEVM',
-    nativeCurrency: {
-      name: 'Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://zkevm-rpc.com',
     blockExplorer: {
       name: 'PolygonScan',
@@ -6435,13 +4580,8 @@ export const networks = {
   },
   polygonZkEvmCardona: {
     id: 2442n,
-    label: 'polygonZkEvmCardona',
+    chain: 'polygonZkEvmCardona',
     name: 'Polygon zkEVM Cardona',
-    nativeCurrency: {
-      name: 'Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://rpc.cardona.zkevm-rpc.com',
     blockExplorer: {
       name: 'PolygonScan',
@@ -6453,13 +4593,8 @@ export const networks = {
   },
   polygonZkEvmTestnet: {
     id: 1442n,
-    label: 'polygonZkEvmTestnet',
+    chain: 'polygonZkEvmTestnet',
     name: 'Polygon zkEVM Testnet',
-    nativeCurrency: {
-      name: 'Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://rpc.public.zkevm-test.net',
     blockExplorer: {
       name: 'PolygonScan',
@@ -6471,13 +4606,8 @@ export const networks = {
   },
   polynomial: {
     id: 8008n,
-    label: 'polynomial',
+    chain: 'polynomial',
     name: 'Polynomial',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Ether',
-      symbol: 'ETH'
-    },
     providerURL: 'https://rpc.polynomial.fi',
     blockExplorer: {
       name: 'Polynomial Scan',
@@ -6488,13 +4618,8 @@ export const networks = {
   },
   polynomialSepolia: {
     id: 80008n,
-    label: 'polynomialSepolia',
+    chain: 'polynomialSepolia',
     name: 'Polynomia Sepolia',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Ether',
-      symbol: 'ETH'
-    },
     providerURL: 'https://rpc.sepolia.polynomial.fi',
     blockExplorer: {
       name: 'Polynomial Scan',
@@ -6505,13 +4630,8 @@ export const networks = {
   },
   premiumBlockTestnet: {
     id: 23023n,
-    label: 'premiumBlockTestnet',
+    chain: 'premiumBlockTestnet',
     name: 'PremiumBlock Testnet',
-    nativeCurrency: {
-      name: 'Premium Block',
-      symbol: 'PBLK',
-      decimals: 18
-    },
     providerURL: 'https://rpc.premiumblock.org',
     blockExplorer: {
       name: 'PremiumBlocks Explorer',
@@ -6522,13 +4642,8 @@ export const networks = {
   },
   pulsechain: {
     id: 369n,
-    label: 'pulsechain',
+    chain: 'pulsechain',
     name: 'PulseChain',
-    nativeCurrency: {
-      name: 'Pulse',
-      symbol: 'PLS',
-      decimals: 18
-    },
     providerURL: 'https://rpc.pulsechain.com',
     blockExplorer: {
       name: 'PulseScan',
@@ -6540,13 +4655,8 @@ export const networks = {
   },
   pulsechainV4: {
     id: 943n,
-    label: 'pulsechainV4',
+    chain: 'pulsechainV4',
     name: 'PulseChain V4',
-    nativeCurrency: {
-      name: 'V4 Pulse',
-      symbol: 'v4PLS',
-      decimals: 18
-    },
     providerURL: 'https://rpc.v4.testnet.pulsechain.com',
     blockExplorer: {
       name: 'PulseScan',
@@ -6558,13 +4668,8 @@ export const networks = {
   },
   pumpfiTestnet: {
     id: 490092n,
-    label: 'pumpfiTestnet',
+    chain: 'pumpfiTestnet',
     name: 'Pumpfi Testnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'PMPT',
-      symbol: 'PMPT'
-    },
     providerURL: 'https://rpc1testnet.pumpfi.me',
     blockExplorer: {
       name: 'Pumpfi Testnet Scan',
@@ -6575,13 +4680,8 @@ export const networks = {
   },
   pyrope: {
     id: 695569n,
-    label: 'pyrope',
+    chain: 'pyrope',
     name: 'Pyrope Testnet',
-    nativeCurrency: {
-      name: 'Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://rpc.pyropechain.com',
     blockExplorer: {
       name: 'Blockscout',
@@ -6592,13 +4692,8 @@ export const networks = {
   },
   qMainnet: {
     id: 35441n,
-    label: 'qMainnet',
+    chain: 'qMainnet',
     name: 'Q Mainnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Q',
-      symbol: 'Q'
-    },
     providerURL: 'https://rpc.q.org',
     blockExplorer: {
       name: 'Q Mainnet Explorer',
@@ -6610,13 +4705,8 @@ export const networks = {
   },
   qTestnet: {
     id: 35443n,
-    label: 'qTestnet',
+    chain: 'qTestnet',
     name: 'Q Testnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Q',
-      symbol: 'Q'
-    },
     providerURL: 'https://rpc.qtestnet.org',
     blockExplorer: {
       name: 'Q Testnet Explorer',
@@ -6628,13 +4718,8 @@ export const networks = {
   },
   ql1: {
     id: 766n,
-    label: 'ql1',
+    chain: 'ql1',
     name: 'QL1',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'QOM',
-      symbol: 'QOM'
-    },
     providerURL: 'https://rpc.qom.one',
     blockExplorer: {
       name: 'Ql1 Explorer',
@@ -6645,13 +4730,8 @@ export const networks = {
   },
   real: {
     id: 111188n,
-    label: 'real',
+    chain: 'real',
     name: 're.al',
-    nativeCurrency: {
-      name: 'reETH',
-      decimals: 18,
-      symbol: 'reETH'
-    },
     providerURL: 'https://rpc.realforreal.gelato.digital',
     blockExplorer: {
       name: 're.al Explorer',
@@ -6663,13 +4743,8 @@ export const networks = {
   },
   redbellyMainnet: {
     id: 151n,
-    label: 'redbellyMainnet',
+    chain: 'redbellyMainnet',
     name: 'Redbelly Network Mainnet',
-    nativeCurrency: {
-      name: 'Redbelly Native Coin',
-      symbol: 'RBNT',
-      decimals: 18
-    },
     providerURL: 'https://governors.mainnet.redbelly.network',
     blockExplorer: {
       name: 'Routescan',
@@ -6681,13 +4756,8 @@ export const networks = {
   },
   redbellyTestnet: {
     id: 153n,
-    label: 'redbellyTestnet',
+    chain: 'redbellyTestnet',
     name: 'Redbelly Network Testnet',
-    nativeCurrency: {
-      name: 'Redbelly Native Coin',
-      symbol: 'RBNT',
-      decimals: 18
-    },
     providerURL: 'https://governors.testnet.redbelly.network',
     blockExplorer: {
       name: 'Routescan',
@@ -6699,13 +4769,8 @@ export const networks = {
   },
   reddioSepolia: {
     id: 50341n,
-    label: 'reddioSepolia',
+    chain: 'reddioSepolia',
     name: 'Reddio Sepolia',
-    nativeCurrency: {
-      name: 'Reddio',
-      symbol: 'RED',
-      decimals: 18
-    },
     providerURL: 'https://reddio-dev.reddio.com',
     blockExplorer: {
       name: 'Reddioscan',
@@ -6717,13 +4782,8 @@ export const networks = {
   },
   redstone: {
     id: 690n,
-    label: 'redstone',
+    chain: 'redstone',
     name: 'Redstone',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Ether',
-      symbol: 'ETH'
-    },
     providerURL: 'https://rpc.redstonechain.com',
     blockExplorer: {
       name: 'Blockscout',
@@ -6734,13 +4794,8 @@ export const networks = {
   },
   rei: {
     id: 47805n,
-    label: 'rei',
+    chain: 'rei',
     name: 'REI Mainnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'REI',
-      symbol: 'REI'
-    },
     providerURL: 'https://rpc.rei.network',
     blockExplorer: {
       name: 'REI Scan',
@@ -6751,13 +4806,8 @@ export const networks = {
   },
   reyaNetwork: {
     id: 1729n,
-    label: 'reyaNetwork',
+    chain: 'reyaNetwork',
     name: 'Reya Network',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Ether',
-      symbol: 'ETH'
-    },
     providerURL: 'https://rpc.reya.network',
     blockExplorer: {
       name: 'Reya Network Explorer',
@@ -6768,13 +4818,8 @@ export const networks = {
   },
   rivalz: {
     id: 753n,
-    label: 'rivalz',
+    chain: 'rivalz',
     name: 'Rivalz',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Ether',
-      symbol: 'ETH'
-    },
     providerURL: 'https://rivalz.calderachain.xyz/http',
     blockExplorer: {
       name: 'Rivalz Caldera Explorer',
@@ -6785,13 +4830,8 @@ export const networks = {
   },
   rollux: {
     id: 570n,
-    label: 'rollux',
+    chain: 'rollux',
     name: 'Rollux Mainnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Syscoin',
-      symbol: 'SYS'
-    },
     providerURL: 'https://rpc.rollux.com',
     blockExplorer: {
       name: 'RolluxExplorer',
@@ -6803,13 +4843,8 @@ export const networks = {
   },
   rolluxTestnet: {
     id: 57000n,
-    label: 'rolluxTestnet',
+    chain: 'rolluxTestnet',
     name: 'Rollux Testnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Syscoin',
-      symbol: 'SYS'
-    },
     providerURL: 'https://rpc-tanenbaum.rollux.com/',
     blockExplorer: {
       name: 'RolluxTestnetExplorer',
@@ -6821,13 +4856,8 @@ export const networks = {
   },
   ronin: {
     id: 2020n,
-    label: 'ronin',
+    chain: 'ronin',
     name: 'Ronin',
-    nativeCurrency: {
-      name: 'RON',
-      symbol: 'RON',
-      decimals: 18
-    },
     providerURL: 'https://api.roninchain.com/rpc',
     blockExplorer: {
       name: 'Ronin Explorer',
@@ -6838,13 +4868,8 @@ export const networks = {
   },
   root: {
     id: 7668n,
-    label: 'root',
+    chain: 'root',
     name: 'The Root Network',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'XRP',
-      symbol: 'XRP'
-    },
     providerURL: 'https://root.rootnet.live/archive',
     blockExplorer: {
       name: 'Rootscan',
@@ -6855,13 +4880,8 @@ export const networks = {
   },
   rootPorcini: {
     id: 7672n,
-    label: 'rootPorcini',
+    chain: 'rootPorcini',
     name: 'The Root Network - Porcini',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'XRP',
-      symbol: 'XRP'
-    },
     providerURL: 'https://porcini.rootnet.app/archive',
     blockExplorer: {
       name: 'Rootscan',
@@ -6872,13 +4892,8 @@ export const networks = {
   },
   rootstock: {
     id: 30n,
-    label: 'rootstock',
+    chain: 'rootstock',
     name: 'Rootstock Mainnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Rootstock Bitcoin',
-      symbol: 'RBTC'
-    },
     providerURL: 'https://public-node.rsk.co',
     blockExplorer: {
       name: 'RSK Explorer',
@@ -6889,13 +4904,8 @@ export const networks = {
   },
   rootstockTestnet: {
     id: 31n,
-    label: 'rootstockTestnet',
+    chain: 'rootstockTestnet',
     name: 'Rootstock Testnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Rootstock Bitcoin',
-      symbol: 'tRBTC'
-    },
     providerURL: 'https://public-node.testnet.rsk.co',
     blockExplorer: {
       name: 'RSK Explorer',
@@ -6906,13 +4916,8 @@ export const networks = {
   },
   rss3: {
     id: 12553n,
-    label: 'rss3',
+    chain: 'rss3',
     name: 'RSS3 VSL Mainnet',
-    nativeCurrency: {
-      name: 'RSS3',
-      symbol: 'RSS3',
-      decimals: 18
-    },
     providerURL: 'https://rpc.rss3.io',
     blockExplorer: {
       name: 'RSS3 VSL Mainnet Scan',
@@ -6924,13 +4929,8 @@ export const networks = {
   },
   rss3Sepolia: {
     id: 2331n,
-    label: 'rss3Sepolia',
+    chain: 'rss3Sepolia',
     name: 'RSS3 VSL Sepolia Testnet',
-    nativeCurrency: {
-      name: 'RSS3',
-      symbol: 'RSS3',
-      decimals: 18
-    },
     providerURL: 'https://rpc.testnet.rss3.io',
     blockExplorer: {
       name: 'RSS3 VSL Sepolia Testnet Scan',
@@ -6942,13 +4942,8 @@ export const networks = {
   },
   saakuru: {
     id: 7225878n,
-    label: 'saakuru',
+    chain: 'saakuru',
     name: 'Saakuru Mainnet',
-    nativeCurrency: {
-      name: 'OAS',
-      symbol: 'OAS',
-      decimals: 18
-    },
     providerURL: 'https://rpc.saakuru.network',
     blockExplorer: {
       name: 'Saakuru Explorer',
@@ -6959,13 +4954,8 @@ export const networks = {
   },
   saga: {
     id: 5464n,
-    label: 'saga',
+    chain: 'saga',
     name: 'Saga',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'gas',
-      symbol: 'GAS'
-    },
     providerURL: 'https://sagaevm.jsonrpc.sagarpc.io',
     blockExplorer: {
       name: 'Saga Explorer',
@@ -6976,13 +4966,8 @@ export const networks = {
   },
   saigon: {
     id: 2021n,
-    label: 'saigon',
+    chain: 'saigon',
     name: 'Saigon Testnet',
-    nativeCurrency: {
-      name: 'RON',
-      symbol: 'RON',
-      decimals: 18
-    },
     providerURL: 'https://saigon-testnet.roninchain.com/rpc',
     blockExplorer: {
       name: 'Saigon Explorer',
@@ -6993,13 +4978,8 @@ export const networks = {
   },
   sanko: {
     id: 1996n,
-    label: 'sanko',
+    chain: 'sanko',
     name: 'Sanko',
-    nativeCurrency: {
-      name: 'DMT',
-      symbol: 'DMT',
-      decimals: 18
-    },
     providerURL: 'https://mainnet.sanko.xyz',
     blockExplorer: {
       name: 'Sanko Explorer',
@@ -7010,13 +4990,8 @@ export const networks = {
   },
   sapphire: {
     id: 23294n,
-    label: 'sapphire',
+    chain: 'sapphire',
     name: 'Oasis Sapphire',
-    nativeCurrency: {
-      name: 'Sapphire Rose',
-      symbol: 'ROSE',
-      decimals: 18
-    },
     providerURL: 'https://sapphire.oasis.io',
     blockExplorer: {
       name: 'Oasis Explorer',
@@ -7027,13 +5002,8 @@ export const networks = {
   },
   sapphireTestnet: {
     id: 23295n,
-    label: 'sapphireTestnet',
+    chain: 'sapphireTestnet',
     name: 'Oasis Sapphire Testnet',
-    nativeCurrency: {
-      name: 'Sapphire Test Rose',
-      symbol: 'TEST',
-      decimals: 18
-    },
     providerURL: 'https://testnet.sapphire.oasis.dev',
     blockExplorer: {
       name: 'Oasis Explorer',
@@ -7044,13 +5014,8 @@ export const networks = {
   },
   satoshiVM: {
     id: 3109n,
-    label: 'satoshiVM',
+    chain: 'satoshiVM',
     name: 'SatoshiVM Alpha Mainnet',
-    nativeCurrency: {
-      name: 'BTC',
-      symbol: 'BTC',
-      decimals: 18
-    },
     providerURL: 'https://alpha-rpc-node-http.svmscan.io',
     blockExplorer: {
       name: 'blockscout',
@@ -7062,13 +5027,8 @@ export const networks = {
   },
   satoshiVMTestnet: {
     id: 3110n,
-    label: 'satoshiVMTestnet',
+    chain: 'satoshiVMTestnet',
     name: 'SatoshiVM Testnet',
-    nativeCurrency: {
-      name: 'BTC',
-      symbol: 'BTC',
-      decimals: 18
-    },
     providerURL: 'https://test-rpc-node-http.svmscan.io',
     blockExplorer: {
       name: 'blockscout',
@@ -7080,13 +5040,8 @@ export const networks = {
   },
   scroll: {
     id: 534352n,
-    label: 'scroll',
+    chain: 'scroll',
     name: 'Scroll',
-    nativeCurrency: {
-      name: 'Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://rpc.scroll.io',
     blockExplorer: {
       name: 'Scrollscan',
@@ -7098,13 +5053,8 @@ export const networks = {
   },
   scrollSepolia: {
     id: 534351n,
-    label: 'scrollSepolia',
+    chain: 'scrollSepolia',
     name: 'Scroll Sepolia',
-    nativeCurrency: {
-      name: 'Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://sepolia-rpc.scroll.io',
     blockExplorer: {
       name: 'Scrollscan',
@@ -7116,13 +5066,8 @@ export const networks = {
   },
   sei: {
     id: 1329n,
-    label: 'sei',
+    chain: 'sei',
     name: 'Sei Network',
-    nativeCurrency: {
-      name: 'Sei',
-      symbol: 'SEI',
-      decimals: 18
-    },
     providerURL: 'https://evm-rpc.sei-apis.com/',
     blockExplorer: {
       name: 'Seitrace',
@@ -7134,13 +5079,8 @@ export const networks = {
   },
   seiDevnet: {
     id: 713715n,
-    label: 'seiDevnet',
+    chain: 'seiDevnet',
     name: 'Sei Devnet',
-    nativeCurrency: {
-      name: 'Sei',
-      symbol: 'SEI',
-      decimals: 18
-    },
     providerURL: 'https://evm-rpc-arctic-1.sei-apis.com',
     blockExplorer: {
       name: 'Seitrace',
@@ -7151,13 +5091,8 @@ export const networks = {
   },
   seiTestnet: {
     id: 1328n,
-    label: 'seiTestnet',
+    chain: 'seiTestnet',
     name: 'Sei Testnet',
-    nativeCurrency: {
-      name: 'Sei',
-      symbol: 'SEI',
-      decimals: 18
-    },
     providerURL: 'https://evm-rpc-testnet.sei-apis.com',
     blockExplorer: {
       name: 'Seitrace',
@@ -7168,13 +5103,8 @@ export const networks = {
   },
   seismicDevnet: {
     id: 5124n,
-    label: 'seismicDevnet',
+    chain: 'seismicDevnet',
     name: 'Seismic Devnet',
-    nativeCurrency: {
-      name: 'Seismic Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://node-2.seismicdev.net/rpc',
     blockExplorer: {
       name: 'Seismic Devnet Explorer',
@@ -7185,13 +5115,8 @@ export const networks = {
   },
   sepolia: {
     id: 11155111n,
-    label: 'sepolia',
+    chain: 'sepolia',
     name: 'Sepolia',
-    nativeCurrency: {
-      name: 'Sepolia Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://sepolia.drpc.org',
     blockExplorer: {
       name: 'Etherscan',
@@ -7203,13 +5128,8 @@ export const networks = {
   },
   shape: {
     id: 360n,
-    label: 'shape',
+    chain: 'shape',
     name: 'Shape',
-    nativeCurrency: {
-      name: 'Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://mainnet.shape.network',
     blockExplorer: {
       name: 'shapescan',
@@ -7221,13 +5141,8 @@ export const networks = {
   },
   shapeSepolia: {
     id: 11011n,
-    label: 'shapeSepolia',
+    chain: 'shapeSepolia',
     name: 'Shape Sepolia Testnet',
-    nativeCurrency: {
-      name: 'Sepolia Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://sepolia.shape.network',
     blockExplorer: {
       name: 'blockscout',
@@ -7239,13 +5154,8 @@ export const networks = {
   },
   shardeumSphinx: {
     id: 8082n,
-    label: 'shardeumSphinx',
+    chain: 'shardeumSphinx',
     name: 'Shardeum Sphinx',
-    nativeCurrency: {
-      name: 'SHARDEUM',
-      symbol: 'SHM',
-      decimals: 18
-    },
     providerURL: 'https://sphinx.shardeum.org',
     blockExplorer: {
       name: 'Shardeum Explorer',
@@ -7256,13 +5166,8 @@ export const networks = {
   },
   shibarium: {
     id: 109n,
-    label: 'shibarium',
+    chain: 'shibarium',
     name: 'Shibarium',
-    nativeCurrency: {
-      name: 'Bone',
-      symbol: 'BONE',
-      decimals: 18
-    },
     providerURL: 'https://rpc.shibrpc.com',
     blockExplorer: {
       name: 'Blockscout',
@@ -7273,13 +5178,8 @@ export const networks = {
   },
   shibariumTestnet: {
     id: 157n,
-    label: 'shibariumTestnet',
+    chain: 'shibariumTestnet',
     name: 'Puppynet Shibarium',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Bone',
-      symbol: 'BONE'
-    },
     providerURL: 'https://puppynet.shibrpc.com',
     blockExplorer: {
       name: 'Blockscout',
@@ -7291,13 +5191,8 @@ export const networks = {
   },
   shiden: {
     id: 336n,
-    label: 'shiden',
+    chain: 'shiden',
     name: 'Shiden',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'SDN',
-      symbol: 'SDN'
-    },
     providerURL: 'https://shiden.public.blastapi.io',
     blockExplorer: {
       name: 'Shiden Scan',
@@ -7308,13 +5203,8 @@ export const networks = {
   },
   shimmer: {
     id: 148n,
-    label: 'shimmer',
+    chain: 'shimmer',
     name: 'Shimmer',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Shimmer',
-      symbol: 'SMR'
-    },
     providerURL: 'https://json-rpc.evm.shimmer.network',
     blockExplorer: {
       name: 'Shimmer Network Explorer',
@@ -7326,13 +5216,8 @@ export const networks = {
   },
   shimmerTestnet: {
     id: 1073n,
-    label: 'shimmerTestnet',
+    chain: 'shimmerTestnet',
     name: 'Shimmer Testnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Shimmer',
-      symbol: 'SMR'
-    },
     providerURL: 'https://json-rpc.evm.testnet.shimmer.network',
     blockExplorer: {
       name: 'Shimmer Network Explorer',
@@ -7344,13 +5229,8 @@ export const networks = {
   },
   sidraChain: {
     id: 97453n,
-    label: 'sidraChain',
+    chain: 'sidraChain',
     name: 'Sidra Chain',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Sidra Digital Asset',
-      symbol: 'SDA'
-    },
     providerURL: 'https://node.sidrachain.com',
     blockExplorer: {
       name: 'Sidra Chain Explorer',
@@ -7361,13 +5241,8 @@ export const networks = {
   },
   silicon: {
     id: 2355n,
-    label: 'silicon',
+    chain: 'silicon',
     name: 'Silicon zkEVM',
-    nativeCurrency: {
-      name: 'Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://rpc.silicon.network',
     blockExplorer: {
       name: 'SiliconScope',
@@ -7378,13 +5253,8 @@ export const networks = {
   },
   siliconSepolia: {
     id: 1722641160n,
-    label: 'siliconSepolia',
+    chain: 'siliconSepolia',
     name: 'Silicon Sepolia zkEVM',
-    nativeCurrency: {
-      name: 'Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://rpc-sepolia.silicon.network',
     blockExplorer: {
       name: 'SiliconSepoliaScope',
@@ -7395,13 +5265,8 @@ export const networks = {
   },
   sixProtocol: {
     id: 98n,
-    label: 'sixProtocol',
+    chain: 'sixProtocol',
     name: 'Six Protocol',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'SIX',
-      symbol: 'SIX'
-    },
     providerURL: 'https://sixnet-rpc-evm.sixprotocol.net',
     blockExplorer: {
       name: 'Six Protocol Scan',
@@ -7412,13 +5277,8 @@ export const networks = {
   },
   skaleBlockBrawlers: {
     id: 391845894n,
-    label: 'skaleBlockBrawlers',
+    chain: 'skaleBlockBrawlers',
     name: 'SKALE | Block Brawlers',
-    nativeCurrency: {
-      name: 'BRAWL',
-      symbol: 'BRAWL',
-      decimals: 18
-    },
     providerURL: 'https://mainnet.skalenodes.com/v1/frayed-decent-antares',
     blockExplorer: {
       name: 'SKALE Explorer',
@@ -7429,13 +5289,8 @@ export const networks = {
   },
   skaleCalypso: {
     id: 1564830818n,
-    label: 'skaleCalypso',
+    chain: 'skaleCalypso',
     name: 'SKALE | Calypso NFT Hub',
-    nativeCurrency: {
-      name: 'sFUEL',
-      symbol: 'sFUEL',
-      decimals: 18
-    },
     providerURL: 'https://mainnet.skalenodes.com/v1/honorable-steel-rasalhague',
     blockExplorer: {
       name: 'SKALE Explorer',
@@ -7446,13 +5301,8 @@ export const networks = {
   },
   skaleCalypsoTestnet: {
     id: 974399131n,
-    label: 'skaleCalypsoTestnet',
+    chain: 'skaleCalypsoTestnet',
     name: 'SKALE Calypso Testnet',
-    nativeCurrency: {
-      name: 'sFUEL',
-      symbol: 'sFUEL',
-      decimals: 18
-    },
     providerURL: 'https://testnet.skalenodes.com/v1/giant-half-dual-testnet',
     blockExplorer: {
       name: 'SKALE Explorer',
@@ -7463,13 +5313,8 @@ export const networks = {
   },
   skaleCryptoBlades: {
     id: 1026062157n,
-    label: 'skaleCryptoBlades',
+    chain: 'skaleCryptoBlades',
     name: 'SKALE | CryptoBlades',
-    nativeCurrency: {
-      name: 'sFUEL',
-      symbol: 'sFUEL',
-      decimals: 18
-    },
     providerURL: 'https://mainnet.skalenodes.com/v1/affectionate-immediate-pollux',
     blockExplorer: {
       name: 'SKALE Explorer',
@@ -7480,13 +5325,8 @@ export const networks = {
   },
   skaleCryptoColosseum: {
     id: 1032942172n,
-    label: 'skaleCryptoColosseum',
+    chain: 'skaleCryptoColosseum',
     name: 'SKALE | Crypto Colosseum',
-    nativeCurrency: {
-      name: 'sFUEL',
-      symbol: 'sFUEL',
-      decimals: 18
-    },
     providerURL: 'https://mainnet.skalenodes.com/v1/haunting-devoted-deneb',
     blockExplorer: {
       name: 'SKALE Explorer',
@@ -7497,13 +5337,8 @@ export const networks = {
   },
   skaleEuropa: {
     id: 2046399126n,
-    label: 'skaleEuropa',
+    chain: 'skaleEuropa',
     name: 'SKALE | Europa Liquidity Hub',
-    nativeCurrency: {
-      name: 'sFUEL',
-      symbol: 'sFUEL',
-      decimals: 18
-    },
     providerURL: 'https://mainnet.skalenodes.com/v1/elated-tan-skat',
     blockExplorer: {
       name: 'SKALE Explorer',
@@ -7514,13 +5349,8 @@ export const networks = {
   },
   skaleEuropaTestnet: {
     id: 1444673419n,
-    label: 'skaleEuropaTestnet',
+    chain: 'skaleEuropaTestnet',
     name: 'SKALE Europa Testnet',
-    nativeCurrency: {
-      name: 'sFUEL',
-      symbol: 'sFUEL',
-      decimals: 18
-    },
     providerURL: 'https://testnet.skalenodes.com/v1/juicy-low-small-testnet',
     blockExplorer: {
       name: 'SKALE Explorer',
@@ -7531,13 +5361,8 @@ export const networks = {
   },
   skaleExorde: {
     id: 2139927552n,
-    label: 'skaleExorde',
+    chain: 'skaleExorde',
     name: 'SKALE | Exorde',
-    nativeCurrency: {
-      name: 'sFUEL',
-      symbol: 'sFUEL',
-      decimals: 18
-    },
     providerURL: 'https://mainnet.skalenodes.com/v1/light-vast-diphda',
     blockExplorer: {
       name: 'SKALE Explorer',
@@ -7548,13 +5373,8 @@ export const networks = {
   },
   skaleHumanProtocol: {
     id: 1273227453n,
-    label: 'skaleHumanProtocol',
+    chain: 'skaleHumanProtocol',
     name: 'SKALE | Human Protocol',
-    nativeCurrency: {
-      name: 'sFUEL',
-      symbol: 'sFUEL',
-      decimals: 18
-    },
     providerURL: 'https://mainnet.skalenodes.com/v1/wan-red-ain',
     blockExplorer: {
       name: 'SKALE Explorer',
@@ -7565,13 +5385,8 @@ export const networks = {
   },
   skaleNebula: {
     id: 1482601649n,
-    label: 'skaleNebula',
+    chain: 'skaleNebula',
     name: 'SKALE | Nebula Gaming Hub',
-    nativeCurrency: {
-      name: 'sFUEL',
-      symbol: 'sFUEL',
-      decimals: 18
-    },
     providerURL: 'https://mainnet.skalenodes.com/v1/green-giddy-denebola',
     blockExplorer: {
       name: 'SKALE Explorer',
@@ -7582,13 +5397,8 @@ export const networks = {
   },
   skaleNebulaTestnet: {
     id: 37084624n,
-    label: 'skaleNebulaTestnet',
+    chain: 'skaleNebulaTestnet',
     name: 'SKALE Nebula Testnet',
-    nativeCurrency: {
-      name: 'sFUEL',
-      symbol: 'sFUEL',
-      decimals: 18
-    },
     providerURL: 'https://testnet.skalenodes.com/v1/lanky-ill-funny-testnet',
     blockExplorer: {
       name: 'SKALE Explorer',
@@ -7599,13 +5409,8 @@ export const networks = {
   },
   skaleRazor: {
     id: 278611351n,
-    label: 'skaleRazor',
+    chain: 'skaleRazor',
     name: 'SKALE | Razor Network',
-    nativeCurrency: {
-      name: 'sFUEL',
-      symbol: 'sFUEL',
-      decimals: 18
-    },
     providerURL: 'https://mainnet.skalenodes.com/v1/turbulent-unique-scheat',
     blockExplorer: {
       name: 'SKALE Explorer',
@@ -7616,13 +5421,8 @@ export const networks = {
   },
   skaleTitan: {
     id: 1350216234n,
-    label: 'skaleTitan',
+    chain: 'skaleTitan',
     name: 'SKALE | Titan Community Hub',
-    nativeCurrency: {
-      name: 'sFUEL',
-      symbol: 'sFUEL',
-      decimals: 18
-    },
     providerURL: 'https://mainnet.skalenodes.com/v1/parallel-stormy-spica',
     blockExplorer: {
       name: 'SKALE Explorer',
@@ -7633,13 +5433,8 @@ export const networks = {
   },
   skaleTitanTestnet: {
     id: 1020352220n,
-    label: 'skaleTitanTestnet',
+    chain: 'skaleTitanTestnet',
     name: 'SKALE Titan Hub',
-    nativeCurrency: {
-      name: 'sFUEL',
-      symbol: 'sFUEL',
-      decimals: 18
-    },
     providerURL: 'https://testnet.skalenodes.com/v1/aware-fake-trim-testnet',
     blockExplorer: {
       name: 'SKALE Explorer',
@@ -7650,13 +5445,8 @@ export const networks = {
   },
   sketchpad: {
     id: 984123n,
-    label: 'sketchpad',
+    chain: 'sketchpad',
     name: 'Forma Sketchpad',
-    nativeCurrency: {
-      symbol: 'TIA',
-      name: 'TIA',
-      decimals: 18
-    },
     providerURL: 'https://rpc.sketchpad-1.forma.art',
     blockExplorer: {
       name: 'Sketchpad Explorer',
@@ -7667,13 +5457,8 @@ export const networks = {
   },
   snax: {
     id: 2192n,
-    label: 'snax',
+    chain: 'snax',
     name: 'SnaxChain',
-    nativeCurrency: {
-      name: 'Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://mainnet.snaxchain.io',
     blockExplorer: {
       name: 'Snax Explorer',
@@ -7685,13 +5470,8 @@ export const networks = {
   },
   snaxTestnet: {
     id: 13001n,
-    label: 'snaxTestnet',
+    chain: 'snaxTestnet',
     name: 'SnaxChain Testnet',
-    nativeCurrency: {
-      name: 'Sepolia Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://testnet.snaxchain.io',
     blockExplorer: {
       name: 'Snax Explorer',
@@ -7703,13 +5483,8 @@ export const networks = {
   },
   somniaTestnet: {
     id: 50312n,
-    label: 'somniaTestnet',
+    chain: 'somniaTestnet',
     name: 'Somnia Testnet',
-    nativeCurrency: {
-      name: 'STT',
-      symbol: 'STT',
-      decimals: 18
-    },
     providerURL: 'https://dream-rpc.somnia.network',
     blockExplorer: {
       name: 'Somnia Testnet Explorer',
@@ -7721,13 +5496,8 @@ export const networks = {
   },
   soneium: {
     id: 1868n,
-    label: 'soneium',
+    chain: 'soneium',
     name: 'Soneium Mainnet',
-    nativeCurrency: {
-      name: 'Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://rpc.soneium.org',
     blockExplorer: {
       name: 'Blockscout',
@@ -7739,13 +5509,8 @@ export const networks = {
   },
   soneiumMinato: {
     id: 1946n,
-    label: 'soneiumMinato',
+    chain: 'soneiumMinato',
     name: 'Soneium Minato Testnet',
-    nativeCurrency: {
-      name: 'Sepolia Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://rpc.minato.soneium.org',
     blockExplorer: {
       name: 'Blockscout',
@@ -7757,13 +5522,8 @@ export const networks = {
   },
   songbird: {
     id: 19n,
-    label: 'songbird',
+    chain: 'songbird',
     name: 'Songbird Canary-Network',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Songbird',
-      symbol: 'SGB'
-    },
     providerURL: 'https://songbird-api.flare.network/ext/C/rpc',
     blockExplorer: {
       name: 'Songbird Explorer',
@@ -7775,13 +5535,8 @@ export const networks = {
   },
   songbirdTestnet: {
     id: 16n,
-    label: 'songbirdTestnet',
+    chain: 'songbirdTestnet',
     name: 'Songbird Testnet Coston',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Coston Flare',
-      symbol: 'CFLR'
-    },
     providerURL: 'https://coston-api.flare.network/ext/C/rpc',
     blockExplorer: {
       name: 'Coston Explorer',
@@ -7793,13 +5548,8 @@ export const networks = {
   },
   sonic: {
     id: 146n,
-    label: 'sonic',
+    chain: 'sonic',
     name: 'Sonic',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Sonic',
-      symbol: 'S'
-    },
     providerURL: 'https://rpc.soniclabs.com',
     blockExplorer: {
       name: 'Sonic Explorer',
@@ -7810,13 +5560,8 @@ export const networks = {
   },
   sonicBlazeTestnet: {
     id: 57054n,
-    label: 'sonicBlazeTestnet',
+    chain: 'sonicBlazeTestnet',
     name: 'Sonic Blaze Testnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Sonic',
-      symbol: 'S'
-    },
     providerURL: 'https://rpc.blaze.soniclabs.com',
     blockExplorer: {
       name: 'Sonic Blaze Testnet Explorer',
@@ -7827,13 +5572,8 @@ export const networks = {
   },
   sonicTestnet: {
     id: 64165n,
-    label: 'sonicTestnet',
+    chain: 'sonicTestnet',
     name: 'Sonic Testnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Sonic',
-      symbol: 'S'
-    },
     providerURL: 'https://rpc.testnet.soniclabs.com',
     blockExplorer: {
       name: 'Sonic Testnet Explorer',
@@ -7844,13 +5584,8 @@ export const networks = {
   },
   sophon: {
     id: 50104n,
-    label: 'sophon',
+    chain: 'sophon',
     name: 'Sophon',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Sophon',
-      symbol: 'SOPH'
-    },
     providerURL: 'https://rpc.sophon.xyz',
     blockExplorer: {
       name: 'Sophon Block Explorer',
@@ -7861,13 +5596,8 @@ export const networks = {
   },
   sophonTestnet: {
     id: 531050104n,
-    label: 'sophonTestnet',
+    chain: 'sophonTestnet',
     name: 'Sophon Testnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Sophon',
-      symbol: 'SOPH'
-    },
     providerURL: 'https://rpc.testnet.sophon.xyz',
     blockExplorer: {
       name: 'Sophon Block Explorer',
@@ -7878,13 +5608,8 @@ export const networks = {
   },
   spicy: {
     id: 88882n,
-    label: 'spicy',
+    chain: 'spicy',
     name: 'Chiliz Spicy Testnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'CHZ',
-      symbol: 'CHZ'
-    },
     providerURL: 'https://spicy-rpc.chiliz.com',
     blockExplorer: {
       name: 'Chiliz Explorer',
@@ -7896,13 +5621,8 @@ export const networks = {
   },
   statusNetworkSepolia: {
     id: 1660990954n,
-    label: 'statusNetworkSepolia',
+    chain: 'statusNetworkSepolia',
     name: 'Status Network Sepolia',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Ether',
-      symbol: 'ETH'
-    },
     providerURL: 'https://public.sepolia.rpc.status.network',
     blockExplorer: {
       name: 'Blockscout',
@@ -7913,13 +5633,8 @@ export const networks = {
   },
   statusSepolia: {
     id: 1660990954n,
-    label: 'statusSepolia',
+    chain: 'statusSepolia',
     name: 'Status Network Sepolia',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Ether',
-      symbol: 'ETH'
-    },
     providerURL: 'https://public.sepolia.rpc.status.network',
     blockExplorer: {
       name: 'Blockscout',
@@ -7930,13 +5645,8 @@ export const networks = {
   },
   step: {
     id: 1234n,
-    label: 'step',
+    chain: 'step',
     name: 'Step Network',
-    nativeCurrency: {
-      name: 'FITFI',
-      symbol: 'FITFI',
-      decimals: 18
-    },
     providerURL: 'https://rpc.step.network',
     blockExplorer: {
       name: 'Step Scan',
@@ -7947,13 +5657,8 @@ export const networks = {
   },
   story: {
     id: 1514n,
-    label: 'story',
+    chain: 'story',
     name: 'Story',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'IP Token',
-      symbol: 'IP'
-    },
     providerURL: 'https://mainnet.storyrpc.io',
     blockExplorer: {
       name: 'Story explorer',
@@ -7965,13 +5670,8 @@ export const networks = {
   },
   storyAeneid: {
     id: 1315n,
-    label: 'storyAeneid',
+    chain: 'storyAeneid',
     name: 'Story Aeneid',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'IP',
-      symbol: 'IP'
-    },
     providerURL: 'https://aeneid.storyrpc.io',
     blockExplorer: {
       name: 'Story Aeneid Explorer',
@@ -7983,13 +5683,8 @@ export const networks = {
   },
   storyOdyssey: {
     id: 1516n,
-    label: 'storyOdyssey',
+    chain: 'storyOdyssey',
     name: 'Story Odyssey',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'IP',
-      symbol: 'IP'
-    },
     providerURL: 'https://rpc.odyssey.storyrpc.io',
     blockExplorer: {
       name: 'Story Odyssey Explorer',
@@ -8000,13 +5695,8 @@ export const networks = {
   },
   storyTestnet: {
     id: 1513n,
-    label: 'storyTestnet',
+    chain: 'storyTestnet',
     name: 'Story Testnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'IP',
-      symbol: 'IP'
-    },
     providerURL: 'https://testnet.storyrpc.io',
     blockExplorer: {
       name: 'Story Testnet Explorer',
@@ -8017,13 +5707,8 @@ export const networks = {
   },
   stratis: {
     id: 105105n,
-    label: 'stratis',
+    chain: 'stratis',
     name: 'Stratis Mainnet',
-    nativeCurrency: {
-      name: 'Stratis',
-      symbol: 'STRAX',
-      decimals: 18
-    },
     providerURL: 'https://rpc.stratisevm.com',
     blockExplorer: {
       name: 'Stratis Explorer',
@@ -8034,13 +5719,8 @@ export const networks = {
   },
   superlumio: {
     id: 8866n,
-    label: 'superlumio',
+    chain: 'superlumio',
     name: 'SuperLumio',
-    nativeCurrency: {
-      name: 'Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://mainnet.lumio.io',
     blockExplorer: {
       name: 'Lumio explorer',
@@ -8051,13 +5731,8 @@ export const networks = {
   },
   superposition: {
     id: 55244n,
-    label: 'superposition',
+    chain: 'superposition',
     name: 'Superposition',
-    nativeCurrency: {
-      name: 'Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://rpc.superposition.so',
     blockExplorer: {
       name: 'Superposition Explorer',
@@ -8068,13 +5743,8 @@ export const networks = {
   },
   superseed: {
     id: 5330n,
-    label: 'superseed',
+    chain: 'superseed',
     name: 'Superseed',
-    nativeCurrency: {
-      name: 'Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://mainnet.superseed.xyz',
     blockExplorer: {
       name: 'Superseed Explorer',
@@ -8086,13 +5756,8 @@ export const networks = {
   },
   superseedSepolia: {
     id: 53302n,
-    label: 'superseedSepolia',
+    chain: 'superseedSepolia',
     name: 'Superseed Sepolia',
-    nativeCurrency: {
-      name: 'Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://sepolia.superseed.xyz',
     blockExplorer: {
       name: 'Superseed Sepolia Explorer',
@@ -8104,13 +5769,8 @@ export const networks = {
   },
   swan: {
     id: 254n,
-    label: 'swan',
+    chain: 'swan',
     name: 'Swan Chain Mainnet',
-    nativeCurrency: {
-      name: 'Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://mainnet-rpc.swanchain.org',
     blockExplorer: {
       name: 'Swan Explorer',
@@ -8121,13 +5781,8 @@ export const networks = {
   },
   swanProximaTestnet: {
     id: 20241133n,
-    label: 'swanProximaTestnet',
+    chain: 'swanProximaTestnet',
     name: 'Swan Proxima Testnet',
-    nativeCurrency: {
-      name: 'Swan Ether',
-      symbol: 'sETH',
-      decimals: 18
-    },
     providerURL: 'https://rpc-proxima.swanchain.io\t',
     blockExplorer: {
       name: 'Swan Explorer',
@@ -8138,13 +5793,8 @@ export const networks = {
   },
   swanSaturnTestnet: {
     id: 2024n,
-    label: 'swanSaturnTestnet',
+    chain: 'swanSaturnTestnet',
     name: 'Swan Saturn Testnet',
-    nativeCurrency: {
-      name: 'Swan Ether',
-      symbol: 'sETH',
-      decimals: 18
-    },
     providerURL: 'https://saturn-rpc.swanchain.io',
     blockExplorer: {
       name: 'Swan Explorer',
@@ -8155,13 +5805,8 @@ export const networks = {
   },
   swellchain: {
     id: 1923n,
-    label: 'swellchain',
+    chain: 'swellchain',
     name: 'Swellchain',
-    nativeCurrency: {
-      name: 'Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://swell-mainnet.alt.technology',
     blockExplorer: {
       name: 'Swell Explorer',
@@ -8173,13 +5818,8 @@ export const networks = {
   },
   swissdlt: {
     id: 94n,
-    label: 'swissdlt',
+    chain: 'swissdlt',
     name: 'SwissDLT Mainnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'BCTS',
-      symbol: 'BCTS'
-    },
     providerURL: 'https://rpc.swissdlt.ch',
     blockExplorer: {
       name: 'SwissDLT Explorer',
@@ -8190,13 +5830,8 @@ export const networks = {
   },
   syscoin: {
     id: 57n,
-    label: 'syscoin',
+    chain: 'syscoin',
     name: 'Syscoin Mainnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Syscoin',
-      symbol: 'SYS'
-    },
     providerURL: 'https://rpc.syscoin.org',
     blockExplorer: {
       name: 'SyscoinExplorer',
@@ -8208,13 +5843,8 @@ export const networks = {
   },
   syscoinTestnet: {
     id: 5700n,
-    label: 'syscoinTestnet',
+    chain: 'syscoinTestnet',
     name: 'Syscoin Tanenbaum Testnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Syscoin',
-      symbol: 'SYS'
-    },
     providerURL: 'https://rpc.tanenbaum.io',
     blockExplorer: {
       name: 'SyscoinTestnetExplorer',
@@ -8225,13 +5855,8 @@ export const networks = {
   },
   taiko: {
     id: 167000n,
-    label: 'taiko',
+    chain: 'taiko',
     name: 'Taiko Mainnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Ether',
-      symbol: 'ETH'
-    },
     providerURL: 'https://rpc.mainnet.taiko.xyz',
     blockExplorer: {
       name: 'Taikoscan',
@@ -8243,13 +5868,8 @@ export const networks = {
   },
   taikoHekla: {
     id: 167009n,
-    label: 'taikoHekla',
+    chain: 'taikoHekla',
     name: 'Taiko Hekla L2',
-    nativeCurrency: {
-      name: 'Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://rpc.hekla.taiko.xyz',
     blockExplorer: {
       name: 'Taikoscan',
@@ -8260,13 +5880,8 @@ export const networks = {
   },
   taikoJolnir: {
     id: 167007n,
-    label: 'taikoJolnir',
+    chain: 'taikoJolnir',
     name: 'Taiko Jolnir (Alpha-5 Testnet)',
-    nativeCurrency: {
-      name: 'Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://rpc.jolnir.taiko.xyz',
     blockExplorer: {
       name: 'blockscout',
@@ -8277,13 +5892,8 @@ export const networks = {
   },
   taikoKatla: {
     id: 167008n,
-    label: 'taikoKatla',
+    chain: 'taikoKatla',
     name: 'Taiko Katla (Alpha-6 Testnet)',
-    nativeCurrency: {
-      name: 'Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://rpc.katla.taiko.xyz',
     blockExplorer: {
       name: 'blockscout',
@@ -8294,13 +5904,8 @@ export const networks = {
   },
   taikoTestnetSepolia: {
     id: 167005n,
-    label: 'taikoTestnetSepolia',
+    chain: 'taikoTestnetSepolia',
     name: 'Taiko (Alpha-3 Testnet)',
-    nativeCurrency: {
-      name: 'Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://rpc.test.taiko.xyz',
     blockExplorer: {
       name: 'blockscout',
@@ -8311,13 +5916,8 @@ export const networks = {
   },
   taraxa: {
     id: 841n,
-    label: 'taraxa',
+    chain: 'taraxa',
     name: 'Taraxa Mainnet',
-    nativeCurrency: {
-      name: 'Tara',
-      symbol: 'TARA',
-      decimals: 18
-    },
     providerURL: 'https://rpc.mainnet.taraxa.io',
     blockExplorer: {
       name: 'Taraxa Explorer',
@@ -8328,13 +5928,8 @@ export const networks = {
   },
   taraxaTestnet: {
     id: 842n,
-    label: 'taraxaTestnet',
+    chain: 'taraxaTestnet',
     name: 'Taraxa Testnet',
-    nativeCurrency: {
-      name: 'Tara',
-      symbol: 'TARA',
-      decimals: 18
-    },
     providerURL: 'https://rpc.testnet.taraxa.io',
     blockExplorer: {
       name: 'Taraxa Explorer',
@@ -8345,13 +5940,8 @@ export const networks = {
   },
   telcoinTestnet: {
     id: 2017n,
-    label: 'telcoinTestnet',
+    chain: 'telcoinTestnet',
     name: 'Telcoin Adiri Testnet',
-    nativeCurrency: {
-      name: 'Telcoin',
-      symbol: 'TEL',
-      decimals: 18
-    },
     providerURL: 'https://rpc.telcoin.network',
     blockExplorer: {
       name: 'telscan',
@@ -8362,13 +5952,8 @@ export const networks = {
   },
   telos: {
     id: 40n,
-    label: 'telos',
+    chain: 'telos',
     name: 'Telos',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Telos',
-      symbol: 'TLOS'
-    },
     providerURL: 'https://rpc.telos.net',
     blockExplorer: {
       name: 'Teloscan',
@@ -8379,13 +5964,8 @@ export const networks = {
   },
   telosTestnet: {
     id: 41n,
-    label: 'telosTestnet',
+    chain: 'telosTestnet',
     name: 'Telos',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Telos',
-      symbol: 'TLOS'
-    },
     providerURL: 'https://rpc.testnet.telos.net',
     blockExplorer: {
       name: 'Teloscan (testnet)',
@@ -8396,13 +5976,8 @@ export const networks = {
   },
   tenet: {
     id: 1559n,
-    label: 'tenet',
+    chain: 'tenet',
     name: 'Tenet',
-    nativeCurrency: {
-      name: 'TENET',
-      symbol: 'TENET',
-      decimals: 18
-    },
     providerURL: 'https://rpc.tenet.org',
     blockExplorer: {
       name: 'TenetScan Mainnet',
@@ -8414,13 +5989,8 @@ export const networks = {
   },
   ternoa: {
     id: 752025n,
-    label: 'ternoa',
+    chain: 'ternoa',
     name: 'Ternoa',
-    nativeCurrency: {
-      name: 'Capsule Coin',
-      symbol: 'CAPS',
-      decimals: 18
-    },
     providerURL: 'https://rpc-mainnet.zkevm.ternoa.network',
     blockExplorer: {
       name: 'Ternoa Explorer',
@@ -8431,13 +6001,8 @@ export const networks = {
   },
   thaiChain: {
     id: 7n,
-    label: 'thaiChain',
+    chain: 'thaiChain',
     name: 'ThaiChain',
-    nativeCurrency: {
-      name: 'TCH',
-      symbol: 'TCH',
-      decimals: 18
-    },
     providerURL: 'https://rpc.thaichain.org',
     blockExplorer: {
       name: 'Blockscout',
@@ -8449,13 +6014,8 @@ export const networks = {
   },
   that: {
     id: 8428n,
-    label: 'that',
+    chain: 'that',
     name: 'THAT Mainnet',
-    nativeCurrency: {
-      name: 'THAT',
-      symbol: 'THAT',
-      decimals: 18
-    },
     providerURL: 'https://api.thatchain.io/mainnet',
     blockExplorer: {
       name: 'Blockscout',
@@ -8466,13 +6026,8 @@ export const networks = {
   },
   theta: {
     id: 361n,
-    label: 'theta',
+    chain: 'theta',
     name: 'Theta Mainnet',
-    nativeCurrency: {
-      name: 'TFUEL',
-      symbol: 'TFUEL',
-      decimals: 18
-    },
     providerURL: 'https://eth-rpc-api.thetatoken.org/rpc',
     blockExplorer: {
       name: 'Theta Explorer',
@@ -8483,13 +6038,8 @@ export const networks = {
   },
   thetaTestnet: {
     id: 365n,
-    label: 'thetaTestnet',
+    chain: 'thetaTestnet',
     name: 'Theta Testnet',
-    nativeCurrency: {
-      name: 'TFUEL',
-      symbol: 'TFUEL',
-      decimals: 18
-    },
     providerURL: 'https://eth-rpc-api-testnet.thetatoken.org/rpc',
     blockExplorer: {
       name: 'Theta Explorer',
@@ -8500,13 +6050,8 @@ export const networks = {
   },
   thunderCore: {
     id: 108n,
-    label: 'thunderCore',
+    chain: 'thunderCore',
     name: 'ThunderCore Mainnet',
-    nativeCurrency: {
-      name: 'TT',
-      symbol: 'TT',
-      decimals: 18
-    },
     providerURL: 'https://mainnet-rpc.thundercore.com',
     blockExplorer: {
       name: 'ThunderCore Explorer',
@@ -8517,13 +6062,8 @@ export const networks = {
   },
   thunderTestnet: {
     id: 997n,
-    label: 'thunderTestnet',
+    chain: 'thunderTestnet',
     name: '5ireChain Thunder Testnet',
-    nativeCurrency: {
-      name: '5ire Token',
-      symbol: '5IRE',
-      decimals: 18
-    },
     providerURL: 'https://rpc.testnet.5ire.network',
     blockExplorer: {
       name: '5ireChain Thunder Explorer',
@@ -8534,13 +6074,8 @@ export const networks = {
   },
   tiktrixTestnet: {
     id: 62092n,
-    label: 'tiktrixTestnet',
+    chain: 'tiktrixTestnet',
     name: 'TikTrix Testnet',
-    nativeCurrency: {
-      name: 'tTTX',
-      symbol: 'tTTX',
-      decimals: 18
-    },
     providerURL: 'https://tiktrix-rpc.xyz',
     blockExplorer: {
       name: 'TikTrix Testnet Explorer',
@@ -8551,13 +6086,8 @@ export const networks = {
   },
   tomb: {
     id: 6969n,
-    label: 'tomb',
+    chain: 'tomb',
     name: 'Tomb Mainnet',
-    nativeCurrency: {
-      name: 'TOMB',
-      symbol: 'TOMB',
-      decimals: 18
-    },
     providerURL: 'https://rpc.tombchain.com',
     blockExplorer: {
       name: 'Tomb Explorer',
@@ -8568,13 +6098,8 @@ export const networks = {
   },
   treasure: {
     id: 61166n,
-    label: 'treasure',
+    chain: 'treasure',
     name: 'Treasure',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'MAGIC',
-      symbol: 'MAGIC'
-    },
     providerURL: 'https://rpc.treasure.lol',
     blockExplorer: {
       name: 'Treasure Block Explorer',
@@ -8585,13 +6110,8 @@ export const networks = {
   },
   treasureTopaz: {
     id: 978658n,
-    label: 'treasureTopaz',
+    chain: 'treasureTopaz',
     name: 'Treasure Topaz Testnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'MAGIC',
-      symbol: 'MAGIC'
-    },
     providerURL: 'https://rpc.topaz.treasure.lol',
     blockExplorer: {
       name: 'Treasure Topaz Block Explorer',
@@ -8602,13 +6122,8 @@ export const networks = {
   },
   tron: {
     id: 728126428n,
-    label: 'tron',
+    chain: 'tron',
     name: 'Tron',
-    nativeCurrency: {
-      name: 'TRON',
-      symbol: 'TRX',
-      decimals: 6
-    },
     providerURL: 'https://api.trongrid.io/jsonrpc',
     blockExplorer: {
       name: 'Tronscan',
@@ -8620,13 +6135,8 @@ export const networks = {
   },
   ubiq: {
     id: 8n,
-    label: 'ubiq',
+    chain: 'ubiq',
     name: 'Ubiq Mainnet',
-    nativeCurrency: {
-      name: 'UBQ',
-      symbol: 'UBQ',
-      decimals: 18
-    },
     providerURL: 'https://pyrus2.ubiqscan.io',
     blockExplorer: {
       name: 'Ubiq Scan',
@@ -8637,13 +6147,8 @@ export const networks = {
   },
   ultra: {
     id: 19991n,
-    label: 'ultra',
+    chain: 'ultra',
     name: 'Ultra EVM',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Ultra Token',
-      symbol: 'UOS'
-    },
     providerURL: 'https://evm.ultra.eosusa.io',
     blockExplorer: {
       name: 'Ultra EVM Explorer',
@@ -8654,13 +6159,8 @@ export const networks = {
   },
   ultraTestnet: {
     id: 18881n,
-    label: 'ultraTestnet',
+    chain: 'ultraTestnet',
     name: 'Ultra EVM Testnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Ultra Token',
-      symbol: 'UOS'
-    },
     providerURL: 'https://evm.test.ultra.eosusa.io',
     blockExplorer: {
       name: 'Ultra EVM Testnet Explorer',
@@ -8671,13 +6171,8 @@ export const networks = {
   },
   ultron: {
     id: 1231n,
-    label: 'ultron',
+    chain: 'ultron',
     name: 'Ultron Mainnet',
-    nativeCurrency: {
-      name: 'ULX',
-      symbol: 'ULX',
-      decimals: 18
-    },
     providerURL: 'https://ultron-rpc.net',
     blockExplorer: {
       name: 'Ultron Scan',
@@ -8688,13 +6183,8 @@ export const networks = {
   },
   ultronTestnet: {
     id: 1230n,
-    label: 'ultronTestnet',
+    chain: 'ultronTestnet',
     name: 'Ultron Testnet',
-    nativeCurrency: {
-      name: 'ULX',
-      symbol: 'ULX',
-      decimals: 18
-    },
     providerURL: 'https://ultron-dev.io',
     blockExplorer: {
       name: 'Ultron Scan',
@@ -8705,13 +6195,8 @@ export const networks = {
   },
   unichain: {
     id: 130n,
-    label: 'unichain',
+    chain: 'unichain',
     name: 'Unichain',
-    nativeCurrency: {
-      name: 'Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://mainnet.unichain.org/',
     blockExplorer: {
       name: 'Uniscan',
@@ -8723,13 +6208,8 @@ export const networks = {
   },
   unichainSepolia: {
     id: 1301n,
-    label: 'unichainSepolia',
+    chain: 'unichainSepolia',
     name: 'Unichain Sepolia',
-    nativeCurrency: {
-      name: 'Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://sepolia.unichain.org',
     blockExplorer: {
       name: 'Uniscan',
@@ -8741,13 +6221,8 @@ export const networks = {
   },
   unique: {
     id: 8880n,
-    label: 'unique',
+    chain: 'unique',
     name: 'Unique Mainnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'UNQ',
-      symbol: 'UNQ'
-    },
     providerURL: 'https://rpc.unique.network',
     blockExplorer: {
       name: 'Unique Subscan',
@@ -8758,13 +6233,8 @@ export const networks = {
   },
   uniqueOpal: {
     id: 8882n,
-    label: 'uniqueOpal',
+    chain: 'uniqueOpal',
     name: 'Opal Testnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'OPL',
-      symbol: 'OPL'
-    },
     providerURL: 'https://rpc-opal.unique.network',
     blockExplorer: {
       name: 'Opal Subscan',
@@ -8775,13 +6245,8 @@ export const networks = {
   },
   uniqueQuartz: {
     id: 8881n,
-    label: 'uniqueQuartz',
+    chain: 'uniqueQuartz',
     name: 'Quartz Mainnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'QTZ',
-      symbol: 'QTZ'
-    },
     providerURL: 'https://rpc-quartz.unique.network',
     blockExplorer: {
       name: 'Quartz Subscan',
@@ -8792,13 +6257,8 @@ export const networks = {
   },
   unreal: {
     id: 18233n,
-    label: 'unreal',
+    chain: 'unreal',
     name: 'Unreal',
-    nativeCurrency: {
-      name: 'reETH',
-      decimals: 18,
-      symbol: 'reETH'
-    },
     providerURL: 'https://rpc.unreal-orbit.gelato.digital',
     blockExplorer: {
       name: 'Unreal Explorer',
@@ -8810,13 +6270,8 @@ export const networks = {
   },
   vanar: {
     id: 2040n,
-    label: 'vanar',
+    chain: 'vanar',
     name: 'Vanar Mainnet',
-    nativeCurrency: {
-      name: 'VANRY',
-      symbol: 'VANRY',
-      decimals: 18
-    },
     providerURL: 'https://rpc.vanarchain.com',
     blockExplorer: {
       name: 'Vanar Mainnet Explorer',
@@ -8827,13 +6282,8 @@ export const networks = {
   },
   vechain: {
     id: 100009n,
-    label: 'vechain',
+    chain: 'vechain',
     name: 'Vechain',
-    nativeCurrency: {
-      name: 'VeChain',
-      symbol: 'VET',
-      decimals: 18
-    },
     providerURL: 'https://mainnet.vechain.org',
     blockExplorer: {
       name: 'Vechain Explorer',
@@ -8844,13 +6294,8 @@ export const networks = {
   },
   velas: {
     id: 106n,
-    label: 'velas',
+    chain: 'velas',
     name: 'Velas EVM Mainnet',
-    nativeCurrency: {
-      name: 'VLX',
-      symbol: 'VLX',
-      decimals: 18
-    },
     providerURL: 'https://evmexplorer.velas.com/rpc',
     blockExplorer: {
       name: 'Velas Explorer',
@@ -8861,13 +6306,8 @@ export const networks = {
   },
   viction: {
     id: 88n,
-    label: 'viction',
+    chain: 'viction',
     name: 'Viction',
-    nativeCurrency: {
-      name: 'Viction',
-      symbol: 'VIC',
-      decimals: 18
-    },
     providerURL: 'https://rpc.viction.xyz',
     blockExplorer: {
       name: 'VIC Scan',
@@ -8878,13 +6318,8 @@ export const networks = {
   },
   victionTestnet: {
     id: 89n,
-    label: 'victionTestnet',
+    chain: 'victionTestnet',
     name: 'Viction Testnet',
-    nativeCurrency: {
-      name: 'Viction',
-      symbol: 'VIC',
-      decimals: 18
-    },
     providerURL: 'https://rpc-testnet.viction.xyz',
     blockExplorer: {
       name: 'VIC Scan',
@@ -8895,13 +6330,8 @@ export const networks = {
   },
   vision: {
     id: 888888n,
-    label: 'vision',
+    chain: 'vision',
     name: 'Vision',
-    nativeCurrency: {
-      name: 'VISION',
-      symbol: 'VS',
-      decimals: 18
-    },
     providerURL: 'https://infragrid.v.network/ethereum/compatible',
     blockExplorer: {
       name: 'Vision Scan',
@@ -8912,13 +6342,8 @@ export const networks = {
   },
   visionTestnet: {
     id: 666666n,
-    label: 'visionTestnet',
+    chain: 'visionTestnet',
     name: 'Vision Testnet',
-    nativeCurrency: {
-      name: 'VISION',
-      symbol: 'VS',
-      decimals: 18
-    },
     providerURL: 'https://vpioneer.infragrid.v.network/ethereum/compatible',
     blockExplorer: {
       name: 'Vision Scan',
@@ -8929,13 +6354,8 @@ export const networks = {
   },
   wanchain: {
     id: 888n,
-    label: 'wanchain',
+    chain: 'wanchain',
     name: 'Wanchain',
-    nativeCurrency: {
-      name: 'WANCHAIN',
-      symbol: 'WAN',
-      decimals: 18
-    },
     providerURL: 'https://gwan-ssl.wandevs.org:56891',
     blockExplorer: {
       name: 'WanScan',
@@ -8946,13 +6366,8 @@ export const networks = {
   },
   wanchainTestnet: {
     id: 999n,
-    label: 'wanchainTestnet',
+    chain: 'wanchainTestnet',
     name: 'Wanchain Testnet',
-    nativeCurrency: {
-      name: 'WANCHAIN',
-      symbol: 'WANt',
-      decimals: 18
-    },
     providerURL: 'https://gwan-ssl.wandevs.org:46891',
     blockExplorer: {
       name: 'WanScanTest',
@@ -8963,13 +6378,8 @@ export const networks = {
   },
   weaveVMAlphanet: {
     id: 9496n,
-    label: 'weaveVMAlphanet',
+    chain: 'weaveVMAlphanet',
     name: 'WeaveVM Alphanet',
-    nativeCurrency: {
-      name: 'Testnet WeaveVM',
-      symbol: 'tWVM',
-      decimals: 18
-    },
     providerURL: 'https://testnet-rpc.wvm.dev',
     blockExplorer: {
       name: 'WeaveVM Alphanet Explorer',
@@ -8980,13 +6390,8 @@ export const networks = {
   },
   wemix: {
     id: 1111n,
-    label: 'wemix',
+    chain: 'wemix',
     name: 'WEMIX',
-    nativeCurrency: {
-      name: 'WEMIX',
-      symbol: 'WEMIX',
-      decimals: 18
-    },
     providerURL: 'https://api.wemix.com',
     blockExplorer: {
       name: 'wemixExplorer',
@@ -8997,13 +6402,8 @@ export const networks = {
   },
   wemixTestnet: {
     id: 1112n,
-    label: 'wemixTestnet',
+    chain: 'wemixTestnet',
     name: 'WEMIX Testnet',
-    nativeCurrency: {
-      name: 'WEMIX',
-      symbol: 'tWEMIX',
-      decimals: 18
-    },
     providerURL: 'https://api.test.wemix.com',
     blockExplorer: {
       name: 'wemixExplorer',
@@ -9015,13 +6415,8 @@ export const networks = {
   },
   whitechain: {
     id: 1875n,
-    label: 'whitechain',
+    chain: 'whitechain',
     name: 'Whitechain',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'WhiteBIT Coin',
-      symbol: 'WBT'
-    },
     providerURL: 'https://rpc.whitechain.io',
     blockExplorer: {
       name: 'Whitechain Explorer',
@@ -9032,13 +6427,8 @@ export const networks = {
   },
   whitechainTestnet: {
     id: 2625n,
-    label: 'whitechainTestnet',
+    chain: 'whitechainTestnet',
     name: 'Whitechain Testnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'WhiteBIT Coin',
-      symbol: 'WBT'
-    },
     providerURL: 'https://rpc-testnet.whitechain.io',
     blockExplorer: {
       name: 'Whitechain Explorer',
@@ -9049,13 +6439,8 @@ export const networks = {
   },
   wmcTestnet: {
     id: 42070n,
-    label: 'wmcTestnet',
+    chain: 'wmcTestnet',
     name: 'WMC Testnet',
-    nativeCurrency: {
-      name: 'WMTx',
-      symbol: 'WMTx',
-      decimals: 18
-    },
     providerURL: 'https://rpc-testnet-base.worldmobile.net',
     blockExplorer: {
       name: 'WMC Explorer',
@@ -9066,13 +6451,8 @@ export const networks = {
   },
   worldLand: {
     id: 103n,
-    label: 'worldLand',
+    chain: 'worldLand',
     name: 'WorldLand Mainnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'WLC',
-      symbol: 'WLC'
-    },
     providerURL: 'https://seoul.worldland.foundation',
     blockExplorer: {
       name: 'WorldLand Scan',
@@ -9083,13 +6463,8 @@ export const networks = {
   },
   worldchain: {
     id: 480n,
-    label: 'worldchain',
+    chain: 'worldchain',
     name: 'World Chain',
-    nativeCurrency: {
-      name: 'Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://worldchain-mainnet.g.alchemy.com/public',
     blockExplorer: {
       name: 'Worldscan',
@@ -9101,13 +6476,8 @@ export const networks = {
   },
   worldchainSepolia: {
     id: 4801n,
-    label: 'worldchainSepolia',
+    chain: 'worldchainSepolia',
     name: 'World Chain Sepolia',
-    nativeCurrency: {
-      name: 'Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://worldchain-sepolia.g.alchemy.com/public',
     blockExplorer: {
       name: 'Worldscan Sepolia',
@@ -9119,13 +6489,8 @@ export const networks = {
   },
   x1Testnet: {
     id: 195n,
-    label: 'x1Testnet',
+    chain: 'x1Testnet',
     name: 'X1 Testnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'OKB',
-      symbol: 'OKB'
-    },
     providerURL: 'https://xlayertestrpc.okx.com',
     blockExplorer: {
       name: 'OKLink',
@@ -9136,13 +6501,8 @@ export const networks = {
   },
   xLayer: {
     id: 196n,
-    label: 'xLayer',
+    chain: 'xLayer',
     name: 'X Layer Mainnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'OKB',
-      symbol: 'OKB'
-    },
     providerURL: 'https://rpc.xlayer.tech',
     blockExplorer: {
       name: 'OKLink',
@@ -9154,13 +6514,8 @@ export const networks = {
   },
   xLayerTestnet: {
     id: 195n,
-    label: 'xLayerTestnet',
+    chain: 'xLayerTestnet',
     name: 'X1 Testnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'OKB',
-      symbol: 'OKB'
-    },
     providerURL: 'https://xlayertestrpc.okx.com',
     blockExplorer: {
       name: 'OKLink',
@@ -9171,13 +6526,8 @@ export const networks = {
   },
   xai: {
     id: 660279n,
-    label: 'xai',
+    chain: 'xai',
     name: 'Xai Mainnet',
-    nativeCurrency: {
-      name: 'Xai',
-      symbol: 'XAI',
-      decimals: 18
-    },
     providerURL: 'https://xai-chain.net/rpc',
     blockExplorer: {
       name: 'Blockscout',
@@ -9188,13 +6538,8 @@ export const networks = {
   },
   xaiTestnet: {
     id: 37714555429n,
-    label: 'xaiTestnet',
+    chain: 'xaiTestnet',
     name: 'Xai Testnet',
-    nativeCurrency: {
-      name: 'sXai',
-      symbol: 'sXAI',
-      decimals: 18
-    },
     providerURL: 'https://testnet-v2.xai-chain.net/rpc',
     blockExplorer: {
       name: 'Blockscout',
@@ -9205,13 +6550,8 @@ export const networks = {
   },
   xdc: {
     id: 50n,
-    label: 'xdc',
+    chain: 'xdc',
     name: 'XDC Network',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'XDC',
-      symbol: 'XDC'
-    },
     providerURL: 'https://rpc.xdcrpc.com',
     blockExplorer: {
       name: 'XDCScan',
@@ -9222,13 +6562,8 @@ export const networks = {
   },
   xdcTestnet: {
     id: 51n,
-    label: 'xdcTestnet',
+    chain: 'xdcTestnet',
     name: 'Apothem Network',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'TXDC',
-      symbol: 'TXDC'
-    },
     providerURL: 'https://erpc.apothem.network',
     blockExplorer: {
       name: 'XDCScan',
@@ -9239,13 +6574,8 @@ export const networks = {
   },
   xrOne: {
     id: 273n,
-    label: 'xrOne',
+    chain: 'xrOne',
     name: 'XR One',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'XR1',
-      symbol: 'XR1'
-    },
     providerURL: 'https://xr1.calderachain.xyz/http',
     blockExplorer: {
       name: 'Blockscout',
@@ -9256,13 +6586,8 @@ export const networks = {
   },
   xrSepolia: {
     id: 2730n,
-    label: 'xrSepolia',
+    chain: 'xrSepolia',
     name: 'XR Sepolia',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'tXR',
-      symbol: 'tXR'
-    },
     providerURL: 'https://xr-sepolia-testnet.rpc.caldera.xyz/http',
     blockExplorer: {
       name: 'Blockscout',
@@ -9273,13 +6598,8 @@ export const networks = {
   },
   xrplevmDevnet: {
     id: 1440002n,
-    label: 'xrplevmDevnet',
+    chain: 'xrplevmDevnet',
     name: 'XRPL EVM Devnet',
-    nativeCurrency: {
-      name: 'XRP',
-      symbol: 'XRP',
-      decimals: 18
-    },
     providerURL: 'https://rpc.xrplevm.org/',
     blockExplorer: {
       name: 'XRPLEVM Devnet Explorer',
@@ -9290,13 +6610,8 @@ export const networks = {
   },
   xrplevmTestnet: {
     id: 1449000n,
-    label: 'xrplevmTestnet',
+    chain: 'xrplevmTestnet',
     name: 'XRPL EVM Testnet',
-    nativeCurrency: {
-      name: 'XRP',
-      symbol: 'XRP',
-      decimals: 18
-    },
     providerURL: 'https://rpc.testnet.xrplevm.org',
     blockExplorer: {
       name: 'blockscout',
@@ -9308,13 +6623,8 @@ export const networks = {
   },
   yooldoVerse: {
     id: 50005n,
-    label: 'yooldoVerse',
+    chain: 'yooldoVerse',
     name: 'Yooldo Verse',
-    nativeCurrency: {
-      name: 'OAS',
-      symbol: 'OAS',
-      decimals: 18
-    },
     providerURL: 'https://rpc.yooldo-verse.xyz',
     blockExplorer: {
       name: 'Yooldo Verse Explorer',
@@ -9325,13 +6635,8 @@ export const networks = {
   },
   yooldoVerseTestnet: {
     id: 50006n,
-    label: 'yooldoVerseTestnet',
+    chain: 'yooldoVerseTestnet',
     name: 'Yooldo Verse Testnet',
-    nativeCurrency: {
-      name: 'OAS',
-      symbol: 'OAS',
-      decimals: 18
-    },
     providerURL: 'https://rpc.testnet.yooldo-verse.xyz',
     blockExplorer: {
       name: 'Yooldo Verse Testnet Explorer',
@@ -9342,13 +6647,8 @@ export const networks = {
   },
   zenchainTestnet: {
     id: 8408n,
-    label: 'zenchainTestnet',
+    chain: 'zenchainTestnet',
     name: 'ZenChain Testnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'ZTC',
-      symbol: 'ZTC'
-    },
     providerURL: 'https://zenchain-testnet.api.onfinality.io/public',
     blockExplorer: {
       name: 'Zentrace',
@@ -9359,13 +6659,8 @@ export const networks = {
   },
   zeniq: {
     id: 383414847825n,
-    label: 'zeniq',
+    chain: 'zeniq',
     name: 'Zeniq Mainnet',
-    nativeCurrency: {
-      name: 'ZENIQ',
-      symbol: 'ZENIQ',
-      decimals: 18
-    },
     providerURL: 'https://api.zeniq.network',
     blockExplorer: {
       name: 'Zeniq Explorer',
@@ -9376,13 +6671,8 @@ export const networks = {
   },
   zeroG: {
     id: 16600n,
-    label: 'zeroG',
+    chain: 'zeroG',
     name: '0G Newton Testnet',
-    nativeCurrency: {
-      name: 'A0GI',
-      symbol: 'A0GI',
-      decimals: 18
-    },
     providerURL: 'https://evmrpc-testnet.0g.ai',
     blockExplorer: {
       name: '0G BlockChain Explorer',
@@ -9393,13 +6683,8 @@ export const networks = {
   },
   zeroNetwork: {
     id: 543210n,
-    label: 'zeroNetwork',
+    chain: 'zeroNetwork',
     name: 'Zero Network',
-    nativeCurrency: {
-      name: 'Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://rpc.zerion.io/v1/zero',
     blockExplorer: {
       name: 'Zero Network Explorer',
@@ -9410,13 +6695,8 @@ export const networks = {
   },
   zetachain: {
     id: 7000n,
-    label: 'zetachain',
+    chain: 'zetachain',
     name: 'ZetaChain',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Zeta',
-      symbol: 'ZETA'
-    },
     providerURL: 'https://zetachain-evm.blockpi.network/v1/rpc/public',
     blockExplorer: {
       name: 'ZetaScan',
@@ -9427,13 +6707,8 @@ export const networks = {
   },
   zetachainAthensTestnet: {
     id: 7001n,
-    label: 'zetachainAthensTestnet',
+    chain: 'zetachainAthensTestnet',
     name: 'ZetaChain Athens Testnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Zeta',
-      symbol: 'aZETA'
-    },
     providerURL: 'https://zetachain-athens-evm.blockpi.network/v1/rpc/public',
     blockExplorer: {
       name: 'ZetaScan',
@@ -9444,13 +6719,8 @@ export const networks = {
   },
   zhejiang: {
     id: 1337803n,
-    label: 'zhejiang',
+    chain: 'zhejiang',
     name: 'Zhejiang',
-    nativeCurrency: {
-      name: 'Zhejiang Ether',
-      symbol: 'ZhejETH',
-      decimals: 18
-    },
     providerURL: 'https://rpc.zhejiang.ethpandaops.io',
     blockExplorer: {
       name: 'Beaconchain',
@@ -9461,13 +6731,8 @@ export const networks = {
   },
   zilliqa: {
     id: 32769n,
-    label: 'zilliqa',
+    chain: 'zilliqa',
     name: 'Zilliqa',
-    nativeCurrency: {
-      name: 'Zilliqa',
-      symbol: 'ZIL',
-      decimals: 18
-    },
     providerURL: 'https://api.zilliqa.com',
     blockExplorer: {
       name: 'Ethernal',
@@ -9478,13 +6743,8 @@ export const networks = {
   },
   zilliqaTestnet: {
     id: 33101n,
-    label: 'zilliqaTestnet',
+    chain: 'zilliqaTestnet',
     name: 'Zilliqa Testnet',
-    nativeCurrency: {
-      name: 'Zilliqa',
-      symbol: 'ZIL',
-      decimals: 18
-    },
     providerURL: 'https://dev-api.zilliqa.com',
     blockExplorer: {
       name: 'Ethernal',
@@ -9495,13 +6755,8 @@ export const networks = {
   },
   zircuit: {
     id: 48900n,
-    label: 'zircuit',
+    chain: 'zircuit',
     name: 'Zircuit Mainnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Ether',
-      symbol: 'ETH'
-    },
     providerURL: 'https://mainnet.zircuit.com',
     blockExplorer: {
       name: 'Zircuit Explorer',
@@ -9512,13 +6767,8 @@ export const networks = {
   },
   zircuitGarfieldTestnet: {
     id: 48898n,
-    label: 'zircuitGarfieldTestnet',
+    chain: 'zircuitGarfieldTestnet',
     name: 'Zircuit Garfield Testnet',
-    nativeCurrency: {
-      name: 'ETH',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://garfield-testnet.zircuit.com/',
     blockExplorer: {
       name: 'Zircuit Garfield Testnet Explorer',
@@ -9529,13 +6779,8 @@ export const networks = {
   },
   zircuitTestnet: {
     id: 48899n,
-    label: 'zircuitTestnet',
+    chain: 'zircuitTestnet',
     name: 'Zircuit Testnet',
-    nativeCurrency: {
-      name: 'ETH',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://testnet.zircuit.com',
     blockExplorer: {
       name: 'Zircuit Testnet Explorer',
@@ -9546,13 +6791,8 @@ export const networks = {
   },
   zkFair: {
     id: 42766n,
-    label: 'zkFair',
+    chain: 'zkFair',
     name: 'ZKFair Mainnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'USD Coin',
-      symbol: 'USDC'
-    },
     providerURL: 'https://rpc.zkfair.io',
     blockExplorer: {
       name: 'zkFair Explorer',
@@ -9564,13 +6804,8 @@ export const networks = {
   },
   zkFairTestnet: {
     id: 43851n,
-    label: 'zkFairTestnet',
+    chain: 'zkFairTestnet',
     name: 'ZKFair Testnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'USD Coin',
-      symbol: 'USDC'
-    },
     providerURL: 'https://testnet-rpc.zkfair.io',
     blockExplorer: {
       name: 'zkFair Explorer',
@@ -9581,13 +6816,8 @@ export const networks = {
   },
   zkLinkNova: {
     id: 810180n,
-    label: 'zkLinkNova',
+    chain: 'zkLinkNova',
     name: 'zkLink Nova',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'ETH',
-      symbol: 'ETH'
-    },
     providerURL: 'https://rpc.zklink.io',
     blockExplorer: {
       name: 'zkLink Nova Block Explorer',
@@ -9598,13 +6828,8 @@ export const networks = {
   },
   zkLinkNovaSepoliaTestnet: {
     id: 810181n,
-    label: 'zkLinkNovaSepoliaTestnet',
+    chain: 'zkLinkNovaSepoliaTestnet',
     name: 'zkLink Nova Sepolia Testnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'ETH',
-      symbol: 'ETH'
-    },
     providerURL: 'https://sepolia.rpc.zklink.io',
     blockExplorer: {
       name: 'zkLink Nova Block Explorer',
@@ -9615,13 +6840,8 @@ export const networks = {
   },
   zkSync: {
     id: 324n,
-    label: 'zkSync',
+    chain: 'zkSync',
     name: 'ZKsync Era',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Ether',
-      symbol: 'ETH'
-    },
     providerURL: 'https://mainnet.era.zksync.io',
     blockExplorer: {
       name: 'Etherscan',
@@ -9633,13 +6853,8 @@ export const networks = {
   },
   zkSyncInMemoryNode: {
     id: 260n,
-    label: 'zkSyncInMemoryNode',
+    chain: 'zkSyncInMemoryNode',
     name: 'ZKsync InMemory Node',
-    nativeCurrency: {
-      name: 'Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'http://localhost:8011',
     blockExplorer: {},
     contracts: {},
@@ -9647,13 +6862,8 @@ export const networks = {
   },
   zkSyncLocalNode: {
     id: 270n,
-    label: 'zkSyncLocalNode',
+    chain: 'zkSyncLocalNode',
     name: 'ZKsync CLI Local Node',
-    nativeCurrency: {
-      name: 'Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'http://localhost:3050',
     blockExplorer: {},
     contracts: {},
@@ -9661,13 +6871,8 @@ export const networks = {
   },
   zkSyncSepoliaTestnet: {
     id: 300n,
-    label: 'zkSyncSepoliaTestnet',
+    chain: 'zkSyncSepoliaTestnet',
     name: 'ZKsync Sepolia Testnet',
-    nativeCurrency: {
-      name: 'Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://sepolia.era.zksync.dev',
     blockExplorer: {
       name: 'Etherscan',
@@ -9679,13 +6884,8 @@ export const networks = {
   },
   zksync: {
     id: 324n,
-    label: 'zksync',
+    chain: 'zksync',
     name: 'ZKsync Era',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Ether',
-      symbol: 'ETH'
-    },
     providerURL: 'https://mainnet.era.zksync.io',
     blockExplorer: {
       name: 'Etherscan',
@@ -9697,13 +6897,8 @@ export const networks = {
   },
   zksyncInMemoryNode: {
     id: 260n,
-    label: 'zksyncInMemoryNode',
+    chain: 'zksyncInMemoryNode',
     name: 'ZKsync InMemory Node',
-    nativeCurrency: {
-      name: 'Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'http://localhost:8011',
     blockExplorer: {},
     contracts: {},
@@ -9711,13 +6906,8 @@ export const networks = {
   },
   zksyncLocalCustomHyperchain: {
     id: 272n,
-    label: 'zksyncLocalCustomHyperchain',
+    chain: 'zksyncLocalCustomHyperchain',
     name: 'ZKsync CLI Local Custom Hyperchain',
-    nativeCurrency: {
-      name: 'BAT',
-      symbol: 'BAT',
-      decimals: 18
-    },
     providerURL: 'http://localhost:15200',
     blockExplorer: {
       name: 'ZKsync explorer',
@@ -9729,13 +6919,8 @@ export const networks = {
   },
   zksyncLocalHyperchain: {
     id: 270n,
-    label: 'zksyncLocalHyperchain',
+    chain: 'zksyncLocalHyperchain',
     name: 'ZKsync CLI Local Hyperchain',
-    nativeCurrency: {
-      name: 'Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'http://localhost:15100',
     blockExplorer: {
       name: 'ZKsync explorer',
@@ -9747,13 +6932,8 @@ export const networks = {
   },
   zksyncLocalHyperchainL1: {
     id: 9n,
-    label: 'zksyncLocalHyperchainL1',
+    chain: 'zksyncLocalHyperchainL1',
     name: 'ZKsync CLI Local Hyperchain L1',
-    nativeCurrency: {
-      name: 'Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'http://localhost:15045',
     blockExplorer: {
       name: 'Blockscout',
@@ -9765,13 +6945,8 @@ export const networks = {
   },
   zksyncLocalNode: {
     id: 270n,
-    label: 'zksyncLocalNode',
+    chain: 'zksyncLocalNode',
     name: 'ZKsync CLI Local Node',
-    nativeCurrency: {
-      name: 'Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'http://localhost:3050',
     blockExplorer: {},
     contracts: {},
@@ -9779,13 +6954,8 @@ export const networks = {
   },
   zksyncSepoliaTestnet: {
     id: 300n,
-    label: 'zksyncSepoliaTestnet',
+    chain: 'zksyncSepoliaTestnet',
     name: 'ZKsync Sepolia Testnet',
-    nativeCurrency: {
-      name: 'Ether',
-      symbol: 'ETH',
-      decimals: 18
-    },
     providerURL: 'https://sepolia.era.zksync.dev',
     blockExplorer: {
       name: 'Etherscan',
@@ -9797,13 +6967,8 @@ export const networks = {
   },
   zora: {
     id: 7777777n,
-    label: 'zora',
+    chain: 'zora',
     name: 'Zora',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Ether',
-      symbol: 'ETH'
-    },
     providerURL: 'https://rpc.zora.energy',
     blockExplorer: {
       name: 'Explorer',
@@ -9815,13 +6980,8 @@ export const networks = {
   },
   zoraSepolia: {
     id: 999999999n,
-    label: 'zoraSepolia',
+    chain: 'zoraSepolia',
     name: 'Zora Sepolia',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Zora Sepolia',
-      symbol: 'ETH'
-    },
     providerURL: 'https://sepolia.rpc.zora.energy',
     blockExplorer: {
       name: 'Zora Sepolia Explorer',
@@ -9833,13 +6993,8 @@ export const networks = {
   },
   zoraTestnet: {
     id: 999n,
-    label: 'zoraTestnet',
+    chain: 'zoraTestnet',
     name: 'Zora Goerli Testnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Zora Goerli',
-      symbol: 'ETH'
-    },
     providerURL: 'https://testnet.rpc.zora.energy',
     blockExplorer: {
       name: 'Explorer',
