@@ -17,6 +17,6 @@
     "socket.io-client": "^4.8.1"
   },
   "devDependencies": {
-    "sinon": "^19.0.4"
+    "sinon": "^20.0.0"
   }
 }
