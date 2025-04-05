@@ -1,4 +1,5 @@
 import {Deploy, networks} from '@leverj/lever.chain-deployment'
+import {postLoad, schema} from '@leverj/lever.chain-deployment/config.schema'
 import {configure} from '@leverj/lever.config'
 import {CapturingLogger} from '@leverj/lever.common'
 import {getAddress, JsonRpcProvider, Wallet} from 'ethers'
@@ -8,8 +9,6 @@ import {exec} from 'node:child_process'
 import {rmSync} from 'node:fs'
 import {setTimeout} from 'node:timers/promises'
 import waitOn from 'wait-on'
-import {postLoad, schema} from '../config.schema.js'
-import info from '../package.json' with {type: 'json'}
 
 describe('verify', () => {
   let config
@@ -20,7 +19,7 @@ describe('verify', () => {
       ToyMath: {},
       Bank: {
         libraries: ['ToyMath'],
-        params: [networks[chain].id, info.name]
+        params: [networks[chain].id, 'whatever']
       }
     })
   })

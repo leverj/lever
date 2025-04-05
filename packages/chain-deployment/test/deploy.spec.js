@@ -1,29 +1,41 @@
 import {Deploy, networks} from '@leverj/lever.chain-deployment'
+import {createHardhatConfig} from '@leverj/lever.chain-deployment/hardhat.help'
+import {ensureExistsSync} from '@leverj/lever.common'
 import {isAddress} from 'ethers'
 import {expect} from 'expect'
-import {cloneDeep, zip} from 'lodash-es'
+import {cloneDeep} from 'lodash-es'
 import {exec} from 'node:child_process'
-import {rmSync} from 'node:fs'
+import {rmSync, writeFileSync} from 'node:fs'
 import {setTimeout} from 'node:timers/promises'
 import waitOn from 'wait-on'
 import config from '../config.js'
-import info from '../package.json' with {type: 'json'}
 
 describe('deploy to multiple chains', () => {
   const chains = ['holesky', 'sepolia']
+  const configDir = `${import.meta.dirname}/hardhat`
+  const configFile = (chain) => `${configDir}/${chain}.config.cjs`
   let processes = []
 
-  beforeEach(async () => {
+  before(() => {
     config.createContractsConstructors = (chain) => ({
       ToyMath: {},
       Bank: {
         libraries: ['ToyMath'],
-        params: [networks[chain].id, info.name]
-      }
+        params: [networks[chain].id, 'whatever'],
+      },
     })
-    const {ports, providerURLs} = configureDeployment()
-    processes = await launchEvms(ports, providerURLs)
+    ensureExistsSync(configDir)
+    chains.forEach(_ => writeFileSync(configFile(_), createHardhatConfig(_, networks[_].id)))
+  })
+
+  beforeEach(async () => {
     rmSync(`${config.deploymentDir}/test`, {recursive: true, force: true})
+    chains.forEach((each, i) => {
+      const port = 8101 + i
+      networks[each].providerURL = `http://localhost:${port}`
+      processes.push(exec(`npx hardhat node --config ${configFile(each)} --port ${port}`))
+    })
+    for (let each of chains) await waitOn({resources: [networks[each].providerURL], timeout: 10_000})
   })
 
   afterEach(async () => {
@@ -33,22 +45,7 @@ describe('deploy to multiple chains', () => {
     }
   })
 
-  const configureDeployment = () => {
-    const ports = chains.map((chain, i) => 8101 + i)
-    const providerURLs = ports.map(port => `http://localhost:${port}`)
-    zip(chains, providerURLs).forEach(([chain, providerURL]) => networks[chain].providerURL = providerURL)
-    return {ports, providerURLs}
-  }
-
-  const launchEvms = async (ports, providerURLs) => {
-    const processes = []
-    for (let [chain, port, providerURL] of zip(chains, ports, providerURLs)) {
-      const evm = exec(`npx hardhat node --config ${import.meta.dirname}/hardhat/${chain}.config.cjs --port ${port}`)
-      await waitOn({resources: [providerURL], timeout: 10_000})
-      processes.push(evm)
-    }
-    return processes
-  }
+  after(() => rmSync(configDir, {recursive: true, force: true}))
 
   it('can deploy contracts to each chain', async () => {
     const deploy = Deploy.from(config)
