@@ -13,7 +13,7 @@ import blockscoutExplorerUrls_ from './chainscout-chains.json' with {type: 'json
 
 const {ethers: {deployContract, JsonRpcProvider, Wallet}} = hardhat
 
-export const networks = Map(networksByChain).map((network, chain) => {
+const toNetworkCanon = (chain, network) => {
   const {id, name, rpcUrls, blockExplorers} = cloneDeep(network)
   if (!id || !name || !rpcUrls) return null
   const providerURL = rpcUrls.default.http[0]
@@ -21,11 +21,22 @@ export const networks = Map(networksByChain).map((network, chain) => {
   const contracts = {}
   const testnet = !!network.testnet || chain === 'hardhat' || chain === 'localhost'
   return {id: BigInt(id), chain, name, providerURL, blockExplorer, contracts, testnet}
-}).filter(_ => !!_).toJS()
+}
+export const networks = Map(networksByChain).map((network, chain) => toNetworkCanon(chain, network)).filter(_ => !!_).toJS()
+export const blockscoutExplorerUrls = Object.assign({}, blockscoutExplorerUrls_)
 
-const blockscoutExplorerUrls = Object.assign({}, blockscoutExplorerUrls_)
-export const addBlockScoutExplorerUrl = (id, explorerUrl) => blockscoutExplorerUrls[id] = explorerUrl
-export const addNetwork = (chain, network) => networks[chain] = network
+/** custom network should look like network definitions in viem/chains */
+export const registerCustomNetwork = (chain, network) => {
+  networks[chain] = toNetworkCanon(chain, network)
+  blockscoutExplorerUrls[network.id] = {
+    explorers: [
+      {
+        url: network.blockExplorers.default.url,
+        hostedBy: 'custom',
+      }
+    ]
+  }
+}
 
 export class Deploy {
   static from(config) {

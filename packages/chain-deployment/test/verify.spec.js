@@ -14,7 +14,7 @@ import info from '../package.json' with {type: 'json'}
 describe('verify', () => {
   let config
 
-  beforeEach(async () => {
+  before(async () => {
     config = await configure(schema, postLoad, {env: {NODE_ENV: 'test'}})
     config.createContractsConstructors = (chain) => ({
       ToyMath: {},
@@ -23,8 +23,9 @@ describe('verify', () => {
         params: [networks[chain].id, info.name]
       }
     })
-    rmSync(`${config.deploymentDir}/test`, {recursive: true, force: true})
   })
+
+  beforeEach(() => rmSync(`${config.deploymentDir}/test`, {recursive: true, force: true}))
 
   it('attempt to verify unsupported chain', async () => {
     const chain = 'hardhat'

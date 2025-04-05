@@ -27,3 +27,14 @@ const {mnemonic, path} = config.networks.hardhat.accounts, phrase = ethers.Mnemo
 export const chainId = await provider.getNetwork().then(_ => _.chainId)
 export const accounts = await getSigners()
 export const wallets = accounts.map((value, i) => ethers.HDNodeWallet.fromMnemonic(phrase, `${path}/${i}`))
+
+export const createHardhatConfig = (chain, chainId) => `
+module.exports = Object.assign(require(\`\${process.env.PWD}/hardhat.config.cjs\`), {
+  networks: {
+    hardhat: {
+      chainId: ${chainId},  /*** ${chain} ***/
+      gasPrice: 0,
+      initialBaseFeePerGas: 0,
+    }
+  }
+})`
