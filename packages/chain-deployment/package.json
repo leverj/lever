@@ -22,15 +22,15 @@
     "axios": "^1.8.4",
     "ethers": "^6.13.6",
     "glob": "^11.0.1",
-    "hardhat": "^2.22.19",
-    "hardhat-deploy": "^1.0.1",
+    "hardhat": "^2.23.0",
+    "hardhat-deploy": "^1.0.2",
     "hardhat-deploy-ethers": "^0.4.2",
     "immutable": "^5.1.1"
   },
   "devDependencies": {
     "@leverj/lever.config": "4.6.1",
     "lodash-es": "^4.17.21",
-    "viem": "^2.25.0",
+    "viem": "^2.27.0",
     "wait-on": "^8.0.3"
   }
 }
