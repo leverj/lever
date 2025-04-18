@@ -783,7 +783,7 @@ __metadata:
     hardhat-deploy-ethers: "npm:^0.4.2"
     immutable: "npm:^5.1.1"
     lodash-es: "npm:^4.17.21"
-    viem: "npm:^2.27.0"
+    viem: "npm:^2.27.2"
     wait-on: "npm:^8.0.3"
   languageName: unknown
   linkType: soft
@@ -822,7 +822,7 @@ __metadata:
     convict: "npm:^6.2.4"
     convict-format-with-validator: "npm:^6.2.0"
     dotenv: "npm:^16.5.0"
-    dotenv-expand: "npm:^12.0.1"
+    dotenv-expand: "npm:^12.0.2"
     lodash-es: "npm:^4.17.21"
   languageName: unknown
   linkType: soft
@@ -3535,12 +3535,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"dotenv-expand@npm:^12.0.1":
-  version: 12.0.1
-  resolution: "dotenv-expand@npm:12.0.1"
+"dotenv-expand@npm:^12.0.2":
+  version: 12.0.2
+  resolution: "dotenv-expand@npm:12.0.2"
   dependencies:
     dotenv: "npm:^16.4.5"
-  checksum: 10c0/51996bfa670073d7a441b8fbed26ac991026fba2c05e9a937a898ce7d2a2e7166f7b6ec4eb8879e576defb5d1ad399ed1300db8f803d6977577fea55b4d82dac
+  checksum: 10c0/c96fd1b74d1dbb72fda6ad5df4f0ae83cba438c8090231c4da4344f8aa0448d67eb70f7fcb317c8a9bf44191545b393e8cdc1fa9f301a66b6414a22d1135f81e
   languageName: node
   linkType: hard
 
@@ -8894,9 +8894,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"viem@npm:^2.27.0":
-  version: 2.27.0
-  resolution: "viem@npm:2.27.0"
+"viem@npm:^2.27.2":
+  version: 2.27.2
+  resolution: "viem@npm:2.27.2"
   dependencies:
     "@noble/curves": "npm:1.8.1"
     "@noble/hashes": "npm:1.7.1"
@@ -8911,7 +8911,7 @@ __metadata:
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: 10c0/0c36fd742e6d4224229169048532f2576ed28a313258f4d41f5064e4134a46d5674253960b4703cc2cfc41c04902a3c469043bb7015ca70b0a8b392667317f6b
+  checksum: 10c0/8265d47a9fa3a7f60a9971b2f03896f18b30561bdaf8744bc6588b7bae35acfa2b5af3a830147ae917ea1c57437adda7a126beb06b1b6d79f122529af146d30a
   languageName: node
   linkType: hard
 
