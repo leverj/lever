@@ -14,13 +14,13 @@ import blockscoutExplorerUrls_ from './chainscout-chains.json' with {type: 'json
 const {ethers: {deployContract, JsonRpcProvider, Wallet}} = hardhat
 
 const toNetworkCanon = (chain, network) => {
-  const {id, name, rpcUrls, blockExplorers} = cloneDeep(network)
+  const {id, name, nativeCurrency, rpcUrls, blockExplorers} = cloneDeep(network)
   if (!id || !name || !rpcUrls) return null
   const providerURL = rpcUrls.default.http[0]
   const blockExplorer = blockExplorers?.default || {}
   const contracts = {}
   const testnet = !!network.testnet || chain === 'hardhat' || chain === 'localhost'
-  return {id: BigInt(id), chain, name, providerURL, blockExplorer, contracts, testnet}
+  return {id: BigInt(id), chain, name, nativeCurrency, providerURL, blockExplorer, contracts, testnet}
 }
 export const networks = Map(networksByChain).map((network, chain) => toNetworkCanon(chain, network)).filter(_ => !!_).toJS()
 export const blockscoutExplorerUrls = Object.assign({}, blockscoutExplorerUrls_)
