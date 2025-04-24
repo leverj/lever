@@ -12,7 +12,7 @@ describe('LevelStore', () => {
   let store
 
   beforeEach(() => { if (existsSync(storageDir)) rmSync(storageDir, {recursive: true, force: true}) })
-  afterEach(async () => await store.close())
+  afterEach(async () => { if (store) await store.close() })
 
   it('can set & get & find & delete a simple key', async () => {
     const keyFrom = (from, txId) => `${from}/${txId}`
@@ -21,9 +21,9 @@ describe('LevelStore', () => {
     expect(Object.keys(await store.toObject())).toHaveLength(0)
     for (let each of transfers) {
       const key = keyFrom(each.from, each.txId)
-      expect(await store.has(key)).toBe(false)
+      expect(store.has(key)).toBe(false)
       await store.set(key, each)
-      expect(await store.has(key)).toBe(true)
+      expect(store.has(key)).toBe(true)
     }
     expect(Object.keys(await store.toObject())).toHaveLength(size)
 
@@ -36,20 +36,21 @@ describe('LevelStore', () => {
 
     for (let each of transfers) {
       const key = keyFrom(each.from, each.txId)
-      expect(await store.has(key)).toBe(true)
+      expect(store.has(key)).toBe(true)
       await store.delete(key)
-      expect(await store.has(key)).toBe(false)
+      expect(store.has(key)).toBe(false)
     }
   })
 
   it('can set & get & find & delete a composite key', async () => {
     store = new LevelStore(storageDir, 'composite')
+    await store.open()
     for (let each of transfers) {
       const {account, from, txId} = each
       const key = [account, from, txId]
-      expect(await store.has(key)).toBe(false)
+      expect(store.has(key)).toBe(false)
       await store.set(key, each)
-      expect(await store.has(key)).toBe(true)
+      expect(store.has(key)).toBe(true)
     }
     expect(await store.keys()).toHaveLength(size)
     expect(await store.values()).toHaveLength(size)
@@ -65,9 +66,9 @@ describe('LevelStore', () => {
     for (let each of transfers) {
       const {account, from, txId} = each
       const key = [account, from, txId]
-      expect(await store.has(key)).toBe(true)
+      expect(store.has(key)).toBe(true)
       await store.delete(key)
-      expect(await store.has(key)).toBe(false)
+      expect(store.has(key)).toBe(false)
     }
   })
 
@@ -110,7 +111,7 @@ describe('LevelStore', () => {
     expect(await store.size()).toEqual(chains.length)
     expect(await store.keys()).toHaveLength(chains.length)
     expect(await store.values()).toHaveLength(chains.length)
-    expect(await store.has('no-such-chain')).toBe(false)
+    expect(store.has('no-such-chain')).toBe(false)
 
     const contracts = ['multicall3', 'ensRegistry', 'ensUniversalResolver']
     const multicall3 = {address: ZeroAddress.replaceAll('0', 'f'), blockCreated: 911} // modify
@@ -120,10 +121,10 @@ describe('LevelStore', () => {
       new_kid_in_town, // add
     }
     for (let chain of chains) {
-      const before = cloneDeep((await store.get(chain)).contracts)
+      const before = cloneDeep((store.get(chain)).contracts)
       contracts.forEach(name => expect(before[name]).toBeDefined())
       await store.update(chain, {contracts: updates})
-      const after = cloneDeep((await store.get(chain)).contracts)
+      const after = cloneDeep((store.get(chain)).contracts)
       expect(before.ensRegistry).toMatchObject(after.ensRegistry) // unchanged
       expect(before.ensUniversalResolver).toMatchObject(after.ensUniversalResolver) // unchanged
       expect(before.multicall3).not.toMatchObject(multicall3)// modified
@@ -138,7 +139,7 @@ describe('LevelStore', () => {
     await store.set(0, transfers[0])
 
     const replica = new LevelStore(storageDir, 'shared')
-    await expect((replica.get(0))).rejects.toThrow(/Database is not open/)
+    expect(() => replica.get(0)).toThrow(/Database is not open/)
     await expect(replica.open()).rejects.toThrow(/Database failed to open/)
   })
 })

@@ -11,13 +11,13 @@ import {ContractTracker} from './ContractTracker.js'
  */
 export class MultiContractTracker {
   static async of(config, chainId, provider, store, onEvent = console.log) {
-    if (!await store.has(chainId)) await store.update(chainId, {
+    if (!store.has(chainId)) await store.update(chainId, {
       marker: {block: 0, logIndex: -1, blockWasProcessed: false},
       abis: [],
       contracts: [],
       toOnboard: [],
     })
-    return new this(config, chainId, provider, store, onEvent, await store.get(chainId))
+    return new this(config, chainId, provider, store, onEvent, store.get(chainId))
   }
 
   constructor(config, chainId, provider, store, onEvent, data) {

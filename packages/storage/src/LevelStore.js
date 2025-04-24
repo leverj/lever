@@ -11,11 +11,11 @@ export class LevelStore extends Store {
   }
 
   /*** API ***/
-  async get(key) { return this.db.get(toKey(key)) }
+  get(key) { return this.db.getSync(toKey(key)) }
   async set(key, value) { return this.db.put(toKey(key), value) }
-  async update(key, value) { return this.set(key, merge(await this.get(key, value), value)) }
+  async update(key, value) { return this.set(key, merge(this.get(key, value), value)) }
   async delete(key) { return this.db.del(toKey(key)) }
-  async has(key) { return this.get(toKey(key)).then(_ => !!_) }
+  has(key) { return !!this.get(toKey(key)) }
   async find(keyable) {
     const results = []
     const prefix = toKey(keyable)

@@ -11,10 +11,10 @@ export class ContractTracker {
     const throttle = 100 //fixme: temporary; creationBlock must be supplied
     const block = creationBlock || await getCreationBlock(contract.runner.provider, contract.target, throttle)
     const key = [chainId, contract.target]
-    if (!await store.has(key)) await store.set(key, {
+    if (!store.has(key)) await store.set(key, {
       marker: {block, logIndex: -1, blockWasProcessed: false}
     })
-    return new this(config, chainId, contract, store, onEvent, await store.get(key))
+    return new this(config, chainId, contract, store, onEvent, store.get(key))
   }
 
   constructor(config, chainId, contract, store, onEvent, data) {
