@@ -1,6 +1,6 @@
 {
   "name": "@leverj/lever.storage",
-  "version": "4.6.5",
+  "version": "4.6.6",
   "license": "MIT",
   "type": "module",
   "exports": {
@@ -11,7 +11,7 @@
     "dependency:check": "npx depcheck"
   },
   "dependencies": {
-    "@leverj/lever.common": "4.6.5",
+    "@leverj/lever.common": "4.6.6",
     "immutable": "^5.1.1",
     "level": "^10.0.0",
     "lodash-es": "^4.17.21",
