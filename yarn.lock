@@ -775,7 +775,7 @@ __metadata:
     "@nomicfoundation/hardhat-ethers": "npm:^3.0.8"
     "@nomicfoundation/hardhat-network-helpers": "npm:^1.0.12"
     "@nomicfoundation/hardhat-verify": "npm:^2.0.13"
-    axios: "npm:^1.8.4"
+    axios: "npm:^1.9.0"
     ethers: "npm:^6.13.6"
     glob: "npm:^11.0.2"
     hardhat: "npm:^2.23.0"
@@ -845,7 +845,7 @@ __metadata:
   resolution: "@leverj/lever.telegram@workspace:packages/telegram"
   dependencies:
     "@leverj/lever.common": "npm:4.6.5"
-    axios: "npm:^1.8.4"
+    axios: "npm:^1.9.0"
   languageName: unknown
   linkType: soft
 
@@ -854,7 +854,7 @@ __metadata:
   resolution: "@leverj/lever.zka@workspace:packages/zka"
   dependencies:
     "@leverj/lever.common": "npm:4.6.5"
-    axios: "npm:^1.8.4"
+    axios: "npm:^1.9.0"
     ephemeral-cache: "npm:^1.1.0"
     ethers: "npm:^6.13.6"
     lodash-es: "npm:^4.17.21"
@@ -2476,14 +2476,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"axios@npm:^1.8.4":
-  version: 1.8.4
-  resolution: "axios@npm:1.8.4"
+"axios@npm:^1.9.0":
+  version: 1.9.0
+  resolution: "axios@npm:1.9.0"
   dependencies:
     follow-redirects: "npm:^1.15.6"
     form-data: "npm:^4.0.0"
     proxy-from-env: "npm:^1.1.0"
-  checksum: 10c0/450993c2ba975ffccaf0d480b68839a3b2435a5469a71fa2fb0b8a55cdb2c2ae47e609360b9c1e2b2534b73dfd69e2733a1cf9f8215bee0bcd729b72f801b0ce
+  checksum: 10c0/9371a56886c2e43e4ff5647b5c2c3c046ed0a3d13482ef1d0135b994a628c41fbad459796f101c655e62f0c161d03883454474d2e435b2e021b1924d9f24994c
   languageName: node
   linkType: hard
 
