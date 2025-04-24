@@ -45,7 +45,7 @@ describe('ContractTracker / Store interaction', () => {
     const contract3 = await ERC721('Three', '333')
 
     const store = new InMemoryStore()
-    tracker = MultiContractTracker.of(config, chainId, provider, store, _ => _)
+    tracker = await MultiContractTracker.of(config, chainId, provider, store, _ => _)
     const before = cloneDeep(store.get(chainId))
     expect(before.abis).toHaveLength(0)
     expect(before.contracts).toHaveLength(0)

@@ -35,8 +35,8 @@ export class ContractTracker {
   get lastBlock() { return this.marker.block }
   get polling() { return this.config.polling }
 
-  update(state) { this.store.update(this.key, state) }
-  updateMarker(state) { this.update({marker: merge(this.marker, state)}) }
+  async update(state) { await this.store.update(this.key, state) }
+  async updateMarker(state) { await this.update({marker: merge(this.marker, state)}) }
 
   async start() {
     if (this.isRunning) return
@@ -86,7 +86,7 @@ export class ContractTracker {
       map((value, _) => value.sortBy(_ => _.logIndex).toArray()).
       toKeyedSeq()
     for (let [block, blockLogs] of logsPerBlock) await this.onNewBlock(block, blockLogs)
-    if (this.lastBlock < toBlock) this.updateMarker({block: toBlock, blockWasProcessed: true})
+    if (this.lastBlock < toBlock) await this.updateMarker({block: toBlock, blockWasProcessed: true})
   }
 
   async getLogsFor(fromBlock, toBlock, topics) {
@@ -98,13 +98,15 @@ export class ContractTracker {
   }
 
   async onNewBlock(block, logs) {
-   this.updateMarker(block > this.lastBlock ? {block, logIndex: -1, blockWasProcessed: false} : {blockWasProcessed: false})
+    await this.updateMarker(
+      block > this.lastBlock ? {block, logIndex: -1, blockWasProcessed: false} : {blockWasProcessed: false}
+    )
     for (let each of logs) {
       const event = this.toEvent(each)
       await this.onEvent(event)
-      this.updateMarker({logIndex: each.logIndex})
+      await this.updateMarker({logIndex: each.logIndex})
     }
-    this.updateMarker({blockWasProcessed: true})
+    await this.updateMarker({blockWasProcessed: true})
   }
 
   toEvent(log) {
