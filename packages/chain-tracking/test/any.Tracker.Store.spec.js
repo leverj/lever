@@ -7,12 +7,12 @@ import {cloneDeep} from 'lodash-es'
 import {setTimeout} from 'node:timers/promises'
 import {expect} from 'expect'
 
-describe('ContractTracker / Store interaction', () => {
+describe('any ContractTracker / Store interaction', () => {
   const [_, account] = accounts
   const config = {logger, polling: {interval: 10, retries: 5}}
   let tracker
 
-  afterEach(() => tracker.stop())
+  afterEach(async () => await tracker.stop())
 
   it('maintain state for ContractTracker', async () => {
     const contract = await ERC20()

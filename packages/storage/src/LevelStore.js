@@ -2,6 +2,7 @@ import {Level} from 'level'
 import {merge} from 'lodash-es'
 import {Map} from 'immutable'
 import {Store} from './Store.js'
+import waitFor from 'p-wait-for'
 
 export class LevelStore extends Store {
   constructor(path, type) {
@@ -27,7 +28,7 @@ export class LevelStore extends Store {
   async entries() { return this.db.iterator().all() }
   async toObject() { return Map(await this.db.iterator().all()).toJS() }
   async clear() { return this.db.clear() }
-  async open(options = {passive: true}) { return this.db.open(options) }
+  async open() { await this.db.open().then(_ => waitFor(() => this.db.status === 'open')) }
   async close() { return this.db.close() }
 }
 

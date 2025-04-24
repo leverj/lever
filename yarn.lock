@@ -777,13 +777,13 @@ __metadata:
     "@nomicfoundation/hardhat-verify": "npm:^2.0.13"
     axios: "npm:^1.8.4"
     ethers: "npm:^6.13.6"
-    glob: "npm:^11.0.1"
+    glob: "npm:^11.0.2"
     hardhat: "npm:^2.23.0"
     hardhat-deploy: "npm:^1.0.2"
     hardhat-deploy-ethers: "npm:^0.4.2"
     immutable: "npm:^5.1.1"
     lodash-es: "npm:^4.17.21"
-    viem: "npm:^2.27.2"
+    viem: "npm:^2.28.0"
     wait-on: "npm:^8.0.3"
   languageName: unknown
   linkType: soft
@@ -833,7 +833,7 @@ __metadata:
   dependencies:
     "@leverj/lever.common": "npm:4.6.5"
     immutable: "npm:^5.1.1"
-    level: "npm:^9.0.0"
+    level: "npm:^10.0.0"
     lodash-es: "npm:^4.17.21"
     p-wait-for: "npm:^5.0.2"
     watcher: "npm:^2.3.1"
@@ -904,7 +904,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@noble/curves@npm:1.8.1, @noble/curves@npm:^1.6.0, @noble/curves@npm:~1.8.1":
+"@noble/curves@npm:1.8.2":
+  version: 1.8.2
+  resolution: "@noble/curves@npm:1.8.2"
+  dependencies:
+    "@noble/hashes": "npm:1.7.2"
+  checksum: 10c0/e7ef119b114681d6b7530b29a21f9bbea6fa6973bc369167da2158d05054cc6e6dbfb636ba89fad7707abacc150de30188b33192f94513911b24bdb87af50bbd
+  languageName: node
+  linkType: hard
+
+"@noble/curves@npm:^1.6.0, @noble/curves@npm:~1.8.1":
   version: 1.8.1
   resolution: "@noble/curves@npm:1.8.1"
   dependencies:
@@ -938,6 +947,13 @@ __metadata:
   version: 1.7.1
   resolution: "@noble/hashes@npm:1.7.1"
   checksum: 10c0/2f8ec0338ccc92b576a0f5c16ab9c017a3a494062f1fbb569ae641c5e7eab32072f9081acaa96b5048c0898f972916c818ea63cbedda707886a4b5ffcfbf94e3
+  languageName: node
+  linkType: hard
+
+"@noble/hashes@npm:1.7.2":
+  version: 1.7.2
+  resolution: "@noble/hashes@npm:1.7.2"
+  checksum: 10c0/b1411eab3c0b6691d847e9394fe7f1fcd45eeb037547c8f97e7d03c5068a499b4aef188e8e717eee67389dca4fee17d69d7e0f58af6c092567b0b76359b114b2
   languageName: node
   linkType: hard
 
@@ -2191,17 +2207,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"abstract-level@npm:^2.0.0, abstract-level@npm:^2.0.1":
-  version: 2.0.2
-  resolution: "abstract-level@npm:2.0.2"
+"abstract-level@npm:^3.1.0":
+  version: 3.1.0
+  resolution: "abstract-level@npm:3.1.0"
   dependencies:
     buffer: "npm:^6.0.3"
     is-buffer: "npm:^2.0.5"
-    level-supports: "npm:^6.0.0"
+    level-supports: "npm:^6.2.0"
     level-transcoder: "npm:^1.0.1"
     maybe-combine-errors: "npm:^1.0.0"
     module-error: "npm:^1.0.1"
-  checksum: 10c0/8dfaf79d5fdbe87b398fcdc8894ea96b8807e124718332dfca693d864c4bd5e046c14f3e22232a9b58117b1dbf923cc64b06a1b9aca7cbc91cb3d41798096fcd
+  checksum: 10c0/fa888481fdc7b7f1cc190b7821ca323065c7ead12ffc495ec4b0ed188e548c0dba400d8ae6b1cbb0906955725e487704f36a203a7512809483542f7545b23c73
   languageName: node
   linkType: hard
 
@@ -2610,12 +2626,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"browser-level@npm:^2.0.0":
-  version: 2.0.0
-  resolution: "browser-level@npm:2.0.0"
+"browser-level@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "browser-level@npm:3.0.0"
   dependencies:
-    abstract-level: "npm:^2.0.1"
-  checksum: 10c0/33fc33e39441e37d1851e8a99de981f2c39488e838104748a4c02c598b877ab929a2d55077376e57289e512357f8eb703819eafb3d13aafb9232a97153c67305
+    abstract-level: "npm:^3.1.0"
+  checksum: 10c0/e5c3ce7ce2320d171e42d1bf4fec86cea1fdef0e8e5566d62185c6a42f969be2b2ebac4b411e6fbda41f867b6a810bcd8958c0d3b1c27a9ceb5fe862ee46191c
   languageName: node
   linkType: hard
 
@@ -2916,16 +2932,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"classic-level@npm:^2.0.0":
-  version: 2.0.0
-  resolution: "classic-level@npm:2.0.0"
+"classic-level@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "classic-level@npm:3.0.0"
   dependencies:
-    abstract-level: "npm:^2.0.0"
+    abstract-level: "npm:^3.1.0"
     module-error: "npm:^1.0.1"
     napi-macros: "npm:^2.2.2"
     node-gyp: "npm:latest"
     node-gyp-build: "npm:^4.3.0"
-  checksum: 10c0/3d06f8932cba410906db0cfe37a13a3792c0e8395d63b37c2c69bed9b31d74f6e7f4d71defb691ef71b52b56033ab921f2067c9b390cecdae93f016fa8f8178c
+  checksum: 10c0/124107929ae19115cff2050ca85869143d9554578863aeee06c445c39e736a3b5b7ef955d8e786193d5db332f8f4d9ba765b242db1523e19378a77346463522e
   languageName: node
   linkType: hard
 
@@ -4475,9 +4491,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"glob@npm:^11.0.1":
-  version: 11.0.1
-  resolution: "glob@npm:11.0.1"
+"glob@npm:^11.0.2":
+  version: 11.0.2
+  resolution: "glob@npm:11.0.2"
   dependencies:
     foreground-child: "npm:^3.1.0"
     jackspeak: "npm:^4.0.1"
@@ -4487,7 +4503,7 @@ __metadata:
     path-scurry: "npm:^2.0.0"
   bin:
     glob: dist/esm/bin.mjs
-  checksum: 10c0/2b32588be52e9e90f914c7d8dec32f3144b81b84054b0f70e9adfebf37cd7014570489f2a79d21f7801b9a4bd4cca94f426966bfd00fb64a5b705cfe10da3a03
+  checksum: 10c0/49f91c64ca882d5e3a72397bd45a146ca91fd3ca53dafb5254daf6c0e83fc510d39ea66f136f9ac7ca075cdd11fbe9aaa235b28f743bd477622e472f4fdc0240
   languageName: node
   linkType: hard
 
@@ -5652,7 +5668,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"level-supports@npm:^6.0.0":
+"level-supports@npm:^6.2.0":
   version: 6.2.0
   resolution: "level-supports@npm:6.2.0"
   checksum: 10c0/764d23a037a44b4a8989cf6ebc590ce129e411dba852ccedfe09da1db3bc3dc330d3c43529d0c61748d90597b2e55381811ee2c49b216f2226e7c4789de4b6dc
@@ -5669,14 +5685,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"level@npm:^9.0.0":
-  version: 9.0.0
-  resolution: "level@npm:9.0.0"
+"level@npm:^10.0.0":
+  version: 10.0.0
+  resolution: "level@npm:10.0.0"
   dependencies:
-    abstract-level: "npm:^2.0.1"
-    browser-level: "npm:^2.0.0"
-    classic-level: "npm:^2.0.0"
-  checksum: 10c0/81f7d7daa8c7a3380f9438743e46807f67fd03cd18be55a286e48813fc7a60ac3823f6c01d033b022da31c3755dbc6472ed71540474bb406ad9775557161485d
+    abstract-level: "npm:^3.1.0"
+    browser-level: "npm:^3.0.0"
+    classic-level: "npm:^3.0.0"
+  checksum: 10c0/39b4a119e9fa5018ef294d0e9d2716ba02bd780d41e4e7ed21aef20da4c96470acc7b9b8622c9b7a4dd59f362bb3c1c9aef0cd6bc1e2c4275cc370aabd2ce098
   languageName: node
   linkType: hard
 
@@ -8894,12 +8910,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"viem@npm:^2.27.2":
-  version: 2.27.2
-  resolution: "viem@npm:2.27.2"
+"viem@npm:^2.28.0":
+  version: 2.28.0
+  resolution: "viem@npm:2.28.0"
   dependencies:
-    "@noble/curves": "npm:1.8.1"
-    "@noble/hashes": "npm:1.7.1"
+    "@noble/curves": "npm:1.8.2"
+    "@noble/hashes": "npm:1.7.2"
     "@scure/bip32": "npm:1.6.2"
     "@scure/bip39": "npm:1.5.4"
     abitype: "npm:1.0.8"
@@ -8911,7 +8927,7 @@ __metadata:
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: 10c0/8265d47a9fa3a7f60a9971b2f03896f18b30561bdaf8744bc6588b7bae35acfa2b5af3a830147ae917ea1c57437adda7a126beb06b1b6d79f122529af146d30a
+  checksum: 10c0/fb67861c74e0fac54278627dbf15ffdcec41e9ddee3196cca20c137bad2ac0de531037c744095a95498c061b84d76bdf2e069fab0bfb3a76acb23265cba6a97d
   languageName: node
   linkType: hard
 

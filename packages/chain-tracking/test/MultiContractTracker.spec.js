@@ -16,7 +16,7 @@ describe('MultiContractTracker', () => {
     tracker = await MultiContractTracker.of(config, chainId, provider, new InMemoryStore(), _ => events.push(_))
   })
 
-  afterEach(() => tracker.stop())
+  afterEach(async () => await tracker.stop())
 
   describe('single kind / single contract', () => {
     it('handles adding contract and emitting events after tracker starts (only on-going; no catch-up)', async () => {

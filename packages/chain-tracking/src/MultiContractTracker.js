@@ -11,14 +11,13 @@ import {ContractTracker} from './ContractTracker.js'
  */
 export class MultiContractTracker {
   static async of(config, chainId, provider, store, onEvent = console.log) {
-    await store.update(chainId, {
+    if (!await store.has(chainId)) await store.update(chainId, {
       marker: {block: 0, logIndex: -1, blockWasProcessed: false},
       abis: [],
       contracts: [],
       toOnboard: [],
     })
-    const data = await store.get(chainId)
-    return new this(config, chainId, provider, store, onEvent, data)
+    return new this(config, chainId, provider, store, onEvent, await store.get(chainId))
   }
 
   constructor(config, chainId, provider, store, onEvent, data) {
@@ -83,29 +82,31 @@ export class MultiContractTracker {
   }
 
   async start() {
-    if (!this.isRunning) {
-      this.logger.log(`starting tracker [${this.chainId}]`)
-      while (this.toOnboard.length > 0)  {
-        const {address, kind} = this.toOnboard.shift()
-        const contract = new Contract(address, this.interfaces[kind], this.provider)
-        await this.onboard(contract, await getCreationBlock(this.provider, contract.target, 100))
-      }
-      this.isRunning = true
-      await this.pollForEvents()
+    if (this.isRunning) return
+
+    this.logger.log(`starting tracker [${this.chainId}]`)
+    while (this.toOnboard.length > 0)  {
+      const {address, kind} = this.toOnboard.shift()
+      const contract = new Contract(address, this.interfaces[kind], this.provider)
+      await this.onboard(contract, await getCreationBlock(this.provider, contract.target, 100))
     }
+    this.isRunning = true
+    await this.store.open()
+    await this.pollForEvents()
   }
 
-  stop() {
-    if (this.isRunning) {
-      this.logger.log(`stopping tracker [${this.chainId}]`)
-      this.isRunning = false
-      if (this.pollingTimer) clearTimeout(this.pollingTimer)
-    }
+  async stop() {
+    if (!this.isRunning) return
+
+    this.logger.log(`stopping tracker [${this.chainId}]`)
+    this.isRunning = false
+    if (this.pollingTimer) clearTimeout(this.pollingTimer)
+    await this.store.close()
   }
 
-  fail(e) {
+  async fail(e) {
     this.logger.error(e, e.cause || '')
-    this.stop()
+    await this.stop()
   }
 
   async pollForEvents(retries = 1) {
