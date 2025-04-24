@@ -1,4 +1,4 @@
-import {getCreationBlock, logger} from '@leverj/lever.common'
+import {getCreationBlock} from '@leverj/lever.common'
 import {InMemoryCompoundKeyStore} from '@leverj/lever.storage'
 import exitHook from 'async-exit-hook'
 import {Contract} from 'ethers'
@@ -10,23 +10,23 @@ import {ContractTracker} from './ContractTracker.js'
  * a MultiContractTracker connects to multiple contracts deployed in an Ethereum-like chain and tracks their respective events
  */
 export class MultiContractTracker {
-  static of(config, chainId, provider, store, processEvent = console.log) {
+  static of(config, chainId, provider, store, onEvent = console.log) { //fixme: async
     store.update(chainId, {
       marker: {block: 0, logIndex: -1, blockWasProcessed: false},
       abis: [],
       contracts: [],
       toOnboard: [],
     })
-    return new this(config, chainId, provider, store, processEvent)
+    return new this(config, chainId, provider, store, onEvent)
   }
 
-  constructor(config, chainId, provider, store, processEvent) {
+  constructor(config, chainId, provider, store, onEvent) {
     this.config = config
     this.logger = config.logger || console
     this.chainId = chainId
     this.provider = provider
     this.store = store
-    this.processEvent = processEvent
+    this.onEvent = onEvent
     this.contracts = {}
     this.interfaces = {}
     this.topicsByKind = {}
@@ -44,7 +44,7 @@ export class MultiContractTracker {
   get lastBlock() { return this.marker.block }
   get polling() { return this.config.polling }
 
-  update(state) { this.store.update(this.chainId, state) }
+  update(state) { this.store.update(this.chainId, state) } //fixme: async
   updateMarker(state) { this.update({marker: merge(this.marker, state)}) }
 
   _addContract_(contract, kind) {
@@ -62,7 +62,7 @@ export class MultiContractTracker {
   async addContract(contract, kind) {
     this._addContract_(contract, kind)
     return this.isRunning ?
-      this.onboard(contract) :
+      this.onboard(contract, await getCreationBlock(this.provider, contract.target, 100)) :
       this.scheduleToOnboard(contract.target, kind)
   }
 
@@ -71,10 +71,9 @@ export class MultiContractTracker {
     this.update({toOnboard: this.toOnboard})
   }
 
-  async onboard(contract) {
-    const {chainId, provider, polling, processEvent, logger, lastBlock} = this
-    const tracker = ContractTracker.of({logger, polling}, chainId, contract, new InMemoryCompoundKeyStore(), processEvent)
-    const creationBlock = await getCreationBlock(provider, contract.target).catch(_ => 0)
+  async onboard(contract, creationBlock) {
+    const {chainId, polling, onEvent, logger, lastBlock} = this
+    const tracker = await ContractTracker.of({logger, polling}, chainId, contract, creationBlock, new InMemoryCompoundKeyStore(), onEvent)
     await tracker.processLogs(creationBlock, lastBlock)
     this.update({
       contracts: Map(this.contracts).toArray(),
@@ -88,7 +87,7 @@ export class MultiContractTracker {
       while (this.toOnboard.length > 0)  {
         const {address, kind} = this.toOnboard.shift()
         const contract = new Contract(address, this.interfaces[kind], this.provider)
-        await this.onboard(contract, kind)
+        await this.onboard(contract, await getCreationBlock(this.provider, contract.target, 100))
       }
       this.isRunning = true
       await this.pollForEvents()
@@ -170,7 +169,7 @@ export class MultiContractTracker {
     this.updateMarker(block > this.lastBlock ? {block, logIndex: -1, blockWasProcessed: false} : {blockWasProcessed: false})
     for (let each of logs) if (this.contracts[each.address]) {
       const event = this.toEvent(each)
-      await this.processEvent(event)
+      await this.onEvent(event)
       this.updateMarker({logIndex: each.logIndex})
     }
     this.updateMarker({blockWasProcessed: true})

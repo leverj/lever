@@ -8,7 +8,7 @@ describe('evm', () => {
     const before = await provider.getBlockNumber()
     for (let i = 1; i <= 3; i++) {
       const contract = await ERC20()
-      expect(await getCreationBlock(provider, contract.target)).toEqual(before + i)
+      expect(await getCreationBlock(provider, contract.target, 1)).toEqual(before + i)
     }
   })
 })

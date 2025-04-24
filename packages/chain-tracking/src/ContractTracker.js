@@ -1,3 +1,4 @@
+import {getCreationBlock} from '@leverj/lever.common'
 import exitHook from 'async-exit-hook'
 import {List} from 'immutable'
 import {merge} from 'lodash-es'
@@ -6,9 +7,11 @@ import {merge} from 'lodash-es'
  * a ContractTracker connects to a contract deployed in an Ethereum-like chain and tracks its events
  */
 export class ContractTracker {
-  static of(config, chainId, contract, store, onEvent = console.log) {
-    store.update([chainId, contract.target], {
-      marker: {block: 0, logIndex: -1, blockWasProcessed: false}
+  static async of(config, chainId, contract, creationBlock = 0, store, onEvent = console.log) {
+    const throttle = 100 //fixme: temporary; creationBlock must be supplied
+    const block = creationBlock || await getCreationBlock(contract.runner.provider, contract.target, throttle)
+    await store.update([chainId, contract.target], {
+      marker: {block, logIndex: -1, blockWasProcessed: false}
     })
     return new this(config, chainId, contract, store, onEvent)
   }
