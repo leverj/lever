@@ -29,7 +29,7 @@ const findStartsWithInMap = (keyable, map) => !Array.isArray(keyable) ?
   map.filter((value, key) => key.toString().startsWith(keyable.toString())).valueSeq().flatten().toArray() :
   keyable.length === 1 ?
     findStartsWithInMap(first(keyable), map) :
-    findStartsWithInMap(last(keyable), map.getIn(keyable.slice(0, -1)) || Map())
+    findStartsWithInMap(last(keyable), map.getIn(keyable.slice(0, -1)) ?? Map())
 
 const flattenKeys = (map, currentPath = []) => map.reduce((results, value, key) => {
   const newPath = [...currentPath, key]

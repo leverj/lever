@@ -34,8 +34,8 @@ export class EnhancedSocket {
 
   send(request) {
     const {method, uri, body, retry} = request
-    const headers = request.headers || {}
-    const params = request.params || {}
+    const headers = request.headers ?? {}
+    const params = request.params ?? {}
     affirm(typeof method === 'string', 'Invalid method', 401)
     affirm(typeof uri === 'string', 'Invalid uri', 401)
     const requestNonce = nonce.getNonce()

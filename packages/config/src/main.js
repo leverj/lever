@@ -19,19 +19,19 @@ convict.addFormat(
 expand(dotenv.config())
 
 export async function configure(schema, postLoad = _ => _, options = {}) {
-  const configDir = `${options?.env?.PWD || process.cwd()}/config`
+  const configDir = `${options?.env?.PWD ?? process.cwd()}/config`
   const config = convict(schema, options)
   const override = async (fileName) => {
     const path = `${configDir}/${fileName}`
     if (!existsSync(path)) return
     const {default: override} = await import(`${path}?update=${Date.now()}`) // note: cache invalidation for dynamic imports
-    config.load(override || {})
+    config.load(override ?? {})
   }
 
   const env = config.get('env')
   await override(`${env}.js`)
   await override(`local-${env}.js`)
-  for (const each of schema.dependencies || []) inferDependency(config._instance, each)
+  for (const each of schema.dependencies ?? []) inferDependency(config._instance, each)
   inferDeferredValues(config._instance)
   config.validate({allowed: 'strict'})
   return postLoad(config.getProperties())

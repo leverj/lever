@@ -43,7 +43,7 @@ export function validateNonce(receivedTime, nonce, nonceLatencyTolerance) {
   affirm(nonce && !isNaN(nonce), 'Authentication failed. Invalid Nonce ' + nonce, 401)
   affirm(!nonceLatencyTolerance || typeof nonceLatencyTolerance === 'number', `Nonce tolerance should be numeric: ${nonceLatencyTolerance}`, 401)
   const diff = receivedTime - nonce
-  const nonceWithInGracePeriod = Math.abs(receivedTime - nonce) <= (nonceLatencyTolerance || defaultLatencyTolerance) * 1000
+  const nonceWithInGracePeriod = Math.abs(receivedTime - nonce) <= (nonceLatencyTolerance ?? defaultLatencyTolerance) * 1000
   affirm(nonceWithInGracePeriod, `Authentication failed. Nonce ${nonce} stale by ${diff}ms`, 401)
 }
 

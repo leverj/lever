@@ -1,7 +1,7 @@
 import {accounts, chainId, provider} from '@leverj/lever.chain-deployment/hardhat.help'
 import {ContractTracker, MultiContractTracker} from '@leverj/lever.chain-tracking'
 import {ERC20, ERC721} from '@leverj/lever.chain-tracking/test'
-import {getCreationBlock, logger} from '@leverj/lever.common'
+import {logger} from '@leverj/lever.common'
 import {InMemoryCompoundKeyStore, InMemoryStore} from '@leverj/lever.storage'
 import {cloneDeep} from 'lodash-es'
 import {setTimeout} from 'node:timers/promises'
@@ -16,9 +16,9 @@ describe('any ContractTracker / Store interaction', () => {
 
   it('maintain state for ContractTracker', async () => {
     const contract = await ERC20()
-    const creationBlock = await getCreationBlock(contract.runner.provider, contract.target)
+    const creationBlock = 0
     const store = new InMemoryCompoundKeyStore()
-    tracker = await ContractTracker.of(config, chainId, contract, creationBlock, store, _ => _)
+    tracker = await ContractTracker.of(config, chainId, contract, 0, store, _ => _)
     const key = tracker.key
     const before = cloneDeep(store.get(key))
     expect(tracker.marker).toEqual(before.marker)

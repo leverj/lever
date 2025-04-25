@@ -22,7 +22,7 @@ export class MultiContractTracker {
 
   constructor(config, chainId, provider, store, onEvent, data) {
     this.config = config
-    this.logger = config.logger || console
+    this.logger = config.logger ?? console
     this.chainId = chainId
     this.provider = provider
     this.store = store
@@ -105,7 +105,7 @@ export class MultiContractTracker {
   }
 
   async fail(e) {
-    this.logger.error(e, e.cause || '')
+    this.logger.error(e, e.cause ?? '')
     await this.stop()
   }
 
@@ -114,7 +114,7 @@ export class MultiContractTracker {
     try {
       await this.poll()
     } catch (e) {
-      if (retries === 1) this.logger.error(`tracker [${this.chainId}] failed during polling for events`, e, e.cause || '')
+      if (retries === 1) this.logger.error(`tracker [${this.chainId}] failed during polling for events`, e, e.cause ?? '')
       return retries === this.polling.retries ? this.fail(e) : this.pollForEvents(retries + 1)
     }
     if (this.isRunning) this.pollingTimer = setTimeout(_ => this.pollForEvents(_), this.polling.interval)

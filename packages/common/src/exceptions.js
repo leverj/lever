@@ -12,8 +12,8 @@ export const CodedError = (message, code) => Object.assign(Error(message), {code
 
 export const Failure = function SpecifiedError(message, code) {
   this.name = this.constructor.name
-  this.message = message || ''
-  this.code = code || ''
+  this.message = message ?? ''
+  this.code = code ?? ''
   this.stack = Error().stack
 }
 Failure.prototype = Error()

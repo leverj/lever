@@ -7,9 +7,9 @@ import {merge} from 'lodash-es'
  * a ContractTracker connects to a contract deployed in an Ethereum-like chain and tracks its events
  */
 export class ContractTracker {
-  static async of(config, chainId, contract, creationBlock = 0, store, onEvent = console.log) {
+  static async of(config, chainId, contract, creationBlock, store, onEvent = console.log) {
     const throttle = 100 //fixme: temporary; creationBlock must be supplied
-    const block = creationBlock || await getCreationBlock(contract.runner.provider, contract.target, throttle)
+    const block = creationBlock ?? await getCreationBlock(contract.runner.provider, contract.target, throttle)
     const key = [chainId, contract.target]
     if (!store.has(key)) await store.set(key, {
       marker: {block, logIndex: -1, blockWasProcessed: false}
@@ -19,7 +19,7 @@ export class ContractTracker {
 
   constructor(config, chainId, contract, store, onEvent, data) {
     this.config = config
-    this.logger = config.logger || console
+    this.logger = config.logger ?? console
     this.chainId = chainId
     this.contract = contract
     this.topics = [contract.interface.fragments.filter(_ => _.type === 'event').map(_ => _.topicHash)]
@@ -58,7 +58,7 @@ export class ContractTracker {
   }
 
   async fail(e) {
-    this.logger.error(e, e.cause || '')
+    this.logger.error(e, e.cause ?? '')
     await this.stop()
   }
 
@@ -67,7 +67,7 @@ export class ContractTracker {
     try {
       await this.poll()
     } catch (e) {
-      if (retries === 1) this.logger.error(`tracker [${this.key}] failed during polling for events`, e, e.cause || '')
+      if (retries === 1) this.logger.error(`tracker [${this.key}] failed during polling for events`, e, e.cause ?? '')
       return retries === this.polling.retries ? this.fail(e) : this.pollForEvents(retries + 1)
     }
     if (this.isRunning) this.pollingTimer = setTimeout(_ => this.pollForEvents(_), this.polling.interval)

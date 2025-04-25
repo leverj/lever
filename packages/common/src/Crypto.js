@@ -5,7 +5,7 @@ export class Crypto {
   static Zero(currency) { return new this(0, currency) }
 
   static formatAmount(amount, decimals, fractionDigits) {
-    const fixed = FixedNumber.fromValue(amount || '0', decimals, `fixed256x${decimals}`).toString()
+    const fixed = FixedNumber.fromValue(amount ?? '0', decimals, `fixed256x${decimals}`).toString()
     const [left, right] = fixed.split('.')
     const fraction = right.substring(0, fractionDigits)
     return parseInt(fraction) === 0 ? left : `${left}.${fraction}`.replace(/0+$/, '')

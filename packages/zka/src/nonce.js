@@ -17,7 +17,7 @@ export function calibrate(clientTimestamp, serverTimestamp) {
 }
 
 export function getNonce() {
-  return Date.now() - (offset || 0)
+  return Date.now() - (offset ?? 0)
 }
 
 export function reset() {

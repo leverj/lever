@@ -1,7 +1,7 @@
 import {accounts, chainId} from '@leverj/lever.chain-deployment/hardhat.help'
 import {ContractTracker} from '@leverj/lever.chain-tracking'
 import {ERC20, expectEventsToMatch} from '@leverj/lever.chain-tracking/test'
-import {getCreationBlock, logger} from '@leverj/lever.common'
+import {logger} from '@leverj/lever.common'
 import {LevelStore} from '@leverj/lever.storage'
 import {ZeroAddress as ETH} from 'ethers'
 import {existsSync, mkdtempSync, rmSync} from 'node:fs'
@@ -22,9 +22,8 @@ describe('ContractTracker', () => {
     await store.clear()
     events = []
     contract = await ERC20()
-    const creationBlock = await getCreationBlock(contract.runner.provider, contract.target)
     const config = {logger, polling: {interval: 10, retries: 5}}
-    tracker = await ContractTracker.of(config, chainId, contract, creationBlock, store, _ => _)
+    tracker = await ContractTracker.of(config, chainId, contract, 0, store, _ => _)
   })
 
   afterEach(async () => await tracker.stop())

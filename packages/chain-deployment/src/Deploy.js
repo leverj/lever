@@ -17,7 +17,7 @@ const toNetworkCanon = (chain, network) => {
   const {id, name, nativeCurrency, rpcUrls, blockExplorers} = cloneDeep(network)
   if (!id || !name || !rpcUrls) return null
   const providerURL = rpcUrls.default.http[0]
-  const blockExplorer = blockExplorers?.default || {}
+  const blockExplorer = blockExplorers?.default ?? {}
   const contracts = {}
   const testnet = !!network.testnet || chain === 'hardhat' || chain === 'localhost'
   return {id: BigInt(id), chain, name, nativeCurrency, providerURL, blockExplorer, contracts, testnet}
@@ -48,14 +48,14 @@ export class Deploy {
   constructor(config, store) {
     this.config = config
     this.store = store
-    this.logger = config.logger || console
+    this.logger = config.logger ?? console
   }
 
   async to(chain, options = {}) {
     const network = networks[chain]
     if (!network) throw Error(`chain ${chain} is not supported`)
     else if (!this.store.has(chain)) {
-      const providerURL = process.env[`${chain.toUpperCase()}_PROVIDER_URL`] || network.providerURL
+      const providerURL = process.env[`${chain.toUpperCase()}_PROVIDER_URL`] ?? network.providerURL
       this.store.set(chain, Object.assign({}, network, {providerURL}))
     }
 
@@ -85,7 +85,7 @@ export class Deploy {
     if (!block) this.store.update(chain, {block: await provider.getBlockNumber()}) // establish start block
     for (let [name, {libraries, params}] of Object.entries(constructors)) {
       const getContractAddress = (name) => this.store.get(chain).contracts[name]?.address
-      const translateAddresses = (params = []) => params.map(_ => Array.isArray(_) ? translateAddresses(_) : getContractAddress(_) || _)
+      const translateAddresses = (params = []) => params.map(_ => Array.isArray(_) ? translateAddresses(_) : getContractAddress(_) ?? _)
       const translateLibraries = (names = []) => names.reduce((result, _) => Object.assign(result, ({[_]: getContractAddress(_)})), {})
 
       libraries = translateLibraries(libraries)
@@ -101,7 +101,7 @@ export class Deploy {
       if (options.verify) {
         const network = this.store.get(chain)
         const explorerUrl = blockscoutExplorerUrls[id]?.explorers[0].url
-        await verifyContract(this.logger, network, name, libraries || {}, explorerUrl)
+        await verifyContract(this.logger, network, name, libraries ?? {}, explorerUrl)
       }
     }
   }
