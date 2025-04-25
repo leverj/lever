@@ -28,7 +28,7 @@ describe('any ContractTracker / Store interaction', () => {
     await tracker.start()
     await setTimeout(10) // ... catchup
     expect(tracker.marker).toEqual(store.get(key).marker)
-    // expect(tracker.marker.blockWasProcessed).toBe(true) //fixme: should the blockWasProcessed be claimed during creation time?
+    expect(tracker.marker.blockWasProcessed).toBe(true)
 
     await contract.mint(account.address, 1000n)
     await contract.approve(contract.target, 5000n)
