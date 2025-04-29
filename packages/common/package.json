@@ -25,7 +25,7 @@
     "dependency:check": "npx depcheck"
   },
   "dependencies": {
-    "ethers": "^6.13.6",
+    "ethers": "^6.13.7",
     "immutable": "^5.1.1",
     "lodash-es": "^4.17.21",
     "uuid": "^11.1.0"
