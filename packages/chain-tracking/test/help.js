@@ -5,6 +5,7 @@ export const ERC20 = async (name = 'Crap', symbol = 'CRAP') => deployContract('E
 export const ERC721 = async (name = 'Crap', symbol = 'CRAP') => deployContract('ERC721Mock', [name, symbol])
 
 export function expectEventsToMatch(events, expected) {
+  expect(events.length).toEqual(expected.length)
   for (let [i, {address, name, args}] of events.entries()) {
     expect(address).toEqual(expected[i].address)
     expect(name).toEqual(expected[i].name)
