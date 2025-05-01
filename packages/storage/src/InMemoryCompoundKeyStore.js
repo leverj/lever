@@ -6,7 +6,7 @@ import {Store} from './Store.js'
 export class InMemoryCompoundKeyStore extends Store {
   constructor(prior = {}) {
     super()
-    this.map = fromJS(prior).asMutable()
+    this.map = Map(prior).asMutable()
   }
 
   /*** API ***/

@@ -78,6 +78,7 @@ describe('ContractTracker - using JsonFileStore', () => {
     await tracker.stop()
     await contract.mint(account.address, 1500n) // => Transfer(from, to, value)
     await contract.mint(account.address, 2000n) // => Transfer(from, to, value)
+    store  = new JsonFileStore(storageDir, 'trackers', true)
     tracker = await ContractTracker.of(config, chainId, contract, 0, store, _ => events.push(_))
     await tracker.start()
     await setTimeout(10)
