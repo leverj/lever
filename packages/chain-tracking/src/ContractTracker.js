@@ -81,7 +81,7 @@ export class ContractTracker {
   }
 
   async processLogs(fromBlock, toBlock) {
-    const logs = await this.getLogsFor(fromBlock, toBlock, this.topics)
+    const logs = await this.getLogsFor(fromBlock, toBlock)
     const {block, logIndex, blockWasProcessed} = this.marker
     const logsPerBlock = List(logs).
       groupBy(_ => _.blockNumber).
@@ -93,8 +93,21 @@ export class ContractTracker {
     if (this.marker.block < toBlock) await this.updateMarker({block: toBlock, blockWasProcessed: true})
   }
 
-  async getLogsFor(fromBlock, toBlock, topics) {
-    return this.getLogsForContract(fromBlock, toBlock, topics, this.address)
+  async getLogsFor(fromBlock, toBlock) {
+    try {
+      return await this.getLogsForContract(fromBlock, toBlock, this.topics, this.address)
+    } catch (e) {
+      if (fromBlock === toBlock) {
+        this.logger.info(`falling back on getting logs per each contract at block ${fromBlock}`)
+        return this.getLogsForContract(fromBlock, fromBlock, this.topics, this.address)
+      }
+      else {
+        this.logger.info(`splitting blocks to read logs from:${fromBlock} to:${toBlock}`, e?.error?.message)
+        const midway = fromBlock + Math.floor((toBlock - fromBlock) / 2)
+        await this.processLogs(fromBlock, midway)
+        await this.processLogs(midway + 1, toBlock)
+      }
+    }
   }
 
   async getLogsForContract(fromBlock, toBlock, topics, address) {

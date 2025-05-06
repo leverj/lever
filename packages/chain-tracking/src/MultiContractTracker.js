@@ -144,7 +144,7 @@ export class MultiContractTracker {
     try {
       return await this.provider.getLogs(filter).then(_ => _.filter(_ => !_.removed))
     } catch (e) {
-      if (fromBlock === toBlock) return this.getSingleBlockLogsFallback(fromBlock, toBlock)
+      if (fromBlock === toBlock) return this.getSingleBlockLogsFallback(fromBlock)
       else {
         this.logger.info(`splitting blocks to read logs from:${fromBlock} to:${toBlock}`, e?.error?.message)
         const midway = fromBlock + Math.floor((toBlock - fromBlock) / 2)
