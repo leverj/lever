@@ -17,7 +17,7 @@
     "@leverj/lever.storage": "4.6.11",
     "async-exit-hook": "^2.0.1",
     "ethers": "^6.13.7",
-    "immutable": "^5.1.1",
+    "immutable": "^5.1.2",
     "lodash-es": "^4.17.21"
   },
   "devDependencies": {
