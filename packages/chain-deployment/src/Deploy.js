@@ -93,7 +93,7 @@ export class Deploy {
       if (!getContractAddress(name) || options.reset) {
         this.logger.log(`deploying ${name} contract `.padEnd(120, '.'))
         const contract = await deployContract(name, params, {libraries, signer})
-        if (!contract?.address) return this.logger.error(`failed to deploy ${name} contract `.padEnd(120, '.'))
+        if (!contract?.target) return this.logger.error(`failed to deploy ${name} contract `.padEnd(120, '.'))
         const address = contract.target
         const blockCreated = await contract.deploymentTransaction().wait().then(_ => _.blockNumber)
         this.store.update(chain, {contracts: {[name]: {address, blockCreated}}})
