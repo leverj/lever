@@ -15,7 +15,10 @@ export class InMemoryCompoundKeyStore extends Store {
   update(key, value) { this.set(key, merge(this.get(key, {}), value)) }
   delete(key) { this.map.deleteIn(normalize(key)) }
   has(key) { return this.map.hasIn(normalize(key)) }
-  find(keyable) { return findStartsWithInMap(keyable, this.map) }
+  find(keyable) {
+    const found = findStartsWithInMap(keyable, this.map)
+    return Map.isMap(found) ? found.toJS() : found
+  }
   keys() { return flattenKeys(this.map) }
   values() { return flattenValues(this.map) }
   entries() { return flattenEntries(this.map) }
