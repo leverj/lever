@@ -6,7 +6,7 @@ import {Store} from './Store.js'
 export class InMemoryCompoundKeyStore extends Store {
   constructor(prior = {}) {
     super()
-    this.map = fromJS(prior).asMutable()
+    this.map = Map(prior).asMutable()
   }
 
   /*** API ***/
@@ -15,15 +15,7 @@ export class InMemoryCompoundKeyStore extends Store {
   update(key, value) { this.set(key, merge(this.get(key, {}), value)) }
   delete(key) { this.map.deleteIn(normalize(key)) }
   has(key) { return this.map.hasIn(normalize(key)) }
-  find(keyable) {
-    if (keyable.length === 1) {
-      const _key_ = first(keyable).toString()
-      const found = this.map.filter((value, key) => key.toString().startsWith(_key_)).valueSeq().toArray()
-      return found.reduce((results, _) => results.concat(Object.values(first(Object.values(_.toJS())))), [])
-    }
-    const found = findStartsWithInMap(keyable, this.map)
-    return Map.isMap(found) ? found.toJS() : found
-  }
+  find(keyable) { return findStartsWithInMap(keyable, this.map) }
   keys() { return flattenKeys(this.map) }
   values() { return flattenValues(this.map) }
   entries() { return flattenEntries(this.map) }
