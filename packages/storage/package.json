@@ -13,7 +13,6 @@
   "dependencies": {
     "@leverj/lever.common": "4.6.16",
     "immutable": "^5.1.2",
-    "level": "^10.0.0",
     "lodash-es": "^4.17.21",
     "p-wait-for": "^5.0.2",
     "watcher": "^2.3.1"
