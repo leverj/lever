@@ -1,6 +1,6 @@
 {
   "name": "@leverj/lever.config",
-  "version": "4.6.16",
+  "version": "4.6.17",
   "license": "MIT",
   "type": "module",
   "main": "src/main.js",
