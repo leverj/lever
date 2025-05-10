@@ -7,9 +7,6 @@ export class CachedStore extends Store {
     /* note: subclasses need to initialize the cache during construction */
   }
 
-  /*** subclasses might want to re-implement; like, convert to a string ***/
-  normalize(key) { return key }
-
     /*** API ***/
   get(key) { return this.cache.get(this.normalize(key)) }
   set(key, value) { this.cache.set(this.normalize(key), value); this.save(key, value) }

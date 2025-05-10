@@ -20,20 +20,22 @@ export class SQLiteStore extends Store {
     }
   }
 
+  normalize(key) { return (Array.isArray(key) ? key : [key]).join('::') }
+
   /*** API ***/
   get(key) {
-    const found = this.queries.get.get(normalize(key))
+    const found = this.queries.get.get(this.normalize(key))
     return found ? deserialize(found.value) : undefined
   }
-  set(key, value) { this.queries.set.run(normalize(key), serialize(value)) }
+  set(key, value) { this.queries.set.run(this.normalize(key), serialize(value)) }
   update(key, value) {
     const original = this.get(key) ?? {}
     const updated = serialize(merge(original, value))
     this.queries.update.run(updated, key)
   }
-  delete(key) { this.queries.delete.run(normalize(key)) }
+  delete(key) { this.queries.delete.run(this.normalize(key)) }
   has(key) { return !!this.get(key) }
-  find(keyable) { return this.queries.find.all(normalize(keyable)).map(_ => deserialize(_.value)) }
+  find(keyable) { return this.queries.find.all(this.normalize(keyable)).map(_ => deserialize(_.value)) }
   size() { return this.queries.size.get().size }
   keys() { return this.queries.keys.all().map(_ => _.key) }
   values() { return this.queries.values.all().map(_ => deserialize(_.value)) }
@@ -42,7 +44,5 @@ export class SQLiteStore extends Store {
   clear() { this.queries.clear.run() }
 }
 
-
-const normalize = (key) => (Array.isArray(key) ? key : [key]).join('::')
 const deserialize = JSON.parse, serialize = _ => JSON.stringify(_, null, 2)
 

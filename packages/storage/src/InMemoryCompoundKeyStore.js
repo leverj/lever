@@ -1,4 +1,4 @@
-import {fromJS, Map} from 'immutable'
+import {Map} from 'immutable'
 import {first, last, merge} from 'lodash-es'
 import {Store} from './Store.js'
 
@@ -9,12 +9,14 @@ export class InMemoryCompoundKeyStore extends Store {
     this.map = Map(prior).asMutable()
   }
 
+  normalize(key) { return Array.isArray(key) ? key : [key] }
+
   /*** API ***/
-  get(key) { return this.map.getIn(normalize(key)) }
-  set(key, value) { this.map.setIn(normalize(key), value) }
+  get(key) { return this.map.getIn(this.normalize(key)) }
+  set(key, value) { this.map.setIn(this.normalize(key), value) }
   update(key, value) { this.set(key, merge(this.get(key, {}), value)) }
-  delete(key) { this.map.deleteIn(normalize(key)) }
-  has(key) { return this.map.hasIn(normalize(key)) }
+  delete(key) { this.map.deleteIn(this.normalize(key)) }
+  has(key) { return this.map.hasIn(this.normalize(key)) }
   find(keyable) { return findStartsWithInMap(keyable, this.map) }
   keys() { return flattenKeys(this.map) }
   values() { return flattenValues(this.map) }
@@ -22,8 +24,6 @@ export class InMemoryCompoundKeyStore extends Store {
   toObject() { return this.map.toJS() }
   clear() { this.map.clear() }
 }
-
-const normalize = (key) => Array.isArray(key) ? key : [key]
 
 const findStartsWithInMap = (keyable, map) => !Array.isArray(keyable) ?
   map.filter((value, key) => key.toString().startsWith(keyable.toString())).valueSeq().flatten().toArray() :

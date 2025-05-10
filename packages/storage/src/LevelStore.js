@@ -10,15 +10,17 @@ export class LevelStore extends Store {
     this.db = new Level(`${path}/${type}`, {valueEncoding: 'json'})
   }
 
+  normalize(key) { return Array.isArray(key) ? key.join('::') : key }
+
   /*** API ***/
-  get(key) { return this.db.getSync(normalize(key)) }
-  async set(key, value) { return this.db.put(normalize(key), value) }
+  get(key) { return this.db.getSync(this.normalize(key)) }
+  async set(key, value) { return this.db.put(this.normalize(key), value) }
   async update(key, value) { return this.set(key, merge(this.get(key, value), value)) }
-  async delete(key) { return this.db.del(normalize(key)) }
+  async delete(key) { return this.db.del(this.normalize(key)) }
   has(key) { return !!this.get(key) }
   async find(keyable) {
     const results = []
-    const prefix = normalize(keyable)
+    const prefix = this.normalize(keyable)
     for await (const [key, value] of this.db.iterator({gte: prefix, lt: `${prefix}\xff`})) results.push(value)
     return results
   }
@@ -31,5 +33,3 @@ export class LevelStore extends Store {
   async open() { await this.db.open().then(_ => waitFor(() => this.db.status === 'open')) }
   async close() { return this.db.close() }
 }
-
-const normalize = (key) => Array.isArray(key) ? key.join('::') : key

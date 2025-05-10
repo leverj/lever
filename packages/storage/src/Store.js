@@ -14,6 +14,9 @@ export class Store {
   clear() { this.keys().forEach(_ => this.delete(_)) }
   open() {/* do nothing */}
   close() {/* do nothing */}
+
+  /*** subclasses might want to re-implement; like, convert to a string ***/
+  normalize(key) { return key }
 }
 
 const MustImplement = () => Error('subclasses must implement')
