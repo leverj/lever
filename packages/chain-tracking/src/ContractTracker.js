@@ -1,4 +1,3 @@
-import {getCreationBlock} from '@leverj/lever.common'
 import exitHook from 'async-exit-hook'
 import {List} from 'immutable'
 import {merge} from 'lodash-es'
@@ -8,11 +7,9 @@ import {merge} from 'lodash-es'
  */
 export class ContractTracker {
   static async of(config, chainId, contract, creationBlock, store, onEvent = console.log) {
-    const throttle = 100 //fixme: temporary; creationBlock must be supplied
-    const block = creationBlock ?? await getCreationBlock(contract.runner.provider, contract.target, throttle)
     const key = [chainId, contract.target]
     if (!store.has(key)) await store.set(key, {
-      marker: {block, logIndex: -1, blockWasProcessed: false}
+      marker: {block: creationBlock, logIndex: -1, blockWasProcessed: false}
     })
     return new this(config, chainId, contract, store, onEvent, store.get(key))
   }
