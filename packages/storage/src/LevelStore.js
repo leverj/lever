@@ -11,14 +11,14 @@ export class LevelStore extends Store {
   }
 
   /*** API ***/
-  get(key) { return this.db.getSync(toKey(key)) }
-  async set(key, value) { return this.db.put(toKey(key), value) }
+  get(key) { return this.db.getSync(normalize(key)) }
+  async set(key, value) { return this.db.put(normalize(key), value) }
   async update(key, value) { return this.set(key, merge(this.get(key, value), value)) }
-  async delete(key) { return this.db.del(toKey(key)) }
-  has(key) { return !!this.get(toKey(key)) }
+  async delete(key) { return this.db.del(normalize(key)) }
+  has(key) { return !!this.get(key) }
   async find(keyable) {
     const results = []
-    const prefix = toKey(keyable)
+    const prefix = normalize(keyable)
     for await (const [key, value] of this.db.iterator({gte: prefix, lt: `${prefix}\xff`})) results.push(value)
     return results
   }
@@ -33,4 +33,4 @@ export class LevelStore extends Store {
 }
 
 const keySeparator = '::'
-const toKey = _ => Array.isArray(_) ? _.join(keySeparator) : _
+const normalize = (key) => Array.isArray(key) ? key.join(keySeparator) : key
