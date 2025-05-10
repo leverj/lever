@@ -6,19 +6,18 @@ import {CachedStore} from './CachedStore.js'
 
 /** file-based key/value store with write-through cache **/
 export class FileStore extends CachedStore {
-  constructor(path, type, extension, deserializer, serializer, useCompoundKey) {
+  constructor(path, type, extension, deserialize, serialize, useCompoundKey) {
     ensureExistsSync(path)
     const file = `${path}/${type}${extension}`
-    const prior = existsSync(file) ? deserializer(readFileSync(file, 'utf8')) : {}
+    const prior = existsSync(file) ? deserialize(readFileSync(file, 'utf8')) : {}
     super(new (useCompoundKey ? InMemoryCompoundKeyStore : InMemoryStore)(prior))
     this.file = file
-    this.deserializer = deserializer
-    this.serializer = serializer
+    this.deserialize = deserialize
+    this.serialize = serialize
   }
 
-  exists() { return existsSync(this.file) }
-  save() { writeFileSync(this.file, this.serializer(this.toObject())) }
   normalize(key) { return Array.isArray(key) ? key.map(_ => _.toString()) : key.toString() }
+  save() { writeFileSync(this.file, this.serialize(this.toObject())) }
 
   /*** API ***/
   delete(key) { super.delete(key); this.save() }
