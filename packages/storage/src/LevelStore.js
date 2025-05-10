@@ -32,5 +32,4 @@ export class LevelStore extends Store {
   async close() { return this.db.close() }
 }
 
-const keySeparator = '::'
-const normalize = (key) => Array.isArray(key) ? key.join(keySeparator) : key
+const normalize = (key) => Array.isArray(key) ? key.join('::') : key

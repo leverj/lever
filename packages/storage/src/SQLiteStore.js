@@ -42,7 +42,7 @@ export class SQLiteStore extends Store {
   clear() { this.queries.clear.run() }
 }
 
-const keySeparator = '::'
-const normalize = (key) => (Array.isArray(key) ? key : [key]).join(keySeparator)
+
+const normalize = (key) => (Array.isArray(key) ? key : [key]).join('::')
 const deserialize = JSON.parse, serialize = _ => JSON.stringify(_, null, 2)
 

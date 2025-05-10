@@ -7,8 +7,6 @@ export class CachedStore extends Store {
     /* note: subclasses need to initialize the cache during construction */
   }
 
-  // save(key, value) {/* post-modify hook method */}
-
   /*** subclasses might want to re-implement; like, convert to a string ***/
   normalize(key) { return key }
 
