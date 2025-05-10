@@ -783,7 +783,7 @@ __metadata:
     hardhat-deploy-ethers: "npm:^0.4.2"
     immutable: "npm:^5.1.2"
     lodash-es: "npm:^4.17.21"
-    viem: "npm:^2.29.1"
+    viem: "npm:^2.29.2"
     wait-on: "npm:^8.0.3"
   languageName: unknown
   linkType: soft
@@ -8910,9 +8910,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"viem@npm:^2.29.1":
-  version: 2.29.1
-  resolution: "viem@npm:2.29.1"
+"viem@npm:^2.29.2":
+  version: 2.29.2
+  resolution: "viem@npm:2.29.2"
   dependencies:
     "@noble/curves": "npm:1.8.2"
     "@noble/hashes": "npm:1.7.2"
@@ -8927,7 +8927,7 @@ __metadata:
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: 10c0/f2f0b46e9df1d6b48a19077101be9133e340664c5639585244d2c637bc717d83a9ae030476fdf27b57e84a42b33d5244f0b4eb144639ee44f8c54ace1d0c2612
+  checksum: 10c0/ec29c7a0f17426fa9197ad2a8c15998496d658196386903b909745eca36864f6b42b236fbc6a120ced7e91127a664e75cc50839147c781924d63058a4fa58464
   languageName: node
   linkType: hard
 
