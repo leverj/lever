@@ -28,7 +28,11 @@ export class SQLiteStore extends Store {
     return found ? deserialize(found.value) : undefined
   }
   set(key, value) { this.queries.set.run(this.normalize(key), serialize(value)) }
-  update(key, value) { this.queries.update.run(serialize(merge(this.get(key) ?? {}, value)), key) }
+  update(key, value) {
+    const original = this.get(key) ?? {}
+    const updated = merge(original, value)
+    this.queries.update.run(serialize(updated), this.normalize(key))
+  }
   delete(key) { this.queries.delete.run(this.normalize(key)) }
   has(key) { return !!this.get(key) }
   find(keyable) { return this.queries.find.all(this.normalize(keyable)).map(_ => deserialize(_.value)) }

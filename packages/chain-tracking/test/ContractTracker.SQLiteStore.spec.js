@@ -16,7 +16,6 @@ describe('ContractTracker - with SQLiteStore', () => {
   let contract, tracker, events, db, store
 
   before(() => {
-    // db = new DatabaseSync(':memory:')
     db = new DatabaseSync(`${storageDir}/db`)
     store = new SQLiteStore(db, 'trackers')
   })
