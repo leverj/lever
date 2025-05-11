@@ -13,10 +13,10 @@ describe('MultiContractTracker', () => {
   beforeEach(async () => {
     events = []
     const config = {logger, polling: {interval: 10, retries: 5}}
-    tracker = await MultiContractTracker.of(config, chainId, provider, new InMemoryStore(), _ => events.push(_))
+    tracker = MultiContractTracker.of(config, chainId, provider, new InMemoryStore(), _ => events.push(_))
   })
 
-  afterEach(async () => await tracker.stop())
+  afterEach(() => tracker.stop())
 
   describe('single kind / single contract', () => {
     it('handles adding contract and emitting events after tracker starts (only on-going; no catch-up)', async () => {

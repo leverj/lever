@@ -10,8 +10,8 @@ import {ContractTracker} from './ContractTracker.js'
  * a MultiContractTracker connects to multiple contracts deployed in an Ethereum-like chain and tracks their respective events
  */
 export class MultiContractTracker {
-  static async of(config, chainId, provider, store, onEvent = console.log) {
-    if (!store.has(chainId)) await store.update(chainId, {
+  static of(config, chainId, provider, store, onEvent = console.log) {
+    if (!store.has(chainId)) store.update(chainId, {
       marker: {block: 0, logIndex: -1, blockWasProcessed: false},
       abis: [],
       contracts: [],
@@ -44,8 +44,8 @@ export class MultiContractTracker {
   get lastBlock() { return this.marker.block }
   get polling() { return this.config.polling }
 
-  async update(state) { await this.store.update(this.chainId, state) }
-  async updateMarker(state) { await this.update({marker: merge(this.marker, state)}) }
+  update(state) { this.store.update(this.chainId, state) }
+  updateMarker(state) { this.update({marker: merge(this.marker, state)}) }
 
   _addContract_(contract, kind) {
     const {runner: {provider}, target: address, interface: iface} = contract
@@ -73,7 +73,7 @@ export class MultiContractTracker {
 
   async onboard(contract, creationBlock) {
     const {chainId, polling, onEvent, logger, lastBlock} = this
-    const tracker = await ContractTracker.of({logger, polling}, chainId, contract, creationBlock, new InMemoryCompoundKeyStore(), onEvent)
+    const tracker = ContractTracker.of({logger, polling}, chainId, contract, creationBlock, new InMemoryCompoundKeyStore(), onEvent)
     await tracker.processLogs(creationBlock, lastBlock)
     this.update({
       contracts: Map(this.contracts).toArray(),
@@ -91,22 +91,22 @@ export class MultiContractTracker {
       await this.onboard(contract, await getCreationBlock(this.provider, contract.target, 100))
     }
     this.isRunning = true
-    await this.store.open()
+    this.store.open()
     await this.pollForEvents()
   }
 
-  async stop() {
+  stop() {
     if (!this.isRunning) return
 
     this.logger.log(`stopping tracker [${this.chainId}]`)
     this.isRunning = false
     if (this.pollingTimer) clearTimeout(this.pollingTimer)
-    await this.store.close()
+    this.store.close()
   }
 
-  async fail(e) {
+  fail(e) {
     this.logger.error(e, e.cause ?? '')
-    await this.stop()
+    this.stop()
   }
 
   async pollForEvents(retries = 1) {

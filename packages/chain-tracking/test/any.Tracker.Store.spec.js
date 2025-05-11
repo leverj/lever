@@ -12,13 +12,13 @@ describe('any ContractTracker / Store interaction', () => {
   const config = {logger, polling: {interval: 10, retries: 5}}
   let tracker
 
-  afterEach(async () => await tracker.stop())
+  afterEach(() => tracker.stop())
 
   it('maintain state for ContractTracker', async () => {
     const contract = await ERC20()
     const creationBlock = 0
     const store = new InMemoryCompoundKeyStore()
-    tracker = await ContractTracker.of(config, chainId, contract, 0, store, _ => _)
+    tracker = ContractTracker.of(config, chainId, contract, 0, store, _ => _)
     const key = tracker.key
     const before = cloneDeep(store.get(key))
     expect(tracker.marker).toEqual(before.marker)
@@ -45,7 +45,7 @@ describe('any ContractTracker / Store interaction', () => {
     const contract3 = await ERC721('Three', '333')
 
     const store = new InMemoryStore()
-    tracker = await MultiContractTracker.of(config, chainId, provider, store, _ => _)
+    tracker = MultiContractTracker.of(config, chainId, provider, store, _ => _)
     const before = cloneDeep(store.get(chainId))
     expect(before.abis).toHaveLength(0)
     expect(before.contracts).toHaveLength(0)

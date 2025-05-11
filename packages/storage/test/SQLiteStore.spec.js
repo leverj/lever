@@ -13,7 +13,10 @@ describe('SQLiteStore', () => {
 
   ['in-memory', 'file'].forEach(type => {
     describe(`type = ${type}`, () => {
-      before(() => db = new DatabaseSync(type === 'in-memory' ? ':memory:' : `${(mkdtempSync(`${tmpdir()}/storage`))}/db`))
+      before(() => {
+        const storageDir = mkdtempSync(`${tmpdir()}/storage`)
+        db = new DatabaseSync(type === 'in-memory' ? ':memory:' : `${storageDir}/db`)
+      })
       beforeEach(() => store = new SQLiteStore(db, 'transfers'))
 
       it('can set & get & find & delete a simple key', () => {

@@ -6,9 +6,9 @@ import {merge} from 'lodash-es'
  * a ContractTracker connects to a contract deployed in an Ethereum-like chain and tracks its events
  */
 export class ContractTracker {
-  static async of(config, chainId, contract, creationBlock, store, onEvent = console.log) {
+  static of(config, chainId, contract, creationBlock, store, onEvent = console.log) {
     const key = [chainId, contract.target]
-    if (!store.has(key)) await store.set(key, {
+    if (!store.has(key)) store.set(key, {
       marker: {block: creationBlock, logIndex: -1, blockWasProcessed: false}
     })
     return new this(config, chainId, contract, store, onEvent, store.get(key))
@@ -33,30 +33,30 @@ export class ContractTracker {
   get interface() { return this.contract.interface }
   get polling() { return this.config.polling }
 
-  async update(state) { await this.store.update(this.key, state) }
-  async updateMarker(state) { await this.update({marker: merge(this.marker, state)}) }
+  update(state) { this.store.update(this.key, state) }
+  updateMarker(state) { this.update({marker: merge(this.marker, state)}) }
 
   async start() {
     if (this.isRunning) return
 
     this.logger.log(`starting tracker [${this.key}]`)
     this.isRunning = true
-    await this.store.open()
+    this.store.open()
     await this.pollForEvents()
   }
 
-  async stop() {
+  stop() {
     if (!this.isRunning) return
 
     this.logger.log(`stopping tracker [${this.key}]`)
     this.isRunning = false
     if (this.pollingTimer) clearTimeout(this.pollingTimer)
-    await this.store.close()
+    this.store.close()
   }
 
-  async fail(e) {
+  fail(e) {
     this.logger.error(e, e.cause ?? '')
-    await this.stop()
+   this.stop()
   }
 
   async pollForEvents(retries = 1) {

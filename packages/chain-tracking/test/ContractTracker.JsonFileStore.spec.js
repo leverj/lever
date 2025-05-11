@@ -4,31 +4,26 @@ import {ERC20, expectEventsToMatch} from '@leverj/lever.chain-tracking/test'
 import {logger} from '@leverj/lever.common'
 import {JsonFileStore} from '@leverj/lever.storage'
 import {ZeroAddress as ETH} from 'ethers'
-import {existsSync, mkdtempSync, rmSync} from 'node:fs'
+import {mkdtempSync} from 'node:fs'
 import {tmpdir} from 'node:os'
 import {setTimeout} from 'node:timers/promises'
 
-describe('ContractTracker - using JsonFileStore', () => {
+describe('ContractTracker - with JsonFileStore', () => {
   const [deployer, account] = accounts
   const storageDir = mkdtempSync(`${tmpdir()}/storage`)
   const config = {logger, polling: {interval: 10, retries: 5}}
   let contract, tracker, events, store
 
-  before(async () => {
-    if (existsSync(storageDir)) rmSync(storageDir, {recursive: true, force: true})
-    store = new JsonFileStore(storageDir, 'trackers', true)
-  })
+  before(() => store = new JsonFileStore(storageDir, 'trackers', true))
 
   beforeEach(async () => {
-    await store.clear()
+    store.clear()
     events = []
     contract = await ERC20()
-    tracker = await ContractTracker.of(config, chainId, contract, 0, store, _ => events.push(_))
+    tracker = ContractTracker.of(config, chainId, contract, 0, store, _ => events.push(_))
   })
 
-  afterEach(async () => await tracker.stop())
-
-  after(async () => await store.close())
+  afterEach(() => tracker.stop())
 
   it('can track events when polling', async () => {
     const address = contract.target
@@ -75,11 +70,11 @@ describe('ContractTracker - using JsonFileStore', () => {
       {address, name: 'Approval', args: [deployer.address, contract.target, 5000n]},
     ])
 
-    await tracker.stop()
+    tracker.stop()
     await contract.mint(account.address, 1500n) // => Transfer(from, to, value)
     await contract.mint(account.address, 2000n) // => Transfer(from, to, value)
     store  = new JsonFileStore(storageDir, 'trackers', true)
-    tracker = await ContractTracker.of(config, chainId, contract, 0, store, _ => events.push(_))
+    tracker = ContractTracker.of(config, chainId, contract, 0, store, _ => events.push(_))
     await tracker.start()
     await setTimeout(10)
     expectEventsToMatch(events, [
