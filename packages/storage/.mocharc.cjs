@@ -1,3 +1,3 @@
 module.exports = {
-  spec: ['**/*.spec.js'],
+  'node-option': ['no-warnings=ExperimentalWarning'],
 }

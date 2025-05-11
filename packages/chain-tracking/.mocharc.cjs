@@ -1,4 +1,4 @@
 module.exports = {
   file: 'test/setup.js',
-  spec: ['**/*.spec.js'],
+  'node-option': ['no-warnings=ExperimentalWarning'],
 }
