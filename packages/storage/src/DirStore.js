@@ -20,7 +20,7 @@ export class DirStore extends CachedStore {
     })
   }
 
-  normalize(key) { return Array.isArray(key) ? key.join('-') : key.toString() }
+  normalize(key) { return (Array.isArray(key) ? key : [key]).map(_ => _.toString()).join('-') }
   fileOf(key) { return `${this.path}/${this.normalize(key)}${this.extension}` }
   save(key, value) { writeFileSync(this.fileOf(key), this.serialize(value)) }
   reload(file) {

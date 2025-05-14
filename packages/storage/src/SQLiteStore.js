@@ -20,7 +20,7 @@ export class SQLiteStore extends Store {
     }
   }
 
-  normalize(key) { return (Array.isArray(key) ? key : [key]).join('::') }
+  normalize(key) { return (Array.isArray(key) ? key : [key]).map(_ => _.toString()).join('::') }
 
   /*** API ***/
   get(key) {
