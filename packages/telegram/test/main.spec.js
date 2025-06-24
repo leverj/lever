@@ -29,6 +29,20 @@ describe('Telegram', () => {
     await telegram.sendText('Test message with env')
     expect(stubCount).toBe(1)
   })
+  it('should throw an error when trying to send message without chat id or token', async () => {
+    const telegram = new Telegram()
+    telegram.chatId = undefined
+    await expect(telegram.sendText('Test message without chat id or token')).rejects.toThrow('TELEGRAM MESSAGE:Test message without chat id or token')
+  })
+  it('should log error with message and stack trace', async () => {
+    const telegram = new Telegram('123456789', '123456789:ABCDEFghijklmnopQRStuvWXYZ', 'Test App')
+    try {
+      await telegram.sendText('some message')
+      throw new Error('expected an error')
+    } catch (e) {
+      expect(e.message).toEqual('Request failed with status code 401')
+    }
+  })
 })
 
 describe('Telegram singleton', () => {
