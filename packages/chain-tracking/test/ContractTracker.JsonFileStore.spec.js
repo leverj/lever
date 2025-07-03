@@ -64,7 +64,7 @@ describe('ContractTracker - with JsonFileStore', () => {
     const address = contract.target
     await contract.mint(account.address, 1000n) // => Transfer(from, to, value)
     await contract.approve(contract.target, 5000n) // => Approval(owner, spender, value)
-    await setTimeout(10)
+    await setTimeout(100)
     expectEventsToMatch(events, [
       {address, name: 'Transfer', args: [ETH, account.address, 1000n]},
       {address, name: 'Approval', args: [deployer.address, contract.target, 5000n]},

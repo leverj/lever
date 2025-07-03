@@ -1,7 +1,5 @@
 {
   "ignore-patterns": [
     "test"
-  ],
-  "ignores": [
   ]
 }
