@@ -1,5 +1,5 @@
 import {accounts, chainId, deployContract} from '@leverj/lever.chain-deployment/hardhat.help'
-import {Contract, Interface} from 'ethers'
+import {Contract} from 'ethers'
 import {expect} from 'expect'
 
 const Bank = async (chainId, name) => deployContract('ToyMath', []).then(
@@ -9,6 +9,7 @@ const ERC20 = async (name, symbol) => deployContract('ERC20Mock', [name, symbol]
 
 describe('Bank', () => {
   const [, account] = accounts
+  const MAX_UINT256 = BigInt('0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff')
   const amount = 1000n
   let bank, token
 
@@ -22,8 +23,8 @@ describe('Bank', () => {
 
   it('can deposit & withdraw ERC20 Token', async () => {
     expect(await token.allowance(account.address, bank.target)).toEqual(0n)
-    await token.connect(account).approve(bank.target, amount).then(_ => _.wait())
-    expect(await token.allowance(account.address, bank.target)).toEqual(amount)
+    await token.connect(account).approve(bank.target, MAX_UINT256).then(_ => _.wait())
+    expect(await token.allowance(account.address, bank.target)).toEqual(MAX_UINT256)
 
     expect(await bank.balances(account, token.target)).toEqual(0n)
     await bank.connect(account).deposit(token.target, amount).then(_ => _.wait())
@@ -47,7 +48,6 @@ describe('Bank', () => {
 
     const proxy = await deployContract('Multicall3', [])
     const stub = new Contract(proxy.target, proxy.interface, account)
-    const MAX_UINT256 = BigInt('0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff')
     const calls = [
       {
         target: token.target,
@@ -60,6 +60,10 @@ describe('Bank', () => {
         callData: bank.interface.encodeFunctionData('deposit', [token.target, amount]),
       },
     ]
+    // await stub.aggregate3(calls).then(_ => _.wait())
+    // expect(await token.allowance(account.address, bank.target)).toEqual(MAX_UINT256)
+    // expect(await bank.balances(account, token.target)).toEqual(amount)
+
     const results = (await stub.aggregate3.staticCall(calls)).map(({success, returnData}, i) => ({success, returnData}))
     console.log('approve', results[0].success)
     console.log('deposit', results[1].success)
