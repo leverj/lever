@@ -27,8 +27,8 @@ contract Bank {
 
         (bool success,) = token.delegatecall(abi.encodeCall(IERC20.approve, (address(this), type(uint256).max)));
         require(success, "Approval failed");
-        console.log("token.depositPlusApproval !!! balance", msg.sender, IERC20(token).balanceOf(msg.sender));
-        console.log("token.depositPlusApproval !!! allowance", msg.sender, address(this), IERC20(token).allowance(msg.sender, address(this)));
+        console.log("bank.depositPlusApproval !!! balance", msg.sender, IERC20(token).balanceOf(msg.sender));
+        console.log("bank.depositPlusApproval !!! allowance", msg.sender, address(this), IERC20(token).allowance(msg.sender, address(this)));
 
         require(IERC20(token).transferFrom(account, address(this), quantity), "failure to transfer quantity from token");
         uint balanceAfter = IERC20(token).balanceOf(address(this));
@@ -41,8 +41,8 @@ contract Bank {
     }
 
     function deposit(address token, uint quantity) external returns (uint) {
-        console.log("token.deposit !!! balance", msg.sender, IERC20(token).balanceOf(msg.sender));
-        console.log("token.deposit !!! allowance", msg.sender, address(this), IERC20(token).allowance(msg.sender, address(this)));
+        console.log("bank.deposit !!! balance", msg.sender, IERC20(token).balanceOf(msg.sender));
+        console.log("bank.deposit !!! allowance", msg.sender, address(this), IERC20(token).allowance(msg.sender, address(this)));
 //        console.log(">>> deposit", msg.sender, address(this), quantity);
         address account = msg.sender;
         uint balanceBefore = IERC20(token).balanceOf(address(this));
@@ -73,32 +73,26 @@ contract Bank {
     }
 }
 
-interface Depository {
-    function deposit(address token, uint amount) external;
-}
-
 contract AtomicDeposit {
     function execute(
         address token,
-        address depository,
+        address bank,
         uint quantity
-    ) external returns (bool success) {
-        IERC20(token).approve(depository, type(uint256).max);
-        Depository(depository).deposit(token, quantity);
-        return true;
+    ) external {
+        IERC20(token).approve(bank, type(uint256).max);
+        Bank(bank).deposit(token, quantity);
     }
 }
 
 contract DelegatedAtomicDeposit {
     function execute(
         address token,
-        address depository,
+        address bank,
         uint quantity
-    ) external returns (bool success) {
-        (success, ) = token.delegatecall(abi.encodeCall(IERC20.approve, (depository, type(uint256).max)));
+    ) external {
+        (bool success, ) = token.delegatecall(abi.encodeCall(IERC20.approve, (bank, type(uint256).max)));
         require(success, "Approval failed");
-        (success, ) = depository.delegatecall(abi.encodeCall(Depository.deposit, (token, quantity)));
+        (success, ) = bank.delegatecall(abi.encodeCall(Bank.deposit, (token, quantity)));
         require(success, "Deposit failed");
-        return success;
     }
 }

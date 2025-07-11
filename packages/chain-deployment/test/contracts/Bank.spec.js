@@ -10,7 +10,6 @@ const ERC20 = async (name, symbol) => deployContract('ERC20Mock', [name, symbol]
 describe('Bank', () => {
   const [, account] = accounts
   const amount = 1000n
-  const MAX_UINT256 = BigInt('0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff')
   let bank, token
 
   beforeEach(async () => {
@@ -48,6 +47,7 @@ describe('Bank', () => {
 
     const proxy = await deployContract('Multicall3', [])
     const stub = new Contract(proxy.target, proxy.interface, account)
+    const MAX_UINT256 = BigInt('0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff')
     const calls = [
       {
         target: token.target,
@@ -60,10 +60,11 @@ describe('Bank', () => {
         callData: bank.interface.encodeFunctionData('deposit', [token.target, amount]),
       },
     ]
-    const results = (await stub.aggregate3.staticCall(calls)).map(({success, returnData}, i) => ({[i]: success, returnData}))
-    // console.log('>'.repeat(50), results)
-    console.log('1'.repeat(5), token.interface.decodeFunctionResult('approve', results[0].returnData))
-    console.log('2'.repeat(50), bank.interface.decodeFunctionResult('deposit', results[1].returnData))
+    const results = (await stub.aggregate3.staticCall(calls)).map(({success, returnData}, i) => ({success, returnData}))
+    console.log('approve', results[0].success)
+    console.log('deposit', results[1].success)
+    // console.log('!'.repeat(5), results)
+    // console.log('1'.repeat(5), token.interface.decodeFunctionResult('approve', results[0].returnData))
   })
 
   it('can deposit via AtomicDeposit', async () => {
@@ -84,8 +85,5 @@ describe('Bank', () => {
     stub.connect(account)
     const results = (await stub.execute.staticCall(token.target, bank.target, amount))
     console.log('>'.repeat(50), results)
-
-    // const receipt = await stub.aggregate3(calls).then(_ => _.wait())
-    // console.log(receipt.events)
   })
 })
