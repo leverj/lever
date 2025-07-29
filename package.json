@@ -20,8 +20,8 @@
   },
   "devDependencies": {
     "depcheck": "^1.4.7",
-    "expect": "^30.0.4",
-    "lerna": "^8.2.3",
+    "expect": "^30.0.5",
+    "lerna": "^8.2.4",
     "mocha": "^11.7.1",
     "sinon": "^21.0.0",
     "yargs": "^18.0.0"
