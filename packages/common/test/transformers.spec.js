@@ -2,8 +2,7 @@ import {expect} from 'expect'
 import randomhex from 'randomhex'
 import {Compose, Dictionary, Enum, Enumerate, Functional, Keys, Type} from '@leverj/lever.common'
 
-//fixme: some tests fail; what introduced the change?
-describe.skip('Transformer', () => {
+describe('Transformer', () => {
   describe('Dictionary', () => {
     const registry = {
       空: { address: 'here', tokenSymbol: 'WHAT' },
@@ -127,7 +126,8 @@ describe.skip('Transformer', () => {
     })
   })
 
-  describe('Keys', () => {
+  //fixme: some tests fail; what introduced the change?
+  describe.skip('Keys', () => {
     const transformer = Keys(Dictionary(
       ['array', 'a'],
       ['number', 'n'],
@@ -187,7 +187,8 @@ describe.skip('Transformer', () => {
     })
   })
 
-  describe('Type & Values', () => {
+  //fixme: some tests fail; what introduced the change?
+  describe.skip('Type & Values', () => {
     it('can map (but not map-back)', () => {
       const NumberType = Enum.of({unknown: 0, negative: 1, positive: 2})
       const TermType = Enum.of({unknown: 0, verb: 1, noun: 2})
