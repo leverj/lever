@@ -26,10 +26,10 @@ export class ExportsGenerator {
     this.logger.log(`${'-'.repeat(30)} generating contracts abi exports `.padEnd(120, '-'))
     const targetDir = establishCleanDir(`${this.projectDir}/src/contracts/abi`)
     execSync(`npx hardhat compile --quiet --config ${this.projectDir}/hardhat.config.cjs`)
-    const dirs = glob.sync(`${this.projectDir}/artifacts/contracts/**/*.sol`)
+    const files = glob.sync(`${this.projectDir}/artifacts/contracts/**/*.sol/*.json`)
     for (let name of this.contracts) {
-      const path = dirs.find(_ => _.endsWith(`/${name}.sol`))
-      const {default: {contractName, abi}} = await import(`${path}/${name}.json`, {with: {type: 'json'}})
+      const path = files.find(_ => _.endsWith(`/${name}.json`))
+      const {default: {contractName, abi}} = await import(path, {with: {type: 'json'}})
       writeFileSync(`${targetDir}/${name}.json`, JSON.stringify({contractName, abi}, null, 2))
       this.logger.log(`extracted abi for: ${contractName} `.padEnd(120, '.'))
     }
