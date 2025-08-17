@@ -6,12 +6,13 @@ export class ContractInterfacer {
     this.errorDecoder = errorDecoder
   }
   get interface() { return this.contract.interface }
-  get provider() { return this.contract.runner.provider }
+  get runner() { return this.contract.runner }
+  get provider() { return this.runner.provider }
   get target() { return this.contract.target }
   get address() { return this.target }
 
   connect(signer) {
-    this.contract = this.contract.connect(signer)
+    this.contract = this.contract.connect(signer.connect(this.contract.runner.provider))
     return this
   }
 
