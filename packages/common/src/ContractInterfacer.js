@@ -1,5 +1,7 @@
 import {stringify} from 'yaml'
 
+const defaultOnReceipt = ({error}) => { if (error) console.error(error)}
+
 export class ContractInterfacer {
   constructor(contract, errorDecoder) {
     this.contract = contract
@@ -16,7 +18,11 @@ export class ContractInterfacer {
     return this
   }
 
-  async transact(f) {
+  async transact(f, onReceipt = defaultOnReceipt) {
+    return this._transact_(f).then(_ => onReceipt(_))
+  }
+
+  async _transact_(f) {
     try {
       const receipt = await f().then(_ => _.wait())
       return receipt.status === 1 ?
