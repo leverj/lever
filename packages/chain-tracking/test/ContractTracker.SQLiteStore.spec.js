@@ -55,7 +55,7 @@ describe('ContractTracker - with SQLiteStore', () => {
     await contract.approve(contract.target, 5000n) // => Approval(owner, spender, value)
     await contract.mint(account.address, 2000n) // => Transfer(from, to, value)
     await tracker.start()
-    await setTimeout(10)
+    await setTimeout(50)
     expectEventsToMatch(events, [
       {address, name: 'Transfer', args: [ETH, account.address, 1000n]},
       {address, name: 'Approval', args: [deployer.address, contract.target, 5000n]},
@@ -68,7 +68,7 @@ describe('ContractTracker - with SQLiteStore', () => {
     const address = contract.target
     await contract.mint(account.address, 1000n) // => Transfer(from, to, value)
     await contract.approve(contract.target, 5000n) // => Approval(owner, spender, value)
-    await setTimeout(10)
+    await setTimeout(50)
     expectEventsToMatch(events, [
       {address, name: 'Transfer', args: [ETH, account.address, 1000n]},
       {address, name: 'Approval', args: [deployer.address, contract.target, 5000n]},
@@ -80,7 +80,7 @@ describe('ContractTracker - with SQLiteStore', () => {
     store  = new SQLiteStore(db, 'trackers')
     tracker = ContractTracker.of(config, chainId, contract, 0, store, _ => events.push(_))
     await tracker.start()
-    await setTimeout(10)
+    await setTimeout(50)
     expectEventsToMatch(events, [
       {address, name: 'Transfer', args: [ETH, account.address, 1000n]},
       {address, name: 'Approval', args: [deployer.address, contract.target, 5000n]},

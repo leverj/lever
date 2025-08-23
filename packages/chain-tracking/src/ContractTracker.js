@@ -93,11 +93,11 @@ export class ContractTracker {
 
   async getLogsFor(fromBlock, toBlock) {
     try {
-      return await this.getLogsForContract(fromBlock, toBlock, this.topics, this.address)
+      return await this.getLogsForContract(fromBlock, toBlock)
     } catch (e) {
       if (fromBlock === toBlock) {
         this.logger.info(`falling back on getting logs per each contract at block ${fromBlock}`)
-        return this.getLogsForContract(fromBlock, fromBlock, this.topics, this.address)
+        return this.getLogsForContract(fromBlock, fromBlock)
       }
       else {
         this.logger.info(`splitting blocks to read logs from:${fromBlock} to:${toBlock}`, e?.error?.message)
@@ -108,8 +108,10 @@ export class ContractTracker {
     }
   }
 
-  async getLogsForContract(fromBlock, toBlock, topics, address) {
-    return this.provider.getLogs({fromBlock, toBlock, address, topics}).then(_ => _.filter(_ => !_.removed))
+  async getLogsForContract(fromBlock, toBlock) {
+    return this.provider.getLogs({
+      fromBlock, toBlock, address: this.address, topics: this.topics
+    }).then(_ => _.filter(_ => !_.removed))
   }
 
   async onNewBlock(block, logs) {

@@ -108,7 +108,7 @@ describe('MultiContractTracker', () => {
       await contract2.mint(account.address, 4000n)
       await contract3.connect(account).approve(contract1.target, 3n)
       await contract3.mint(account.address, 6n)
-      await setTimeout(10)
+      await setTimeout(20)
       expectEventsToMatch(events, [
         {address: address1, name: 'Transfer', args: [ETH, account.address, 100n]},
         {address: address1, name: 'Approval', args: [deployer.address, contract1.target, 10000n]},

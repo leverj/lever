@@ -10,7 +10,7 @@ import {ContractTracker} from './ContractTracker.js'
  * a MultiContractTracker connects to multiple contracts deployed in an Ethereum-like chain and tracks their respective events
  */
 export class MultiContractTracker {
-  static of(config, chainId, provider, store, onEvent = console.log) {
+  static of(config, chainId, provider, store, onEvent) {
     if (!store.has(chainId)) store.update(chainId, {
       marker: {block: 0, logIndex: -1, blockWasProcessed: false},
       abis: [],
