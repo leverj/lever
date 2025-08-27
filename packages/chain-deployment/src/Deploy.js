@@ -61,8 +61,8 @@ export class Deploy {
 
     this.logger.log(`${'*'.repeat(30)} starting deploying contracts on [${chain} @ ${networks[chain].providerURL}] chain `.padEnd(120, '*'))
     this.logger.log(`${'-'.repeat(60)} config `.padEnd(120, '-'))
-    const {env, deploymentDir, constructors} = this.config
-    this.logger.log(inspect({env, deploymentDir, constructors}))
+    const {env, deployer, deploymentDir, constructors} = this.config
+    this.logger.log(inspect({env, deployer: new Wallet(deployer.privateKey).address, deploymentDir, constructors}))
     this.logger.log('-'.repeat(120))
     this.compileContracts()
     await this.deployContracts(chain, options)
