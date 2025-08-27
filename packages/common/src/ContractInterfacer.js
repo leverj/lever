@@ -1,6 +1,9 @@
 import {stringify} from 'yaml'
 
-const defaultOnReceipt = ({error}) => { if (error) console.error(error)}
+const defaultOnReceipt = _ => {
+  if (_.error) console.error(_.error)
+  return _
+}
 
 export class ContractInterfacer {
   constructor(contract, errorDecoder) {
