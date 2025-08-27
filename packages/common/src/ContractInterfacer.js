@@ -1,5 +1,10 @@
 import {stringify} from 'yaml'
 
+export const extractEvent = (receipt, name, iface) => receipt.logs.
+  map(_ => iface.parseLog(_)).
+  filter(_ => !!_).
+  find(_ => _.name === name)?.args.toObject()
+
 const defaultOnReceipt = _ => {
   if (_.error) console.error(_.error)
   return _
@@ -15,6 +20,8 @@ export class ContractInterfacer {
   get provider() { return this.runner.provider }
   get target() { return this.contract.target }
   get address() { return this.target }
+
+  extractEvent(receipt, name) { return extractEvent(receipt, name, this.interface) }
 
   connect(signer) {
     this.contract = this.contract.connect(signer.connect(this.contract.runner.provider))
@@ -36,12 +43,5 @@ export class ContractInterfacer {
       console.log(`${signature} : ${stringify(args, {collectionStyle: 'flow'})}`)
       return {error: `${type}: ${reason}`}
     }
-  }
-
-  extractEvent(receipt, name, iface = this.interface) {
-    return receipt.logs.
-      map(_ => iface.parseLog(_)).
-      filter(_ => !!_).
-      find(_ => _.name === name)?.args.toObject()
   }
 }
