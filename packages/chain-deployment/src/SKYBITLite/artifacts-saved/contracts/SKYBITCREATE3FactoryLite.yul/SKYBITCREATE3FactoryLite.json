@@ -1,0 +1,9 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "SKYBITCREATE3FactoryLite",
+  "sourceName": "contracts/SKYBITCREATE3FactoryLite.yul",
+  "abi": [],
+  "bytecode": "0x607780600a5f395ff3fe335f525f356020526034600c20601b80605c5f395f80f580156052575f601491818052602082601f19360192838380375af1156049575f511560405760145ff35b60035f5360015ffd5b60025f5360015ffd5b60015f5360015ffdfe601180600a5f395ff3fe365f6020373660205ff05f526014600cf3",
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}
