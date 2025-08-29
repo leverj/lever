@@ -14,13 +14,13 @@ module.exports = {
   solidity: { // changing these values affects deployment address
     compilers: [
       {
-        version: '0.8.26',
+        version: '0.8.28',
         settings: {
           optimizer: {
             enabled: true,
             runs: 15000
           },
-          evmVersion: 'cancun' // downgrade to 'paris' if you encounter 'invalid opcode' error
+          evmVersion: 'cancun'
         }
       },
     ],
