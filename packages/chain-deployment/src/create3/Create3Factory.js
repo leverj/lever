@@ -1,21 +1,8 @@
-import {isContractAt} from '@leverj/lever.common'
-import {default as hardhat} from 'hardhat'
+import {isContractAt, logger, until} from '@leverj/lever.common'
+import {formatUnits, getCreateAddress, keccak256, Transaction} from 'ethers'
 import {cloneDeep} from 'lodash-es'
+import {deriveAddressOfSignerFromSig, getCreate3Address, verifyNotDeployedAt} from './create3-utils.js'
 import create3FactoryArtifact from './pickled-artifacts/SKYBITCREATE3FactoryLite.json' with {type: 'json'}
-
-const {ethers: {
-  formatUnits,
-  getBytes,
-  getCreateAddress,
-  getCreate2Address,
-  keccak256,
-  provider,
-  recoverAddress,
-  resolveProperties,
-  Signature,
-  solidityPackedKeccak256,
-  Transaction,
-}} = hardhat
 
 /** ********************************************** !!! important !!! **************************************************/
 /** *************** keep this data consistent otherwise the deployment address will become different ******************/
@@ -37,6 +24,8 @@ export const cast_in_stone = {
 }
 /** *******************************************************************************************************************/
 const {gasLimit, gasPrice} = cast_in_stone.txData
+// cast_in_stone.txData.signature = cast_in_stone.splitSig
+//0x93AA019F0128e3C2338201C9d09a96A6bF48113b
 
 const {abi, bytecode, contractName} = create3FactoryArtifact
 export const Create3Factory = {
@@ -46,124 +35,99 @@ export const Create3Factory = {
   address: '0x739201bA340A675624D9ADb1cc27e68F76a29765' //fixme: test to see
 }
 
-export async function deployCreate3Factory(network, signer) {
-  console.log(`deploying ${(Create3Factory.name)} contract keylessly...`)
-  console.log(`using network: ${network.name} (${network.id}), account: ${signer.address} having ${formatUnits(await provider.getBalance(signer.address), 'ether')} of native currency, RPC url: ${network.providerURL}`)
-  await verifyGasLimit()
-  const {txData, splitSig} = cloneDeep(cast_in_stone)
-  const signerAddress = await deriveAddressOfSignerFromSig(txData, splitSig)
-  console.log(`derived address of transaction signer: ${signerAddress}`)
-  const addressExpected = getCreateAddress({from: signerAddress, nonce: txData.nonce})
-  await verifyNotDeployedAt(addressExpected)
-  await fundTransactionSigner(gasPrice, gasLimit, signerAddress, signer)
+const interval = 10, timeout = 100 * interval, timing = {interval, timeout}
 
-  console.log(`deploying ${(Create3Factory.name)} contract by broadcasting signed raw transaction to ${network.name}...`)
+export async function deployCreate3Factory(network, deployer) {
+  const provider = deployer.provider
+  logger.log(`deploying ${Create3Factory.name} contract keylessly...`)
+  // logger.log(`using network: ${network.chain}, account: ${deployer.address} having ${await provider.getBalance(deployer.address)} of native currency, RPC url: ${network.providerURL}`)
+  await verifyGasLimit(provider)
+  const {txData, splitSig} = cloneDeep(cast_in_stone) //fixme: is it needed?
+  const transactionSignerAddress = await deriveAddressOfSignerFromSig(txData, splitSig)
+  logger.log(`derived address of transaction signer: ${transactionSignerAddress}`)
+  const addressExpected = getCreateAddress({from: transactionSignerAddress, nonce: txData.nonce})
+  await verifyNotDeployedAt(Create3Factory.name, addressExpected, provider)
+  await fundTransactionSigner(gasPrice, gasLimit, transactionSignerAddress, deployer)
+
+  logger.log(`deploying ${Create3Factory.name} contract by broadcasting signed raw transaction to ${network.chain}...`)
   txData.signature = splitSig
   const txSignedSerialized = Transaction.from(txData).serialized
-  console.log(`expected transaction id: ${keccak256(txSignedSerialized)}`)
+  logger.log(`expected transaction id: ${keccak256(txSignedSerialized)}`)
   const txResponse = await provider.broadcastTransaction(txSignedSerialized)
-  console.log(`txResponse: ${JSON.stringify(txResponse, null, 2)}`)
+  logger.log(`txResponse: ${JSON.stringify(txResponse, null, 2)}`)
   const txReceipt = await txResponse.wait()
-  console.log(`txReceipt: ${JSON.stringify(txReceipt, null, 2)}`)
-  if (await isContractAt(provider, addressExpected)) console.log(`${(Create3Factory.name)} contract was successfully deployed to ${addressExpected} in transaction ${txResponse.hash}`)
-  else throw Error(`${(Create3Factory.name)} contract was deployed but not found at ${addressExpected}`)
+  logger.log(`txReceipt: ${JSON.stringify(txReceipt, null, 2)}`)
+  if (await isContractAt(provider, addressExpected)) logger.log(`${Create3Factory.name} contract was successfully deployed to ${addressExpected} in transaction ${txResponse.hash}`)
+  else throw Error(`${Create3Factory.name} contract was deployed but not found at ${addressExpected}`)
 }
 
-const verifyGasLimit = async () => {
+const verifyGasLimit = async (provider) => {
   const gasCost = await provider.estimateGas({data: Create3Factory.bytecode})
   const gasLimitPercentageAboveCost = Number(gasLimit * 100n / gasCost) - 100
-  console.log(`expected gas cost: ${gasCost}`)
-  console.log(`gasLimit: ${gasLimit} (${gasLimitPercentageAboveCost}% above expected cost)`)
-  console.log(`expected gas cost: ${gasCost}`)
-  console.log(`gasLimit: ${gasLimit} (${gasLimitPercentageAboveCost}% above expected cost)`)
+  logger.log(`expected gas cost: ${gasCost}`)
+  logger.log(`gasLimit: ${gasLimit} (${gasLimitPercentageAboveCost}% above expected cost)`)
+  logger.log(`expected gas cost: ${gasCost}`)
+  logger.log(`gasLimit: ${gasLimit} (${gasLimitPercentageAboveCost}% above expected cost)`)
   if (gasLimitPercentageAboveCost < 0) throw Error(`gasLimit ${gasLimit} isn't high enough to proceed`)
-  if (gasLimitPercentageAboveCost < 10) console.log(
+  if (gasLimitPercentageAboveCost < 10) logger.log(
     `gasLimit may be too low to accommodate for possibly increasing future opcode cost. Once you choose a gasLimit, 
 you'll need to use the same value for deployments on other blockchains any time in the future in order for your contract to have the same address.`
   )
 }
 
-const verifyNotDeployedAt = async (address) => {
-  console.log(`expected address of ${(Create3Factory.name)} contract once deployed: ${address}`)
-  if (await isContractAt(provider, address)) throw Error(`${(Create3Factory.name)} contract already exists at ${address}`)
-}
-
-const deriveAddressOfSignerFromSig = async (txData, splitSig) => resolveProperties(txData).then(_ => {
-  const digest = getBytes(keccak256(Transaction.from(_).unsignedSerialized /*RLP encoded*/) /* as specified by ECDSA */)
-  const signature = Signature.from(splitSig).serialized
-  return recoverAddress(digest, signature)
-})
-
-/** there needs to be some funds at signerAddress to pay gas fee for the deployment */
-const fundTransactionSigner = async (gasPrice, gasLimit, signerAddress, deployer) => {
+/** there needs to be some funds at transactionSignerAddress to pay gas fee for the deployment */
+export const fundTransactionSigner = async (gasPrice, gasLimit, transactionSignerAddress, deployer) => {
+  const provider = deployer.provider
   const balanceOfSignerMinRequired = gasPrice * gasLimit
-  console.log(`minimum balance of signer required based on the gasPrice and gasLimit: ${gasPrice} x ${gasLimit} wei = ${formatUnits(balanceOfSignerMinRequired, 'ether')} of native currency`)
-  const balanceOfSigner = await provider.getBalance(signerAddress)
-  console.log(`balanceOfSigner: ${formatUnits(balanceOfSigner, 'ether')}`)
+  const balanceOfSigner = await provider.getBalance(transactionSignerAddress)
   if (balanceOfSigner >= balanceOfSignerMinRequired) return
 
-  const balanceOfDeployer = await provider.getBalance(deployer.address)
   const shortfall = balanceOfSignerMinRequired - balanceOfSigner
-  if (balanceOfDeployer < balanceOfSignerMinRequired) {
-    console.log(`you don't have enough funds in your wallet. You'll need to transfer at least ${formatUnits(shortfall, 'ether')} of native currency to the address of the transaction signer: ${signerAddress}`)
-    throw Error(`there needs to be some funds at ${signerAddress} to pay gas fee for the deployment`)
-  }
-
-  console.log(`there are insufficient funds at ${signerAddress} on ${network.name} to broadcast the transaction`)
-  console.log(`transferring ${formatUnits(shortfall, 'ether')} of native currency from ${deployer.address} to ${signerAddress} on ${network.name}...`)
-  const feeData = await provider.getFeeData()
-  delete feeData.gasPrice
-  await deployer.sendTransaction({to: signerAddress, value: shortfall, ...feeData}).then(_ => _.wait())
-  console.log(`${signerAddress} now has ${formatUnits(await provider.getBalance(signerAddress), 'ether')} of native currency`)
+  if (await provider.getBalance(deployer.address) <= shortfall) throw Error(
+    `insufficient funds: ${deployer.address} need to transfer at least ${shortfall} of native currency to ${transactionSignerAddress} (transaction signer's address)`
+  )
+  const {maxFeePerGas, maxPriorityFeePerGas} = await provider.getFeeData()
+  await deployer.sendTransaction({to: transactionSignerAddress, value: shortfall, maxFeePerGas, maxPriorityFeePerGas}).then(_ => _.wait())
+  await until(() => provider.getBalance(transactionSignerAddress) >= balanceOfSignerMinRequired, timing)
+  const balanceAfter = await provider.getBalance(transactionSignerAddress)
+  if (balanceAfter < balanceOfSignerMinRequired) throw Error(`post-transfer... insufficient balance: ${balanceAfter}. required: ${balanceOfSignerMinRequired}`)
 }
 
-export const deployViaCreate3Factory = async (network, contractFactory, name, params, salt, signer) => {
-  console.log(`deploying using network: ${network.name} (${network.id}), account: ${signer.address} having ${formatUnits(await provider.getBalance(signer.address), 'ether')} of native currency, RPC url: ${network.providerURL}`)
+export const deployViaCreate3Factory = async (network, contractFactory, name, params, salt, deployer) => {
+  const provider = deployer.provider
+  logger.log(`deploying using network: ${network.chain} (${network.id}), account: ${deployer.address} having ${await provider.getBalance(deployer.address)} of native currency, RPC url: ${network.providerURL}`)
   const bytecode = await contractFactory.getDeployTransaction(...params).then(_ => _.data)
-  const expectedAddress = await getCreate3Address(Create3Factory.address, signer.address, salt)
-  console.log(`Expected address of ${name} using factory at ${(Create3Factory.address)}: ${expectedAddress}`)
+  const expectedAddress = await getCreate3Address(Create3Factory.address, deployer.address, salt)
+  logger.log(`Expected address of ${name} using factory at ${(Create3Factory.address)}: ${expectedAddress}`)
   if (await isContractAt(provider, expectedAddress)) {
-    console.log(`${name} contract already exists at ${expectedAddress}. Change the salt if you want to deploy your contract to a different address.`)
-    console.log('returning an instance of the already-deployed contract...')
+    logger.log(`${name} contract already exists at ${expectedAddress}. Change the salt if you want to deploy your contract to a different address.`)
+    logger.log('returning an instance of the already-deployed contract...')
     return contractFactory.attach(expectedAddress)
   }
 
-  const functionCallGasCost = await signer.estimateGas({
+  const functionCallGasCost = await deployer.estimateGas({
     to: Create3Factory.address,
     data: bytecode.replace('0x', salt),
   })
   const feeData = await provider.getFeeData()
   const gasFeeEstimate = feeData.gasPrice * functionCallGasCost
-  console.log(`functionCallGasCost: ${functionCallGasCost}`)
-  console.log(`feeData: ${JSON.stringify(feeData)}`)
-  console.log(`gasFeeEstimate: ${formatUnits(gasFeeEstimate, 'ether')} of native currency`)
-  console.log('now calling deploy() in the CREATE3 factory...')
+  logger.log(`functionCallGasCost: ${functionCallGasCost}`)
+  logger.log(`feeData: ${JSON.stringify(feeData)}`)
+  logger.log(`gasFeeEstimate: ${gasFeeEstimate} of native currency`)
+  logger.log('now calling deploy() in the CREATE3 factory...')
   delete feeData.gasPrice
-  const txResponse = await signer.sendTransaction({
+  const txResponse = await deployer.sendTransaction({
     to: Create3Factory.address,
     data: bytecode.replace('0x', salt),
   }, {...feeData})
 
-  console.log(`txResponse: ${JSON.stringify(txResponse, null, 2)}`)
+  logger.log(`txResponse: ${JSON.stringify(txResponse, null, 2)}`)
   const txReceipt = await txResponse.wait()
-  console.log(`txReceipt: ${JSON.stringify(txReceipt, null, 2)}`)
+  logger.log(`txReceipt: ${JSON.stringify(txReceipt, null, 2)}`)
   const contractInstance = contractFactory.attach(expectedAddress)
   if (await isContractAt(provider, expectedAddress))
-    console.log(`${name} was successfully deployed via SKYBITLite CREATE3 factory to ${contractInstance.target}`)
+    logger.log(`${name} was successfully deployed via SKYBITLite CREATE3 factory to ${contractInstance.target}`)
   else
-    console.error(`${name} was not found at ${contractInstance.target}`)
+    logger.error(`${name} was not found at ${contractInstance.target}`)
   return contractInstance
-}
-
-const getCreate3Address = async (addressOfFactory, callerAddress, salt) => {
-  // const { evmVersion } = hardhat.config.solidity.compilers[0].settings
-  // const bytecodeOfCreateFactory = evmVersion === 'shanghai' ? '0x601180600a5f395ff3fe365f6020373660205ff05f526014600cf3' : '0x601480600c6000396000f3fe3660006020373660206000f06000526014600cf3' // This needs to be updated if CREATEFactory object in contracts/SKYBITCREATE3FactoryLite.yul is changed
-  const factoryContractArtifacts = await hardhat.artifacts.readArtifact('CREATEFactory') // Generate the CREATEFactory bytecode from CREATEFactory.yul instead of using hardcoded bytecode above
-  const bytecodeOfCreateFactory = factoryContractArtifacts.bytecode
-  const keccak256Calculated = solidityPackedKeccak256(['address', 'bytes32'], [callerAddress, salt]) // same as keccak256(callerAddress + salt.slice(2)) // Inputs must not be 0-padded
-  const addressOfCreateFactory = getCreate2Address(addressOfFactory, keccak256Calculated, keccak256(bytecodeOfCreateFactory))
-  return getCreateAddress({
-    from: addressOfCreateFactory,
-    nonce: 1 // nonce starts at 1 in contracts. Don't use getTransactionCount to get nonce because if a deployment is repeated with same inputs getCreate2Address would fail before it gets here
-  })
 }

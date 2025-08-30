@@ -50,6 +50,7 @@ export class Deploy {
     this.config = config
     this.store = store
     this.logger = config.logger ?? console
+    this.deployer = new Wallet(config.deployer.privateKey)
   }
 
   async to(chain, options = {}) {
@@ -62,8 +63,8 @@ export class Deploy {
 
     this.logger.log(`${'*'.repeat(30)} starting deploying contracts on [${chain} @ ${networks[chain].providerURL}] chain `.padEnd(120, '*'))
     this.logger.log(`${'-'.repeat(60)} config `.padEnd(120, '-'))
-    const {env, deployer, deploymentDir, constructors} = this.config
-    this.logger.log(inspect({env, deployer: new Wallet(deployer.privateKey).address, deploymentDir, constructors}))
+    const {env, deploymentDir, constructors} = this.config
+    this.logger.log(inspect({env, deployer: this.deployer.address, deploymentDir, constructors}))
     this.logger.log('-'.repeat(120))
     this.compileContracts()
     await this.deployContracts(chain, options)
@@ -80,7 +81,7 @@ export class Deploy {
 
     const {providerURL, block, id} = this.store.get(chain)
     const provider = new JsonRpcProvider(providerURL)
-    const signer = new Wallet(this.config.deployer.privateKey, provider)
+    const deployer = this.deployer.connect(provider)
     this.config.setContractsConstructors(chain)
     const constructors = this.config.constructors[chain]
 
@@ -88,9 +89,11 @@ export class Deploy {
     if (!block) this.store.update(chain, {block: await provider.getBlockNumber()}) // establish start block
     if (options.create3) {
       if (!getContractAddress(Create3Factory.name)) {
-        const factory = await deployCreate3Factory(networks[chain], signer)
+        const factory = await deployCreate3Factory(networks[chain], deployer)
         await this.storeContract(Create3Factory.name, factory, chain)
       }
+      console.log('<'.repeat(50), 'fixme: bailing out for now')
+      return
     }
     for (let [name, {libraries, params}] of Object.entries(constructors)) {
       const translateAddresses = (params = []) => params.map(_ => Array.isArray(_) ? translateAddresses(_) : getContractAddress(_) ?? _)
@@ -105,12 +108,12 @@ export class Deploy {
           const salt = encodeBytes32String(`${name}.${version}`)
           const artifact = await hardhat.artifacts.readArtifact(name) //fixme: how to get the artifact?
           const contractFactory = await getContractFactory(artifact.abi, artifact.bytecode)
-          const contract = await deployViaCreate3Factory(contractFactory, name, params, salt, signer)
+          const contract = await deployViaCreate3Factory(contractFactory, name, params, salt, deployer)
           await this.storeContract(name, contract, chain)
         }
       } else if (!getContractAddress(name) || options.reset) {
         this.logger.log(`deploying ${name} contract `.padEnd(120, '.'))
-        const contract = await deployContract(name, params, {libraries, signer})
+        const contract = await deployContract(name, params, {libraries, signer: deployer})
         if (!contract?.target) return this.logger.error(`failed to deploy ${name} contract `.padEnd(120, '.'))
         await this.storeContract(name, contract, chain)
         await setTimeout(200) // note: must wait a bit to avoid "Nonce too low" error

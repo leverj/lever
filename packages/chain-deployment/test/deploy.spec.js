@@ -14,7 +14,7 @@ describe('deploy to multiple chains', () => {
   const chains = ['holesky', 'sepolia']
   const configDir = `${import.meta.dirname}/hardhat`
   const configFile = (chain) => `${configDir}/${chain}.config.cjs`
-  let processes = []
+  let deploy, processes = []
 
   before(() => {
     config.createContractsConstructors = (chain) => ({
@@ -36,6 +36,7 @@ describe('deploy to multiple chains', () => {
       processes.push(exec(`npx hardhat node --config ${configFile(each)} --port ${port}`))
     })
     for (let each of chains) await waitOn({resources: [networks[each].providerURL], timeout: 10_000})
+    deploy = Deploy.from(config)
   })
 
   afterEach(async () => {
@@ -48,8 +49,6 @@ describe('deploy to multiple chains', () => {
   after(() => rmSync(configDir, {recursive: true, force: true}))
 
   it('can deploy contracts to each chain', async () => {
-    const deploy = Deploy.from(config)
-
     for (let chain of chains) {
       expect(deploy.store.get(chain)).not.toBeDefined()
 
