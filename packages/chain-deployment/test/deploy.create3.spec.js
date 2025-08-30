@@ -80,13 +80,19 @@ describe('deploy using create3 method to multiple chains', () => {
         expect(after.transactionSigner).toEqual(gasPrice * gasLimit)
       }
     })
+
+    it('deployCreate3Factory', async () => {
+      //deployCreate3Factory(network, deployer)
+      for (let chain of chains) {
+      }
+    })
   })
 
   it('can deploy create3 factory to each chain', async () => {
     for (let chain of chains) {
       // first deploy; from scratch
       await deploy.to(chain, {create3: true})
-      console.log('>'.repeat(50), deploy.store.get(chain).contracts)
+      console.log(deploy.store.get(chain).contracts)
     }
   })
 })

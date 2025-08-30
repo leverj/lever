@@ -89,12 +89,12 @@ export class Deploy {
     if (!block) this.store.update(chain, {block: await provider.getBlockNumber()}) // establish start block
     if (options.create3) {
       if (!getContractAddress(Create3Factory.name)) {
-        const factory = await deployCreate3Factory(networks[chain], deployer)
-        await this.storeContract(Create3Factory.name, factory, chain)
+        const {name, address, blockCreated} = await deployCreate3Factory(networks[chain], deployer)
+        this.store.update(chain, {contracts: {[name]: {address, blockCreated}}})
       }
-      console.log('<'.repeat(50), 'fixme: bailing out for now')
-      return
     }
+    return // fixme
+
     for (let [name, {libraries, params}] of Object.entries(constructors)) {
       const translateAddresses = (params = []) => params.map(_ => Array.isArray(_) ? translateAddresses(_) : getContractAddress(_) ?? _)
       const translateLibraries = (names = []) => names.reduce((result, _) => Object.assign(result, ({[_]: getContractAddress(_)})), {})
@@ -115,7 +115,9 @@ export class Deploy {
         this.logger.log(`deploying ${name} contract `.padEnd(120, '.'))
         const contract = await deployContract(name, params, {libraries, signer: deployer})
         if (!contract?.target) return this.logger.error(`failed to deploy ${name} contract `.padEnd(120, '.'))
-        await this.storeContract(name, contract, chain)
+        const address = contract.target
+        const blockCreated = await contract.deploymentTransaction().wait().then(_ => _.blockNumber)
+        this.store.update(chain, {contracts: {[name]: {address, blockCreated}}})
         await setTimeout(200) // note: must wait a bit to avoid "Nonce too low" error
       }
       if (options.verify) {
@@ -124,11 +126,5 @@ export class Deploy {
         await verifyContract(this.logger, network, name, libraries ?? {}, explorerUrl)
       }
     }
-  }
-
-  async storeContract(name, contract, chain) {
-    const address = contract.target
-    const blockCreated = await contract.deploymentTransaction().wait().then(_ => _.blockNumber)
-    this.store.update(chain, {contracts: {[name]: {address, blockCreated}}})
   }
 }

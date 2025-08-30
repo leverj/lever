@@ -1,5 +1,5 @@
 import {isContractAt, logger, until} from '@leverj/lever.common'
-import {formatUnits, getCreateAddress, keccak256, Transaction} from 'ethers'
+import {getCreateAddress, keccak256, Transaction} from 'ethers'
 import {cloneDeep} from 'lodash-es'
 import {deriveAddressOfSignerFromSig, getCreate3Address, verifyNotDeployedAt} from './create3-utils.js'
 import create3FactoryArtifact from './pickled-artifacts/SKYBITCREATE3FactoryLite.json' with {type: 'json'}
@@ -24,15 +24,14 @@ export const cast_in_stone = {
 }
 /** *******************************************************************************************************************/
 const {gasLimit, gasPrice} = cast_in_stone.txData
-// cast_in_stone.txData.signature = cast_in_stone.splitSig
-//0x93AA019F0128e3C2338201C9d09a96A6bF48113b
+cast_in_stone.txData.signature = cast_in_stone.splitSig
 
 const {abi, bytecode, contractName} = create3FactoryArtifact
 export const Create3Factory = {
   abi,
   bytecode,
   name: contractName,
-  address: '0x739201bA340A675624D9ADb1cc27e68F76a29765' //fixme: test to see
+  address: '0x739201bA340A675624D9ADb1cc27e68F76a29765'
 }
 
 const interval = 10, timeout = 100 * interval, timing = {interval, timeout}
@@ -40,7 +39,6 @@ const interval = 10, timeout = 100 * interval, timing = {interval, timeout}
 export async function deployCreate3Factory(network, deployer) {
   const provider = deployer.provider
   logger.log(`deploying ${Create3Factory.name} contract keylessly...`)
-  // logger.log(`using network: ${network.chain}, account: ${deployer.address} having ${await provider.getBalance(deployer.address)} of native currency, RPC url: ${network.providerURL}`)
   await verifyGasLimit(provider)
   const {txData, splitSig} = cloneDeep(cast_in_stone) //fixme: is it needed?
   const transactionSignerAddress = await deriveAddressOfSignerFromSig(txData, splitSig)
@@ -53,12 +51,13 @@ export async function deployCreate3Factory(network, deployer) {
   txData.signature = splitSig
   const txSignedSerialized = Transaction.from(txData).serialized
   logger.log(`expected transaction id: ${keccak256(txSignedSerialized)}`)
-  const txResponse = await provider.broadcastTransaction(txSignedSerialized)
-  logger.log(`txResponse: ${JSON.stringify(txResponse, null, 2)}`)
-  const txReceipt = await txResponse.wait()
-  logger.log(`txReceipt: ${JSON.stringify(txReceipt, null, 2)}`)
-  if (await isContractAt(provider, addressExpected)) logger.log(`${Create3Factory.name} contract was successfully deployed to ${addressExpected} in transaction ${txResponse.hash}`)
-  else throw Error(`${Create3Factory.name} contract was deployed but not found at ${addressExpected}`)
+  const receipt = await provider.broadcastTransaction(txSignedSerialized).then(_ => _.wait())
+  if (!await isContractAt(provider, addressExpected)) throw Error(`${Create3Factory.name} contract was deployed but not found at ${addressExpected}`)
+  return {
+    name: Create3Factory.name,
+    address: addressExpected,
+    blockCreated: receipt.blockNumber,
+  }
 }
 
 const verifyGasLimit = async (provider) => {
@@ -70,7 +69,7 @@ const verifyGasLimit = async (provider) => {
   logger.log(`gasLimit: ${gasLimit} (${gasLimitPercentageAboveCost}% above expected cost)`)
   if (gasLimitPercentageAboveCost < 0) throw Error(`gasLimit ${gasLimit} isn't high enough to proceed`)
   if (gasLimitPercentageAboveCost < 10) logger.log(
-    `gasLimit may be too low to accommodate for possibly increasing future opcode cost. Once you choose a gasLimit, 
+`gasLimit may be too low to accommodate for possibly increasing future opcode cost. Once you choose a gasLimit, 
 you'll need to use the same value for deployments on other blockchains any time in the future in order for your contract to have the same address.`
   )
 }
