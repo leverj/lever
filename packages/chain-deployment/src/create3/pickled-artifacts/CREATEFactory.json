@@ -1,0 +1,9 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "CREATEFactory",
+  "sourceName": "contracts/create3/CREATEFactory.yul",
+  "abi": [],
+  "bytecode": "0x601180600a5f395ff3fe365f6020373660205ff05f526014600cf3",
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}

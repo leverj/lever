@@ -1,7 +1,7 @@
 import {isContractAt} from '@leverj/lever.common'
 import {default as hardhat} from 'hardhat'
 import {cloneDeep} from 'lodash-es'
-import create3FactoryArtifact from './SKYBITCREATE3FactoryLite.json' with {type: 'json'}
+import create3FactoryArtifact from './pickled-artifacts/SKYBITCREATE3FactoryLite.json' with {type: 'json'}
 
 const {ethers: {
   formatUnits,
