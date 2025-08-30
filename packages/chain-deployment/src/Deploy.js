@@ -6,12 +6,13 @@ import {execSync} from 'node:child_process'
 import {setTimeout} from 'node:timers/promises'
 import {inspect} from 'node:util'
 import * as networksByChain from 'viem/chains'
+import {Create3Factory, deployCreate3Factory, deployViaCreate3Factory} from './create3/Create3Factory.js'
 import {verifyContract} from './blockscout.js'
 
 /*** from https://github.com/blockscout/chainscout/blob/main/data/chains.json ***/
 import blockscoutExplorerUrls_ from './chainscout-chains.json' with {type: 'json'}
 
-const {ethers: {deployContract, JsonRpcProvider, Wallet}} = hardhat
+const {ethers: {deployContract, encodeBytes32String, getContractFactory, JsonRpcProvider, Wallet}} = hardhat
 
 const toNetworkCanon = (chain, network) => {
   const {id, name, nativeCurrency, rpcUrls, blockExplorers} = cloneDeep(network)
@@ -75,6 +76,8 @@ export class Deploy {
   }
 
   async deployContracts(chain, options) {
+    const getContractAddress = (name) => this.store.get(chain).contracts[name]?.address
+
     const {providerURL, block, id} = this.store.get(chain)
     const provider = new JsonRpcProvider(providerURL)
     const signer = new Wallet(this.config.deployer.privateKey, provider)
@@ -83,20 +86,33 @@ export class Deploy {
 
     this.logger.log(`deploying contracts: [${Object.keys(constructors)}] `.padEnd(120, '.'))
     if (!block) this.store.update(chain, {block: await provider.getBlockNumber()}) // establish start block
+    if (options.create3) {
+      if (!getContractAddress(Create3Factory.name)) {
+        const factory = await deployCreate3Factory(networks[chain], signer)
+        await this.storeContract(Create3Factory.name, factory, chain)
+      }
+    }
     for (let [name, {libraries, params}] of Object.entries(constructors)) {
-      const getContractAddress = (name) => this.store.get(chain).contracts[name]?.address
       const translateAddresses = (params = []) => params.map(_ => Array.isArray(_) ? translateAddresses(_) : getContractAddress(_) ?? _)
       const translateLibraries = (names = []) => names.reduce((result, _) => Object.assign(result, ({[_]: getContractAddress(_)})), {})
 
       libraries = translateLibraries(libraries)
       params = translateAddresses(params)
-      if (!getContractAddress(name) || options.reset) {
+      if (options.create3) {
+        if (getContractAddress(name) && options.reset) throw Error('no can do right now') //fixme: must deploy to a different address; use a different salt?
+        else {
+          const version = 1 //fixme: how to increase version methodically?
+          const salt = encodeBytes32String(`${name}.${version}`)
+          const artifact = await hardhat.artifacts.readArtifact(name) //fixme: how to get the artifact?
+          const contractFactory = await getContractFactory(artifact.abi, artifact.bytecode)
+          const contract = await deployViaCreate3Factory(contractFactory, name, params, salt, signer)
+          await this.storeContract(name, contract, chain)
+        }
+      } else if (!getContractAddress(name) || options.reset) {
         this.logger.log(`deploying ${name} contract `.padEnd(120, '.'))
         const contract = await deployContract(name, params, {libraries, signer})
         if (!contract?.target) return this.logger.error(`failed to deploy ${name} contract `.padEnd(120, '.'))
-        const address = contract.target
-        const blockCreated = await contract.deploymentTransaction().wait().then(_ => _.blockNumber)
-        this.store.update(chain, {contracts: {[name]: {address, blockCreated}}})
+        await this.storeContract(name, contract, chain)
         await setTimeout(200) // note: must wait a bit to avoid "Nonce too low" error
       }
       if (options.verify) {
@@ -105,5 +121,11 @@ export class Deploy {
         await verifyContract(this.logger, network, name, libraries ?? {}, explorerUrl)
       }
     }
+  }
+
+  async storeContract(name, contract, chain) {
+    const address = contract.target
+    const blockCreated = await contract.deploymentTransaction().wait().then(_ => _.blockNumber)
+    this.store.update(chain, {contracts: {[name]: {address, blockCreated}}})
   }
 }

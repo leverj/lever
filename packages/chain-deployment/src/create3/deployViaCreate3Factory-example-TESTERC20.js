@@ -1,5 +1,5 @@
 import {default as hardhat} from 'hardhat'
-import {deployViaCreate3} from './deployViaCREATE3.js'
+import {deployViaCreate3Factory} from './Create3Factory.js'
 
 const {ethers: {
   encodeBytes32String,
@@ -22,8 +22,8 @@ async function deploy(deployer) {
     '0xabcdef', // test byte constructor argument. bytes have to be 0x-prefixed
   ]
 
-  // const contractFactory = await getContractFactory(artifactOfContractToDeploy.abi, artifactOfContractToDeploy.bytecode)
+  // const contractFactory = await getContractFactory(artifact.abi, artifact.bytecode)
   const contractFactory = await getContractFactory(tokenContractName) // No need to use artifacts-saved for your contract because with CREATE3 deployment address isn't dependent on bytecode
-  const contract = await deployViaCreate3(contractFactory, tokenContractName, constructorArgs, saltForCREATE3, deployer)
+  const contract = await deployViaCreate3Factory(contractFactory, tokenContractName, constructorArgs, saltForCREATE3, deployer)
   if (contract === undefined) throw Error('contractInstance is undefined')
 }
