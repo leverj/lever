@@ -11,6 +11,7 @@ import {verifyContract} from './blockscout.js'
 
 /*** from https://github.com/blockscout/chainscout/blob/main/data/chains.json ***/
 import blockscoutExplorerUrls_ from './chainscout-chains.json' with {type: 'json'}
+import {logger} from '@leverj/lever.common'
 
 const {ethers: {deployContract, encodeBytes32String, getContractFactory, JsonRpcProvider, Wallet}} = hardhat
 
@@ -88,7 +89,8 @@ export class Deploy {
     this.logger.log(`deploying contracts: [${Object.keys(constructors)}] `.padEnd(120, '.'))
     if (!block) this.store.update(chain, {block: await provider.getBlockNumber()}) // establish start block
     if (options.create3) {
-      if (!getContractAddress(Create3Factory.name)) {
+      if (!getContractAddress(Create3Factory.contractName)) {
+        this.logger.log(`deploying Create3 Factory contract keylessly [${Create3Factory.contractName}] `.padEnd(120, '.'))
         const {name, address, blockCreated} = await deployCreate3Factory(networks[chain], deployer)
         this.store.update(chain, {contracts: {[name]: {address, blockCreated}}})
       }

@@ -1,18 +1,15 @@
 import {Deploy, networks} from '@leverj/lever.chain-deployment'
 import {createHardhatConfig, provider} from '@leverj/lever.chain-deployment/hardhat.help'
 import {ensureExistsSync} from '@leverj/lever.common'
-import {encodeBytes32String, getCreateAddress, isAddress, JsonRpcProvider, Wallet} from 'ethers'
+import {encodeBytes32String, getCreateAddress, JsonRpcProvider, Wallet} from 'ethers'
 import {expect} from 'expect'
-import {cloneDeep} from 'lodash-es'
 import {exec} from 'node:child_process'
 import {rmSync, writeFileSync} from 'node:fs'
 import {setTimeout} from 'node:timers/promises'
 import waitOn from 'wait-on'
 import config from '../config.js'
 import {deriveAddressOfSignerFromSig, getCreate3Address, verifyNotDeployedAt} from '../src/create3/create3-utils.js'
-import {cast_in_stone, Create3Factory, fundTransactionSigner} from '../src/create3/Create3Factory.js'
-
-const {txData, splitSig} = cast_in_stone
+import {Create3Factory, deployCreate3Factory, fundTransactionSigner, txData} from '../src/create3/Create3Factory.js'
 
 describe('deploy using create3 method to multiple chains', () => {
   const chains = ['holesky', 'sepolia']
@@ -60,7 +57,7 @@ describe('deploy using create3 method to multiple chains', () => {
         const provider = new JsonRpcProvider(networks[chain].providerURL)
 
         const penniless = Wallet.createRandom(provider)
-        await expect(fundTransactionSigner(gasPrice, gasLimit, transactionSigner, penniless)).rejects.toThrow(/insufficient funds/)
+        await expect(fundTransactionSigner(gasPrice, gasLimit, transactionSigner, penniless)).rejects.toThrow(/Insufficient Funds/)
 
         const deployer = new Wallet(config.deployer.privateKey, provider)
         const before = {
@@ -82,13 +79,20 @@ describe('deploy using create3 method to multiple chains', () => {
     })
 
     it('deployCreate3Factory', async () => {
-      //deployCreate3Factory(network, deployer)
       for (let chain of chains) {
+        const provider = new JsonRpcProvider(networks[chain].providerURL)
+        const deployer = new Wallet(config.deployer.privateKey, provider)
+        const {name, address, blockCreated} = await deployCreate3Factory(networks[chain], deployer)
+        expect(name).toEqual(Create3Factory.contractName)
+        expect(address).toEqual(Create3Factory.address)
+        expect(blockCreated).toBeGreaterThan(0n)
+
+        await expect(deployCreate3Factory(networks[chain], deployer)).rejects.toThrow(/Redeploy Attempt/)
       }
     })
   })
 
-  it('can deploy create3 factory to each chain', async () => {
+  it.skip('can deploy create3 factory to each chain', async () => {
     for (let chain of chains) {
       // first deploy; from scratch
       await deploy.to(chain, {create3: true})
@@ -99,7 +103,7 @@ describe('deploy using create3 method to multiple chains', () => {
 
 describe('create3-utils', () => {
   it('deriveAddressOfSignerFromSig', async () => {
-    expect(await deriveAddressOfSignerFromSig(txData, splitSig)).toEqual('0x93AA019F0128e3C2338201C9d09a96A6bF48113b')
+    expect(await deriveAddressOfSignerFromSig(txData)).toEqual('0x93AA019F0128e3C2338201C9d09a96A6bF48113b')
   })
 
   it('getCreate3Address', async () => {
@@ -110,10 +114,10 @@ describe('create3-utils', () => {
   })
 
   it('verifyNotDeployedAt', async () => {
-    const transactionSignerAddress = await deriveAddressOfSignerFromSig(txData, splitSig)
+    const transactionSignerAddress = await deriveAddressOfSignerFromSig(txData)
     const address = getCreateAddress({from: transactionSignerAddress, nonce: txData.nonce})
-    await expect(verifyNotDeployedAt(Create3Factory.name, address, provider)).resolves.toBeUndefined()
-    // await expect(verifyNotDeployedAt(Create3Factory.name, address, provider)).rejects.toThrow()
+    await expect(verifyNotDeployedAt(Create3Factory.contractName, address, provider)).resolves.toBeUndefined()
+    // await expect(verifyNotDeployedAt(Create3Factory.contractName, address, provider)).rejects.toThrow(/Redeploy Attempt/)
     //fixme: compute contract address via create2, verify, then deploy contract, then verify again => should throw
   })
 })

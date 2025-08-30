@@ -1,4 +1,4 @@
-import {isContractAt, logger} from '@leverj/lever.common'
+import {isContractAt} from '@leverj/lever.common'
 import {
   getBytes,
   getCreate2Address,
@@ -13,12 +13,12 @@ import {
 import {default as hardhat} from 'hardhat'
 
 export const verifyNotDeployedAt = async (contractName, address, provider) => {
-  if (await isContractAt(provider, address)) throw Error(`${contractName} contract already exists at ${address}`)
+  if (await isContractAt(provider, address)) throw Error(`Redeploy Attempt: ${contractName} contract already exists at ${address}`)
 }
 
-export const deriveAddressOfSignerFromSig = async (txData, splitSig) => resolveProperties(txData).then(_ => {
+export const deriveAddressOfSignerFromSig = async txData => resolveProperties(txData).then(_ => {
   const digest = getBytes(keccak256(Transaction.from(_).unsignedSerialized /*RLP encoded*/) /* as specified by ECDSA */)
-  const signature = Signature.from(splitSig).serialized
+  const signature = Signature.from(txData.signature).serialized
   return recoverAddress(digest, signature)
 })
 

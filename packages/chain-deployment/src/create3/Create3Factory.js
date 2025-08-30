@@ -1,67 +1,60 @@
 import {isContractAt, logger, until} from '@leverj/lever.common'
 import {getCreateAddress, keccak256, Transaction} from 'ethers'
-import {cloneDeep} from 'lodash-es'
 import {deriveAddressOfSignerFromSig, getCreate3Address, verifyNotDeployedAt} from './create3-utils.js'
-import create3FactoryArtifact from './pickled-artifacts/SKYBITCREATE3FactoryLite.json' with {type: 'json'}
 
 /** ********************************************** !!! important !!! **************************************************/
 /** *************** keep this data consistent otherwise the deployment address will become different ******************/
-export const cast_in_stone = {
-  txData: {
-    type: 0,
-    data: create3FactoryArtifact.bytecode,
-    nonce: 0,
-    gasLimit: 100000n,
-    gasPrice: 100000000000n,  // = 100 gwei; made high for future-proofing. DO NOT CHANGE IT AFTER DEPLOYING YOUR FIRST CONTRACT TO LIVE BLOCKCHAIN.
-    value: 0,
-    chainId: 0,
-  },
-  splitSig: { // manually created
-    r: '0x3333333333333333333333333333333333333333333333333333333333333333',
+export const Create3Factory = {
+  _format: 'hh-sol-artifact-1',
+  contractName: 'SKYBITCREATE3FactoryLite',
+  sourceName: 'contracts/create3/SKYBITCREATE3FactoryLite.yul',
+  abi: [],
+  bytecode: '0x607780600a5f395ff3fe335f525f356020526034600c20601b80605c5f395f80f580156052575f601491818052602082601f19360192838380375af1156049575f511560405760145ff35b60035f5360015ffd5b60025f5360015ffd5b60015f5360015ffdfe601180600a5f395ff3fe365f6020373660205ff05f526014600cf3',
+  linkReferences: {},
+  deployedLinkReferences: {},
+  /*       resulting in the expected address:        */
+  address: '0x739201bA340A675624D9ADb1cc27e68F76a29765'
+}
+export const txData = {
+  type: 0,
+  data: Create3Factory.bytecode,
+  nonce: 0,
+  gasLimit: 100000n,
+  gasPrice: 100000000000n,  // = 100 gwei; made high for future-proofing. DO NOT CHANGE IT AFTER DEPLOYING YOUR FIRST CONTRACT TO LIVE BLOCKCHAIN.
+  value: 0,
+  chainId: 0,
+  signature: { // manually created
+    r: '0x3333333333333333333333333333333333333333333333333333333333333333', //'3'.repeat(24) //fixme
     s: '0x3333333333333333333333333333333333333333333333333333333333333333',
     v: 27,
   },
 }
 /** *******************************************************************************************************************/
-const {gasLimit, gasPrice} = cast_in_stone.txData
-cast_in_stone.txData.signature = cast_in_stone.splitSig
-
-const {abi, bytecode, contractName} = create3FactoryArtifact
-export const Create3Factory = {
-  abi,
-  bytecode,
-  name: contractName,
-  address: '0x739201bA340A675624D9ADb1cc27e68F76a29765'
-}
+const {gasLimit, gasPrice} = txData
 
 const interval = 10, timeout = 100 * interval, timing = {interval, timeout}
 
 export async function deployCreate3Factory(network, deployer) {
   const provider = deployer.provider
-  logger.log(`deploying ${Create3Factory.name} contract keylessly...`)
   await verifyGasLimit(provider)
-  const {txData, splitSig} = cloneDeep(cast_in_stone) //fixme: is it needed?
-  const transactionSignerAddress = await deriveAddressOfSignerFromSig(txData, splitSig)
-  logger.log(`derived address of transaction signer: ${transactionSignerAddress}`)
+  const transactionSignerAddress = await deriveAddressOfSignerFromSig(txData)
   const addressExpected = getCreateAddress({from: transactionSignerAddress, nonce: txData.nonce})
-  await verifyNotDeployedAt(Create3Factory.name, addressExpected, provider)
+  await verifyNotDeployedAt(Create3Factory.contractName, addressExpected, provider)
   await fundTransactionSigner(gasPrice, gasLimit, transactionSignerAddress, deployer)
 
-  logger.log(`deploying ${Create3Factory.name} contract by broadcasting signed raw transaction to ${network.chain}...`)
-  txData.signature = splitSig
-  const txSignedSerialized = Transaction.from(txData).serialized
-  logger.log(`expected transaction id: ${keccak256(txSignedSerialized)}`)
-  const receipt = await provider.broadcastTransaction(txSignedSerialized).then(_ => _.wait())
-  if (!await isContractAt(provider, addressExpected)) throw Error(`${Create3Factory.name} contract was deployed but not found at ${addressExpected}`)
+  const transaction = Transaction.from(txData).serialized
+  // logger.log(`expected transaction id: ${keccak256(transaction)}`)
+  const receipt = await provider.broadcastTransaction(transaction).then(_ => _.wait())
+  if (!await isContractAt(provider, addressExpected)) throw Error(`${Create3Factory.contractName} contract was deployed but not found at ${addressExpected}`)
   return {
-    name: Create3Factory.name,
+    name: Create3Factory.contractName,
     address: addressExpected,
     blockCreated: receipt.blockNumber,
   }
 }
 
 const verifyGasLimit = async (provider) => {
-  const gasCost = await provider.estimateGas({data: Create3Factory.bytecode})
+  const gasCost = await provider.estimateGas({data: txData.data})
   const gasLimitPercentageAboveCost = Number(gasLimit * 100n / gasCost) - 100
   logger.log(`expected gas cost: ${gasCost}`)
   logger.log(`gasLimit: ${gasLimit} (${gasLimitPercentageAboveCost}% above expected cost)`)
@@ -83,7 +76,7 @@ export const fundTransactionSigner = async (gasPrice, gasLimit, transactionSigne
 
   const shortfall = balanceOfSignerMinRequired - balanceOfSigner
   if (await provider.getBalance(deployer.address) <= shortfall) throw Error(
-    `insufficient funds: ${deployer.address} need to transfer at least ${shortfall} of native currency to ${transactionSignerAddress} (transaction signer's address)`
+    `Insufficient Funds: ${deployer.address} need to transfer at least ${shortfall} of native currency to ${transactionSignerAddress} (transaction signer's address)`
   )
   const {maxFeePerGas, maxPriorityFeePerGas} = await provider.getFeeData()
   await deployer.sendTransaction({to: transactionSignerAddress, value: shortfall, maxFeePerGas, maxPriorityFeePerGas}).then(_ => _.wait())
