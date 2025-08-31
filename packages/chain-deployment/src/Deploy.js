@@ -12,7 +12,7 @@ import {verifyContract} from './blockscout.js'
 /*** from https://github.com/blockscout/chainscout/blob/main/data/chains.json ***/
 import blockscoutExplorerUrls_ from './chainscout-chains.json' with {type: 'json'}
 
-const {ethers: {deployContract, encodeBytes32String, getContractFactory, JsonRpcProvider, Wallet}} = hardhat
+const {artifacts, ethers: {deployContract, encodeBytes32String, getContractFactoryFromArtifact, JsonRpcProvider, Wallet}} = hardhat
 
 const toNetworkCanon = (chain, network) => {
   const {id, name, nativeCurrency, rpcUrls, blockExplorers} = cloneDeep(network)
@@ -90,8 +90,7 @@ export class Deploy {
     if (options.create3) {
       if (!getContractAddress(Create3Factory.contractName)) {
         this.logger.log(`deploying Create3 Factory contract keylessly [${Create3Factory.contractName}] `.padEnd(120, '.'))
-        const {name, address, blockCreated} = await deployCreate3Factory(deployer)
-        this.store.update(chain, {contracts: {[name]: {address, blockCreated}}})
+        this.recordDeployedContract(chain, await deployCreate3Factory(deployer))
       }
     }
     for (let [name, {libraries, params}] of Object.entries(constructors)) {
@@ -101,24 +100,18 @@ export class Deploy {
       libraries = translateLibraries(libraries)
       params = translateAddresses(params)
       if (options.create3) {
-        return console.log('>'.repeat(50), name, 'bailing out for now')
         if (getContractAddress(name) && options.reset) throw Error('no can do right now') //fixme: must deploy to a different address; use a different salt?
         else {
           const version = 1 //fixme: how to increase version methodically?
           const salt = encodeBytes32String(`${name}.${version}`)
-          const {abi, bytecode} = hardhat.artifacts.readArtifactSync(name)
-          const contractFactory = await getContractFactory(abi, bytecode)
-          const {name, address, blockCreated} = await deployViaCreate3Factory(deployer, contractFactory, name, params, salt)
-          // this.store.update(chain, {contracts: {[name]: {address, blockCreated}}})
+          const artifact = artifacts.readArtifactSync(name)
+          const contractFactory = await getContractFactoryFromArtifact(artifact, {libraries, signer: deployer})
+          this.recordDeployedContract(chain, await deployViaCreate3Factory(deployer, contractFactory, name, params, salt))
         }
       } else if (!getContractAddress(name) || options.reset) {
         this.logger.log(`deploying ${name} contract `.padEnd(120, '.'))
-        const contract = await deployContract(name, params, {libraries, signer: deployer})
-        if (!contract?.target) return this.logger.error(`failed to deploy ${name} contract `.padEnd(120, '.'))
-        const address = contract.target
-        const blockCreated = await contract.deploymentTransaction().wait().then(_ => _.blockNumber)
-        this.store.update(chain, {contracts: {[name]: {address, blockCreated}}})
-        await setTimeout(200) // note: must wait a bit to avoid "Nonce too low" error
+        this.recordDeployedContract(chain, await this.deployContract(name, params, {libraries, signer: deployer}))
+        await setTimeout(200) // note: must wait a bit to avoid "Nonce too low" error ///fixme
       }
       if (options.verify) {
         const network = this.store.get(chain)
@@ -126,5 +119,17 @@ export class Deploy {
         await verifyContract(this.logger, network, name, libraries ?? {}, explorerUrl)
       }
     }
+  }
+
+  async deployContract(name, params, factoryOptions) {
+    const contract = await deployContract(name, params, factoryOptions)
+    const address = contract.target
+    const blockCreated = await contract.deploymentTransaction().wait().then(_ => _.blockNumber)
+    return {name, address, blockCreated}
+  }
+
+  recordDeployedContract(chain, {name, address, blockCreated}) {
+    if (!address) return this.logger.error(`failed to deploy ${name} contract `.padEnd(120, '.')) //fixme: needed?
+    this.store.update(chain, {contracts: {[name]: {address, blockCreated}}})
   }
 }
