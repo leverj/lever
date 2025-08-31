@@ -11,7 +11,6 @@ import {verifyContract} from './blockscout.js'
 
 /*** from https://github.com/blockscout/chainscout/blob/main/data/chains.json ***/
 import blockscoutExplorerUrls_ from './chainscout-chains.json' with {type: 'json'}
-import {logger} from '@leverj/lever.common'
 
 const {ethers: {deployContract, encodeBytes32String, getContractFactory, JsonRpcProvider, Wallet}} = hardhat
 
@@ -91,12 +90,10 @@ export class Deploy {
     if (options.create3) {
       if (!getContractAddress(Create3Factory.contractName)) {
         this.logger.log(`deploying Create3 Factory contract keylessly [${Create3Factory.contractName}] `.padEnd(120, '.'))
-        const {name, address, blockCreated} = await deployCreate3Factory(networks[chain], deployer)
+        const {name, address, blockCreated} = await deployCreate3Factory(deployer)
         this.store.update(chain, {contracts: {[name]: {address, blockCreated}}})
       }
     }
-    return // fixme
-
     for (let [name, {libraries, params}] of Object.entries(constructors)) {
       const translateAddresses = (params = []) => params.map(_ => Array.isArray(_) ? translateAddresses(_) : getContractAddress(_) ?? _)
       const translateLibraries = (names = []) => names.reduce((result, _) => Object.assign(result, ({[_]: getContractAddress(_)})), {})
@@ -104,14 +101,15 @@ export class Deploy {
       libraries = translateLibraries(libraries)
       params = translateAddresses(params)
       if (options.create3) {
+        return console.log('>'.repeat(50), name, 'bailing out for now')
         if (getContractAddress(name) && options.reset) throw Error('no can do right now') //fixme: must deploy to a different address; use a different salt?
         else {
           const version = 1 //fixme: how to increase version methodically?
           const salt = encodeBytes32String(`${name}.${version}`)
-          const artifact = await hardhat.artifacts.readArtifact(name) //fixme: how to get the artifact?
-          const contractFactory = await getContractFactory(artifact.abi, artifact.bytecode)
-          const contract = await deployViaCreate3Factory(contractFactory, name, params, salt, deployer)
-          await this.storeContract(name, contract, chain)
+          const {abi, bytecode} = hardhat.artifacts.readArtifactSync(name)
+          const contractFactory = await getContractFactory(abi, bytecode)
+          const {name, address, blockCreated} = await deployViaCreate3Factory(deployer, contractFactory, name, params, salt)
+          // this.store.update(chain, {contracts: {[name]: {address, blockCreated}}})
         }
       } else if (!getContractAddress(name) || options.reset) {
         this.logger.log(`deploying ${name} contract `.padEnd(120, '.'))

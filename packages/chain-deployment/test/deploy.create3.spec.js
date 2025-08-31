@@ -1,7 +1,7 @@
 import {Deploy, networks} from '@leverj/lever.chain-deployment'
 import {createHardhatConfig, provider} from '@leverj/lever.chain-deployment/hardhat.help'
 import {ensureExistsSync} from '@leverj/lever.common'
-import {encodeBytes32String, getCreateAddress, JsonRpcProvider, Wallet} from 'ethers'
+import {encodeBytes32String, getCreateAddress, isAddress, JsonRpcProvider, Wallet} from 'ethers'
 import {expect} from 'expect'
 import {exec} from 'node:child_process'
 import {rmSync, writeFileSync} from 'node:fs'
@@ -10,6 +10,9 @@ import waitOn from 'wait-on'
 import config from '../config.js'
 import {deriveAddressOfSignerFromSig, getCreate3Address, verifyNotDeployedAt} from '../src/create3/create3-utils.js'
 import {Create3Factory, deployCreate3Factory, fundTransactionSigner, txData} from '../src/create3/Create3Factory.js'
+import {cloneDeep} from 'lodash-es'
+
+const {contractName, contractAddress} = Create3Factory
 
 describe('deploy using create3 method to multiple chains', () => {
   const chains = ['holesky', 'sepolia']
@@ -49,6 +52,32 @@ describe('deploy using create3 method to multiple chains', () => {
 
   after(() => rmSync(configDir, {recursive: true, force: true}))
 
+  it('can deploy create3 factory to each chain', async () => {
+    for (let chain of chains) {
+      expect(deploy.store.get(chain)).not.toBeDefined()
+
+      // first deploy; from scratch
+      await deploy.to(chain, {create3: true})
+      const deployed_initial = cloneDeep(deploy.store.get(chain).contracts)
+      expect(deployed_initial[contractName]).toBeDefined()
+      expect(isAddress(deployed_initial[contractName].address)).toBe(true)
+      expect(deployed_initial[contractName].blockCreated).toBeGreaterThan(0n)
+
+      // attempt to reset; should have no effect
+      await deploy.to(chain, {create3: true, reset: true})
+      const attempt_to_reset = cloneDeep(deploy.store.get(chain).contracts)
+      expect(attempt_to_reset[contractName]).toMatchObject(deployed_initial[contractName])
+
+      // attempt to redeploy; should advise contracts already deployed and restore the store
+      deploy.store.delete(chain)
+      deploy.store.save()
+      expect(deploy.store.get(chain)).not.toBeDefined()
+      await deploy.to(chain, {create3: true})
+      const redeployed = cloneDeep(deploy.store.get(chain).contracts)
+      expect(redeployed[contractName]).toMatchObject(deployed_initial[contractName])
+    }
+  })
+
   describe('Create3Factory', () => {
     it('fundTransactionSigner', async () => {
       const {gasPrice, gasLimit} = txData
@@ -57,7 +86,7 @@ describe('deploy using create3 method to multiple chains', () => {
         const provider = new JsonRpcProvider(networks[chain].providerURL)
 
         const penniless = Wallet.createRandom(provider)
-        await expect(fundTransactionSigner(gasPrice, gasLimit, transactionSigner, penniless)).rejects.toThrow(/Insufficient Funds/)
+        await expect(fundTransactionSigner(penniless, transactionSigner, gasPrice, gasLimit)).rejects.toThrow(/Insufficient Funds/)
 
         const deployer = new Wallet(config.deployer.privateKey, provider)
         const before = {
@@ -67,7 +96,7 @@ describe('deploy using create3 method to multiple chains', () => {
         expect(before.deployer).toBeGreaterThan(0n)
         expect(before.transactionSigner).toEqual(0n)
 
-        await fundTransactionSigner(gasPrice, gasLimit, transactionSigner, deployer)
+        await fundTransactionSigner(deployer, transactionSigner, gasPrice, gasLimit)
         const after = {
           deployer: await provider.getBalance(deployer.address),
           transactionSigner: await provider.getBalance(transactionSigner),
@@ -82,22 +111,14 @@ describe('deploy using create3 method to multiple chains', () => {
       for (let chain of chains) {
         const provider = new JsonRpcProvider(networks[chain].providerURL)
         const deployer = new Wallet(config.deployer.privateKey, provider)
-        const {name, address, blockCreated} = await deployCreate3Factory(networks[chain], deployer)
-        expect(name).toEqual(Create3Factory.contractName)
-        expect(address).toEqual(Create3Factory.address)
+        const {name, address, blockCreated} = await deployCreate3Factory(deployer)
+        expect(name).toEqual(contractName)
+        expect(address).toEqual(contractAddress)
         expect(blockCreated).toBeGreaterThan(0n)
 
-        await expect(deployCreate3Factory(networks[chain], deployer)).rejects.toThrow(/Redeploy Attempt/)
+        await expect(deployCreate3Factory(deployer)).rejects.toThrow(/Redeploy Attempt/)
       }
     })
-  })
-
-  it.skip('can deploy create3 factory to each chain', async () => {
-    for (let chain of chains) {
-      // first deploy; from scratch
-      await deploy.to(chain, {create3: true})
-      console.log(deploy.store.get(chain).contracts)
-    }
   })
 })
 
@@ -109,15 +130,15 @@ describe('create3-utils', () => {
   it('getCreate3Address', async () => {
     const deployer = new Wallet(config.deployer.privateKey, provider)
     const salt = encodeBytes32String('SKYBIT.ASIA TESTERC20..........')
-    const address = await getCreate3Address(Create3Factory.address, deployer.address, salt)
+    const address = await getCreate3Address(contractAddress, deployer.address, salt)
     expect(address).toEqual('0x107b624AC0a1723053D029e936C6DB30fc65d9a6')
   })
 
   it('verifyNotDeployedAt', async () => {
     const transactionSignerAddress = await deriveAddressOfSignerFromSig(txData)
     const address = getCreateAddress({from: transactionSignerAddress, nonce: txData.nonce})
-    await expect(verifyNotDeployedAt(Create3Factory.contractName, address, provider)).resolves.toBeUndefined()
-    // await expect(verifyNotDeployedAt(Create3Factory.contractName, address, provider)).rejects.toThrow(/Redeploy Attempt/)
+    await expect(verifyNotDeployedAt(contractName, address, provider)).resolves.toBeUndefined()
+    // await expect(verifyNotDeployedAt(contractName, address, provider)).rejects.toThrow(/Redeploy Attempt/)
     //fixme: compute contract address via create2, verify, then deploy contract, then verify again => should throw
   })
 })

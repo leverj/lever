@@ -24,6 +24,6 @@ async function deploy(deployer) {
 
   // const contractFactory = await getContractFactory(artifact.abi, artifact.bytecode)
   const contractFactory = await getContractFactory(tokenContractName) // No need to use artifacts-saved for your contract because with CREATE3 deployment address isn't dependent on bytecode
-  const contract = await deployViaCreate3Factory(contractFactory, tokenContractName, constructorArgs, saltForCREATE3, deployer)
+  const contract = await deployViaCreate3Factory(undefined, tokenContractName, constructorArgs, saltForCREATE3, deployer)
   if (contract === undefined) throw Error('contractInstance is undefined')
 }
