@@ -20,7 +20,6 @@ module.exports = {
             enabled: true,
             runs: 15000
           },
-          evmVersion: 'cancun'
         }
       },
     ],

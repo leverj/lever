@@ -1,7 +1,7 @@
 import {Deploy, networks} from '@leverj/lever.chain-deployment'
 import {createHardhatConfig, provider} from '@leverj/lever.chain-deployment/hardhat.help'
 import {ensureExistsSync} from '@leverj/lever.common'
-import {encodeBytes32String, getCreateAddress, JsonRpcProvider, Wallet} from 'ethers'
+import {encodeBytes32String, JsonRpcProvider, Wallet} from 'ethers'
 import {expect} from 'expect'
 import {exec} from 'node:child_process'
 import {rmSync, writeFileSync} from 'node:fs'
@@ -15,7 +15,6 @@ import {
   fundTransactionSigner,
   getCreate3Address,
   txData,
-  verifyNotDeployedAt,
 } from '../src/create3.js'
 
 const {contractName, contractAddress} = Create3Factory
@@ -30,14 +29,6 @@ describe('create3 utils', () => {
     const salt1 = encodeBytes32String('BlaBla.1'), address1 = await getCreate3Address(deployer.address, salt1)
     const salt2 = encodeBytes32String('BlaBla.2'), address2 = await getCreate3Address(deployer.address, salt2)
     expect(address2).not.toEqual(address1)
-  })
-
-  it('verifyNotDeployedAt', async () => {
-    const transactionSignerAddress = await deriveAddressOfSignerFromSig(txData)
-    const address = getCreateAddress({from: transactionSignerAddress, nonce: txData.nonce})
-    await expect(verifyNotDeployedAt(contractName, address, provider)).resolves.toBeUndefined()
-    // await expect(verifyNotDeployedAt(contractName, address, provider)).rejects.toThrow(/Redeploy Attempt/)
-    //fixme: compute contract address via create2, verify, then deploy contract, then verify again => should throw
   })
 })
 

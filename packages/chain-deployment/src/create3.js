@@ -53,13 +53,16 @@ export async function deployCreate3Factory(deployer) {
   await verifyGasLimit(provider)
   const transactionSignerAddress = await deriveAddressOfSignerFromSig(txData)
   const addressExpected = getCreateAddress({from: transactionSignerAddress, nonce: txData.nonce})
-  await verifyNotDeployedAt(Create3Factory.contractName, addressExpected, provider)
-  await fundTransactionSigner(deployer, transactionSignerAddress, txData.gasPrice, txData.gasLimit)
+  if (await isContractAt(provider, addressExpected))
+    throw Error(`Redeploy Attempt: ${(Create3Factory.contractName)} contract already exists at ${addressExpected}`)
 
+  await fundTransactionSigner(deployer, transactionSignerAddress, txData.gasPrice, txData.gasLimit)
   const transaction = Transaction.from(txData).serialized
   // logger.log(`expected transaction id: ${keccak256(transaction)}`)
   const receipt = await provider.broadcastTransaction(transaction).then(_ => _.wait())
-  if (!await isContractAt(provider, addressExpected)) throw Error(`${Create3Factory.contractName} contract was deployed but not found at ${addressExpected}`)
+  await until(() => isContractAt(provider, addressExpected), timing).then(_ => {
+    if (!_) throw Error(`${Create3Factory.contractName} contract was deployed but not found at ${addressExpected}`)
+  })
   return {
     name: Create3Factory.contractName,
     address: addressExpected,
@@ -83,10 +86,6 @@ export const deriveAddressOfSignerFromSig = async txData => resolveProperties(tx
   const signature = Signature.from(txData.signature).serialized
   return recoverAddress(digest, signature)
 })
-
-export const verifyNotDeployedAt = async (contractName, address, provider) => {
-  if (await isContractAt(provider, address)) throw Error(`Redeploy Attempt: ${contractName} contract already exists at ${address}`)
-}
 
 /** there needs to be some funds at transactionSignerAddress to pay gas fee for the deployment */
 export const fundTransactionSigner = async (deployer, transactionSignerAddress, gasPrice, gasLimit) => {
@@ -130,8 +129,9 @@ export const deployViaCreate3Factory = async (deployer, contractFactory, name, p
     maxFeePerGas,
     maxPriorityFeePerGas,
   }).then(_ => _.wait())
-  await until(() => isContractAt(provider, address), timing)
-  if (!await isContractAt(provider, address)) throw Error(`${name} was not found at the expected address: ${address}`)
+  await until(() => isContractAt(provider, address), timing).then(_ => {
+    if (!_) throw Error(`${name} was not found at the expected address: ${address}`)
+  })
   return {name, address, blockCreated: receipt.blockNumber}
 }
 
