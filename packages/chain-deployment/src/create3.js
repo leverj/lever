@@ -1,9 +1,18 @@
 import {getCreationBlock, isContractAt, logger, until} from '@leverj/lever.common'
-import {getCreateAddress, Transaction} from 'ethers'
-import {deriveAddressOfSignerFromSig, getCreate3Address, verifyNotDeployedAt} from './create3-utils.js'
+import {
+  getBytes,
+  getCreate2Address,
+  getCreateAddress,
+  keccak256,
+  recoverAddress,
+  resolveProperties,
+  Signature,
+  solidityPackedKeccak256,
+  Transaction,
+} from 'ethers'
 
 /************************************************* !!! important !!! **************************************************/
-/****************** keep this data consistent otherwise the deployment address will become different ******************/
+/********************** keep this data consistent otherwise the deployment address will differ ************************/
 export const Create3Factory = {
   contractName: 'SKYBITCREATE3FactoryLite',
   sourceName: 'contracts/create3/SKYBITCREATE3FactoryLite.yul',
@@ -27,30 +36,32 @@ export const txData = {
   },
 }
 /*** ************************************************************************************************************** ***/
-const {gasLimit, gasPrice} = txData
-const {contractName, contractAddress} = Create3Factory
 
 const interval = 10, timeout = 100 * interval, timing = {interval, timeout}
 
 export async function deployCreate3Factory(deployer) {
   const provider = deployer.provider
-  if (await isContractAt(provider, contractAddress)) {
-    logger.warn(`${contractName} contract already exists`)
-    return {name: contractName, address: contractAddress, blockCreated: getCreationBlock(provider, contractAddress)}
+  if (await isContractAt(provider, Create3Factory.contractAddress)) {
+    logger.warn(`${Create3Factory.contractName} contract already exists`)
+    return {
+      name: Create3Factory.contractName,
+      address: Create3Factory.contractAddress,
+      blockCreated: 1 + await getCreationBlock(provider, Create3Factory.contractAddress) //fixme: why?
+    }
   }
 
   await verifyGasLimit(provider)
   const transactionSignerAddress = await deriveAddressOfSignerFromSig(txData)
   const addressExpected = getCreateAddress({from: transactionSignerAddress, nonce: txData.nonce})
-  await verifyNotDeployedAt(contractName, addressExpected, provider)
-  await fundTransactionSigner(deployer, transactionSignerAddress, gasPrice, gasLimit)
+  await verifyNotDeployedAt(Create3Factory.contractName, addressExpected, provider)
+  await fundTransactionSigner(deployer, transactionSignerAddress, txData.gasPrice, txData.gasLimit)
 
   const transaction = Transaction.from(txData).serialized
   // logger.log(`expected transaction id: ${keccak256(transaction)}`)
   const receipt = await provider.broadcastTransaction(transaction).then(_ => _.wait())
-  if (!await isContractAt(provider, addressExpected)) throw Error(`${contractName} contract was deployed but not found at ${addressExpected}`)
+  if (!await isContractAt(provider, addressExpected)) throw Error(`${Create3Factory.contractName} contract was deployed but not found at ${addressExpected}`)
   return {
-    name: contractName,
+    name: Create3Factory.contractName,
     address: addressExpected,
     blockCreated: receipt.blockNumber,
   }
@@ -58,13 +69,23 @@ export async function deployCreate3Factory(deployer) {
 
 const verifyGasLimit = async (provider) => {
   const gasCost = await provider.estimateGas({data: txData.data})
-  const gasLimitPercentageAboveCost = Number(gasLimit * 100n / gasCost) - 100
-  if (gasLimitPercentageAboveCost < 0) throw Error(`gasLimit ${gasLimit} isn't high enough to proceed`)
+  const gasLimitPercentageAboveCost = Number(txData.gasLimit * 100n / gasCost) - 100
+  if (gasLimitPercentageAboveCost < 0) throw Error(`gasLimit ${txData.gasLimit} isn't high enough to proceed`)
   if (gasLimitPercentageAboveCost < 10) logger.warn(`
     gasLimit may be too low to accommodate for possibly increasing future opcode cost. 
     once you choose a gasLimit, you'll need to use the same value for deployments on other 
     blockchains any time in the future in order for your contract to have the same address.
   `)
+}
+
+export const deriveAddressOfSignerFromSig = async txData => resolveProperties(txData).then(_ => {
+  const digest = getBytes(keccak256(Transaction.from(_).unsignedSerialized /* RLP encoded */) /* as specified by ECDSA */)
+  const signature = Signature.from(txData.signature).serialized
+  return recoverAddress(digest, signature)
+})
+
+export const verifyNotDeployedAt = async (contractName, address, provider) => {
+  if (await isContractAt(provider, address)) throw Error(`Redeploy Attempt: ${contractName} contract already exists at ${address}`)
 }
 
 /** there needs to be some funds at transactionSignerAddress to pay gas fee for the deployment */
@@ -93,18 +114,18 @@ export const fundTransactionSigner = async (deployer, transactionSignerAddress, 
 export const deployViaCreate3Factory = async (deployer, contractFactory, name, params, salt) => {
   const provider = deployer.provider
   const bytecode = await contractFactory.getDeployTransaction(...params).then(_ => _.data)
-  const address = await getCreate3Address(contractAddress, deployer.address, salt)
+  const address = await getCreate3Address(deployer.address, salt)
   if (await isContractAt(provider, address)) {
     logger.warn(`
         ${name} contract already exists at ${address}; returning current contract data.
         to deploy your contract to a different address, the salt must be changed.
     `)
-    return {name, address, blockCreated: getCreationBlock(provider, address)}
+    return {name, address, blockCreated: await getCreationBlock(provider, address)}
   }
 
   const {maxFeePerGas, maxPriorityFeePerGas} = await provider.getFeeData()
   const receipt = await deployer.sendTransaction({
-    to: contractAddress,
+    to: Create3Factory.contractAddress,
     data: bytecode.replace('0x', salt),
     maxFeePerGas,
     maxPriorityFeePerGas,
@@ -112,4 +133,22 @@ export const deployViaCreate3Factory = async (deployer, contractFactory, name, p
   await until(() => isContractAt(provider, address), timing)
   if (!await isContractAt(provider, address)) throw Error(`${name} was not found at the expected address: ${address}`)
   return {name, address, blockCreated: receipt.blockNumber}
+}
+
+const CreateFactory = {
+  contractName: 'CREATEFactory',
+  sourceName: 'contracts/create3/CREATEFactory.yul',
+  abi: [],
+  bytecode: '0x601180600a5f395ff3fe365f6020373660205ff05f526014600cf3',
+}
+export const getCreate3Address = async (callerAddress, salt) => {
+  // same as keccak256(callerAddress + salt.slice(2)). inputs must not be 0-padded
+  const keccak256Calculated = solidityPackedKeccak256(['address', 'bytes32'], [callerAddress, salt])
+
+  const CreateFactory_address = getCreate2Address(Create3Factory.contractAddress, keccak256Calculated, keccak256(CreateFactory.bytecode))
+  return getCreateAddress({
+    from: CreateFactory_address,
+    nonce: 1 // nonce starts at 1 in contracts
+    // don't use getTransactionCount to get nonce because if a deployment is repeated with same inputs getCreate2Address would fail before it gets here
+  })
 }

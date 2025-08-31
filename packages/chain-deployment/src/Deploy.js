@@ -6,8 +6,8 @@ import {execSync} from 'node:child_process'
 import {setTimeout} from 'node:timers/promises'
 import {inspect} from 'node:util'
 import * as networksByChain from 'viem/chains'
-import {Create3Factory, deployCreate3Factory, deployViaCreate3Factory} from './create3/Create3Factory.js'
 import {verifyContract} from './blockscout.js'
+import {Create3Factory, deployCreate3Factory, deployViaCreate3Factory} from './create3.js'
 
 /*** from https://github.com/blockscout/chainscout/blob/main/data/chains.json ***/
 import blockscoutExplorerUrls_ from './chainscout-chains.json' with {type: 'json'}
@@ -87,11 +87,9 @@ export class Deploy {
 
     this.logger.log(`deploying contracts: [${Object.keys(constructors)}] `.padEnd(120, '.'))
     if (!block) this.store.update(chain, {block: await provider.getBlockNumber()}) // establish start block
-    if (options.create3) {
-      if (!getContractAddress(Create3Factory.contractName)) {
-        this.logger.log(`deploying Create3 Factory contract keylessly [${Create3Factory.contractName}] `.padEnd(120, '.'))
-        this.recordDeployedContract(chain, await deployCreate3Factory(deployer))
-      }
+    if (options.create3 && !getContractAddress(Create3Factory.contractName)) {
+      this.logger.log(`deploying Create3 Factory contract keylessly [${Create3Factory.contractName}] `.padEnd(120, '.'))
+      this.storeDeployedContract(chain, await deployCreate3Factory(deployer))
     }
     for (let [name, {libraries, params}] of Object.entries(constructors)) {
       const translateAddresses = (params = []) => params.map(_ => Array.isArray(_) ? translateAddresses(_) : getContractAddress(_) ?? _)
@@ -102,15 +100,17 @@ export class Deploy {
       if (options.create3) {
         if (getContractAddress(name) && options.reset) throw Error('no can do right now') //fixme: must deploy to a different address; use a different salt?
         else {
-          const version = 1 //fixme: how to increase version methodically?
-          const salt = encodeBytes32String(`${name}.${version}`)
+          //fixme: problem is, in order to have same address on all blockchains, we cannot change it after first production deployment .
+          //so, how to pass-in and enforce uniqueness methodically?
+          const unique = '1'
+          const salt = encodeBytes32String(`${name}.${unique}`)
           const artifact = artifacts.readArtifactSync(name)
           const contractFactory = await getContractFactoryFromArtifact(artifact, {libraries, signer: deployer})
-          this.recordDeployedContract(chain, await deployViaCreate3Factory(deployer, contractFactory, name, params, salt))
+          this.storeDeployedContract(chain, await deployViaCreate3Factory(deployer, contractFactory, name, params, salt))
         }
       } else if (!getContractAddress(name) || options.reset) {
         this.logger.log(`deploying ${name} contract `.padEnd(120, '.'))
-        this.recordDeployedContract(chain, await this.deployContract(name, params, {libraries, signer: deployer}))
+        this.storeDeployedContract(chain, await this.deployContract(name, params, {libraries, signer: deployer}))
         await setTimeout(200) // note: must wait a bit to avoid "Nonce too low" error ///fixme
       }
       if (options.verify) {
@@ -128,7 +128,7 @@ export class Deploy {
     return {name, address, blockCreated}
   }
 
-  recordDeployedContract(chain, {name, address, blockCreated}) {
+  storeDeployedContract(chain, {name, address, blockCreated}) {
     if (!address) return this.logger.error(`failed to deploy ${name} contract `.padEnd(120, '.')) //fixme: needed?
     this.store.update(chain, {contracts: {[name]: {address, blockCreated}}})
   }
