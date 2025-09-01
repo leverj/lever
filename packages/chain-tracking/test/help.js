@@ -1,8 +1,8 @@
 import {expect} from 'expect'
 import {network} from 'hardhat'
 
-export const {ethers, networkConfig: {chainId}, provider} = await network.connect()
-export const {deployContract, getSigners} = ethers
+export const {ethers, networkConfig: {chainId}} = await network.connect()
+export const {deployContract, getSigners, provider} = ethers
 
 export const accounts = await getSigners()
 

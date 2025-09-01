@@ -1,11 +1,8 @@
 import {artifacts, config, network} from 'hardhat'
 
 export {artifacts, config, network} from 'hardhat'
-export const {ethers, networkConfig: {chainId}, networkHelpers: evm, provider} = await network.connect()
-export const {deployContract, getContractFactory, getContractAt, getSigners} = ethers
-
-//fixme: not really working?
-export const getBlockNumber = async () => provider.request({method: 'eth_blockNumber', params: []}).then(_ => parseInt(_, 16))
+export const {ethers, networkConfig: {chainId}, networkHelpers: evm} = await network.connect()
+export const {deployContract, getSigners, provider} = ethers
 
 export const accounts = await getSigners()
 
