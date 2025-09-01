@@ -16,9 +16,6 @@
   "dependencies": {
     "@leverj/lever.common": "5.0.0",
     "@leverj/lever.storage": "5.0.0",
-    "@nomicfoundation/hardhat-ethers": "^4.0.0",
-    "@nomicfoundation/hardhat-network-helpers": "^3.0.0",
-    "@nomicfoundation/hardhat-verify": "^3.0.0",
     "axios": "^1.11.0",
     "ethers": "^6.15.0",
     "glob": "^11.0.3",
@@ -30,15 +27,10 @@
   },
   "devDependencies": {
     "@leverj/lever.config": "5.0.0",
-    "@nomicfoundation/hardhat-ethers-chai-matchers": "^3.0.0",
-    "@nomicfoundation/hardhat-ignition": "^3.0.1",
-    "@nomicfoundation/hardhat-ignition-ethers": "^3.0.1",
-    "@nomicfoundation/hardhat-keystore": "^3.0.1",
+    "@nomicfoundation/hardhat-ethers": "^4.0.0",
     "@nomicfoundation/hardhat-mocha": "^3.0.1",
-    "@nomicfoundation/hardhat-toolbox-mocha-ethers": "^3.0.0",
-    "@nomicfoundation/hardhat-typechain": "^3.0.0",
-    "@nomicfoundation/ignition-core": "^3.0.1",
-    "chai": "^5.3.3",
+    "@nomicfoundation/hardhat-network-helpers": "^3.0.0",
+    "@nomicfoundation/hardhat-verify": "^3.0.0",
     "wait-on": "^8.0.4"
   }
 }

@@ -1,4 +1,3 @@
-import hardhat_toolbox_mocha_ethers from '@nomicfoundation/hardhat-toolbox-mocha-ethers'
 import hardhat_ethers from '@nomicfoundation/hardhat-ethers'
 import hardhat_network_helpers from '@nomicfoundation/hardhat-network-helpers'
 import hardhat_verify from '@nomicfoundation/hardhat-verify'
@@ -11,7 +10,7 @@ export default {
     },
   },
   plugins: [
-    hardhat_toolbox_mocha_ethers,
+    // hardhat_toolbox_mocha_ethers,
     hardhat_ethers,
     hardhat_network_helpers,
     hardhat_verify,
