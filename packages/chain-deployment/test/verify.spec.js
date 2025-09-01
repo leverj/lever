@@ -26,7 +26,6 @@ describe('verify', () => {
 
   beforeEach(() => rmSync(`${config.deploymentDir}/test`, {recursive: true, force: true}))
 
-  //fixme:hardhat: Error HHE900: There was an error while resolving the project file "./undefined":
   it('attempt to verify unsupported chain', async () => {
     const chain = 'hardhat'
     const evm = exec(`npx hardhat node`)

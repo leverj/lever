@@ -17,8 +17,6 @@ export default Object.assign(config, {
       chainId: ${chainId},  /*** ${chain} ***/
       gasPrice: 0,
       initialBaseFeePerGas: 0,
-      type: 'http',
-      chainType: 'l1',
     }
   }
 })`
