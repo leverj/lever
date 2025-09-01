@@ -1,5 +1,10 @@
-import {deployContract} from '@leverj/lever.chain-deployment/hardhat.help'
 import {expect} from 'expect'
+import {network} from 'hardhat'
+
+export const {ethers, networkConfig: {chainId}, provider} = await network.connect()
+export const {deployContract, getSigners} = ethers
+
+export const accounts = await getSigners()
 
 export const ERC20 = async (name = 'Crap', symbol = 'CRAP') => deployContract('ERC20Mock', [name, symbol])
 export const ERC721 = async (name = 'Crap', symbol = 'CRAP') => deployContract('ERC721Mock', [name, symbol])

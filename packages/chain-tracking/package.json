@@ -5,8 +5,7 @@
   "type": "module",
   "main": "./src/index.js",
   "exports": {
-    ".": "./src/index.js",
-    "./test": "./test/help.js"
+    ".": "./src/index.js"
   },
   "scripts": {
     "test": "npx mocha",

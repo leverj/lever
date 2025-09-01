@@ -34,3 +34,4 @@ lib/
 logs/
 misc/
 node_modules/
+types/
