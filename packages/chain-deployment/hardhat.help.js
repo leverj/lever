@@ -7,10 +7,10 @@ export const {deployContract, getContractFactory, getContractAt, getSigners} = e
 export const accounts = await getSigners()
 
 const {mnemonic, path} = config.networks.default.accounts, phrase = await mnemonic.get()
-export const wallets = accounts.map((value, i) => ethers.HDNodeWallet.fromPhrase(phrase, `${path}/${i}`))
+export const wallets = accounts.map((value, i) => ethers.HDNodeWallet.fromMnemonic(ethers.Mnemonic.fromPhrase(phrase), `${path}/${i}`))
 
 export const createHardhatConfig = (chain, chainId) => `
-const config = await import(\`\${process.env.PWD}/hardhat.config.js\`)
+const {default: config} = await import(\`\${process.env.PWD}/hardhat.config.js\`)
 export default Object.assign(config, {
   networks: {
     default: {

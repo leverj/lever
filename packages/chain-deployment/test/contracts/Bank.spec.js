@@ -9,6 +9,8 @@ const ERC20 = async (name, symbol) => deployContract('ERC20Mock', [name, symbol]
 describe('Bank', () => {
   const [, account] = accounts
   const amount = 1000n
+  //0x1090495C9bC80106a8E42D89E10fd58adbDA409b
+  // for (let _ of accounts) console.log(_.address)
 
   it('can deposit & withdraw ERC20 Token', async () => {
     const bank = await Bank(chainId, '🥱')
