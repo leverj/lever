@@ -1,35 +1,17 @@
-import {default as hardhat} from 'hardhat'
+import {artifacts, config, network} from 'hardhat'
 
-/** https://hardhat.org/hardhat-network-helpers/docs/reference */
-export * as evm from '@nomicfoundation/hardhat-network-helpers'
+export {artifacts, config, network} from 'hardhat'
+export const {ethers, networkConfig: {chainId}, networkHelpers: evm, provider} = await network.connect()
+export const {deployContract, getContractFactory, getContractAt, getSigners} = ethers
 
-export const {
-  config,
-  ethers,
-  network,
-  switchNetwork,
-} = hardhat
-
-/** https://hardhat.org/hardhat-runner/plugins/nomicfoundation-hardhat-ethers#helpers */
-export const {
-  provider,
-  deployContract,
-  getContractFactory,
-  getContractAt,
-  getSigners,
-  getSigner,
-  getImpersonatedSigner,
-  getContractFactoryFromArtifact,
-  getContractAtFromArtifact,
-} = ethers
-
-const {mnemonic, path} = config.networks.hardhat.accounts, phrase = ethers.Mnemonic.fromPhrase(mnemonic)
-export const chainId = await provider.getNetwork().then(_ => _.chainId)
 export const accounts = await getSigners()
-export const wallets = accounts.map((value, i) => ethers.HDNodeWallet.fromMnemonic(phrase, `${path}/${i}`))
+
+const {mnemonic, path} = config.networks.default.accounts, phrase = await mnemonic.get()
+export const wallets = accounts.map((value, i) => ethers.HDNodeWallet.fromPhrase(phrase, `${path}/${i}`))
 
 export const createHardhatConfig = (chain, chainId) => `
-module.exports = Object.assign(require(\`\${process.env.PWD}/hardhat.config.cjs\`), {
+import config from \`\${process.env.PWD}/hardhat.config.js\`
+export default Object.assign({}, config, {
   networks: {
     hardhat: {
       chainId: ${chainId},  /*** ${chain} ***/

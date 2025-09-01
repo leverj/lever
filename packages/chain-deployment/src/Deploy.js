@@ -1,5 +1,6 @@
 import {JsonFileStore} from '@leverj/lever.storage'
-import {default as hardhat} from 'hardhat'
+import {encodeBytes32String, JsonRpcProvider, Wallet} from 'ethers'
+import {artifacts, network} from 'hardhat'
 import {Map} from 'immutable'
 import {cloneDeep} from 'lodash-es'
 import {execSync} from 'node:child_process'
@@ -12,7 +13,7 @@ import {Create3Factory, deployCreate3Factory, deployViaCreate3Factory} from './c
 /*** from https://github.com/blockscout/chainscout/blob/main/data/chains.json ***/
 import blockscoutExplorerUrls_ from './chainscout-chains.json' with {type: 'json'}
 
-const {artifacts, ethers: {deployContract, encodeBytes32String, getContractFactoryFromArtifact, JsonRpcProvider, Wallet}} = hardhat
+const {ethers: {deployContract, getContractFactoryFromArtifact}} = await network.connect() //fixme: need to do per network?
 
 const toNetworkCanon = (chain, network) => {
   const {id, name, nativeCurrency, rpcUrls, blockExplorers} = cloneDeep(network)
