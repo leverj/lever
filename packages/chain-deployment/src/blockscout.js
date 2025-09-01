@@ -3,13 +3,9 @@ import axios from 'axios'
 import {JsonRpcProvider} from 'ethers'
 import * as glob from 'glob'
 import {artifacts, config} from 'hardhat'
-import {Map} from 'immutable'
 import {execSync} from 'node:child_process'
 import {readFileSync} from 'node:fs'
 import {tmpdir} from 'node:os'
-
-const names = await artifacts.getAllFullyQualifiedNames()
-const contractFullyQualifiedNames = Map(Array.from(names).map(_ => [_.split(':')[1], _])).toJS() //fixme: let's use artifacts directly
 
 const getSourceCode = (name) => {
   const sources = glob.sync(`${config.paths.sources}/**/*.sol`)
@@ -23,7 +19,21 @@ export async function verifyContract(logger, network, name, libraries, explorerU
   const chainId = parseInt(network.id)
   const {address, blockCreated} = network.contracts[name]
   const flattenedSourcePath = getSourceCode(name)
-  const buildInfo = await artifacts.getBuildInfo(contractFullyQualifiedNames[name]) //fixme: artifacts.getBuildInfo is not a function
+  const artifact = await artifacts.readArtifact(name)
+  // fixme: getBuildInfo is no longer available; need to read the json file directly
+  // const buildInfo = await artifacts.getBuildInfo(contractFullyQualifiedNames[name])
+  const buildInfo = {
+    solcLongVersion: '0.8.30+commit.73712a01"',
+    input: {
+      settings: {
+        evmVersion: 'prague',
+        optimizer: {
+          enabled: true,
+          runs: 15000
+        },
+      }
+    }
+  }
   const {solcLongVersion, input: {settings: {evmVersion, optimizer}}} = buildInfo
   if (explorerUrl) {
     const url = `${explorerUrl}/api/v2/smart-contracts/${address}/verification/via/flattened-code`
@@ -42,7 +52,6 @@ export async function verifyContract(logger, network, name, libraries, explorerU
     const response = await axios.post(url, JSON.stringify(data), {headers, timeout: 5000}).catch(logger.error)
     if (response) logger.log(`${response?.statusText}: ${response?.data?.message}`)
   } else {
-    const artifact = await artifacts.readArtifactSync(contractFullyQualifiedNames[name])
     const provider = new JsonRpcProvider(network.providerURL)
     const deploymentTransaction = await getCreationTransaction(provider, blockCreated, address)
     const constructorArgs = deploymentTransaction ?

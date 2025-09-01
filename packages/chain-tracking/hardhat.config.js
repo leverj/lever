@@ -1,2 +1,1 @@
-import config from '@leverj/lever.chain-deployment/hardhat.config'
-export default config
+export {default} from '@leverj/lever.chain-deployment/hardhat.config'

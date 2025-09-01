@@ -105,7 +105,7 @@ export class Deploy {
           //so, how to pass-in and enforce uniqueness methodically?
           const unique = '1'
           const salt = encodeBytes32String(`${name}.${unique}`)
-          const artifact = artifacts.readArtifactSync(name) //fixme: artifacts.readArtifactSync is not a function
+          const artifact = await artifacts.readArtifact(name)
           const contractFactory = await getContractFactoryFromArtifact(artifact, {libraries, signer: deployer})
           this.storeDeployedContract(chain, await deployViaCreate3Factory(deployer, contractFactory, name, params, salt))
         }
