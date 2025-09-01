@@ -23,7 +23,7 @@ export async function verifyContract(logger, network, name, libraries, explorerU
   const chainId = parseInt(network.id)
   const {address, blockCreated} = network.contracts[name]
   const flattenedSourcePath = getSourceCode(name)
-  const buildInfo = await artifacts.getBuildInfo(contractFullyQualifiedNames[name])
+  const buildInfo = await artifacts.getBuildInfo(contractFullyQualifiedNames[name]) //fixme: artifacts.getBuildInfo is not a function
   const {solcLongVersion, input: {settings: {evmVersion, optimizer}}} = buildInfo
   if (explorerUrl) {
     const url = `${explorerUrl}/api/v2/smart-contracts/${address}/verification/via/flattened-code`

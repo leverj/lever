@@ -37,7 +37,7 @@
     "@nomicfoundation/hardhat-toolbox-mocha-ethers": "^3.0.0",
     "@nomicfoundation/hardhat-typechain": "^3.0.0",
     "@nomicfoundation/ignition-core": "^3.0.1",
-    "chai": "^5.1.2",
+    "chai": "^5.3.3",
     "lodash-es": "^4.17.21",
     "viem": "^2.36.0",
     "wait-on": "^8.0.4"
