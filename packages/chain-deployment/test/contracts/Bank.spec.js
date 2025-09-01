@@ -1,5 +1,5 @@
-import {accounts, chainId, deployContract} from '@leverj/lever.chain-deployment/hardhat.help'
 import {expect} from 'expect'
+import {accounts, chainId, deployContract} from '../help.js'
 
 const Bank = async (chainId, name) => deployContract('ToyMath', []).then(
   _ => deployContract('Bank', [chainId, name], {libraries: {ToyMath: _.target}})

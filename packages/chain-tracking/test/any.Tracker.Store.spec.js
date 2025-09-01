@@ -1,11 +1,10 @@
-import {accounts, chainId, provider} from '@leverj/lever.chain-deployment/hardhat.help'
 import {ContractTracker, MultiContractTracker} from '@leverj/lever.chain-tracking'
-import {ERC20, ERC721} from '@leverj/lever.chain-tracking/test'
 import {logger} from '@leverj/lever.common'
 import {InMemoryCompoundKeyStore, InMemoryStore} from '@leverj/lever.storage'
 import {cloneDeep} from 'lodash-es'
 import {setTimeout} from 'node:timers/promises'
 import {expect} from 'expect'
+import {accounts, chainId, ERC20, ERC721, provider} from './help.js'
 
 describe('any ContractTracker / Store interaction', () => {
   const [_, account] = accounts

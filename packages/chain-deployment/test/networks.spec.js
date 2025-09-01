@@ -1,5 +1,4 @@
 import {blockscoutExplorerUrls, Deploy, networks, registerCustomNetwork} from '@leverj/lever.chain-deployment'
-import {createHardhatConfig} from '@leverj/lever.chain-deployment/hardhat.help'
 import {ensureExistsSync} from '@leverj/lever.common'
 import {expect} from 'expect'
 import {exec} from 'node:child_process'
@@ -7,6 +6,7 @@ import {rmSync, writeFileSync} from 'node:fs'
 import {setTimeout} from 'node:timers/promises'
 import waitOn from 'wait-on'
 import config from '../config.js'
+import {createHardhatConfig} from './help.js'
 
 describe('networks', () => {
   const chain = 'custom', chainId = 9110119

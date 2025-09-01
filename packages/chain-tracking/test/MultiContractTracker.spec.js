@@ -1,10 +1,9 @@
-import {accounts, chainId, provider} from '@leverj/lever.chain-deployment/hardhat.help'
 import {MultiContractTracker} from '@leverj/lever.chain-tracking'
-import {ERC20, ERC721, expectEventsToMatch} from '@leverj/lever.chain-tracking/test'
 import {logger} from '@leverj/lever.common'
 import {InMemoryStore} from '@leverj/lever.storage'
 import {ZeroAddress as ETH} from 'ethers'
 import {setTimeout} from 'node:timers/promises'
+import {accounts, chainId, ERC20, ERC721, expectEventsToMatch, provider} from './help.js'
 
 describe('MultiContractTracker', () => {
   const [deployer, account] = accounts
