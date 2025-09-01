@@ -7,7 +7,7 @@ import {execSync} from 'node:child_process'
 import {readFileSync} from 'node:fs'
 import {tmpdir} from 'node:os'
 
-//fixme: hardhat flatten may no longer work
+//fixme:hardhat: flatten may no longer work
 const getSourceCode = (name) => {
   const sources = glob.sync(`${config.paths.sources}/**/*.sol`)
   const source_path = sources.find(_ => _.endsWith(`/${name}.sol`))
@@ -16,13 +16,13 @@ const getSourceCode = (name) => {
   return flattened_path
 }
 
-//fixme: look into using the new @nomicfoundation/hardhat-verify
+//fixme:hardhat: look into using the new @nomicfoundation/hardhat-verify
 export async function verifyContract(logger, network, name, libraries, explorerUrl) {
   const chainId = parseInt(network.id)
   const {address, blockCreated} = network.contracts[name]
   const flattenedSourcePath = getSourceCode(name)
   const artifact = await artifacts.readArtifact(name)
-  // fixme: getBuildInfo is no longer available; need to read the json file directly
+  // fixme:hardhat: getBuildInfo is no longer available; need to read the json file directly
   // const buildInfo = await artifacts.getBuildInfo(contractFullyQualifiedNames[name])
   const buildInfo = {
     solcLongVersion: '0.8.30+commit.73712a01"',

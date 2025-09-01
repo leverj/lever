@@ -1,5 +1,4 @@
 import {Deploy, networks} from '@leverj/lever.chain-deployment'
-import {createHardhatConfig} from '@leverj/lever.chain-deployment/hardhat.help'
 import {ensureExistsSync} from '@leverj/lever.common'
 import {isAddress} from 'ethers'
 import {expect} from 'expect'
@@ -8,8 +7,9 @@ import {exec} from 'node:child_process'
 import {rmSync, writeFileSync} from 'node:fs'
 import {setTimeout} from 'node:timers/promises'
 import waitOn from 'wait-on'
-import config from '../config.js'
 import {Create3Factory} from '../src/create3.js'
+import config from '../config.js'
+import {createHardhatConfig} from './help.js'
 
 describe('deploy to multiple chains', () => {
   const chains = ['holesky', 'sepolia']
@@ -76,7 +76,7 @@ describe('deploy to multiple chains', () => {
     const {contractName} = Create3Factory
     for (let chain of chains) {
       expect(deploy.store.get(chain)).not.toBeDefined()
-      //fixme: introduce stochastic noise such that blockCreated would differ across chains
+      //fixme:create3: introduce stochastic noise such that blockCreated would differ across chains
 
       // first deploy; from scratch
       await deploy.to(chain, {create3: true})

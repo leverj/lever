@@ -13,7 +13,7 @@ import {Create3Factory, deployCreate3Factory, deployViaCreate3Factory} from './c
 /*** from https://github.com/blockscout/chainscout/blob/main/data/chains.json ***/
 import blockscoutExplorerUrls_ from './chainscout-chains.json' with {type: 'json'}
 
-const {ethers: {deployContract, getContractFactoryFromArtifact}} = await network.connect() //fixme: need to do per network?
+const {ethers: {deployContract, getContractFactoryFromArtifact}} = await network.connect() //fixme:hardhat: need to do per network?
 
 const toNetworkCanon = (chain, network) => {
   const {id, name, nativeCurrency, rpcUrls, blockExplorers} = cloneDeep(network)
@@ -99,9 +99,9 @@ export class Deploy {
       libraries = translateLibraries(libraries)
       params = translateAddresses(params)
       if (options.create3) {
-        if (getContractAddress(name) && options.reset) throw Error('no can do right now') //fixme: must deploy to a different address; use a different salt?
+        if (getContractAddress(name) && options.reset) throw Error('no can do right now') //fixme:create3: must deploy to a different address; use a different salt?
         else {
-          //fixme: problem is, in order to have same address on all blockchains, we cannot change it after first production deployment .
+          //fixme:create3: problem is, in order to have same address on all blockchains, we cannot change it after first production deployment .
           //so, how to pass-in and enforce uniqueness methodically?
           const unique = '1'
           const salt = encodeBytes32String(`${name}.${unique}`)
@@ -112,7 +112,7 @@ export class Deploy {
       } else if (!getContractAddress(name) || options.reset) {
         this.logger.log(`deploying ${name} contract `.padEnd(120, '.'))
         this.storeDeployedContract(chain, await this.deployContract(name, params, {libraries, signer: deployer}))
-        await setTimeout(200) // note: must wait a bit to avoid "Nonce too low" error ///fixme
+        await setTimeout(200) // note: must wait a bit to avoid "Nonce too low" error
       }
       if (options.verify) {
         const network = this.store.get(chain)
@@ -130,7 +130,7 @@ export class Deploy {
   }
 
   storeDeployedContract(chain, {name, address, blockCreated}) {
-    if (!address) return this.logger.error(`failed to deploy ${name} contract `.padEnd(120, '.')) //fixme: needed?
+    if (!address) return this.logger.error(`failed to deploy ${name} contract `.padEnd(120, '.')) //fixme:create3: needed?
     this.store.update(chain, {contracts: {[name]: {address, blockCreated}}})
   }
 }

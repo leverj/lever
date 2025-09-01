@@ -1,5 +1,4 @@
 import {Deploy, networks} from '@leverj/lever.chain-deployment'
-import {createHardhatConfig, provider} from '@leverj/lever.chain-deployment/hardhat.help'
 import {ensureExistsSync} from '@leverj/lever.common'
 import {encodeBytes32String, JsonRpcProvider, Wallet} from 'ethers'
 import {expect} from 'expect'
@@ -16,6 +15,7 @@ import {
   getCreate3Address,
   txData,
 } from '../src/create3.js'
+import {createHardhatConfig, provider} from './help.js'
 
 const {contractName, contractAddress} = Create3Factory
 
