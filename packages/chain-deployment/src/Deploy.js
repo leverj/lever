@@ -1,13 +1,15 @@
 import {JsonFileStore} from '@leverj/lever.storage'
+import {verifyContract} from '@nomicfoundation/hardhat-verify/verify'
 import {encodeBytes32String, JsonRpcProvider, Wallet} from 'ethers'
-import {artifacts, network} from 'hardhat'
+import * as glob from 'glob'
+import hre, {artifacts, config, network} from 'hardhat'
 import {Map} from 'immutable'
 import {cloneDeep} from 'lodash-es'
 import {execSync} from 'node:child_process'
+import {tmpdir} from 'node:os'
 import {setTimeout} from 'node:timers/promises'
 import {inspect} from 'node:util'
 import * as networksByChain from 'viem/chains'
-import {verifyContract} from './blockscout.js'
 import {Create3Factory, deployCreate3Factory, deployViaCreate3Factory} from './create3.js'
 
 /*** from https://github.com/blockscout/chainscout/blob/main/data/chains.json ***/
@@ -74,7 +76,7 @@ export class Deploy {
 
   compileContracts() {
     this.logger.log(`compiling contracts `.padEnd(120, '.'))
-    execSync(`npx hardhat compile --quiet --config ${process.cwd()}/hardhat.config.js`)
+    execSync(`npx hardhat compile --build-profile production --quiet --config ${process.cwd()}/hardhat.config.js`)
   }
 
   async deployContracts(chain, options) {
@@ -116,8 +118,12 @@ export class Deploy {
       }
       if (options.verify) {
         const network = this.store.get(chain)
-        const explorerUrl = blockscoutExplorerUrls[id]?.explorers[0].url
-        await verifyContract(this.logger, network, name, libraries ?? {}, explorerUrl)
+        if (false) {
+          const explorerUrl = blockscoutExplorerUrls[id]?.explorers[0].url
+          await blockscout.verifyContract(this.logger, network, name, libraries ?? {}, explorerUrl)
+        } else {
+          await this.verifyContract(network, name, params, libraries)
+        }
       }
     }
   }
@@ -133,4 +139,62 @@ export class Deploy {
     if (!address) return this.logger.error(`failed to deploy ${name} contract `.padEnd(120, '.')) //fixme:create3: needed?
     this.store.update(chain, {contracts: {[name]: {address, blockCreated}}})
   }
+
+  //fixme:hardhat: look into using hardhat-verify
+  async verifyContract(network, name, constructorArgs, libraries) {
+    const address = network.contracts[name].address
+    try {
+      // execSync(`npx hardhat verify blockscout --network ${network.chain} ${address} ...constructorArgs`)
+      await verifyContract(
+        {
+          address,
+          constructorArgs,
+          libraries,
+          contract: fullyQualifiedNames[name],
+          provider: 'blockscout',
+        },
+        hre
+      )
+    } catch (e) {
+      const {
+        solcLongVersion,
+        input: {
+          settings: {
+            evmVersion,
+            optimizer,
+          }
+        }
+      } = await getBuildInfo(name)
+      this.logger.warn(`verifying on chain ${network.chain} [${network.id}] is not supported`)
+      this.logger.warn(`instead, try verifying manually using the following data:`)
+      this.logger.warn('-'.repeat(120))
+      this.logger.log('Contract Name:', name)
+      this.logger.log('Contract Address:', address)
+      this.logger.log('Compiler Type:', 'Solidity (Single File)')
+      this.logger.log('License Type:', 'MIT License (MIT)')
+      this.logger.log('Compiler Version:', solcLongVersion)
+      this.logger.log('Optimization:', optimizer.enabled)
+      this.logger.log('Runs (Optimizer):', optimizer.runs)
+      this.logger.log('EVM Version to target:', evmVersion)
+      this.logger.log('Constructor Arguments:', constructorArgs)
+      this.logger.log('Solidity Contract Code (read from file):', await flattenContractSource(name))
+      this.logger.log('Libraries:', libraries)
+      this.logger.warn('-'.repeat(120))
+    }
+  }
 }
+
+const fullyQualifiedNames = Map(Array.from(await artifacts.getAllFullyQualifiedNames()).map(_ => [_.split(':')[1], _])).toJS()
+
+const getBuildInfo = async (name) => artifacts.getBuildInfoId(name).
+  then(_ => artifacts.getBuildInfoPath(_)).
+  then(_ => import(_, {with: {type: 'json'}})).
+  then(_ => _.default)
+
+const flattenContractSource = async (name) => artifacts.readArtifact(name).
+  then(_ => {
+    const source_path = _.inputSourceName.replace('project', config.paths.root)
+    const flattened_path = `${tmpdir()}/${name}.sol`
+    execSync(`npx hardhat flatten ${source_path} | awk '/SPDX-License-Identifier/&&c++>0 {next} 1' > ${flattened_path}`)
+    return flattened_path
+  })

@@ -10,7 +10,6 @@ export default {
     },
   },
   plugins: [
-    // hardhat_toolbox_mocha_ethers,
     hardhat_ethers,
     hardhat_network_helpers,
     hardhat_verify,
@@ -20,10 +19,7 @@ export default {
       {
         version: '0.8.30',
         settings: {
-          optimizer: {
-            enabled: true,
-            runs: 15000
-          },
+          viaIR: true, //see: https://docs.soliditylang.org/en/latest/ir-breaking-changes.html
         }
       },
     ],

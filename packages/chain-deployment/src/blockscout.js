@@ -16,7 +16,6 @@ const getSourceCode = (name) => {
   return flattened_path
 }
 
-//fixme:hardhat: look into using the new @nomicfoundation/hardhat-verify
 export async function verifyContract(logger, network, name, libraries, explorerUrl) {
   const chainId = parseInt(network.id)
   const {address, blockCreated} = network.contracts[name]
