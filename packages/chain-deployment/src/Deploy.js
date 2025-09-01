@@ -74,7 +74,7 @@ export class Deploy {
 
   compileContracts() {
     this.logger.log(`compiling contracts `.padEnd(120, '.'))
-    execSync(`npx hardhat compile --quiet --config ${process.cwd()}/hardhat.config.cjs`)
+    execSync(`npx hardhat compile --quiet --config ${process.cwd()}/hardhat.config.js`)
   }
 
   async deployContracts(chain, options) {

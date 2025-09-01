@@ -35,7 +35,7 @@ describe('create3 utils', () => {
 describe('create3', () => {
   const chain = 'sepolia'
   const configDir = `${import.meta.dirname}/hardhat`
-  const configFile = (chain) => `${configDir}/${chain}.config.cjs`
+  const configFile = (chain) => `${configDir}/${chain}.config.js`
   let deploy, processes = []
 
   before(() => {

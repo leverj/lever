@@ -14,7 +14,7 @@ import {Create3Factory} from '../src/create3.js'
 describe('deploy to multiple chains', () => {
   const chains = ['holesky', 'sepolia']
   const configDir = `${import.meta.dirname}/hardhat`
-  const configFile = (chain) => `${configDir}/${chain}.config.cjs`
+  const configFile = (chain) => `${configDir}/${chain}.config.js`
   let deploy, processes = []
 
   before(() => {

@@ -6,7 +6,7 @@
   "exports": {
     ".": "./src/index.js",
     "./config.schema": "./config.schema.js",
-    "./hardhat.config": "./hardhat.config.cjs",
+    "./hardhat.config": "./hardhat.config.js",
     "./hardhat.help": "./hardhat.help.js"
   },
   "scripts": {

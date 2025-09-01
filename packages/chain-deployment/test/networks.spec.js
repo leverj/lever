@@ -35,7 +35,7 @@ describe('networks', () => {
     testnet: true,
   }
   const configDir = `${import.meta.dirname}/hardhat`
-  const configFile = `${configDir}/${chain}.config.cjs`
+  const configFile = `${configDir}/${chain}.config.js`
   let processes = []
 
   before(() => {

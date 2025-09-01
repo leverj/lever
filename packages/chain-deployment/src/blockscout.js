@@ -8,7 +8,8 @@ import {execSync} from 'node:child_process'
 import {readFileSync} from 'node:fs'
 import {tmpdir} from 'node:os'
 
-const contractFullyQualifiedNames = Map((await artifacts.getAllFullyQualifiedNames()).map(_ => [_.split(':')[1], _])).toJS()
+const names = await artifacts.getAllFullyQualifiedNames()
+const contractFullyQualifiedNames = Map(Array.from(names).map(_ => [_.split(':')[1], _])).toJS() //fixme: let's use artifacts directly
 
 const getSourceCode = (name) => {
   const sources = glob.sync(`${config.paths.sources}/**/*.sol`)

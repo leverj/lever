@@ -25,7 +25,7 @@ export class ExportsGenerator {
   async exportAbi() {
     this.logger.log(`${'-'.repeat(30)} generating contracts abi exports `.padEnd(120, '-'))
     const targetDir = establishCleanDir(`${this.projectDir}/src/contracts/abi`)
-    execSync(`npx hardhat compile --quiet --config ${this.projectDir}/hardhat.config.cjs`)
+    execSync(`npx hardhat compile --quiet --config ${this.projectDir}/hardhat.config.js`)
     const files = glob.sync(`${this.projectDir}/artifacts/contracts/**/*.sol/*.json`)
     for (let name of this.contracts) {
       const path = files.find(_ => _.endsWith(`/${name}.json`))
