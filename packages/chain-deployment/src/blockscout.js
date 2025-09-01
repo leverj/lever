@@ -7,6 +7,7 @@ import {execSync} from 'node:child_process'
 import {readFileSync} from 'node:fs'
 import {tmpdir} from 'node:os'
 
+//fixme: hardhat flatten may no longer work
 const getSourceCode = (name) => {
   const sources = glob.sync(`${config.paths.sources}/**/*.sol`)
   const source_path = sources.find(_ => _.endsWith(`/${name}.sol`))
@@ -15,6 +16,7 @@ const getSourceCode = (name) => {
   return flattened_path
 }
 
+//fixme: look into using the new @nomicfoundation/hardhat-verify
 export async function verifyContract(logger, network, name, libraries, explorerUrl) {
   const chainId = parseInt(network.id)
   const {address, blockCreated} = network.contracts[name]
