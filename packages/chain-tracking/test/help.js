@@ -8,7 +8,6 @@ export const Bank = async (chainId, name) => deployContract('Bank', [chainId, na
 export function expectEventsToMatch(events, expected) {
   expect(events.length).toEqual(expected.length)
   for (let [i, {address, name, args}] of events.entries()) {
-    // console.log('>'.repeat(50), i, args)
     expect(address).toEqual(expected[i].address)
     expect(name).toEqual(expected[i].name)
     expect(args).toMatchObject(expected[i].args)
