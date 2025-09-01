@@ -5,12 +5,12 @@ import hardhat_verify from '@nomicfoundation/hardhat-verify'
 // import hardhat_yul from '@skybit/hardhat-yul'
 
 export default {
-  // networks: {
-  //   hardhat: {
-  //     gasPrice: 0,
-  //     initialBaseFeePerGas: 0,
-  //   },
-  // },
+  networks: {
+    default: {
+      gasPrice: 0,
+      initialBaseFeePerGas: 0,
+    },
+  },
   plugins: [
     hardhat_toolbox_mocha_ethers,
     hardhat_ethers,

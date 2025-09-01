@@ -10,10 +10,10 @@ const {mnemonic, path} = config.networks.default.accounts, phrase = await mnemon
 export const wallets = accounts.map((value, i) => ethers.HDNodeWallet.fromPhrase(phrase, `${path}/${i}`))
 
 export const createHardhatConfig = (chain, chainId) => `
-import config from \`\${process.env.PWD}/hardhat.config.js\`
-export default Object.assign({}, config, {
+const config = await import(\`\${process.env.PWD}/hardhat.config.js\`)
+export default Object.assign(config, {
   networks: {
-    hardhat: {
+    default: {
       chainId: ${chainId},  /*** ${chain} ***/
       gasPrice: 0,
       initialBaseFeePerGas: 0,
