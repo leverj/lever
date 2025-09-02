@@ -12,7 +12,7 @@ import {Create3Factory, deployCreate3Factory, deployViaCreate3Factory} from './c
 /*** from https://github.com/blockscout/chainscout/blob/main/data/chains.json ***/
 import blockscoutExplorerUrls_ from './chainscout-chains.json' with {type: 'json'}
 
-const {artifacts, ethers: {deployContract, encodeBytes32String, getContractFactoryFromArtifact, JsonRpcProvider, Wallet}} = hardhat
+const {artifacts, ethers: {deployContract, encodeBytes32String, getContractFactory, JsonRpcProvider, Wallet}} = hardhat
 
 const toNetworkCanon = (chain, network) => {
   const {id, name, nativeCurrency, rpcUrls, blockExplorers} = cloneDeep(network)
@@ -77,20 +77,20 @@ export class Deploy {
   }
 
   async deployContracts(chain, options) {
-    const getContractAddress = (name) => this.store.get(chain).contracts[name]?.address
+    const network = this.store.get(chain)
+    const getContractAddress = (name) => network.contracts[name]?.address
 
-    const {providerURL, block, id} = this.store.get(chain)
-    const provider = new JsonRpcProvider(providerURL)
-    const deployer = this.deployer.connect(provider)
-    this.config.setContractsConstructors(chain)
-    const constructors = this.config.constructors[chain]
-
+    const deployer = this.deployer.connect(new JsonRpcProvider(network.providerURL))
+    const constructors = this.config.setContractsConstructors(chain)
     this.logger.log(`deploying contracts: [${Object.keys(constructors)}] `.padEnd(120, '.'))
-    if (!block) this.store.update(chain, {block: await provider.getBlockNumber()}) // establish start block
+
+    if (!network.block) this.store.update(chain, {block: await deployer.provider.getBlockNumber()}) // establish start block
+
     if (options.create3 && !getContractAddress(Create3Factory.contractName)) {
-      this.logger.log(`deploying Create3 Factory contract keylessly [${Create3Factory.contractName}] `.padEnd(120, '.'))
+      this.logger.log(`deploying Create3 Factory keylessly [${Create3Factory.contractName}] `.padEnd(120, '.'))
       this.storeDeployedContract(chain, await deployCreate3Factory(deployer))
     }
+
     for (let [name, {libraries, params}] of Object.entries(constructors)) {
       const translateAddresses = (params = []) => params.map(_ => Array.isArray(_) ? translateAddresses(_) : getContractAddress(_) ?? _)
       const translateLibraries = (names = []) => names.reduce((result, _) => Object.assign(result, ({[_]: getContractAddress(_)})), {})
@@ -98,15 +98,16 @@ export class Deploy {
       libraries = translateLibraries(libraries)
       params = translateAddresses(params)
       if (options.create3) {
-        if (getContractAddress(name) && options.reset) throw Error('no can do right now') //fixme: must deploy to a different address; use a different salt?
+        if (getContractAddress(name) && options.reset)
+          throw Error('no can do right now') //fixme:create3: must deploy to a different address; supply a different salt seed?
         else {
           //fixme: problem is, in order to have same address on all blockchains, we cannot change it after first production deployment .
           //so, how to pass-in and enforce uniqueness methodically?
+          //thought, add salt to the constructor args
           const unique = '1'
           const salt = encodeBytes32String(`${name}.${unique}`)
-          const artifact = artifacts.readArtifactSync(name)
-          const contractFactory = await getContractFactoryFromArtifact(artifact, {libraries, signer: deployer})
-          this.storeDeployedContract(chain, await deployViaCreate3Factory(deployer, contractFactory, name, params, salt))
+          const contractFactory = await getContractFactory(name, {libraries, signer: deployer})
+          this.storeDeployedContract(chain, await deployViaCreate3Factory(name, params, contractFactory, deployer, salt))
         }
       } else if (!getContractAddress(name) || options.reset) {
         this.logger.log(`deploying ${name} contract `.padEnd(120, '.'))
@@ -114,8 +115,7 @@ export class Deploy {
         await setTimeout(200) // note: must wait a bit to avoid "Nonce too low" error ///fixme
       }
       if (options.verify) {
-        const network = this.store.get(chain)
-        const explorerUrl = blockscoutExplorerUrls[id]?.explorers[0].url
+        const explorerUrl = blockscoutExplorerUrls[network.id]?.explorers[0].url
         await verifyContract(this.logger, network, name, libraries ?? {}, explorerUrl)
       }
     }

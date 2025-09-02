@@ -42,7 +42,7 @@ const interval = 10, timeout = 100 * interval, timing = {interval, timeout}
 export async function deployCreate3Factory(deployer) {
   const provider = deployer.provider
   if (await isContractAt(provider, Create3Factory.contractAddress)) {
-    logger.warn(`${Create3Factory.contractName} contract already exists`)
+    logger.warn(`Create3 Factory contract already exists; retrieving pre-deployed [${Create3Factory.contractName}]`.padEnd(120, '.'))
     return {
       name: Create3Factory.contractName,
       address: Create3Factory.contractAddress,
@@ -110,7 +110,7 @@ export const fundTransactionSigner = async (deployer, transactionSignerAddress, 
   if (balanceAfter < balanceOfSignerMinRequired) throw Error(`post-transfer... insufficient balance: ${balanceAfter}. required: ${balanceOfSignerMinRequired}`)
 }
 
-export const deployViaCreate3Factory = async (deployer, contractFactory, name, params, salt) => {
+export const deployViaCreate3Factory = async (name, params, contractFactory, deployer, salt) => {
   const provider = deployer.provider
   const bytecode = await contractFactory.getDeployTransaction(...params).then(_ => _.data)
   const address = await getCreate3Address(deployer.address, salt)
@@ -130,7 +130,7 @@ export const deployViaCreate3Factory = async (deployer, contractFactory, name, p
     maxPriorityFeePerGas,
   }).then(_ => _.wait())
   await until(() => isContractAt(provider, address), timing).then(_ => {
-    if (!_) throw Error(`${name} was not found at the expected address: ${address}`)
+    if (!_) throw Error(`${name} contract was not found at the expected address: ${address}`)
   })
   return {name, address, blockCreated: receipt.blockNumber}
 }
