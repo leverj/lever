@@ -115,11 +115,9 @@ export const deployViaCreate3Factory = async (name, params, contractFactory, dep
   const bytecode = await contractFactory.getDeployTransaction(...params).then(_ => _.data)
   const address = await getCreate3Address(deployer.address, salt)
   if (await isContractAt(provider, address)) {
-    logger.warn(`
-        ${name} contract already exists at ${address}; returning current contract data.
-        to deploy your contract to a different address, the salt must be changed.
-    `)
-    return {name, address, blockCreated: await getCreationBlock(provider, address)}
+    logger.warn(`contract already exists; retrieving pre-deployed [${name}]`.padEnd(120, '.'))
+    const blockCreated = await getCreationBlock(provider, address)
+    return {name, address, blockCreated}
   }
 
   const {maxFeePerGas, maxPriorityFeePerGas} = await provider.getFeeData()

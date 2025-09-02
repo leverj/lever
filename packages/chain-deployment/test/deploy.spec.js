@@ -7,7 +7,7 @@ import {exec} from 'node:child_process'
 import {rmSync, writeFileSync} from 'node:fs'
 import {setTimeout} from 'node:timers/promises'
 import waitOn from 'wait-on'
-import {Create3Factory} from '../src/create3.js'
+import {Create3Factory, fundTransactionSigner} from '../src/create3.js'
 import config from '../config.js'
 import {createHardhatConfig} from './help.js'
 
@@ -84,20 +84,16 @@ describe('deploy to multiple chains', () => {
       expect(deployed_initial[contractName]).toBeDefined()
       expect(isAddress(deployed_initial[contractName].address)).toBe(true)
       expect(deployed_initial[contractName].blockCreated).toBeGreaterThan(0n)
-      return
 
-      // attempt to reset; should have no effect
-      await deploy.to(chain, {create3: true, reset: true})
-      const attempt_to_reset = cloneDeep(deploy.store.get(chain).contracts)
-      expect(attempt_to_reset[contractName]).toMatchObject(deployed_initial[contractName])
-
-      // attempt to redeploy; should advise contracts already deployed and restore the store
+      // attempt to redeploy; should advise contracts already pre-deployed and restore the store
       deploy.store.delete(chain)
-      deploy.store.save()
       expect(deploy.store.get(chain)).not.toBeDefined()
       await deploy.to(chain, {create3: true})
       const redeployed = cloneDeep(deploy.store.get(chain).contracts)
       expect(redeployed[contractName]).toMatchObject(deployed_initial[contractName])
+
+      // attempt to reset; should throw
+      await expect(deploy.to(chain, {create3: true, reset: true})).rejects.toThrow(/cannot reset when using create3 deployment/)
     }
   })
 })

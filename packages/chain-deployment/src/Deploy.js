@@ -12,7 +12,7 @@ import {Create3Factory, deployCreate3Factory, deployViaCreate3Factory} from './c
 /*** from https://github.com/blockscout/chainscout/blob/main/data/chains.json ***/
 import blockscoutExplorerUrls_ from './chainscout-chains.json' with {type: 'json'}
 
-const {artifacts, ethers: {deployContract, encodeBytes32String, getContractFactory, JsonRpcProvider, Wallet}} = hardhat
+const {ethers: {deployContract, encodeBytes32String, getContractFactory, JsonRpcProvider, Wallet}} = hardhat
 
 const toNetworkCanon = (chain, network) => {
   const {id, name, nativeCurrency, rpcUrls, blockExplorers} = cloneDeep(network)
@@ -84,8 +84,6 @@ export class Deploy {
     const constructors = this.config.setContractsConstructors(chain)
     this.logger.log(`deploying contracts: [${Object.keys(constructors)}] `.padEnd(120, '.'))
 
-    if (!network.block) this.store.update(chain, {block: await deployer.provider.getBlockNumber()}) // establish start block
-
     if (options.create3 && !getContractAddress(Create3Factory.contractName)) {
       this.logger.log(`deploying Create3 Factory keylessly [${Create3Factory.contractName}] `.padEnd(120, '.'))
       this.storeDeployedContract(chain, await deployCreate3Factory(deployer))
@@ -98,27 +96,28 @@ export class Deploy {
       libraries = translateLibraries(libraries)
       params = translateAddresses(params)
       if (options.create3) {
-        if (getContractAddress(name) && options.reset)
-          throw Error('no can do right now') //fixme:create3: must deploy to a different address; supply a different salt seed?
+        if (options.reset) throw Error(`cannot reset when using create3 deployment`)
         else {
           //fixme: problem is, in order to have same address on all blockchains, we cannot change it after first production deployment .
           //so, how to pass-in and enforce uniqueness methodically?
-          //thought, add salt to the constructor args
-          const unique = '1'
-          const salt = encodeBytes32String(`${name}.${unique}`)
+          //thought: provide salt-sprinkle as option, or as the value of create3?
+          const salt = encodeBytes32String(`${name}.${options.salt || 'first'}`)
           const contractFactory = await getContractFactory(name, {libraries, signer: deployer})
           this.storeDeployedContract(chain, await deployViaCreate3Factory(name, params, contractFactory, deployer, salt))
         }
       } else if (!getContractAddress(name) || options.reset) {
         this.logger.log(`deploying ${name} contract `.padEnd(120, '.'))
         this.storeDeployedContract(chain, await this.deployContract(name, params, {libraries, signer: deployer}))
-        await setTimeout(200) // note: must wait a bit to avoid "Nonce too low" error ///fixme
+        await setTimeout(200) // note: must wait a bit to avoid "Nonce too low" error
       }
       if (options.verify) {
         const explorerUrl = blockscoutExplorerUrls[network.id]?.explorers[0].url
         await verifyContract(this.logger, network, name, libraries ?? {}, explorerUrl)
       }
     }
+    //note: since create3 allows for restoring all contracts, we update the deployment block at the end rather than at start
+    const block = Map(network.contracts).reduce((result, _) => Math.min(result, _.blockCreated), Number.MAX_VALUE)
+    this.store.update(chain, {block}) // establish start block
   }
 
   async deployContract(name, params, factoryOptions) {
