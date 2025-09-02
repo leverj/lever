@@ -42,7 +42,7 @@ const interval = 10, timeout = 100 * interval, timing = {interval, timeout}
 export async function deployCreate3Factory(deployer) {
   const provider = deployer.provider
   if (await isContractAt(provider, Create3Factory.contractAddress)) {
-    logger.warn(`Create3 Factory contract already exists; retrieving pre-deployed [${Create3Factory.contractName}]`.padEnd(120, '.'))
+    logger.warn(`Create3 Factory contract already exists; retrieving [${Create3Factory.contractName}]`.padEnd(120, '.'))
     return {
       name: Create3Factory.contractName,
       address: Create3Factory.contractAddress,
@@ -115,7 +115,7 @@ export const deployViaCreate3Factory = async (name, params, contractFactory, dep
   const bytecode = await contractFactory.getDeployTransaction(...params).then(_ => _.data)
   const address = await getCreate3Address(deployer.address, salt)
   if (await isContractAt(provider, address)) {
-    logger.warn(`contract already exists; retrieving pre-deployed [${name}]`.padEnd(120, '.'))
+    logger.warn(`contract already exists; retrieving [${name}]`.padEnd(120, '.'))
     const blockCreated = await getCreationBlock(provider, address)
     return {name, address, blockCreated}
   }

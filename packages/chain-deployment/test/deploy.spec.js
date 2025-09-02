@@ -2,12 +2,13 @@ import {Deploy, networks} from '@leverj/lever.chain-deployment'
 import {ensureExistsSync} from '@leverj/lever.common'
 import {isAddress} from 'ethers'
 import {expect} from 'expect'
+import {Map} from 'immutable'
 import {cloneDeep} from 'lodash-es'
 import {exec} from 'node:child_process'
 import {rmSync, writeFileSync} from 'node:fs'
 import {setTimeout} from 'node:timers/promises'
 import waitOn from 'wait-on'
-import {Create3Factory, fundTransactionSigner} from '../src/create3.js'
+import {Create3Factory} from '../src/create3.js'
 import config from '../config.js'
 import {createHardhatConfig} from './help.js'
 
@@ -55,45 +56,62 @@ describe('deploy to multiple chains', () => {
 
       // first deploy; from scratch
       await deploy.to(chain)
-      const deployed_initial = cloneDeep(deploy.store.get(chain).contracts)
-      expect(deployed_initial.Bank).toBeDefined()
-      expect(isAddress(deployed_initial.Bank.address)).toBe(true)
-      expect(deployed_initial.Bank.blockCreated).toBeGreaterThan(0n)
+      const initial = Map(cloneDeep(deploy.store.get(chain).contracts))
+      expect(initial.size).toEqual(2) // [ToyMath, Bank]
+      initial.forEach(_ => {
+        expect(isAddress(_.address)).toBe(true)
+        expect(_.blockCreated).toBeGreaterThan(0)
+      })
 
       // deploy again, but not really; do not reset contract addresses!
       await deploy.to(chain, {reset: false})
-      const redeployed_without_reset = cloneDeep(deploy.store.get(chain).contracts)
-      expect(redeployed_without_reset.Bank).toMatchObject(deployed_initial.Bank)
+      const redeployed_without_reset = Map(cloneDeep(deploy.store.get(chain).contracts))
+      expect(redeployed_without_reset.toJS()).toMatchObject(initial.toJS())
 
       // redeploy again; force reset contract addresses!
       await deploy.to(chain, {reset: true})
-      const redeployed_with_reset = cloneDeep(deploy.store.get(chain).contracts)
-      expect(redeployed_with_reset.Bank).not.toMatchObject(deployed_initial.Bank)
+      const redeployed_with_reset = Map(cloneDeep(deploy.store.get(chain).contracts))
+      expect(redeployed_with_reset.toJS()).not.toMatchObject(initial.toJS())
     }
   })
 
-  it('can deploy to each chain, using create3 method', async () => {
-    const {contractName} = Create3Factory
+  it('can deploy to each chain, using create3 deployment', async () => {
     for (let chain of chains) {
       expect(deploy.store.get(chain)).not.toBeDefined()
-      //fixme: introduce stochastic noise such that blockCreated would differ across chains
+      //fixme:create3: introduce stochastic noise such that blockCreated would differ across chains
 
       // first deploy; from scratch
       await deploy.to(chain, {create3: true})
-      const deployed_initial = cloneDeep(deploy.store.get(chain).contracts)
-      expect(deployed_initial[contractName]).toBeDefined()
-      expect(isAddress(deployed_initial[contractName].address)).toBe(true)
-      expect(deployed_initial[contractName].blockCreated).toBeGreaterThan(0n)
+      const initial = Map(cloneDeep(deploy.store.get(chain).contracts))
+      expect(initial.size).toEqual(3) // [Create3Factory.contractName, ToyMath, Bank]
+      initial.forEach(_ => {
+        expect(isAddress(_.address)).toBe(true)
+        expect(_.blockCreated).toBeGreaterThan(0)
+      })
 
-      // attempt to redeploy; should advise contracts already pre-deployed and restore the store
+      // attempt to redeploy; should advise contracts already deployed, and "restore" them
       deploy.store.delete(chain)
       expect(deploy.store.get(chain)).not.toBeDefined()
       await deploy.to(chain, {create3: true})
-      const redeployed = cloneDeep(deploy.store.get(chain).contracts)
-      expect(redeployed[contractName]).toMatchObject(deployed_initial[contractName])
+      const restored = Map(cloneDeep(deploy.store.get(chain).contracts))
+      expect(restored.toJS()).toMatchObject(initial.toJS())
 
       // attempt to reset; should throw
       await expect(deploy.to(chain, {create3: true, reset: true})).rejects.toThrow(/cannot reset when using create3 deployment/)
+
+      // now deploy with a new salt; contracts would deploy into a new address
+      await deploy.to(chain, {create3: true, salt: 'whatever you want'})
+      const redeployed = Map(cloneDeep(deploy.store.get(chain).contracts))
+      expect(redeployed.toJS()).not.toMatchObject(initial.toJS())
+      redeployed.forEach((value, key) => {
+        const other_value = initial.get(key)
+        if (key === Create3Factory.contractName)
+          expect(value).toMatchObject(other_value)
+        else {
+          expect(value.address).not.toEqual(other_value.address)
+          expect(value.blockCreated).toBeGreaterThan(other_value.blockCreated)
+        }
+      })
     }
   })
 })

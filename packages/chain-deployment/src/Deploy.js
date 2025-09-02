@@ -95,12 +95,17 @@ export class Deploy {
 
       libraries = translateLibraries(libraries)
       params = translateAddresses(params)
-      if (options.create3) {
+      if (options.create3) { // the draw-back of the current approach is that all contracts (but the factory) would be redeployed
         if (options.reset) throw Error(`cannot reset when using create3 deployment`)
         else {
-          //fixme: problem is, in order to have same address on all blockchains, we cannot change it after first production deployment .
-          //so, how to pass-in and enforce uniqueness methodically?
-          //thought: provide salt-sprinkle as option, or as the value of create3?
+          //fixme:create3:
+          // the problem:
+          // in order to deploy a contract to the same address across all blockchains, we can deploy it only once.
+          // (as 'selfdestruct' opcode is gone; see: https://rya-sge.github.io/access-denied/2024/03/13/EIP-6780-selfdestruct/)
+          // therefore, in-order to "redeploy", we have to effect the newly designated address, of which the salt is the one free parameter.
+          // so, how to do this methodically?
+          // the solution:
+          // pass the salt (really a sprinkle) in together with the create3 deploy option.
           const salt = encodeBytes32String(`${name}.${options.salt || 'first'}`)
           const contractFactory = await getContractFactory(name, {libraries, signer: deployer})
           this.storeDeployedContract(chain, await deployViaCreate3Factory(name, params, contractFactory, deployer, salt))
