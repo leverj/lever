@@ -1,15 +1,15 @@
 import {Deploy, networks} from '@leverj/lever.chain-deployment'
-import {ensureExistsSync} from '@leverj/lever.common'
-import {isAddress} from 'ethers'
+import {isAddress, JsonRpcProvider, Wallet} from 'ethers'
 import {expect} from 'expect'
-import {cloneDeep} from 'lodash-es'
+import {Map} from 'immutable'
+import {cloneDeep, zip} from 'lodash-es'
 import {exec} from 'node:child_process'
-import {rmSync, writeFileSync} from 'node:fs'
+import {rmSync} from 'node:fs'
 import {setTimeout} from 'node:timers/promises'
 import waitOn from 'wait-on'
 import {Create3Factory} from '../src/create3.js'
 import config from '../config.js'
-import {createHardhatConfig} from './help.js'
+import {configureContracts, writeConfigFile} from './help.js'
 
 describe('deploy to multiple chains', () => {
   const chains = ['holesky', 'sepolia']
@@ -18,15 +18,8 @@ describe('deploy to multiple chains', () => {
   let deploy, processes = []
 
   before(() => {
-    config.createContractsConstructors = (chain) => ({
-      ToyMath: {},
-      Bank: {
-        libraries: ['ToyMath'],
-        params: [networks[chain].id, 'whatever'],
-      },
-    })
-    ensureExistsSync(configDir)
-    chains.forEach(_ => writeFileSync(configFile(_), createHardhatConfig(_, networks[_].id)))
+    configureContracts(config)
+    chains.forEach(_ => writeConfigFile(_, networks[_].id))
   })
 
   beforeEach(async () => {
@@ -55,49 +48,75 @@ describe('deploy to multiple chains', () => {
 
       // first deploy; from scratch
       await deploy.to(chain)
-      const deployed_initial = cloneDeep(deploy.store.get(chain).contracts)
-      expect(deployed_initial.Bank).toBeDefined()
-      expect(isAddress(deployed_initial.Bank.address)).toBe(true)
-      expect(deployed_initial.Bank.blockCreated).toBeGreaterThan(0n)
+      const initial = Map(cloneDeep(deploy.store.get(chain).contracts))
+      expect(initial.size).toEqual(2) // [ToyMath, Bank]
+      initial.forEach(_ => {
+        expect(isAddress(_.address)).toBe(true)
+        expect(_.blockCreated).toBeGreaterThan(0)
+      })
 
       // deploy again, but not really; do not reset contract addresses!
       await deploy.to(chain, {reset: false})
-      const redeployed_without_reset = cloneDeep(deploy.store.get(chain).contracts)
-      expect(redeployed_without_reset.Bank).toMatchObject(deployed_initial.Bank)
+      const redeployed_without_reset = Map(cloneDeep(deploy.store.get(chain).contracts))
+      expect(redeployed_without_reset.toJS()).toMatchObject(initial.toJS())
 
       // redeploy again; force reset contract addresses!
       await deploy.to(chain, {reset: true})
-      const redeployed_with_reset = cloneDeep(deploy.store.get(chain).contracts)
-      expect(redeployed_with_reset.Bank).not.toMatchObject(deployed_initial.Bank)
+      const redeployed_with_reset = Map(cloneDeep(deploy.store.get(chain).contracts))
+      expect(redeployed_with_reset.toJS()).not.toMatchObject(initial.toJS())
     }
   })
 
-  it('can deploy to each chain, using create3 method', async () => {
-    const {contractName} = Create3Factory
+  it('can deploy to each chain, using create3 deployment', async () => {
+    const randomIn = (min, max) => Math.floor(Math.random() * (max - min + 1) + min)
+
     for (let chain of chains) {
       expect(deploy.store.get(chain)).not.toBeDefined()
-      //fixme:create3: introduce stochastic noise such that blockCreated would differ across chains
+
+      // introduce "noise" such that blockCreated would differ between chains
+      const provider = new JsonRpcProvider(networks[chain].providerURL)
+      const someone = Wallet.createRandom().address
+      for (let i = 0; i < randomIn(1, 10); i++) {
+        await deploy.deployer.connect(provider).sendTransaction({to: someone, value: 100}).then(_ => _.wait())
+        await setTimeout(200) // note: must wait a bit to avoid "Error: nonce has already been used"
+      }
 
       // first deploy; from scratch
       await deploy.to(chain, {create3: true})
-      const deployed_initial = cloneDeep(deploy.store.get(chain).contracts)
-      expect(deployed_initial[contractName]).toBeDefined()
-      expect(isAddress(deployed_initial[contractName].address)).toBe(true)
-      expect(deployed_initial[contractName].blockCreated).toBeGreaterThan(0n)
-      return
+      const initial = Map(cloneDeep(deploy.store.get(chain).contracts))
+      expect(initial.size).toEqual(3) // [Create3Factory.contractName, ToyMath, Bank]
+      initial.forEach(_ => {
+        expect(isAddress(_.address)).toBe(true)
+        expect(_.blockCreated).toBeGreaterThan(0)
+      })
 
-      // attempt to reset; should have no effect
-      await deploy.to(chain, {create3: true, reset: true})
-      const attempt_to_reset = cloneDeep(deploy.store.get(chain).contracts)
-      expect(attempt_to_reset[contractName]).toMatchObject(deployed_initial[contractName])
-
-      // attempt to redeploy; should advise contracts already deployed and restore the store
+      // attempt to redeploy; should advise contracts already deployed, and "restore" them
       deploy.store.delete(chain)
-      deploy.store.save()
       expect(deploy.store.get(chain)).not.toBeDefined()
       await deploy.to(chain, {create3: true})
-      const redeployed = cloneDeep(deploy.store.get(chain).contracts)
-      expect(redeployed[contractName]).toMatchObject(deployed_initial[contractName])
+      const restored = Map(cloneDeep(deploy.store.get(chain).contracts))
+      expect(restored.toJS()).toMatchObject(initial.toJS())
+
+      // attempt to reset; should throw
+      await expect(deploy.to(chain, {create3: true, reset: true})).rejects.toThrow(/cannot reset when using create3 deployment/)
+
+      // now deploy with a new salt; contracts would deploy into a new address
+      await deploy.to(chain, {create3: true, salt: 'whatever you want'})
+      const redeployed = Map(cloneDeep(deploy.store.get(chain).contracts))
+      expect(redeployed.toJS()).not.toMatchObject(initial.toJS())
+      redeployed.forEach((value, key) => {
+        const other_value = initial.get(key)
+        if (key === Create3Factory.contractName)
+          expect(value).toMatchObject(other_value)
+        else {
+          expect(value.address).not.toEqual(other_value.address)
+          expect(value.blockCreated).toBeGreaterThan(other_value.blockCreated)
+        }
+      })
     }
+
+    // compare address across chains
+    const [one, other] = chains.map(_ => Map(deploy.store.get(_).contracts))
+    one.forEach((value, key) => expect(value.address).toEqual(other.get(key).address))
   })
 })

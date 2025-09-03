@@ -1,9 +1,8 @@
 import {Deploy, networks} from '@leverj/lever.chain-deployment'
-import {ensureExistsSync} from '@leverj/lever.common'
 import {encodeBytes32String, JsonRpcProvider, Wallet} from 'ethers'
 import {expect} from 'expect'
 import {exec} from 'node:child_process'
-import {rmSync, writeFileSync} from 'node:fs'
+import {rmSync} from 'node:fs'
 import {setTimeout} from 'node:timers/promises'
 import waitOn from 'wait-on'
 import config from '../config.js'
@@ -15,7 +14,7 @@ import {
   getCreate3Address,
   txData,
 } from '../src/create3.js'
-import {createHardhatConfig, provider} from './help.js'
+import {configDir, configFile, configureContracts, provider, writeConfigFile} from './help.js'
 
 const {contractName, contractAddress} = Create3Factory
 
@@ -34,20 +33,11 @@ describe('create3 utils', () => {
 
 describe('create3', () => {
   const chain = 'sepolia'
-  const configDir = `${import.meta.dirname}/hardhat`
-  const configFile = (chain) => `${configDir}/${chain}.config.js`
   let deploy, processes = []
 
   before(() => {
-    config.createContractsConstructors = (chain) => ({
-      ToyMath: {},
-      Bank: {
-        libraries: ['ToyMath'],
-        params: [networks[chain].id, 'whatever'],
-      },
-    })
-    ensureExistsSync(configDir)
-    writeFileSync(configFile(chain), createHardhatConfig(chain, networks[chain].id))
+    configureContracts(config)
+    writeConfigFile(chain, networks[chain].id)
   })
 
   beforeEach(async () => {

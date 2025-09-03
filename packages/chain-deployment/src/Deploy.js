@@ -80,31 +80,34 @@ export class Deploy {
 
     const provider = new JsonRpcProvider(network.providerURL)
     const deployer = this.deployer.connect(provider)
-    this.config.setContractsConstructors(chain)
-    const constructors = this.config.constructors[chain]
-
+    const constructors = this.config.setContractsConstructors(chain)
     this.logger.log(`deploying contracts: [${Object.keys(constructors)}] `.padEnd(120, '.'))
-    if (!network.block) this.store.update(chain, {block: await provider.getBlockNumber()}) // establish start block
+
     if (options.create3 && !getContractAddress(Create3Factory.contractName)) {
-      this.logger.log(`deploying Create3 Factory contract keylessly [${Create3Factory.contractName}] `.padEnd(120, '.'))
+      this.logger.log(`deploying Create3 Factory keylessly [${Create3Factory.contractName}] `.padEnd(120, '.'))
       this.storeDeployedContract(chain, await deployCreate3Factory(deployer))
     }
+
     for (let [name, {libraries, params}] of Object.entries(constructors)) {
       const translateAddresses = (params = []) => params.map(_ => Array.isArray(_) ? translateAddresses(_) : getContractAddress(_) ?? _)
       const translateLibraries = (names = []) => names.reduce((result, _) => Object.assign(result, ({[_]: getContractAddress(_)})), {})
 
       libraries = translateLibraries(libraries)
       params = translateAddresses(params)
-      if (options.create3) {
-        if (getContractAddress(name) && options.reset) throw Error('no can do right now') //fixme:create3: must deploy to a different address; use a different salt?
+      if (options.create3) { // the draw-back of the current approach is that all contracts (but the factory) would be redeployed
+        if (options.reset) throw Error(`cannot reset when using create3 deployment`)
         else {
-          //fixme:create3: problem is, in order to have same address on all blockchains, we cannot change it after first production deployment .
-          //so, how to pass-in and enforce uniqueness methodically?
-          const unique = '1'
-          const salt = encodeBytes32String(`${name}.${unique}`)
-          const artifact = await hre.artifacts.readArtifact(name)
-          const contractFactory = await ethers.getContractFactoryFromArtifact(artifact, {libraries, signer: deployer})
-          this.storeDeployedContract(chain, await deployViaCreate3Factory(deployer, contractFactory, name, params, salt))
+          //fixme:create3:
+          // the problem:
+          // in order to deploy a contract to the same address across all blockchains, we can deploy it only once.
+          // (as 'selfdestruct' opcode is gone; see: https://rya-sge.github.io/access-denied/2024/03/13/EIP-6780-selfdestruct/)
+          // therefore, in-order to "redeploy", we have to effect the newly designated address, of which the salt is the one free parameter.
+          // so, how to do this methodically?
+          // the solution:
+          // pass the salt (really a sprinkle) in together with the create3 deploy option.
+          const salt = encodeBytes32String(`${name}.${options.salt || 'first'}`)
+          const contractFactory = await getContractFactory(name, {libraries, signer: deployer})
+          this.storeDeployedContract(chain, await deployViaCreate3Factory(name, params, contractFactory, deployer, salt))
         }
       } else if (!getContractAddress(name) || options.reset) {
         this.logger.log(`deploying ${name} contract `.padEnd(120, '.'))
@@ -116,6 +119,9 @@ export class Deploy {
       }
       if (options.verify) await verify(name, params, libraries, network, this.logger)
     }
+    //note: since create3 allows for restoring all contracts, we update the deployment block at the end rather than at start
+    const block = Map(network.contracts).reduce((result, _) => Math.min(result, _.blockCreated), Number.MAX_VALUE)
+    this.store.update(chain, {block}) // establish start block
   }
 
   storeDeployedContract(chain, {name, address, blockCreated}) {
