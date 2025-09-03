@@ -9,19 +9,14 @@ import {exec} from 'node:child_process'
 import {rmSync} from 'node:fs'
 import {setTimeout} from 'node:timers/promises'
 import waitOn from 'wait-on'
+import {configureContracts} from './help.js'
 
 describe('verify', () => {
   let config
 
   before(async () => {
     config = await configure(schema, postLoad, {env: {NODE_ENV: 'test'}})
-    config.createContractsConstructors = (chain) => ({
-      ToyMath: {},
-      Bank: {
-        libraries: ['ToyMath'],
-        params: [networks[chain].id, 'whatever']
-      }
-    })
+    configureContracts(config)
   })
 
   beforeEach(() => rmSync(`${config.deploymentDir}/test`, {recursive: true, force: true}))

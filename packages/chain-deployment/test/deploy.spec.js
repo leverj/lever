@@ -1,16 +1,15 @@
 import {Deploy, networks} from '@leverj/lever.chain-deployment'
-import {ensureExistsSync} from '@leverj/lever.common'
-import {isAddress} from 'ethers'
+import {isAddress, JsonRpcProvider, Wallet} from 'ethers'
 import {expect} from 'expect'
 import {Map} from 'immutable'
-import {cloneDeep} from 'lodash-es'
+import {cloneDeep, zip} from 'lodash-es'
 import {exec} from 'node:child_process'
-import {rmSync, writeFileSync} from 'node:fs'
+import {rmSync} from 'node:fs'
 import {setTimeout} from 'node:timers/promises'
 import waitOn from 'wait-on'
 import {Create3Factory} from '../src/create3.js'
 import config from '../config.js'
-import {createHardhatConfig} from './help.js'
+import {configureContracts, writeConfigFile} from './help.js'
 
 describe('deploy to multiple chains', () => {
   const chains = ['holesky', 'sepolia']
@@ -19,15 +18,8 @@ describe('deploy to multiple chains', () => {
   let deploy, processes = []
 
   before(() => {
-    config.createContractsConstructors = (chain) => ({
-      ToyMath: {},
-      Bank: {
-        libraries: ['ToyMath'],
-        params: [networks[chain].id, 'whatever'],
-      },
-    })
-    ensureExistsSync(configDir)
-    chains.forEach(_ => writeFileSync(configFile(_), createHardhatConfig(_, networks[_].id)))
+    configureContracts(config)
+    chains.forEach(_ => writeConfigFile(_, networks[_].id))
   })
 
   beforeEach(async () => {
@@ -76,9 +68,18 @@ describe('deploy to multiple chains', () => {
   })
 
   it('can deploy to each chain, using create3 deployment', async () => {
+    const randomIn = (min, max) => Math.floor(Math.random() * (max - min + 1) + min)
+
     for (let chain of chains) {
       expect(deploy.store.get(chain)).not.toBeDefined()
-      //fixme:create3: introduce stochastic noise such that blockCreated would differ across chains
+
+      // introduce "noise" such that blockCreated would differ between chains
+      const provider = new JsonRpcProvider(networks[chain].providerURL)
+      const someone = Wallet.createRandom().address
+      for (let i = 0; i < randomIn(1, 10); i++) {
+        await deploy.deployer.connect(provider).sendTransaction({to: someone, value: 100}).then(_ => _.wait())
+        await setTimeout(200) // note: must wait a bit to avoid "Error: nonce has already been used"
+      }
 
       // first deploy; from scratch
       await deploy.to(chain, {create3: true})
@@ -113,5 +114,9 @@ describe('deploy to multiple chains', () => {
         }
       })
     }
+
+    // compare address across chains
+    const [one, other] = chains.map(_ => Map(deploy.store.get(_).contracts))
+    one.forEach((value, key) => expect(value.address).toEqual(other.get(key).address))
   })
 })
