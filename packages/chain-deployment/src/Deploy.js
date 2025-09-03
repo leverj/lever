@@ -78,8 +78,7 @@ export class Deploy {
     const network = this.store.get(chain)
     const getContractAddress = (name) => network.contracts[name]?.address
 
-    const provider = new JsonRpcProvider(network.providerURL)
-    const deployer = this.deployer.connect(provider)
+    const deployer = this.deployer.connect(new JsonRpcProvider(network.providerURL))
     const constructors = this.config.setContractsConstructors(chain)
     this.logger.log(`deploying contracts: [${Object.keys(constructors)}] `.padEnd(120, '.'))
 
@@ -96,17 +95,18 @@ export class Deploy {
       params = translateAddresses(params)
       if (options.create3) { // the draw-back of the current approach is that all contracts (but the factory) would be redeployed
         if (options.reset) throw Error(`cannot reset when using create3 deployment`)
-        else {
-          //fixme:create3:
-          // the problem:
-          // in order to deploy a contract to the same address across all blockchains, we can deploy it only once.
-          // (as 'selfdestruct' opcode is gone; see: https://rya-sge.github.io/access-denied/2024/03/13/EIP-6780-selfdestruct/)
-          // therefore, in-order to "redeploy", we have to effect the newly designated address, of which the salt is the one free parameter.
-          // so, how to do this methodically?
-          // the solution:
-          // pass the salt (really a sprinkle) in together with the create3 deploy option.
+        else { //fixme:create3:
+        /**
+        the problem:
+          in order to deploy a contract to the same address across all blockchains, we can deploy it only once.
+          (as 'selfdestruct' opcode is gone; see: https://rya-sge.github.io/access-denied/2024/03/13/EIP-6780-selfdestruct/)
+          therefore, in-order to "redeploy", we have to change the newly expected address, for which the salt is a contributing factor.
+          so, how to do this methodically?
+        the solution:
+          pass the salt (really a sprinkle) in together with the create3 deploy option.
+        */
           const salt = encodeBytes32String(`${name}.${options.salt || 'first'}`)
-          const contractFactory = await getContractFactory(name, {libraries, signer: deployer})
+          const contractFactory = await ethers.getContractFactory(name, {libraries, signer: deployer})
           this.storeDeployedContract(chain, await deployViaCreate3Factory(name, params, contractFactory, deployer, salt))
         }
       } else if (!getContractAddress(name) || options.reset) {
@@ -125,7 +125,7 @@ export class Deploy {
   }
 
   storeDeployedContract(chain, {name, address, blockCreated}) {
-    if (!address) return this.logger.error(`failed to deploy ${name} contract `.padEnd(120, '.')) //fixme:create3: needed?
+    if (!address) return this.logger.error(`failed to deploy ${name} contract `.padEnd(120, '.'))
     this.store.update(chain, {contracts: {[name]: {address, blockCreated}}})
   }
 }

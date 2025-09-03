@@ -2,19 +2,17 @@ import {Deploy, networks} from '@leverj/lever.chain-deployment'
 import {isAddress, JsonRpcProvider, Wallet} from 'ethers'
 import {expect} from 'expect'
 import {Map} from 'immutable'
-import {cloneDeep, zip} from 'lodash-es'
+import {cloneDeep} from 'lodash-es'
 import {exec} from 'node:child_process'
 import {rmSync} from 'node:fs'
 import {setTimeout} from 'node:timers/promises'
 import waitOn from 'wait-on'
 import {Create3Factory} from '../src/create3.js'
 import config from '../config.js'
-import {configureContracts, writeConfigFile} from './help.js'
+import {configDir, configFile, configureContracts, writeConfigFile} from './help.js'
 
 describe('deploy to multiple chains', () => {
   const chains = ['holesky', 'sepolia']
-  const configDir = `${import.meta.dirname}/hardhat`
-  const configFile = (chain) => `${configDir}/${chain}.config.js`
   let deploy, processes = []
 
   before(() => {
