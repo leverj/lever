@@ -31,7 +31,7 @@ export class Telegram {
     if (!this.chatId || !this.tokenId) throw Error('TELEGRAM MESSAGE:' + text)
     const url = `https://api.telegram.org/bot${this.tokenId}/sendMessage`
     const headers = {'content-type': 'application/json'}
-    const data = {chat_id: this.chatId, text, parse_mode: 'HTML'}
+    const data = {chat_id: this.chatId, text, parse_mode: 'MarkdownV2'}
     return await axios.post(url, data, {headers})
   }
 }
