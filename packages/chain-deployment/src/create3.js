@@ -1,3 +1,13 @@
+/**
+ * Keyless contract deployment with CREATE3
+ * based on: https://github.com/SKYBITDev3/SKYBIT-Keyless-Deployment
+ *
+ * the problem:
+ *   https://github.com/SKYBITDev3/SKYBIT-Keyless-Deployment?tab=readme-ov-file#problems-that-this-tool-solves
+ * the solution (using teh SKYBITLite implementation):
+ *   https://github.com/SKYBITDev3/SKYBIT-Keyless-Deployment?tab=readme-ov-file#solution-and-advantages
+ */
+
 import {getCreationBlock, isContractAt, logger, until} from '@leverj/lever.common'
 import {
   getBytes,
