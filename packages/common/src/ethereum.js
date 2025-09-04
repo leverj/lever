@@ -1,4 +1,4 @@
-import {getAddress, solidityPackedKeccak256, ZeroAddress, ZeroHash} from 'ethers'
+import {Contract, getAddress, solidityPackedKeccak256, ZeroAddress, ZeroHash} from 'ethers'
 import {setTimeout} from 'node:timers/promises'
 
 export {getAddress, verifyMessage, isAddress} from 'ethers'
@@ -17,6 +17,17 @@ export const keccak256 = (subject) => solidityPackedKeccak256(['string'], [subje
 export const MinHash = ZeroHash
 export const MaxHash = `0x${'f'.repeat(64)}`
 export const ETH = ZeroAddress
+
+export const isContractAt = async (provider, address, abi) => {
+  if (abi) {
+    try {
+      new Contract(address, abi, provider)
+      return true
+    } catch (e) {
+      return false
+    }
+  } else return await provider.getCode(address) !== '0x'
+}
 
 export const getCreationBlock = async (provider, address, throttle = 0, fromBlock = 0, toBlock) => {
   try {

@@ -1,10 +1,9 @@
-import {accounts, chainId} from '@leverj/lever.chain-deployment/hardhat.help'
 import {ContractTracker} from '@leverj/lever.chain-tracking'
-import {ERC20, expectEventsToMatch} from '@leverj/lever.chain-tracking/test'
 import {logger} from '@leverj/lever.common'
 import {InMemoryCompoundKeyStore} from '@leverj/lever.storage'
 import {ZeroAddress as ETH} from 'ethers'
 import {setTimeout} from 'node:timers/promises'
+import {accounts, chainId, ERC20, expectEventsToMatch} from './help.js'
 
 describe('ContractTracker - with InMemoryCompoundKeyStore', () => {
   const [deployer, account] = accounts

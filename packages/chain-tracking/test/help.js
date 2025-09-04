@@ -1,5 +1,16 @@
-import {deployContract} from '@leverj/lever.chain-deployment/hardhat.help'
+import {default as hardhat} from 'hardhat'
 import {expect} from 'expect'
+
+/** https://hardhat.org/hardhat-network-helpers/docs/reference */
+export * as evm from '@nomicfoundation/hardhat-network-helpers'
+
+export const {config, ethers, network} = hardhat
+
+/** https://hardhat.org/hardhat-runner/plugins/nomicfoundation-hardhat-ethers#helpers */
+export const {provider, deployContract, getSigners} = ethers
+
+export const chainId = await provider.getNetwork().then(_ => _.chainId)
+export const accounts = await getSigners()
 
 export const ERC20 = async (name = 'Crap', symbol = 'CRAP') => deployContract('ERC20Mock', [name, symbol])
 export const ERC721 = async (name = 'Crap', symbol = 'CRAP') => deployContract('ERC721Mock', [name, symbol])
@@ -8,7 +19,6 @@ export const Bank = async (chainId, name) => deployContract('Bank', [chainId, na
 export function expectEventsToMatch(events, expected) {
   expect(events.length).toEqual(expected.length)
   for (let [i, {address, name, args}] of events.entries()) {
-    // console.log('>'.repeat(50), i, args)
     expect(address).toEqual(expected[i].address)
     expect(name).toEqual(expected[i].name)
     expect(args).toMatchObject(expected[i].args)

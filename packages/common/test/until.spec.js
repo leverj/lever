@@ -22,4 +22,11 @@ describe('until', () => {
     async function neverTrue() { return 1 + 10 === 9 ? 'yeh!' : false }
     expect(await until(neverTrue, timing)).toEqual(null)
   })
+
+  it('can chain on a failure', async () => {
+    async function neverTrue() { return 1 + 10 === 9 ? 'yeh!' : false }
+    await expect(until(neverTrue, timing).then(_ => {
+      if (!_) throw Error('some terrible happened 😱')
+    })).rejects.toThrow(/😱/)
+  })
 })
