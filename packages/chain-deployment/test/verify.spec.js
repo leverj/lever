@@ -1,15 +1,14 @@
 import {Deploy, networks} from '@leverj/lever.chain-deployment'
 import {postLoad, schema} from '@leverj/lever.chain-deployment/config.schema'
 import {configure} from '@leverj/lever.config'
-import {CapturingLogger} from '@leverj/lever.common'
+import {CapturingLogger, killProcess} from '@leverj/lever.common'
 import {getAddress, JsonRpcProvider, Wallet} from 'ethers'
 import {expect} from 'expect'
 import {merge} from 'lodash-es'
 import {exec} from 'node:child_process'
 import {rmSync} from 'node:fs'
-import {setTimeout} from 'node:timers/promises'
 import waitOn from 'wait-on'
-import {configureContracts, killProcess} from './help.js'
+import {configureContracts} from './help.js'
 
 describe('verify', () => {
   let config
