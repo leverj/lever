@@ -9,7 +9,7 @@ import {exec} from 'node:child_process'
 import {rmSync} from 'node:fs'
 import {setTimeout} from 'node:timers/promises'
 import waitOn from 'wait-on'
-import {configureContracts} from './help.js'
+import {configureContracts, killProcess} from './help.js'
 
 describe('verify', () => {
   let config
@@ -32,8 +32,7 @@ describe('verify', () => {
       await deploy.to(chain, {verify: true})
       expect(logger.warnings[0]).toEqual('verifying on chain 31337 is not supported')
     } finally {
-      evm.kill()
-      while (!evm.killed) await setTimeout(10)
+      await killProcess(evm)
     }
   })
 

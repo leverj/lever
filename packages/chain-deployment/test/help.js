@@ -2,6 +2,7 @@ import {default as hardhat} from 'hardhat'
 import {networks} from '../src/index.js'
 import {ensureExistsSync} from '@leverj/lever.common'
 import {writeFileSync} from 'node:fs'
+import kill from 'tree-kill'
 
 /** https://hardhat.org/hardhat-network-helpers/docs/reference */
 export * as evm from '@nomicfoundation/hardhat-network-helpers'
@@ -39,4 +40,8 @@ export const configureContracts = (config) => config.createContractsConstructors
     libraries: ['ToyMath'],
     params: [networks[chain].id, 'whatever'],
   },
+})
+
+export const killProcess = (ps) => new Promise((resolve, reject) => {
+  kill(ps.pid, 'SIGKILL', (err) => err ? reject(err) : resolve())
 })

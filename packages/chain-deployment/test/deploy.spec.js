@@ -9,7 +9,7 @@ import {setTimeout} from 'node:timers/promises'
 import waitOn from 'wait-on'
 import {Create3Factory} from '../src/create3.js'
 import config from '../config.js'
-import {configureContracts, writeConfigFile} from './help.js'
+import {configureContracts, writeConfigFile, killProcess} from './help.js'
 
 describe('deploy to multiple chains', () => {
   const chains = ['holesky', 'sepolia']
@@ -34,10 +34,7 @@ describe('deploy to multiple chains', () => {
   })
 
   afterEach(async () => {
-    for (let each of processes) {
-      each.kill()
-      while(!each.killed) await setTimeout(10)
-    }
+    for (let each of processes) await killProcess(each)
   })
 
   after(() => rmSync(configDir, {recursive: true, force: true}))
