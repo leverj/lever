@@ -23,7 +23,7 @@ export class Telegram {
   async post(message, error) { await this.logError(message, error) }
 
   async logError(message, error) {
-    const text = `${this.appInfo}\n ${message}\n${error ? error.stack : ''}`
+    const text = `${this.appInfo}\n${message}\n${error ? error.stack.replace(/[_*[\]()~`>#+=|{}.!-]/g, '\\$&'): ''}`
     await this.sendText(text).catch(logger.error)
   }
 
