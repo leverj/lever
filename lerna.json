@@ -12,7 +12,8 @@
   "command": {
     "publish": {
       "allowBranch": [
-        "main"
+        "main",
+        "main-4.0"
       ]
     }
   }
