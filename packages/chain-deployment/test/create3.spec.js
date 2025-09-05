@@ -14,7 +14,7 @@ import {
   getCreate3Address,
   txData,
 } from '../src/create3.js'
-import {configDir, configFile, configureContracts, provider, writeConfigFile} from './help.js'
+import {configDir, configFile, configureContracts, provider, writeConfigFile, killProcess} from './help.js'
 
 const {contractName, contractAddress} = Create3Factory
 
@@ -50,10 +50,7 @@ describe('create3', () => {
   })
 
   afterEach(async () => {
-    for (let each of processes) {
-      each.kill()
-      while(!each.killed) await setTimeout(10)
-    }
+    for (let each of processes) await killProcess(each)
   })
 
   after(() => rmSync(configDir, {recursive: true, force: true}))
