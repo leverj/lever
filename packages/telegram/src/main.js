@@ -5,12 +5,13 @@ const CHAT_ID = typeof process !== 'undefined' && process.env.TELEGRAM_CHAT_ID
 const TOKEN_ID = typeof process !== 'undefined' && process.env.TELEGRAM_BOT_TOKEN
 const APP_INFO = typeof process !== 'undefined' && process.env.TELEGRAM_APP_INFO
 
+const fixMarkdownV2Text = (text='') => text.replace(/[_*[\]()~`>#+=|{}.!-]/g, '\\$&')
 
 export class Telegram {
   constructor(chatId = CHAT_ID, tokenId = TOKEN_ID, appInfo = APP_INFO) {
     this.chatId = chatId
     this.tokenId = tokenId
-    this.appInfo = appInfo
+    this.appInfo = fixMarkdownV2Text(appInfo)
     if (!this.chatId || !this.tokenId) logger.warn('Telegram bot is not configured, messages will not be sent')
   }
 
@@ -23,8 +24,7 @@ export class Telegram {
   async post(message, error) { await this.logError(message, error) }
 
   async logError(message, error) {
-    const errorMsg = error ? error.stack.replace(/[_*[\]()~`>#+=|{}.!-]/g, '\\$&') : ''
-    const text = `__*${this.appInfo}*__\n\n${message}\n` +  '``` ' + errorMsg + '```'
+    const text = `__*${this.appInfo}*__\n\n${message}\n` +  '``` ' + fixMarkdownV2Text(error?.stack) + '```'
     await this.sendText(text).catch(logger.error)
   }
 
