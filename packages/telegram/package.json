@@ -10,6 +10,6 @@
   },
   "dependencies": {
     "@leverj/lever.common": "5.1.1",
-    "axios": "^1.11.0"
+    "axios": "^1.12.1"
   }
 }
