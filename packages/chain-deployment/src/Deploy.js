@@ -89,7 +89,7 @@ export class Deploy {
       this.storeDeployedContract(chain, await deployCreate3Factory(deployer))
     }
 
-    for (let [name, {libraries, params}] of Object.entries(constructors)) {
+    for (let [name, {libraries, params, predeployed}] of Object.entries(constructors)) {
       const translateAddresses = (params = []) => params.map(_ => Array.isArray(_) ? translateAddresses(_) : getContractAddress(_) ?? _)
       const translateLibraries = (names = []) => names.reduce((result, _) => Object.assign(result, ({[_]: getContractAddress(_)})), {})
 
@@ -112,9 +112,12 @@ export class Deploy {
           this.storeDeployedContract(chain, await deployViaCreate3Factory(name, params, contractFactory, deployer, salt))
         }
       } else if (!getContractAddress(name) || options.reset) {
-        this.logger.log(`deploying ${name} contract `.padEnd(120, '.'))
-        this.storeDeployedContract(chain, await this.deployContract(name, params, {libraries, signer: deployer}))
-        await setTimeout(200) // note: must wait a bit to avoid "Nonce too low" error
+        if (predeployed) this.storeDeployedContract(chain, {name, address: predeployed, blockCreated: 0})
+        else {
+          this.logger.log(`deploying ${name} contract `.padEnd(120, '.'))
+          this.storeDeployedContract(chain, await this.deployContract(name, params, {libraries, signer: deployer}))
+          await setTimeout(200) // note: must wait a bit to avoid "Nonce too low" error
+        }
       }
       if (options.verify) {
         const explorerUrl = blockscoutExplorerUrls[network.id]?.explorers[0].url
