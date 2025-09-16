@@ -28,6 +28,7 @@ export const blockscoutExplorerUrls = Object.assign({}, blockscoutExplorerUrls_)
 
 /** custom network should look like network definitions in viem/chains */
 export const registerCustomNetwork = (chain, network) => {
+  if (networksByChain[chain]) throw Error(`attempt to modify a publicly known chain: ${chain}`)
   networks[chain] = toNetworkCanon(chain, network)
   blockscoutExplorerUrls[network.id] = {
     explorers: [
