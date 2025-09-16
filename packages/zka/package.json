@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@leverj/lever.common": "5.1.1",
-    "axios": "^1.12.1",
+    "axios": "^1.12.2",
     "ephemeral-cache": "^1.1.0",
     "ethers": "^6.15.0",
     "lodash-es": "^4.17.21",
