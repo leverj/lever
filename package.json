@@ -21,7 +21,7 @@
   "devDependencies": {
     "depcheck": "^1.4.7",
     "expect": "^30.1.2",
-    "lerna": "^8.2.4",
+    "lerna": "^9.0.0",
     "mocha": "^11.7.2",
     "sinon": "^21.0.0",
     "yargs": "^18.0.0"
