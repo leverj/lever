@@ -23,7 +23,8 @@ export class Telegram {
   async post(message, error) { await this.logError(message, error) }
 
   async logError(message, error) {
-    const text = `${this.appInfo}\n ${message}\n${error ? error.stack : ''}`
+    const errorMsg = error ? error.stack.replace(/[_*[\]()~`>#+=|{}.!-]/g, '\\$&') : ''
+    const text = `__*${this.appInfo}*__\n\n${message}\n` +  '``` ' + errorMsg + '```'
     await this.sendText(text).catch(logger.error)
   }
 
@@ -31,7 +32,7 @@ export class Telegram {
     if (!this.chatId || !this.tokenId) throw Error('TELEGRAM MESSAGE:' + text)
     const url = `https://api.telegram.org/bot${this.tokenId}/sendMessage`
     const headers = {'content-type': 'application/json'}
-    const data = {chat_id: this.chatId, text}
+    const data = {chat_id: this.chatId, text, parse_mode: 'MarkdownV2'}
     return await axios.post(url, data, {headers})
   }
 }

@@ -1,8 +1,8 @@
 import {blockscoutExplorerUrls, Deploy, networks, registerCustomNetwork} from '@leverj/lever.chain-deployment'
+import {killProcess} from '@leverj/lever.common'
 import {expect} from 'expect'
 import {exec} from 'node:child_process'
 import {rmSync} from 'node:fs'
-import {setTimeout} from 'node:timers/promises'
 import waitOn from 'wait-on'
 import config from '../config.js'
 import {configDir, configFile, writeConfigFile} from './help.js'
@@ -48,12 +48,7 @@ describe('networks', () => {
 
   beforeEach(() => rmSync(`${config.deploymentDir}/test`, {recursive: true, force: true}))
 
-  afterEach(async () => {
-    for (let each of processes) {
-      each.kill()
-      while(!each.killed) await setTimeout(10)
-    }
-  })
+  afterEach(async () => { for (let each of processes) await killProcess(each) })
 
   after(() => rmSync(configDir, {recursive: true, force: true}))
 
