@@ -29,7 +29,6 @@
     "@nomicfoundation/hardhat-mocha": "^3.0.2",
     "@nomicfoundation/hardhat-network-helpers": "^3.0.0",
     "@nomicfoundation/hardhat-verify": "^3.0.2",
-    "@skybit/hardhat-yul": "^4.2.1",
     "wait-on": "^9.0.1"
   }
 }

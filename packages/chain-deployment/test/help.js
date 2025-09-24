@@ -13,12 +13,6 @@ const {mnemonic, path} = config.networks.default.accounts, phrase = await mnemon
 export const wallets = accounts.map((value, i) => HDNodeWallet.fromMnemonic(Mnemonic.fromPhrase(phrase), `${path}/${i}`))
 
 export const configDir = `${import.meta.dirname}/hardhat`
-export const configFile = (chain) => `${configDir}/${chain}.config.cjs`
-export const writeConfigFile = (chain, chainId) => {
-  ensureExistsSync(configDir)
-  writeFileSync(configFile(chain), createHardhatConfig(chain, chainId))
-}
-export const configDir = `${import.meta.dirname}/hardhat`
 export const configFile = (chain) => `${configDir}/${chain}.config.js`
 export const writeConfigFile = (chain, chainId) => {
   ensureExistsSync(configDir)
@@ -36,14 +30,6 @@ export const writeConfigFile = (chain, chainId) => {
     |`.replaceAll(/[ \t]+\|/g, '')
   writeFileSync(configFile(chain), source)
 }
-
-export const configureContracts = (config) => config.createContractsConstructors = (chain) => ({
-  ToyMath: {},
-  Bank: {
-    libraries: ['ToyMath'],
-    params: [networks[chain].id, 'whatever'],
-  },
-})
 
 export const configureContracts = (config) => config.createContractsConstructors = (chain) => ({
   ToyMath: {},
