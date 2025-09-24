@@ -1,6 +1,6 @@
 {
   "name": "@leverj/lever.chain-deployment",
-  "version": "5.1.3",
+  "version": "5.2.0",
   "license": "MIT",
   "type": "module",
   "exports": {
@@ -13,8 +13,8 @@
     "dependency:check": "npx depcheck"
   },
   "dependencies": {
-    "@leverj/lever.common": "5.1.3",
-    "@leverj/lever.storage": "5.1.3",
+    "@leverj/lever.common": "5.2.0",
+    "@leverj/lever.storage": "5.2.0",
     "ethers": "^6.15.0",
     "glob": "^11.0.3",
     "hardhat": "^3.0.6",
@@ -24,7 +24,7 @@
     "viem": "^2.37.8"
   },
   "devDependencies": {
-    "@leverj/lever.config": "5.1.3",
+    "@leverj/lever.config": "5.2.0",
     "@nomicfoundation/hardhat-ethers": "^4.0.1",
     "@nomicfoundation/hardhat-mocha": "^3.0.2",
     "@nomicfoundation/hardhat-network-helpers": "^3.0.0",
