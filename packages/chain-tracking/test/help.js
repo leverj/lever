@@ -1,15 +1,9 @@
-import {default as hardhat} from 'hardhat'
 import {expect} from 'expect'
+import {network} from 'hardhat'
 
-/** https://hardhat.org/hardhat-network-helpers/docs/reference */
-export * as evm from '@nomicfoundation/hardhat-network-helpers'
+export const {ethers, networkConfig: {chainId}} = await network.connect()
+export const {deployContract, getSigners, provider} = ethers
 
-export const {config, ethers, network} = hardhat
-
-/** https://hardhat.org/hardhat-runner/plugins/nomicfoundation-hardhat-ethers#helpers */
-export const {provider, deployContract, getSigners} = ethers
-
-export const chainId = await provider.getNetwork().then(_ => _.chainId)
 export const accounts = await getSigners()
 
 export const ERC20 = async (name = 'Crap', symbol = 'CRAP') => deployContract('ERC20Mock', [name, symbol])

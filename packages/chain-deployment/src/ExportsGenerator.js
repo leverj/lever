@@ -25,7 +25,7 @@ export class ExportsGenerator {
   async exportAbi() {
     this.logger.log(`${'-'.repeat(30)} generating contracts abi exports `.padEnd(120, '-'))
     const targetDir = establishCleanDir(`${this.projectDir}/src/contracts/abi`)
-    execSync(`npx hardhat compile --quiet --config ${this.projectDir}/hardhat.config.cjs`)
+    execSync(`npx hardhat compile --quiet --config ${this.projectDir}/hardhat.config.js`)
     const files = glob.sync(`${this.projectDir}/artifacts/contracts/**/*.sol/*.json`)
     for (let name of this.contracts) {
       const path = files.find(_ => _.endsWith(`/${name}.json`))
@@ -49,18 +49,18 @@ export class ExportsGenerator {
         const constructor_doc = _.inputs.map(({name, type}) => `* @param {${type}} ${name}`).join('\n   ')
         const constructor_signature = _.inputs.map(_ => _.name).join(', ')
         const constructor_body = _.inputs.map(_ => `this.${_.name} = ${_.name}`).join('\n    ')
-        const source =
-          `export class ${_.name} {
-  static signature = '${signature}'
-  static topic = '${topic}'
-
-  /**
-   ${constructor_doc}
-   */
-  constructor(${constructor_signature}) {
-    ${constructor_body}
-  }
-}`
+        const source = `
+          |export class ${_.name} {
+          |  static signature = '${signature}'
+          |  static topic = '${topic}'
+          |
+          |  /**
+          |   ${constructor_doc}
+          |   */
+          |  constructor(${constructor_signature}) {
+          |    ${constructor_body}
+          |  }
+          |}`.replaceAll('          |', '')
         return source
       })
       const source = `${classes.join('\n\n')}`
@@ -74,10 +74,12 @@ export class ExportsGenerator {
   exportStubs() {
     this.logger.log(`${'-'.repeat(30)} generating contracts stub exports `.padEnd(120, '-'))
     const exports = this.contracts.map(_ => `export const ${_} = (address, signer) => new Contract(address, abi.${_}.abi, signer)`).join('\n')
-    const source = `import {Contract} from 'ethers'
-import * as abi from './abi/index.js'
-
-${exports}`
+    const source = `
+      |import {Contract} from 'ethers'
+      |import * as abi from './abi/index.js'
+      |
+      |${exports}
+      |`.replaceAll(/[ \t]+\|/g, '')
     writeFileSync(`${this.projectDir}/src/contracts/stubs.js`, source)
   }
 }

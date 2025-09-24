@@ -85,10 +85,10 @@ const verifyGasLimit = async (provider) => {
   const gasLimitPercentageAboveCost = Number(txData.gasLimit * 100n / gasCost) - 100
   if (gasLimitPercentageAboveCost < 0) throw Error(`gasLimit ${txData.gasLimit} isn't high enough to proceed`)
   if (gasLimitPercentageAboveCost < 10) logger.warn(`
-    gasLimit may be too low to accommodate for possibly increasing future opcode cost. 
-    once you choose a gasLimit, you'll need to use the same value for deployments on other 
-    blockchains any time in the future in order for your contract to have the same address.
-  `)
+    |gasLimit may be too low to accommodate for possibly increasing future opcode cost. 
+    |once you choose a gasLimit, you'll need to use the same value for deployments on other 
+    |blockchains any time in the future in order for your contract to have the same address.
+    |`.replaceAll(/[ \t]+\|/g, ''))
 }
 
 export const deriveAddressOfSignerFromSig = async txData => resolveProperties(txData).then(_ => {

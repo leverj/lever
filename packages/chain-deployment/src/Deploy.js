@@ -1,18 +1,17 @@
 import {JsonFileStore} from '@leverj/lever.storage'
-import {default as hardhat} from 'hardhat'
+import {encodeBytes32String, JsonRpcProvider, Wallet} from 'ethers'
+import hre from 'hardhat'
 import {Map} from 'immutable'
 import {cloneDeep} from 'lodash-es'
 import {execSync} from 'node:child_process'
 import {setTimeout} from 'node:timers/promises'
 import {inspect} from 'node:util'
 import * as networksByChain from 'viem/chains'
-import {verifyContract} from './blockscout.js'
 import {Create3Factory, deployCreate3Factory, deployViaCreate3Factory} from './create3.js'
+import {verify} from './verify.js'
 
 /*** from https://github.com/blockscout/chainscout/blob/main/data/chains.json ***/
 import blockscoutExplorerUrls_ from './chainscout-chains.json' with {type: 'json'}
-
-const {ethers: {deployContract, encodeBytes32String, getContractFactory, JsonRpcProvider, Wallet}} = hardhat
 
 const toNetworkCanon = (chain, network) => {
   const {id, name, nativeCurrency, rpcUrls, blockExplorers} = cloneDeep(network)
@@ -55,6 +54,9 @@ export class Deploy {
   }
 
   async to(chain, options = {}) {
+    //fixme:hardhat: need to do per network? see: NetworkManager, NetworkConnectionParams
+    const {ethers} = await hre.network.connect()
+
     const network = networks[chain]
     if (!network) throw Error(`chain ${chain} is not supported`)
     else if (!this.store.has(chain)) {
@@ -67,17 +69,13 @@ export class Deploy {
     const {env, deploymentDir, constructors} = this.config
     this.logger.log(inspect({env, deployer: this.deployer.address, deploymentDir, constructors}))
     this.logger.log('-'.repeat(120))
-    this.compileContracts()
-    await this.deployContracts(chain, options)
+    this.logger.log(`compiling contracts `.padEnd(120, '.'))
+    execSync(`npx hardhat compile --build-profile production --quiet --config ${process.cwd()}/hardhat.config.js`)
+    await this.deployContracts(chain, options, ethers)
     this.logger.log(`${'*'.repeat(30)} finished deploying contracts `.padEnd(120, '*'))
   }
 
-  compileContracts() {
-    this.logger.log(`compiling contracts `.padEnd(120, '.'))
-    execSync(`npx hardhat compile --quiet --config ${process.cwd()}/hardhat.config.cjs`)
-  }
-
-  async deployContracts(chain, options) {
+  async deployContracts(chain, options, ethers) {
     const network = this.store.get(chain)
     const getContractAddress = (name) => network.contracts[name]?.address
 
@@ -109,37 +107,29 @@ export class Deploy {
           pass the salt (really a sprinkle) in together with the create3 deploy option.
         */
           const salt = encodeBytes32String(`${name}.${options.salt || 'first'}`)
-          const contractFactory = await getContractFactory(name, {libraries, signer: deployer})
+          const contractFactory = await ethers.getContractFactory(name, {libraries, signer: deployer})
           this.storeDeployedContract(chain, await deployViaCreate3Factory(name, params, contractFactory, deployer, salt))
         }
       } else if (!getContractAddress(name) || options.reset) {
         if (predeployed) this.storeDeployedContract(chain, {name, address: predeployed, blockCreated: 0})
         else {
           this.logger.log(`deploying ${name} contract `.padEnd(120, '.'))
-          this.storeDeployedContract(chain, await this.deployContract(name, params, {libraries, signer: deployer}))
+          const contract = await ethers.deployContract(name, params, {libraries, signer: deployer})
+          const address = contract.target
+          const blockCreated = await contract.deploymentTransaction().wait().then(_ => _.blockNumber)
+          this.storeDeployedContract(chain, {name, address, blockCreated})
           await setTimeout(200) // note: must wait a bit to avoid "Nonce too low" error
         }
       }
-      if (options.verify) {
-        const explorerUrl = blockscoutExplorerUrls[network.id]?.explorers[0].url
-        await verifyContract(this.logger, network, name, libraries ?? {}, explorerUrl)
-      }
+      if (options.verify) await verify(name, params, libraries, network, this.logger)
     }
     //note: since create3 allows for restoring all contracts, we update the deployment block at the end rather than at start
     const block = Map(network.contracts).reduce((result, _) => Math.min(result, _.blockCreated), Number.MAX_VALUE)
     this.store.update(chain, {block}) // establish start block
   }
 
-  async deployContract(name, params, factoryOptions) {
-    const contract = await deployContract(name, params, factoryOptions)
-    const address = contract.target
-    const blockCreated = await contract.deploymentTransaction().wait().then(_ => _.blockNumber)
-    return {name, address, blockCreated}
-  }
-
   storeDeployedContract(chain, {name, address, blockCreated}) {
-    if (!address)
-      return this.logger.error(`failed to deploy ${name} contract `.padEnd(120, '.'))
+    if (!address) return this.logger.error(`failed to deploy ${name} contract `.padEnd(120, '.'))
     this.store.update(chain, {contracts: {[name]: {address, blockCreated}}})
   }
 }

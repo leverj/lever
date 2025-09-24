@@ -29,7 +29,7 @@ describe('verify', () => {
       const logger = new CapturingLogger()
       const deploy = Deploy.from(merge(config, {logger}))
       await deploy.to(chain, {verify: true})
-      expect(logger.warnings[0]).toEqual('verifying on chain 31337 is not supported')
+      expect(logger.warnings[0]).toEqual('verifying on chain hardhat [31337] is not supported')
     } finally {
       await killProcess(evm)
     }

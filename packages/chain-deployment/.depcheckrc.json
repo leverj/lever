@@ -3,7 +3,8 @@
     "test"
   ],
   "ignores": [
-    "@leverj/lever.chain-deployment",
+    "@nomicfoundation/hardhat-mocha",
+    "solc",
     "wait-on"
   ]
 }

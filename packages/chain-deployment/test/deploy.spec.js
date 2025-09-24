@@ -1,5 +1,4 @@
 import {Deploy, networks} from '@leverj/lever.chain-deployment'
-import {killProcess} from '@leverj/lever.common'
 import {isAddress, JsonRpcProvider, Wallet} from 'ethers'
 import {expect} from 'expect'
 import {Map} from 'immutable'
@@ -10,12 +9,10 @@ import {setTimeout} from 'node:timers/promises'
 import waitOn from 'wait-on'
 import {Create3Factory} from '../src/create3.js'
 import config from '../config.js'
-import {configureContracts, writeConfigFile} from './help.js'
+import {configDir, configFile, configureContracts, writeConfigFile} from './help.js'
 
 describe('deploy to multiple chains', () => {
   const chains = ['holesky', 'sepolia']
-  const configDir = `${import.meta.dirname}/hardhat`
-  const configFile = (chain) => `${configDir}/${chain}.config.cjs`
   let deploy, processes = []
 
   before(() => {
@@ -34,7 +31,12 @@ describe('deploy to multiple chains', () => {
     deploy = Deploy.from(config)
   })
 
-  afterEach(async () => { for (let each of processes) await killProcess(each) })
+  afterEach(async () => {
+    for (let each of processes) {
+      each.kill()
+      while(!each.killed) await setTimeout(10)
+    }
+  })
 
   after(() => rmSync(configDir, {recursive: true, force: true}))
 

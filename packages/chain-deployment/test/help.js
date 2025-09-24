@@ -1,37 +1,35 @@
-import {default as hardhat} from 'hardhat'
-import {networks} from '../src/index.js'
+import {networks} from '@leverj/lever.chain-deployment'
 import {ensureExistsSync} from '@leverj/lever.common'
+import {artifacts, config, network} from 'hardhat'
 import {writeFileSync} from 'node:fs'
 
-/** https://hardhat.org/hardhat-network-helpers/docs/reference */
-export * as evm from '@nomicfoundation/hardhat-network-helpers'
+export {artifacts, config, network} from 'hardhat'
+export const {ethers, networkConfig: {chainId}, networkHelpers: evm} = await network.connect()
+export const {deployContract, getSigners, HDNodeWallet, Mnemonic, provider} = ethers
 
-export const {config, ethers, network} = hardhat
-
-/** https://hardhat.org/hardhat-runner/plugins/nomicfoundation-hardhat-ethers#helpers */
-export const {provider, deployContract, getSigners} = ethers
-
-const {mnemonic, path} = config.networks.hardhat.accounts, phrase = ethers.Mnemonic.fromPhrase(mnemonic)
-export const chainId = await provider.getNetwork().then(_ => _.chainId)
 export const accounts = await getSigners()
-export const wallets = accounts.map((value, i) => ethers.HDNodeWallet.fromMnemonic(phrase, `${path}/${i}`))
+
+const {mnemonic, path} = config.networks.default.accounts, phrase = await mnemonic.get()
+export const wallets = accounts.map((value, i) => HDNodeWallet.fromMnemonic(Mnemonic.fromPhrase(phrase), `${path}/${i}`))
 
 export const configDir = `${import.meta.dirname}/hardhat`
-export const configFile = (chain) => `${configDir}/${chain}.config.cjs`
+export const configFile = (chain) => `${configDir}/${chain}.config.js`
 export const writeConfigFile = (chain, chainId) => {
   ensureExistsSync(configDir)
-  writeFileSync(configFile(chain), createHardhatConfig(chain, chainId))
+  const source = `
+    |const {default: config} = await import(\`\${process.env.PWD}/hardhat.config.js\`)
+    |export default Object.assign(config, {
+    |  networks: {
+    |    default: {
+    |      chainId: ${chainId},  /*** ${chain} ***/
+    |      gasPrice: 0,
+    |      initialBaseFeePerGas: 0,
+    |    }
+    |  }
+    |})
+    |`.replaceAll(/[ \t]+\|/g, '')
+  writeFileSync(configFile(chain), source)
 }
-export const createHardhatConfig = (chain, chainId) => `
-module.exports = Object.assign(require(\`\${process.env.PWD}/hardhat.config.cjs\`), {
-  networks: {
-    hardhat: {
-      chainId: ${chainId},  /*** ${chain} ***/
-      gasPrice: 0,
-      initialBaseFeePerGas: 0,
-    }
-  }
-})`
 
 export const configureContracts = (config) => config.createContractsConstructors = (chain) => ({
   ToyMath: {},
