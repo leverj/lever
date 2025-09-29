@@ -17,7 +17,7 @@ export default {
   solidity: { // changing these values affects deployment address
     compilers: [
       {
-        version: '0.8.30',
+        version: '0.8.28',
         settings: {
           viaIR: true, //see: https://docs.soliditylang.org/en/latest/ir-breaking-changes.html
         }
