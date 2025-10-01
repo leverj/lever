@@ -10,10 +10,9 @@ import {setTimeout} from 'node:timers/promises'
 import waitOn from 'wait-on'
 import {Create3Factory} from '../src/create3.js'
 import config from '../config.js'
-import {configureContracts} from './configure-contracts.js'
-import {configDir, configFile, writeConfigFile} from './help.js'
+import {configDir, configFile, configureContracts, writeConfigFile} from './help.js'
 
-describe('deploy to multiple chains', () => {
+describe('deploy', () => {
   const chains = ['holesky', 'sepolia']
   let deploy, processes = []
 

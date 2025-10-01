@@ -8,7 +8,7 @@ import {merge} from 'lodash-es'
 import {exec} from 'node:child_process'
 import {rmSync} from 'node:fs'
 import waitOn from 'wait-on'
-import {configureContracts} from './configure-contracts.js'
+import {configureContracts} from './help.js'
 
 describe('verify', () => {
   let config
