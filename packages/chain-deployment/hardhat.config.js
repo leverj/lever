@@ -21,8 +21,15 @@ export default {
         settings: {
           optimizer: {enabled: true, runs: 200, details: {yul: true}},
           viaIR: true, //see: https://docs.soliditylang.org/en/latest/ir-breaking-changes.html
-        }
+        },
       },
     ],
+    profiles: {
+      production: {
+        settings: {
+          optimizer: {runs: 1_000_000},
+        },
+       },
+    },
   },
 }
