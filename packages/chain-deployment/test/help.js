@@ -1,6 +1,7 @@
-import {networks} from '@leverj/lever.chain-deployment'
+import {networks, registerCustomNetwork} from '@leverj/lever.chain-deployment'
 import {ensureExistsSync} from '@leverj/lever.common'
 import {artifacts, config, network} from 'hardhat'
+import {Map} from 'immutable'
 import {writeFileSync} from 'node:fs'
 
 export {artifacts, config, network} from 'hardhat'
@@ -30,6 +31,44 @@ export const writeConfigFile = (chain, chainId) => {
     |`.replaceAll(/[ \t]+\|/g, '')
   writeFileSync(configFile(chain), source)
 }
+
+export const createCustomNetwork = (
+  id,
+  chain,
+  name = chain.charAt(0).toUpperCase() + chain.slice(1).replaceAll('_', '-'),
+  rpcUrl = `http://localhost:${id}`,
+  blockExplorerUrl = `http://localhost:${id + 4000}`
+) => ({
+    id,
+    name,
+    nativeCurrency: {
+      name: 'Ether',
+      symbol: 'ETH',
+      decimals: 18,
+    },
+    rpcUrls: {
+      default: {
+        http: [rpcUrl],
+      },
+    },
+    blockExplorers: {
+      default: {
+        name: `${name} Scout`,
+        url: blockExplorerUrl,
+        apiUrl: '',
+      },
+    },
+    testnet: true,
+  }
+)
+
+export const establishCustomNetwork = (id, chain, name, rpcUrl, blockExplorerUrl) => {
+  const network = createCustomNetwork(id, chain, name, rpcUrl, blockExplorerUrl)
+  registerCustomNetwork(chain, network)
+  writeConfigFile(chain, id)
+}
+
+export const chainsById = Map(networks).mapEntries(([chain, _]) => [_.id, chain]).toJS()
 
 export const configureContracts = (config) => config.createContractsConstructors = (chain) => ({
   ToyMath: {},

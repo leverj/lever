@@ -54,15 +54,17 @@ export class Deploy {
   }
 
   async to(chain, options = {}) {
-    //fixme:hardhat: need to do per network? see: NetworkManager, NetworkConnectionParams
-    const {ethers} = await hre.network.connect()
-
     const network = networks[chain]
     if (!network) throw Error(`chain ${chain} is not supported`)
     else if (!this.store.has(chain)) {
       const providerURL = process.env[`${chain.toUpperCase()}_PROVIDER_URL`] ?? network.providerURL
       this.store.set(chain, Object.assign({}, network, {providerURL}))
     }
+    const {ethers} = await hre.network.connect({
+      name: chain,
+      url: network.providerURL,
+      chainId: network.id,
+    })
 
     this.logger.log(`${'*'.repeat(30)} starting deploying contracts on [${chain} @ ${networks[chain].providerURL}] chain `.padEnd(120, '*'))
     this.logger.log(`${'-'.repeat(60)} config `.padEnd(120, '-'))
