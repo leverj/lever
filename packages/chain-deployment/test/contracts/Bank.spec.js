@@ -1,5 +1,5 @@
 import {expect} from 'expect'
-import {accounts, chainId, deployContract} from '../help.js'
+import {accounts, chainId, deployContract} from '../network-connect.js'
 
 const Bank = async (chainId, name) => deployContract('ToyMath', []).then(
   _ => deployContract('Bank', [chainId, name], {libraries: {ToyMath: _.target}})

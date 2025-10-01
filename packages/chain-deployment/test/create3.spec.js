@@ -14,7 +14,9 @@ import {
   getCreate3Address,
   txData,
 } from '../src/create3.js'
-import {configDir, configFile, configureContracts, provider, writeConfigFile} from './help.js'
+import {configureContracts} from './configure-contracts.js'
+import {configDir, configFile, writeConfigFile} from './help.js'
+import {provider} from './network-connect.js'
 
 const {contractName, contractAddress} = Create3Factory
 

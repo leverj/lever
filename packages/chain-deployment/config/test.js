@@ -1,5 +1,5 @@
 import info from '../package.json' with {type: 'json'}
-import {wallets} from '../test/help.js'
+import {wallets} from '../test/network-connect.js'
 import {last} from 'lodash-es'
 
 export const dataDir = `${import.meta.dirname}/../../../data`
