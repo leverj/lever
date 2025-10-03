@@ -15,21 +15,14 @@ export default {
     hardhat_verify,
   ],
   solidity: { // changing these values affects deployment address
-    profiles: {
-      default: {
+    compilers: [
+      {
         version: '0.8.30',
         settings: {
           optimizer: {enabled: true, runs: 200, details: {yul: true}},
           viaIR: true, //see: https://docs.soliditylang.org/en/latest/ir-breaking-changes.html
-        },
+        }
       },
-      production: {
-        version: '0.8.30',
-        settings: {
-          optimizer: {enabled: true, runs: 1_000_000, details: {yul: true}},
-          viaIR: true, //see: https://docs.soliditylang.org/en/latest/ir-breaking-changes.html
-        },
-      },
-    },
+    ],
   },
 }
