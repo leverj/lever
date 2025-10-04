@@ -72,7 +72,7 @@ export class Deploy {
     this.logger.log(inspect({env, deployer: this.deployer.address, deploymentDir, constructors}))
     this.logger.log('-'.repeat(120))
     this.logger.log(`compiling contracts `.padEnd(120, '.'))
-    execSync(`npx hardhat compile --build-profile production --quiet --config ${process.cwd()}/hardhat.config.js`)
+    execSync(`npx hardhat compile --config ${(process.env.HARDHAT_ROOT ?? process.cwd())}/hardhat.config.js`)
     await this.deployContracts(chain, options, ethers)
     this.logger.log(`${'*'.repeat(30)} finished deploying contracts `.padEnd(120, '*'))
   }
