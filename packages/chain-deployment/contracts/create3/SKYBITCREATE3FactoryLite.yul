@@ -1,21 +1,21 @@
 // SPDX-License-Identifier: MIT
 
-/// @notice A factory contract that deploys a contract from bytecode using "CREATE3" method.
+/// @notice A factory contract that deploys a contract from bytecode using 'CREATE3' method.
 /// @author SKYBIT (https://github.com/SKYBITDev3/SKYBIT-Keyless-Deployment)
-object "SKYBITCREATE3FactoryLite" {
-    code { // Constructor code of the contract        
-        datacopy(0, dataoffset("runtime"), datasize("runtime")) // Deploy the contract
-        return (0, datasize("runtime"))
+object 'SKYBITCREATE3FactoryLite' {
+    code { // Constructor code of the contract
+        datacopy(0, dataoffset('runtime'), datasize('runtime')) // Deploy the contract
+        return (0, datasize('runtime'))
     }
 
-    object "runtime" {
+    object 'runtime' {
         code { // Executable code of the object
             mstore(0, caller()) // 32 bytes. The user's address.
             mstore(0x20, calldataload(0)) // 32 bytes. User-provided salt.
             let callerAndSaltHash := keccak256(0x0c, 0x34) // Hash caller with salt to help ensure unique address, prevent front-running. 12 0s skipped as addresses are only 20 bytes. Store result on stack.
 
-            datacopy(0, dataoffset("CREATEFactory"), datasize("CREATEFactory")) // Write CREATEFactory bytecode to memory position 0, overwriting previous data. Data is on left of slot, 0-padded on right.
-            let createFactoryAddress := create2(0, 0, datasize("CREATEFactory"), callerAndSaltHash) // Deploy the CREATE factory via CREATE2, store its address on the stack.
+            datacopy(0, dataoffset('CREATEFactory'), datasize('CREATEFactory')) // Write CREATEFactory bytecode to memory position 0, overwriting previous data. Data is on left of slot, 0-padded on right.
+            let createFactoryAddress := create2(0, 0, datasize('CREATEFactory'), callerAndSaltHash) // Deploy the CREATE factory via CREATE2, store its address on the stack.
 
             if iszero(createFactoryAddress) {
                 mstore8(0, 1) // An error code made up to help identify where it failed
@@ -23,7 +23,7 @@ object "SKYBITCREATE3FactoryLite" {
             }
 
             mstore(0, 0) // make first slot 0 to reserve for address from call output
-            
+
             let creationCodeSize := sub(calldatasize(), 32) // Store creation code size on stack. Skipping first 32 bytes of calldata which is salt.
             calldatacopy(0x20, 32, creationCodeSize) // Overwrite memory from position 0x20 with incoming contract creation code. We take full control of memory because it won't return to Solidity code.
 
@@ -50,13 +50,13 @@ object "SKYBITCREATE3FactoryLite" {
             return (0, 20) // Return the call output, which is the address (20 bytes) of the contract that was deployed via CREATEFactory
         }
 
-        object "CREATEFactory" {
+        object 'CREATEFactory' {
             code {
-                datacopy(0, dataoffset("runtime"), datasize("runtime"))
-                return (0, datasize("runtime"))
+                datacopy(0, dataoffset('runtime'), datasize('runtime'))
+                return (0, datasize('runtime'))
             }
-    
-            object "runtime" {
+
+            object 'runtime' {
                 code {
                     calldatacopy(0x20, 0, calldatasize())
                     mstore(0, create(0, 0x20, calldatasize())) // Create returns 0 if error

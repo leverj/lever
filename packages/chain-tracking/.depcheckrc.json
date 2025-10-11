@@ -1,7 +1,6 @@
 {
   "ignore-patterns": [
-    "test",
-    "artifacts"
+    "test"
   ],
   "ignores": [
     "@openzeppelin/contracts"

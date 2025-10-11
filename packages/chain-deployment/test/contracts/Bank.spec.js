@@ -1,10 +1,6 @@
 import {expect} from 'expect'
-import {accounts, chainId, deployContract} from '../network-connect.js'
-
-const Bank = async (chainId, name) => deployContract('ToyMath', []).then(
-  _ => deployContract('Bank', [chainId, name], {libraries: {ToyMath: _.target}})
-)
-const ERC20 = async (name, symbol) => deployContract('ERC20Mock', [name, symbol])
+import {Bank, ERC20} from '../help.js'
+import {accounts, chainId} from '../network-connect.js'
 
 describe('Bank', () => {
   const [, account] = accounts
@@ -12,7 +8,7 @@ describe('Bank', () => {
 
   it('can deposit & withdraw ERC20 Token', async () => {
     const bank = await Bank(chainId, '🥱')
-    const token = await ERC20('Crap', 'CRAP')
+    const token = await ERC20()
     await token.mint(account.address, amount)
     await token.connect(account).approve(bank.target, amount).then(_ => _.wait())
 

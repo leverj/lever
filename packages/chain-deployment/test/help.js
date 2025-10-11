@@ -1,6 +1,7 @@
 import {ensureExistsSync} from '@leverj/lever.common'
 import {networks} from '@leverj/lever.chain-deployment'
 import {writeFileSync} from 'node:fs'
+import {deployContract} from './network-connect.js'
 
 export const configDir = `${import.meta.dirname}/hardhat`
 export const configFile = (chain) => `${configDir}/${chain}.config.js`
@@ -29,3 +30,9 @@ export const configureContracts = (config) => config.createContractsConstructors
     params: [networks[chain].id, 'whatever'],
   },
 })
+
+export const ERC20 = async (name = 'Crap', symbol = 'CRAP') => deployContract('ERC20Mock', [name, symbol])
+export const ERC721 = async (name = 'Crap', symbol = 'CRAP') => deployContract('ERC721Mock', [name, symbol])
+export const Bank = async (chainId, name) => deployContract('ToyMath', []).then(
+  _ => deployContract('Bank', [chainId, name], {libraries: {ToyMath: _.target}})
+)
