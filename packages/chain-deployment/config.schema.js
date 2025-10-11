@@ -28,7 +28,7 @@ export function postLoad(config) {
   config.logger = logger
   config.networks = {}
   config.constructors = {}
-  config.createContractsConstructors = (chain) => ({})
+  config.createContractsConstructors = _ => _
   config.setContractsConstructors = function (chain) {
     this.constructors[chain] = this.createContractsConstructors(chain)
     return this.constructors[chain]
