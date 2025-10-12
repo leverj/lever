@@ -4,7 +4,7 @@ import {connectToNetwork} from '@leverj/lever.chain-deployment/hardhat.help'
 export * from '@leverj/lever.chain-deployment/hardhat.help'
 export const {
   ethers, chainId, evm,
-  deployContract, getContractAt, provider,
+  deployContract, provider,
   accounts, wallets,
 } = await connectToNetwork()
 

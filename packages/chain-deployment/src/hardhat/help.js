@@ -80,19 +80,27 @@ export const createCustomNetwork = (
 export const chainsById = Map(networks).mapEntries(([chain, _]) => [_.id, chain]).toJS()
 
 export class Evms {
-  static async start(chains, config) {
+  static establishChains(chains) {
     chains.forEach((chain, i) => {
       const id = 8101 + i
       const network = createCustomNetwork(id, chain/*, name, rpcUrl, blockExplorerUrl */) //fixme
       registerCustomNetwork(chain, network)
       writeConfigFile(chain, id)
     })
+  }
+
+  static ensureConfig(config) {
     if (!config) {
       const {NODE_ENV} = process.env
       const PWD = `${import.meta.dirname}/../..`
       config = configure(schema, postLoad, {env: {PWD, NODE_ENV}})
     }
-    return new this(chains, config).start()
+    return config
+  }
+
+  static async start(chains, config) {
+    this.establishChains(chains)
+    return new this(chains, this.ensureConfig(config)).start()
   }
 
   constructor(chains, config) {
