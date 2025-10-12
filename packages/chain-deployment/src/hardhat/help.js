@@ -89,18 +89,18 @@ export class Evms {
     })
   }
 
-  static ensureConfig(config) {
+  static async ensureConfig(config) {
     if (!config) {
       const {NODE_ENV} = process.env
       const PWD = `${import.meta.dirname}/../..`
-      config = configure(schema, postLoad, {env: {PWD, NODE_ENV}})
+      config = await configure(schema, postLoad, {env: {PWD, NODE_ENV}})
     }
     return config
   }
 
   static async start(chains, config) {
     this.establishChains(chains)
-    return new this(chains, this.ensureConfig(config)).start()
+    return new this(chains, await this.ensureConfig(config)).start()
   }
 
   constructor(chains, config) {
@@ -148,7 +148,6 @@ export class Evms {
     return processes
   }
 
-  //options = {create3: true}
   async deploy(options = {}, postDeploy = _ => _) {
     if (!this.isRunning) return this.logger.warn('EVMs must run before deploying')
 
