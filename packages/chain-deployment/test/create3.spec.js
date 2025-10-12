@@ -16,6 +16,7 @@ import {
 } from '../src/create3.js'
 import {configDir, configFile, configureContracts, provider, writeConfigFile} from './help.js'
 
+configureContracts(config)
 const {contractName, contractAddress} = Create3Factory
 
 describe('create3 utils', () => {
@@ -35,10 +36,7 @@ describe('create3', () => {
   const chain = 'sepolia'
   let deploy, processes = []
 
-  before(() => {
-    configureContracts(config)
-    writeConfigFile(chain, networks[chain].id)
-  })
+  before(() => writeConfigFile(chain, networks[chain].id))
 
   beforeEach(async () => {
     rmSync(`${config.deploymentDir}/test`, {recursive: true, force: true})

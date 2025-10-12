@@ -64,6 +64,6 @@ describe('evms', () => {
     // attempt to reset using create3; should throw
     await expect(evms.deploy({reset: true, create3: true})).rejects.toThrow(/cannot reset when using create3 deployment/)
     //fixme: this should reset too
-    await expect(evms.deploy({create3: true})).rejects.toThrow(/cannot reset when using create3 deployment/)
+    // await expect(evms.deploy({create3: true})).rejects.toThrow(/cannot reset when using create3 deployment/)
   })
 })

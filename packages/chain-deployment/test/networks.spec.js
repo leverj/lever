@@ -5,7 +5,9 @@ import {exec} from 'node:child_process'
 import {rmSync} from 'node:fs'
 import waitOn from 'wait-on'
 import config from '../config.js'
-import {configDir, configFile, writeConfigFile} from './help.js'
+import {configDir, configFile, configureContracts, writeConfigFile} from './help.js'
+
+configureContracts(config)
 
 describe('networks', () => {
   const chain = 'custom', chainId = 9110119
@@ -35,21 +37,9 @@ describe('networks', () => {
   }
   let processes = []
 
-  before(() => {
-    config.createContractsConstructors = (chain) => ({
-      ToyMath: {},
-      Bank: {
-        libraries: ['ToyMath'],
-        params: [networks[chain].id, 'whatever'],
-      },
-    })
-    writeConfigFile(chain, chainId)
-  })
-
+  before(() => writeConfigFile(chain, chainId))
   beforeEach(() => rmSync(`${config.deploymentDir}/test`, {recursive: true, force: true}))
-
   afterEach(async () => { for (let each of processes) await killProcess(each) })
-
   after(() => rmSync(configDir, {recursive: true, force: true}))
 
   it('can register custom network', () => {
