@@ -98,7 +98,7 @@ export class Deploy {
       params = translateAddresses(params)
       if (options.create3) { // the draw-back of the current approach is that all contracts (but the factory) would be redeployed
         if (options.reset) throw Error(`cannot reset when using create3 deployment`)
-        else { //fixme:create3:
+        else {
         /**
         the problem:
           in order to deploy a contract to the same address across all blockchains, we can deploy it only once.

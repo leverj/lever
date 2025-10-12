@@ -56,7 +56,7 @@ export async function deployCreate3Factory(deployer) {
     return {
       name: Create3Factory.contractName,
       address: Create3Factory.contractAddress,
-      blockCreated: 1 + await getCreationBlock(provider, Create3Factory.contractAddress) //fixme:create3: why?
+      blockCreated: 1 + await getCreationBlock(provider, Create3Factory.contractAddress)
     }
   }
 
