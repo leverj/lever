@@ -6,7 +6,8 @@
   "exports": {
     ".": "./src/index.js",
     "./config.schema": "./config.schema.js",
-    "./hardhat.config": "./hardhat.config.js"
+    "./hardhat.config": "./hardhat.config.js",
+    "./hardhat.help": "./src/hardhat/help.js"
   },
   "scripts": {
     "test": "npx mocha",

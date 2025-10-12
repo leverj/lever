@@ -1,6 +1,5 @@
 import {expect} from 'expect'
-import {Bank, ERC20} from '../help.js'
-import {accounts, chainId} from '../network-connect.js'
+import {accounts, Bank, chainId, ERC20} from '../help.js'
 
 describe('Bank', () => {
   const [, account] = accounts

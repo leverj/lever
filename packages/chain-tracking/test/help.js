@@ -1,7 +1,6 @@
 import {expect} from 'expect'
 
 export * from '../../chain-deployment/test/help.js'
-export * from '../../chain-deployment/test/network-connect.js'
 
 export function expectEventsToMatch(events, expected) {
   expect(events.length).toEqual(expected.length)
