@@ -6,19 +6,10 @@ import {rmSync} from 'node:fs'
 import {exec} from 'node:child_process'
 import waitOn from 'wait-on'
 import {postLoad, schema} from '../../config.schema.js'
-import {Deploy, networks, registerCustomNetwork} from '../Deploy.js'
-import {configDir, configFile, createCustomNetwork, writeConfigFile} from './help.js'
+import {Deploy, networks} from '../Deploy.js'
+import {configDir, configFile, establishChains} from './help.js'
 
 export class Evms {
-  static establishChains(chains) {
-    chains.forEach((chain, i) => {
-      const id = 8101 + i
-      const network = createCustomNetwork(id, chain)
-      registerCustomNetwork(chain, network)
-      writeConfigFile(chain, id)
-    })
-  }
-
   static async ensureConfig(config) {
     if (!config) {
       const {NODE_ENV} = process.env
@@ -29,7 +20,7 @@ export class Evms {
   }
 
   static async start(chains, config) {
-    this.establishChains(chains)
+    establishChains(chains)
     return new this(chains, await this.ensureConfig(config)).start()
   }
 
@@ -81,7 +72,9 @@ export class Evms {
     if (!this.isRunning) return this.logger.warn('EVMs must run before deploying')
 
     const deploy = Deploy.from(this.config)
-    for (let chain of this.chains) await deploy.to(chain, options)
+    for (let chain of this.chains) {
+      await deploy.to(chain, options)
+    }
     await postDeploy(options)
     //fixme: now snapshot if required
     return this

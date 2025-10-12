@@ -1,8 +1,7 @@
 import {ensureExistsSync} from '@leverj/lever.common'
 import {config, network} from 'hardhat'
-import {Map} from 'immutable'
 import {writeFileSync} from 'node:fs'
-import {networks} from '../Deploy.js'
+import {registerCustomNetwork} from '../Deploy.js'
 
 export {artifacts, config, network} from 'hardhat'
 
@@ -71,4 +70,11 @@ export const createCustomNetwork = (
   }
 )
 
-export const chainsById = Map(networks).mapEntries(([chain, _]) => [_.id, chain]).toJS()
+export const establishChains = (chains) => {
+  chains.forEach((chain, i) => {
+    const id = 8101 + i
+    const network = createCustomNetwork(id, chain)
+    registerCustomNetwork(chain, network)
+    writeConfigFile(chain, id)
+  })
+}

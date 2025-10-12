@@ -10,24 +10,19 @@ import {setTimeout} from 'node:timers/promises'
 import waitOn from 'wait-on'
 import {Create3Factory} from '../src/create3.js'
 import config from '../config.js'
-import {configDir, configFile, configureContracts, writeConfigFile} from './help.js'
+import {configDir, configFile, configureContracts, establishChains} from './help.js'
+
+configureContracts(config)
 
 describe('deploy', () => {
-  const chains = ['holesky', 'sepolia']
+  const chains = ['chain-1', 'chain-2']
   let deploy, processes = []
 
-  before(() => {
-    configureContracts(config)
-    chains.forEach(_ => writeConfigFile(_, networks[_].id))
-  })
+  before(() => establishChains(chains))
 
   beforeEach(async () => {
     rmSync(`${config.deploymentDir}/test`, {recursive: true, force: true})
-    chains.forEach((each, i) => {
-      const port = 8101 + i
-      networks[each].providerURL = `http://localhost:${port}`
-      processes.push(exec(`npx hardhat node --config ${configFile(each)} --port ${port}`))
-    })
+    chains.forEach(_ => processes.push(exec(`npx hardhat node --config ${configFile(_)} --port ${networks[_].id}`)))
     for (let each of chains) await waitOn({resources: [networks[each].providerURL], timeout: 10_000})
     deploy = Deploy.from(config)
   })
@@ -92,7 +87,7 @@ describe('deploy', () => {
       expect(restored.toJS()).toMatchObject(initial.toJS())
 
       // attempt to reset; should throw
-      await expect(deploy.to(chain, {create3: true, reset: true})).rejects.toThrow(/cannot reset when using create3 deployment/)
+      await expect(deploy.to(chain, {reset: true, create3: true})).rejects.toThrow(/cannot reset when using create3 deployment/)
 
       // now deploy with a new salt; contracts would deploy into a new address
       await deploy.to(chain, {create3: true, salt: 'whatever you want'})
