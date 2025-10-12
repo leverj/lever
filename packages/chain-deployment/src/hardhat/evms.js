@@ -7,7 +7,7 @@ import {exec} from 'node:child_process'
 import waitOn from 'wait-on'
 import {postLoad, schema} from '../../config.schema.js'
 import {Deploy, networks, registerCustomNetwork} from '../Deploy.js'
-import {createCustomNetwork, writeConfigFile} from './help.js'
+import {configDir, configFile, createCustomNetwork, writeConfigFile} from './help.js'
 
 export class Evms {
   static establishChains(chains) {
@@ -86,6 +86,4 @@ export class Evms {
     //fixme: now snapshot if required
     return this
   }
-
-  async postDeploy() { /* should override */ }
 }
