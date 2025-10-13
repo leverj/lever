@@ -2,7 +2,6 @@ import {Deploy, networks} from '@leverj/lever.chain-deployment'
 import {killProcess} from '@leverj/lever.common'
 import {encodeBytes32String, JsonRpcProvider, Wallet} from 'ethers'
 import {expect} from 'expect'
-import {exec} from 'node:child_process'
 import {rmSync} from 'node:fs'
 import waitOn from 'wait-on'
 import config from '../config.js'
@@ -14,7 +13,7 @@ import {
   getCreate3Address,
   txData,
 } from '../src/create3.js'
-import {configDir, configFile, configureContracts, provider, writeConfigFile} from './help.js'
+import {configureContracts, provider, startHardhatNode, writeHardhatConfigAt} from './help.js'
 
 configureContracts(config)
 const {contractName, contractAddress} = Create3Factory
@@ -36,20 +35,18 @@ describe('create3', () => {
   const chain = 'sepolia'
   let deploy, processes = []
 
-  before(() => writeConfigFile(chain, networks[chain].id))
-
   beforeEach(async () => {
-    rmSync(`${config.deploymentDir}/test`, {recursive: true, force: true})
+    const deploymentDir = `${config.deploymentDir}/test`
+    rmSync(deploymentDir, {recursive: true, force: true})
     const port = 8101
+    const configFile = writeHardhatConfigAt([chain], deploymentDir)
     networks[chain].providerURL = `http://localhost:${port}`
-    processes.push(exec(`npx hardhat node --config ${configFile(chain)} --port ${port}`))
+    processes.push(startHardhatNode(chain, port, configFile))
     await waitOn({resources: [networks[chain].providerURL], timeout: 10_000})
     deploy = Deploy.from(config)
   })
 
   afterEach(async () => { for (let each of processes) await killProcess(each) })
-
-  after(() => rmSync(configDir, {recursive: true, force: true}))
 
   it('deployCreate3Factory', async () => {
     const provider = new JsonRpcProvider(networks[chain].providerURL)

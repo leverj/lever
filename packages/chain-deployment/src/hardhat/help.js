@@ -1,7 +1,8 @@
-import {ensureExistsSync} from '@leverj/lever.common'
 import {config, network} from 'hardhat'
+import {networks, registerCustomNetwork} from '../Deploy.js'
+import {ensureExistsSync} from '@leverj/lever.common'
 import {writeFileSync} from 'node:fs'
-import {registerCustomNetwork} from '../Deploy.js'
+import {exec} from 'node:child_process'
 
 export {artifacts, config, network} from 'hardhat'
 
@@ -19,25 +20,6 @@ export const connectToNetwork = async (params) => {
     deployContract, getContractAt, provider,
     accounts, wallets,
   }
-}
-
-export const configDir = `${import.meta.dirname}/hardhat`
-export const configFile = (chain) => `${configDir}/${chain}.config.js`
-export const writeConfigFile = (chain, chainId) => {
-  ensureExistsSync(configDir)
-  const source =
-    `const {default: config} = await import(\`\${process.env.PWD}/hardhat.config.js\`)
-    |export default Object.assign(config, {
-    |  networks: {
-    |    default: {
-    |      chainId: ${chainId},  /*** ${chain} ***/
-    |      gasPrice: 0,
-    |      initialBaseFeePerGas: 0,
-    |    }
-    |  }
-    |})
-    |`.replaceAll(/[ \t]+\|/g, '')
-  writeFileSync(configFile(chain), source)
 }
 
 export const createCustomNetwork = (
@@ -70,11 +52,44 @@ export const createCustomNetwork = (
   }
 )
 
-export const establishChains = (chains) => {
-  chains.forEach((chain, i) => {
-    const id = 8101 + i
-    const network = createCustomNetwork(id, chain)
-    registerCustomNetwork(chain, network)
-    writeConfigFile(chain, id)
-  })
+export const writeHardhatConfigAt = (chains, dir) => {
+  ensureExistsSync(dir)
+  const networks_source = chains.map(_ =>
+    `    ${_}: {
+    |      chainId: ${networks[_].id},
+    |      type: 'edr-simulated',
+    |      chainType: 'l1',
+    |      gasPrice: 0,
+    |      initialBaseFeePerGas: 0,
+    |    },`.replaceAll(/[ \t]*\|/g, '')).join('\n')
+  const source =
+    `const {default: config} = await import(\`\${process.env.PWD}/hardhat.config.js\`)
+    |export default Object.assign(config, {
+    |  networks: {
+    |${networks_source}
+    |  }
+    |})`.replaceAll(/[ \t]*\|/g, '')
+  const file = `${dir}/hardhat.config.js`
+  writeFileSync(file, source)
+  return file
+}
+
+export const establishChainsAt = (chains, dir) => {
+  chains.forEach((chain, i) => registerCustomNetwork(chain, createCustomNetwork(8101 + i, chain)))
+  return writeHardhatConfigAt(chains, dir)
+}
+
+export const startHardhatNode = (chain, port, configFile, debug) => {
+  const args = [
+    '--network', chain,
+    '--config', configFile,
+    '--port', port,
+    debug ? '--show-stack-traces' : '',
+  ]
+  const child = exec(`npx hardhat node ${args.join(' ')}`)
+  if (debug) {
+    child.stderr.setEncoding('utf8')
+    child.stderr.on('data', _ => process.stderr.write(`[${chain}] ${_}`))
+  }
+  return child
 }

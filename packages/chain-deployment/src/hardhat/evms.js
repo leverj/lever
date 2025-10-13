@@ -3,11 +3,10 @@ import {configure} from '@leverj/lever.config'
 import {JsonFileStore} from '@leverj/lever.storage'
 import {JsonRpcProvider} from 'ethers'
 import {rmSync} from 'node:fs'
-import {exec} from 'node:child_process'
 import waitOn from 'wait-on'
 import {postLoad, schema} from '../../config.schema.js'
 import {Deploy, networks} from '../Deploy.js'
-import {configDir, configFile, establishChains} from './help.js'
+import {establishChainsAt, startHardhatNode} from './help.js'
 
 export class Evms {
   static async ensureConfig(config) {
@@ -20,7 +19,6 @@ export class Evms {
   }
 
   static async start(chains, config) {
-    establishChains(chains)
     return new this(chains, await this.ensureConfig(config)).start()
   }
 
@@ -29,6 +27,7 @@ export class Evms {
     this.config = config
     this.deploymentDir = `${config.deploymentDir}/${config.env}`
     rmSync(this.deploymentDir, {recursive: true, force: true})
+    this.configFile = establishChainsAt(chains, this.deploymentDir)
   }
   get logger() { return this.config.logger }
   get store() { return new JsonFileStore(this.deploymentDir, '.evms') }
@@ -54,13 +53,11 @@ export class Evms {
     for (let each of this.processes) await killProcess(each)
     this.processes.length = 0
     this.isRunning = false
-    rmSync(configDir, {recursive: true, force: true})
   }
 
   async launch() {
     const processes = this.chains.map(_ => {
-      const {port} = new URL(networks[_].providerURL)
-      const process = exec(`npx hardhat node --config ${configFile(_)} --port ${port}`)
+      const process = startHardhatNode(_, networks[_].id, this.configFile)
       process.stdout.on('store', this.logger.log)
       return process
     })
@@ -74,6 +71,9 @@ export class Evms {
     const deploy = Deploy.from(this.config)
     for (let chain of this.chains) {
       await deploy.to(chain, options)
+      //fixme: snapshot:
+      // npx hardhat node --save
+      // npx hardhat node --load
     }
     await postDeploy(options)
     //fixme: now snapshot if required

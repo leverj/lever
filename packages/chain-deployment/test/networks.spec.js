@@ -1,17 +1,16 @@
 import {blockscoutExplorerUrls, Deploy, networks, registerCustomNetwork} from '@leverj/lever.chain-deployment'
 import {killProcess} from '@leverj/lever.common'
 import {expect} from 'expect'
-import {exec} from 'node:child_process'
 import {rmSync} from 'node:fs'
 import waitOn from 'wait-on'
 import config from '../config.js'
-import {configDir, configFile, configureContracts, writeConfigFile} from './help.js'
+import {configureContracts, startHardhatNode, writeHardhatConfigAt} from './help.js'
 
 configureContracts(config)
 
 describe('networks', () => {
-  const chain = 'custom', chainId = 9110119
   const port = 8081
+  const chain = 'custom', chainId = port
   const providerURL = `http://localhost:${port}`, blockExplorerURL = `http://localhost:${port + 200}`
   const network_definition = {
     blockExplorers: {
@@ -35,12 +34,11 @@ describe('networks', () => {
     },
     testnet: true,
   }
+  const deploymentDir = `${config.deploymentDir}/test`
   let processes = []
 
-  before(() => writeConfigFile(chain, chainId))
-  beforeEach(() => rmSync(`${config.deploymentDir}/test`, {recursive: true, force: true}))
+  beforeEach(() => rmSync(deploymentDir, {recursive: true, force: true}))
   afterEach(async () => { for (let each of processes) await killProcess(each) })
-  after(() => rmSync(configDir, {recursive: true, force: true}))
 
   it('can register custom network', () => {
     expect(networks[chain]).toBeUndefined()
@@ -54,7 +52,8 @@ describe('networks', () => {
 
   it('can deploy to registered custom network', async () => {
     registerCustomNetwork(chain, network_definition)
-    processes.push(exec(`npx hardhat node --config ${configFile(chain)} --port ${port}`))
+    const configFile = writeHardhatConfigAt([chain], deploymentDir)
+    processes.push(startHardhatNode(chain, port, configFile))
     await waitOn({resources: [providerURL], timeout: 10_000})
     const deploy = Deploy.from(config)
     await deploy.to(chain)

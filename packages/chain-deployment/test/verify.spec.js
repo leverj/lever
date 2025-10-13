@@ -10,13 +10,10 @@ import {rmSync} from 'node:fs'
 import waitOn from 'wait-on'
 import {configureContracts} from './help.js'
 
-describe('verify', () => {
-  let config
+const config = await configure(schema, postLoad, {env: {NODE_ENV: 'test'}})
+configureContracts(config)
 
-  before(async () => {
-    config = await configure(schema, postLoad, {env: {NODE_ENV: 'test'}})
-    configureContracts(config)
-  })
+describe('verify', () => {
 
   beforeEach(() => rmSync(`${config.deploymentDir}/test`, {recursive: true, force: true}))
 

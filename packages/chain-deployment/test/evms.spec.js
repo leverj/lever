@@ -8,7 +8,7 @@ import {configureContracts} from './help.js'
 configureContracts(config)
 
 describe('evms', () => {
-  const chains = ['chain-1', 'chain-2']
+  const chains = ['chain1', 'chain2']
   let evms
 
   beforeEach(async () => evms = await Evms.start(chains, config))

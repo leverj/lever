@@ -4,32 +4,29 @@ import {isAddress, JsonRpcProvider, Wallet} from 'ethers'
 import {expect} from 'expect'
 import {Map} from 'immutable'
 import {cloneDeep} from 'lodash-es'
-import {exec} from 'node:child_process'
 import {rmSync} from 'node:fs'
 import {setTimeout} from 'node:timers/promises'
 import waitOn from 'wait-on'
 import {Create3Factory} from '../src/create3.js'
 import config from '../config.js'
-import {configDir, configFile, configureContracts, establishChains} from './help.js'
+import {configureContracts, establishChainsAt, startHardhatNode} from './help.js'
 
 configureContracts(config)
 
 describe('deploy', () => {
-  const chains = ['chain-1', 'chain-2']
+  const chains = ['chain1', 'chain2']
   let deploy, processes = []
 
-  before(() => establishChains(chains))
-
   beforeEach(async () => {
-    rmSync(`${config.deploymentDir}/test`, {recursive: true, force: true})
-    chains.forEach(_ => processes.push(exec(`npx hardhat node --config ${configFile(_)} --port ${networks[_].id}`)))
+    const deploymentDir = `${config.deploymentDir}/test`
+    rmSync(deploymentDir, {recursive: true, force: true})
+    const configFile = establishChainsAt(chains, deploymentDir)
+    chains.forEach(_ => processes.push(startHardhatNode(_, networks[_].id, configFile)))
     for (let each of chains) await waitOn({resources: [networks[each].providerURL], timeout: 10_000})
     deploy = Deploy.from(config)
   })
 
   afterEach(async () => { for (let each of processes) await killProcess(each) })
-
-  after(() => rmSync(configDir, {recursive: true, force: true}))
 
   it('can deploy contracts to each chain', async () => {
     for (let chain of chains) {
