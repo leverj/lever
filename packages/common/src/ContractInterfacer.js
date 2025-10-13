@@ -5,15 +5,11 @@ export const extractEvent = (receipt, name, iface) => receipt.logs.
   filter(_ => !!_).
   find(_ => _.name === name)?.args.toObject()
 
-const defaultOnReceipt = _ => {
-  if (_.error) console.error(_.error)
-  return _
-}
-
 export class ContractInterfacer {
-  constructor(contract, errorDecoder) {
+  constructor(contract, errorDecoder, logger = console) {
     this.contract = contract
     this.errorDecoder = errorDecoder
+    this.logger = logger
   }
   get interface() { return this.contract.interface }
   get runner() { return this.contract.runner }
@@ -28,7 +24,7 @@ export class ContractInterfacer {
     return this
   }
 
-  async transact(f, onReceipt = defaultOnReceipt) {
+  async transact(f, onReceipt = _ => { if (_.error) this.logger.error(_.error); return _ }) {
     return this._transact_(f).then(_ => onReceipt(_))
   }
 
@@ -39,8 +35,9 @@ export class ContractInterfacer {
         {success: true, receipt} : // => successful transaction
         {error: `${receipt.status}: shit happens 🤷`} //fixme: see if we need more detailed reason
     } catch (e) {
+      this.logger.error(e)
       const {reason, type, signature, args} = await this.errorDecoder.decode(e)
-      console.log(`${signature} : ${stringify(args, {collectionStyle: 'flow'})}`)
+      this.logger.log(`${signature} : ${stringify(args, {collectionStyle: 'flow'})}`)
       return {error: `${type}: ${reason}`}
     }
   }
