@@ -1060,10 +1060,10 @@ __metadata:
     ethers: "npm:^6.15.0"
     glob: "npm:^11.0.3"
     hardhat: "npm:^3.0.7"
-    immutable: "npm:^5.1.3"
+    immutable: "npm:^5.1.4"
     lodash-es: "npm:^4.17.21"
     solc: "npm:0.8.30"
-    viem: "npm:^2.38.0"
+    viem: "npm:^2.38.1"
     wait-on: "npm:^9.0.1"
   languageName: unknown
   linkType: soft
@@ -1078,7 +1078,7 @@ __metadata:
     "@openzeppelin/contracts": "npm:^5.4.0"
     async-exit-hook: "npm:^2.0.1"
     ethers: "npm:^6.15.0"
-    immutable: "npm:^5.1.3"
+    immutable: "npm:^5.1.4"
     lodash-es: "npm:^4.17.21"
   languageName: unknown
   linkType: soft
@@ -1088,7 +1088,7 @@ __metadata:
   resolution: "@leverj/lever.common@workspace:packages/common"
   dependencies:
     ethers: "npm:^6.15.0"
-    immutable: "npm:^5.1.3"
+    immutable: "npm:^5.1.4"
     lodash-es: "npm:^4.17.21"
     randomhex: "npm:^0.1.5"
     tree-kill: "npm:^1.2.2"
@@ -1114,7 +1114,7 @@ __metadata:
   resolution: "@leverj/lever.storage@workspace:packages/storage"
   dependencies:
     "@leverj/lever.common": "npm:5.2.16"
-    immutable: "npm:^5.1.3"
+    immutable: "npm:^5.1.4"
     lodash-es: "npm:^4.17.21"
     p-wait-for: "npm:^6.0.0"
     watcher: "npm:^2.3.1"
@@ -4795,10 +4795,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"immutable@npm:^5.1.3":
-  version: 5.1.3
-  resolution: "immutable@npm:5.1.3"
-  checksum: 10c0/f094891dcefb9488a84598376c9218ebff3a130c8b807bda3f6b703c45fe7ef238b8bf9a1eb9961db0523c8d7eb116ab6f47166702e4bbb1927ff5884157cd97
+"immutable@npm:^5.1.4":
+  version: 5.1.4
+  resolution: "immutable@npm:5.1.4"
+  checksum: 10c0/f1c98382e4cde14a0b218be3b9b2f8441888da8df3b8c064aa756071da55fbed6ad696e5959982508456332419be9fdeaf29b2e58d0eadc45483cc16963c0446
   languageName: node
   linkType: hard
 
@@ -8146,9 +8146,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"viem@npm:^2.38.0":
-  version: 2.38.0
-  resolution: "viem@npm:2.38.0"
+"viem@npm:^2.38.1":
+  version: 2.38.1
+  resolution: "viem@npm:2.38.1"
   dependencies:
     "@noble/curves": "npm:1.9.1"
     "@noble/hashes": "npm:1.8.0"
@@ -8163,7 +8163,7 @@ __metadata:
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: 10c0/65d13718f6dd8f2de282c147c13700b7c057d855c02641ff1268a57f57963437df1f5bb71fb93e6df547d5e0a880990a9bea497ab2cbc26e89d0bf3e65976f6d
+  checksum: 10c0/16c063a2e7fc29d98be58bc2442b38094244feb996f41d679f2798cdad54ef703a554b18981e96b405f800e5807b6805d47c163fc816c3812bd3d5c5605a9b03
   languageName: node
   linkType: hard
 
