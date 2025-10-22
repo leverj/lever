@@ -18,6 +18,7 @@ export class SQLiteStore extends Store {
       entries: db.prepare(`SELECT * FROM ${type}`),
       clear: db.prepare(`DELETE FROM ${type}`),
     }
+    this.db = db
   }
 
   normalize(key) { return (Array.isArray(key) ? key : [key]).map(_ => _.toString()).join('::') }
@@ -42,6 +43,7 @@ export class SQLiteStore extends Store {
   entries() { return this.queries.entries.all().map(_ => [_.key, deserialize(_.value)]) }
   toObject() { return Map(this.entries()).toJS() }
   clear() { this.queries.clear.run() }
+  close() { if (this.db.isOpen) this.db.close() }
 }
 
 const deserialize = JSON.parse, serialize = _ => JSON.stringify(_, null, 2)
