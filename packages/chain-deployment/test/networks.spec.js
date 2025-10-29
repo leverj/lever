@@ -1,6 +1,7 @@
 import {blockscoutExplorerUrls, Deploy, networks, registerCustomNetwork} from '@leverj/lever.chain-deployment'
 import {killProcess} from '@leverj/lever.common'
 import {expect} from 'expect'
+import {Map} from 'immutable'
 import {first, last} from 'lodash-es'
 import {rmSync} from 'node:fs'
 import waitOn from 'wait-on'
@@ -51,9 +52,19 @@ describe('networks', () => {
     expect(blockscoutExplorerUrls[chainId].explorers[0].url).toEqual(blockExplorerURL)
   })
 
-  it('highest chainId < 10^9', async () => {
-    const chainIds = Object.values(networks).map(_ => _.id)
-    const highest = last(chainIds.sort())
+  const chainsById = Map(networks).mapEntries(([chain, _]) => [_.id, chain]).toJS()
+
+  it('highest mainnets chainId < 10^9', async () => {
+    const mainnets = Object.values(networks).filter(_ => !_.testnet).map(_ => _.id).sort().reverse()
+    const highest = first(mainnets)
+    expect(highest).toBeLessThan(BigInt(10 ** 9))
+    expect(highest).toEqual(999999999n)
+  })
+
+  it('highest testnets chainId < 10^9', async () => {
+    const testnets = Object.values(networks).filter(_ => _.testnet).map(_ => _.id).sort().reverse()
+    const highest = last(testnets.sort())
+    console.log('>'.repeat(50), highest)
     expect(highest).toBeLessThan(BigInt(10 ** 9))
     expect(highest).toEqual(999999999n)
   })
