@@ -1,6 +1,7 @@
 import {blockscoutExplorerUrls, Deploy, networks, registerCustomNetwork} from '@leverj/lever.chain-deployment'
 import {killProcess} from '@leverj/lever.common'
 import {expect} from 'expect'
+import {first, last} from 'lodash-es'
 import {rmSync} from 'node:fs'
 import waitOn from 'wait-on'
 import config from '../config.js'
@@ -48,6 +49,13 @@ describe('networks', () => {
     expect(networks[chain].providerURL).toEqual(providerURL)
     expect(networks[chain].blockExplorer.url).toEqual(blockExplorerURL)
     expect(blockscoutExplorerUrls[chainId].explorers[0].url).toEqual(blockExplorerURL)
+  })
+
+  it('highest chainId < 10^9', async () => {
+    const chainIds = Object.values(networks).map(_ => _.id)
+    const highest = last(chainIds.sort())
+    expect(highest).toBeLessThan(BigInt(10 ** 9))
+    expect(highest).toEqual(999999999n)
   })
 
   it('can deploy to registered custom network', async () => {

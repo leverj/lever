@@ -1,4 +1,5 @@
 export * from './affirm.js'
+export * from './Bitmask.js'
 export * from './cleanse.js'
 export * from './ContractInterfacer.js'
 export * from './Crypto.js'
