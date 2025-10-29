@@ -17,6 +17,7 @@ describe('SQLiteStore', () => {
         const storageDir = mkdtempSync(`${tmpdir()}/storage`)
         db = new DatabaseSync(type === 'in-memory' ? ':memory:' : `${storageDir}/db`)
       })
+
       beforeEach(() => store = new SQLiteStore(db, 'transfers'))
 
       it('can set & get & find & delete a simple key', () => {
@@ -75,6 +76,7 @@ describe('SQLiteStore', () => {
 
       describe('can store and get size & keys & values & entries (for simple & compound keys', () => {
         beforeEach(() => store.clear())
+
         it('simple', () => {
           for (let i = 0; i < size; i++) store.set(i, transfers[i])
           expect(Object.keys(store.toObject())).toHaveLength(size)
@@ -92,6 +94,12 @@ describe('SQLiteStore', () => {
           expect(store.values()).toHaveLength(size)
           expect(store.entries()).toHaveLength(size)
         })
+      })
+
+      it('[simple key] can store and update arrays', async () => {
+      })
+
+      it('[composite key] can store and update arrays', async () => {
       })
 
       it('can update values within a deeply nested object', async () => {
