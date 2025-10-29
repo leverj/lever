@@ -18,19 +18,20 @@
     "@leverj/lever.common": "5.2.22",
     "@leverj/lever.storage": "5.2.22",
     "@nomicfoundation/hardhat-ethers": "^4.0.2",
-    "@nomicfoundation/hardhat-mocha": "^3.0.3",
+    "@nomicfoundation/hardhat-mocha": "^3.0.4",
     "@nomicfoundation/hardhat-network-helpers": "^3.0.1",
     "@nomicfoundation/hardhat-verify": "^3.0.4",
     "ethers": "^6.15.0",
     "glob": "^11.0.3",
-    "hardhat": "^3.0.8",
+    "hardhat": "^3.0.9",
     "immutable": "^5.1.4",
     "lodash-es": "^4.17.21",
     "solc": "0.8.30",
-    "viem": "^2.38.3"
+    "viem": "^2.38.5"
   },
   "devDependencies": {
     "@leverj/lever.config": "5.2.22",
     "wait-on": "^9.0.1"
-  }
+  },
+  "gitHead": "54e6a81168fb7437905400a7e6a1faa979f99a0b"
 }

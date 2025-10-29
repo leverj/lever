@@ -1054,16 +1054,16 @@ __metadata:
     "@leverj/lever.config": "npm:5.2.22"
     "@leverj/lever.storage": "npm:5.2.22"
     "@nomicfoundation/hardhat-ethers": "npm:^4.0.2"
-    "@nomicfoundation/hardhat-mocha": "npm:^3.0.3"
+    "@nomicfoundation/hardhat-mocha": "npm:^3.0.4"
     "@nomicfoundation/hardhat-network-helpers": "npm:^3.0.1"
     "@nomicfoundation/hardhat-verify": "npm:^3.0.4"
     ethers: "npm:^6.15.0"
     glob: "npm:^11.0.3"
-    hardhat: "npm:^3.0.8"
+    hardhat: "npm:^3.0.9"
     immutable: "npm:^5.1.4"
     lodash-es: "npm:^4.17.21"
     solc: "npm:0.8.30"
-    viem: "npm:^2.38.3"
+    viem: "npm:^2.38.5"
     wait-on: "npm:^9.0.1"
   languageName: unknown
   linkType: soft
@@ -1126,7 +1126,7 @@ __metadata:
   resolution: "@leverj/lever.telegram@workspace:packages/telegram"
   dependencies:
     "@leverj/lever.common": "npm:5.2.22"
-    axios: "npm:^1.12.2"
+    axios: "npm:^1.13.1"
   languageName: unknown
   linkType: soft
 
@@ -1135,7 +1135,7 @@ __metadata:
   resolution: "@leverj/lever.zka@workspace:packages/zka"
   dependencies:
     "@leverj/lever.common": "npm:5.2.22"
-    axios: "npm:^1.12.2"
+    axios: "npm:^1.13.1"
     ephemeral-cache: "npm:^1.1.0"
     ethers: "npm:^6.15.0"
     lodash-es: "npm:^4.17.21"
@@ -1360,19 +1360,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nomicfoundation/hardhat-mocha@npm:^3.0.3":
-  version: 3.0.3
-  resolution: "@nomicfoundation/hardhat-mocha@npm:3.0.3"
+"@nomicfoundation/hardhat-mocha@npm:^3.0.4":
+  version: 3.0.4
+  resolution: "@nomicfoundation/hardhat-mocha@npm:3.0.4"
   dependencies:
     "@nomicfoundation/hardhat-errors": "npm:^3.0.3"
     "@nomicfoundation/hardhat-utils": "npm:^3.0.1"
     "@nomicfoundation/hardhat-zod-utils": "npm:^3.0.0"
     chalk: "npm:^5.3.0"
-    hardhat: "npm:^3.0.8"
+    hardhat: "npm:^3.0.9"
     mocha: "npm:^11.0.0"
     tsx: "npm:^4.19.3"
     zod: "npm:^3.23.8"
-  checksum: 10c0/12c06018cc44c5a44b2aa15568330f9a8c9b95e188d01be8b14e70c44f0e52d3a14bc5e81183da5319c9c467798bf631c7fb3ed863e1c39d388c8ae67e31a74e
+  checksum: 10c0/01aa303defcda58136563c6f1e4f09c317c8abcfb70ae43c9364c401554ec49f6b255db6fd09a7b16a0de3e1222d2d8243822fdc7eb75cf1c83d84a50bf11919
   languageName: node
   linkType: hard
 
@@ -2701,6 +2701,17 @@ __metadata:
     form-data: "npm:^4.0.4"
     proxy-from-env: "npm:^1.1.0"
   checksum: 10c0/80b063e318cf05cd33a4d991cea0162f3573481946f9129efb7766f38fde4c061c34f41a93a9f9521f02b7c9565ccbc197c099b0186543ac84a24580017adfed
+  languageName: node
+  linkType: hard
+
+"axios@npm:^1.13.1":
+  version: 1.13.1
+  resolution: "axios@npm:1.13.1"
+  dependencies:
+    follow-redirects: "npm:^1.15.6"
+    form-data: "npm:^4.0.4"
+    proxy-from-env: "npm:^1.1.0"
+  checksum: 10c0/de9c3c6de43d3ee1146d3afe78645f19450cac6a5d7235bef8b8e8eeb705c2e47e2d231dea99cecaec4dae1897c521118ca9413b9d474063c719c4d94c5b9adc
   languageName: node
   linkType: hard
 
@@ -4482,9 +4493,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"hardhat@npm:^3.0.8":
-  version: 3.0.8
-  resolution: "hardhat@npm:3.0.8"
+"hardhat@npm:^3.0.9":
+  version: 3.0.9
+  resolution: "hardhat@npm:3.0.9"
   dependencies:
     "@nomicfoundation/edr": "npm:0.12.0-next.7"
     "@nomicfoundation/hardhat-errors": "npm:^3.0.3"
@@ -4507,7 +4518,7 @@ __metadata:
     zod: "npm:^3.23.8"
   bin:
     hardhat: dist/src/cli.js
-  checksum: 10c0/ae2e194127cb157bb4f2a30265a5b2e03a3f498b15a24b323a1e4ab897bfe3d5542fbe31298c2f33a93f19b459ec1b7e5bbfdc2a6476b9535c6ecb952d338c52
+  checksum: 10c0/831af421e4783e470e231647fb86e9ceb15e9f0d2240595432d6aaa1c6f04c51c755ff75c9182983745d174b537470d58ea1ece74c52f46ab7c4adb99b61dc81
   languageName: node
   linkType: hard
 
@@ -8049,9 +8060,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"viem@npm:^2.38.3":
-  version: 2.38.3
-  resolution: "viem@npm:2.38.3"
+"viem@npm:^2.38.5":
+  version: 2.38.5
+  resolution: "viem@npm:2.38.5"
   dependencies:
     "@noble/curves": "npm:1.9.1"
     "@noble/hashes": "npm:1.8.0"
@@ -8066,7 +8077,7 @@ __metadata:
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: 10c0/ec69d641d26e64e793883021618ca0d5c833d4807c53201ff0441c1e8369cbc12079fc08edfb4e69c8e75ec47ff80058b989916cbc257770dc8c430e320e1428
+  checksum: 10c0/e616399270126b7099420fbfd766cf1b040cbaee5a130952cfaebaf6e66042d9dbe5a1e20fc2f6fa4afc171a0f82715c7fd051a7f47093b201719313c0f20d33
   languageName: node
   linkType: hard
 
