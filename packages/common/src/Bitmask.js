@@ -1,5 +1,5 @@
 export class Bitmask {
-  static practical_bits_limit = 1073741822
+  static practical_bits_limit = 1073741822n
 
   static with(bits) { return new this().write(bits)  }
 
@@ -41,14 +41,16 @@ export class Bitmask {
   size() { return this.count() }
 
   validate(bit) {
-    if (!Number.isInteger(bit)) throw TypeError('bit must be an integer')
-    if (bit < 0) throw RangeError('bit must be >= 0')
+    bit = BigInt(bit)
+    if (!Number.isInteger(Number(bit))) throw TypeError('bit must be an integer')
+    if (bit < 0n) throw RangeError('bit must be >= 0')
     if (bit > Bitmask.practical_bits_limit) throw RangeError(`value must be <= ${Bitmask.practical_bits_limit}`)
+    return bit
   }
 
   has(bit) {
-    this.validate(bit)
-    return ((this.mask >> BigInt(bit)) & 1n) === 1n
+    bit = this.validate(bit)
+    return ((this.mask >> bit) & 1n) === 1n
   }
   includes(bit) { return this.has(bit) }
   contains(bit) { return this.has(bit) }
@@ -73,23 +75,23 @@ export class Bitmask {
   }
 
   set(bit) {
-    this.validate(bit)
-    this.mask |= (1n << BigInt(bit))
+    bit = this.validate(bit)
+    this.mask |= (1n << bit)
     return this
   }
   add(bit) { return this.set(bit) }
 
   unset(bit) {
-    this.validate(bit)
-    this.mask &= ~(1n << BigInt(bit))
+    bit = this.validate(bit)
+    this.mask &= ~(1n << bit)
     return this
   }
   clear(bit) { return this.unset(bit) }
   remove(bit) { return this.unset(bit) }
 
   toggle(bit) {
-    this.validate(bit)
-    this.mask ^= (1n << BigInt(bit))
+    bit = this.validate(bit)
+    this.mask ^= (1n << bit)
     return this
   }
 

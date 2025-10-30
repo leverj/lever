@@ -120,8 +120,8 @@ describe('Bitmask', () => {
     const big = Bitmask.practical_bits_limit
     bitmask.set(big)
     expect(bitmask.has(big)).toBe(true)
-    expect(bitmask.has(big - 1)).toBe(false)
-    expect(bitmask.getHighest()).toBe(big)
+    expect(bitmask.has(big - 1n)).toBe(false)
+    expect(bitmask.getHighest()).toBe(Number(big))
   })
 
   it('performs out of range checks', () => {
@@ -129,7 +129,7 @@ describe('Bitmask', () => {
     expect(() => bitmask.set(-1)).toThrow(RangeError)
     expect(() => bitmask.set(0)).not.toThrow(RangeError)
     expect(() => bitmask.has(Bitmask.practical_bits_limit)).not.toThrow(RangeError)
-    expect(() => bitmask.has(Bitmask.practical_bits_limit + 1)).toThrow(RangeError)
+    expect(() => bitmask.has(Bitmask.practical_bits_limit + 1n)).toThrow(RangeError)
   })
 
   it('toString supports radix formatting', () => {
