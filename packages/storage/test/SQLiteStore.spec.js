@@ -96,6 +96,12 @@ describe('SQLiteStore', () => {
         })
       })
 
+      it('[simple key] can store and update arrays', async () => {
+      })
+
+      it('[composite key] can store and update arrays', async () => {
+      })
+
       it('can update values within a deeply nested object', async () => {
         const {default: _networks_} = await import('./fixtures/networks.json', {with: {type: 'json'}})
         const networks = cloneDeep(_networks_)

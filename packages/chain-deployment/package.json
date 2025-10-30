@@ -32,6 +32,5 @@
   "devDependencies": {
     "@leverj/lever.config": "5.2.23",
     "wait-on": "^9.0.1"
-  },
-  "gitHead": "54e6a81168fb7437905400a7e6a1faa979f99a0b"
+  }
 }

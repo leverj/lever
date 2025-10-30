@@ -1087,7 +1087,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@leverj/lever.common@workspace:packages/common"
   dependencies:
+    bitset: "npm:^5.2.3"
     ethers: "npm:^6.15.0"
+    hibitset-js: "npm:^1.0.4"
     immutable: "npm:^5.1.4"
     lodash-es: "npm:^4.17.21"
     randomhex: "npm:^0.1.5"
@@ -2746,6 +2748,13 @@ __metadata:
     read-cmd-shim: "npm:^5.0.0"
     write-file-atomic: "npm:^6.0.0"
   checksum: 10c0/7ef087164b13df1810bf087146880a5d43d7d0beb95c51ec0664224f9371e1ca0de70c813306de6de173fb1a3fd0ca49e636ba80c951a70ce6bd7cbf48daf075
+  languageName: node
+  linkType: hard
+
+"bitset@npm:^5.2.3":
+  version: 5.2.3
+  resolution: "bitset@npm:5.2.3"
+  checksum: 10c0/6d1fc2fe686a28f1a13d5bb8ee56899c348b800272af19938caf75e2ad68e037a037e292fc6c8de43ffa4d19be20267c88ffd6a7240eae5d7d7aadd02f14a7e2
   languageName: node
   linkType: hard
 
@@ -4577,6 +4586,13 @@ __metadata:
   bin:
     he: bin/he
   checksum: 10c0/a27d478befe3c8192f006cdd0639a66798979dfa6e2125c6ac582a19a5ebfec62ad83e8382e6036170d873f46e4536a7e795bf8b95bf7c247f4cc0825ccc8c17
+  languageName: node
+  linkType: hard
+
+"hibitset-js@npm:^1.0.4":
+  version: 1.0.4
+  resolution: "hibitset-js@npm:1.0.4"
+  checksum: 10c0/76321442d1447abb59f802ecb44a8e7c3cacc33e256e0200aad399dc19670c1e0f4e74b595eeb65268f9dcff6b3b5cb376a66b1919b7ab9890c0b6c473c51e97
   languageName: node
   linkType: hard
 
