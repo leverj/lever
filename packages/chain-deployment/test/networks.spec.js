@@ -1,8 +1,7 @@
 import {blockscoutExplorerUrls, Deploy, networks, registerCustomNetwork} from '@leverj/lever.chain-deployment'
 import {killProcess} from '@leverj/lever.common'
 import {expect} from 'expect'
-import {Map} from 'immutable'
-import {first, last} from 'lodash-es'
+import {last} from 'lodash-es'
 import {rmSync} from 'node:fs'
 import waitOn from 'wait-on'
 import config from '../config.js'
@@ -52,21 +51,21 @@ describe('networks', () => {
     expect(blockscoutExplorerUrls[chainId].explorers[0].url).toEqual(blockExplorerURL)
   })
 
-  const chainsById = Map(networks).mapEntries(([chain, _]) => [_.id, chain]).toJS()
-
-  it('highest mainnets chainId < 10^9', async () => {
-    const mainnets = Object.values(networks).filter(_ => !_.testnet).map(_ => _.id).sort().reverse()
-    const highest = first(mainnets)
-    expect(highest).toBeLessThan(BigInt(10 ** 9))
-    expect(highest).toEqual(999999999n)
-  })
-
-  it('highest testnets chainId < 10^9', async () => {
-    const testnets = Object.values(networks).filter(_ => _.testnet).map(_ => _.id).sort().reverse()
-    const highest = last(testnets.sort())
-    console.log('>'.repeat(50), highest)
-    expect(highest).toBeLessThan(BigInt(10 ** 9))
-    expect(highest).toEqual(999999999n)
+  it('networks cardinality', async () => {
+    {
+      const mainnets = Object.values(networks).filter(_ => !_.testnet)
+      expect(mainnets).toHaveLength(374)
+      const highest = last(mainnets.map(_ => _.id).sort())
+      expect(highest).toBeLessThan(BigInt(10 ** 9))
+      expect(highest).toEqual(9999999n)
+    }
+    {
+      const testnets = Object.values(networks).filter(_ => _.testnet)
+      expect(testnets).toHaveLength(281)
+      const highest = last(testnets.map(_ => _.id).sort())
+      expect(highest).toBeLessThan(BigInt(10 ** 9))
+      expect(highest).toEqual(999999999n)
+    }
   })
 
   it('can deploy to registered custom network', async () => {
