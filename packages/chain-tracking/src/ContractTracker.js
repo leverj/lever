@@ -52,7 +52,6 @@ export class ContractTracker {
     this.logger.log(`stopping tracker [${this.key}]`)
     this.isRunning = false
     if (this.pollingTimer) clearTimeout(this.pollingTimer)
-    this.store.close()
   }
 
   fail(e) {
