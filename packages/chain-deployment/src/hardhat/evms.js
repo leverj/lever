@@ -1,12 +1,12 @@
 import {killProcess, uint} from '@leverj/lever.common'
 import {configure} from '@leverj/lever.config'
 import {JsonFileStore} from '@leverj/lever.storage'
-import {JsonRpcProvider} from 'ethers'
+import {Contract, JsonRpcProvider} from 'ethers'
 import {rmSync} from 'node:fs'
 import waitOn from 'wait-on'
 import {postLoad, schema} from '../../config.schema.js'
 import {Deploy, networks} from '../Deploy.js'
-import {establishChainsAt, startHardhatNode} from './help.js'
+import {artifacts, establishChainsAt, startHardhatNode} from './help.js'
 
 export class Evms {
   static async ensureConfig(config) {
@@ -29,6 +29,7 @@ export class Evms {
     rmSync(this.deploymentDir, {recursive: true, force: true})
     this.configFile = establishChainsAt(chains, this.deploymentDir)
   }
+  get chainIds() { return this.chains.map(_ => networks[_].id) }
   get logger() { return this.config.logger }
   get store() { return new JsonFileStore(this.deploymentDir, '.evms') }
   get deployed() { return this.store.toObject() }
@@ -39,6 +40,16 @@ export class Evms {
       provider: new JsonRpcProvider(_.providerURL),
       contracts: _.contracts,
     }))
+  }
+
+  contracts(chain) { return this.deployed[chain].contracts }
+  provider(chain) { return new JsonRpcProvider(this.deployed[chain].providerURL) }
+
+  async getContractIn(name, chain, wallet) {
+    const address = this.contracts(this.primaryChain)[name].address
+    const {abi} = await artifacts.readArtifact(name)
+    const provider = this.provider(chain)
+    return new Contract(address, abi, wallet ? wallet.connect(provider) : provider)
   }
 
   async start() {

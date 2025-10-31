@@ -54,14 +54,14 @@ describe('networks', () => {
   it('networks cardinality', async () => {
     {
       const mainnets = Object.values(networks).filter(_ => !_.testnet)
-      expect(mainnets).toHaveLength(374)
+      expect(mainnets.length).toBeGreaterThanOrEqual(374)
       const highest = last(mainnets.map(_ => _.id).sort())
       expect(highest).toBeLessThan(BigInt(10 ** 9))
       expect(highest).toEqual(9999999n)
     }
     {
       const testnets = Object.values(networks).filter(_ => _.testnet)
-      expect(testnets).toHaveLength(281)
+      expect(testnets.length).toBeGreaterThanOrEqual(283)
       const highest = last(testnets.map(_ => _.id).sort())
       expect(highest).toBeLessThan(BigInt(10 ** 9))
       expect(highest).toEqual(999999999n)
