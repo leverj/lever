@@ -1,4 +1,4 @@
-import {killProcess, uint} from '@leverj/lever.common'
+import {killProcess} from '@leverj/lever.common'
 import {configure} from '@leverj/lever.config'
 import {JsonFileStore} from '@leverj/lever.storage'
 import {Contract, JsonRpcProvider, Wallet} from 'ethers'
