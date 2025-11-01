@@ -1,7 +1,7 @@
 import {killProcess, uint} from '@leverj/lever.common'
 import {configure} from '@leverj/lever.config'
 import {JsonFileStore} from '@leverj/lever.storage'
-import {Contract, JsonRpcProvider} from 'ethers'
+import {Contract, JsonRpcProvider, Wallet} from 'ethers'
 import {rmSync} from 'node:fs'
 import waitOn from 'wait-on'
 import {postLoad, schema} from '../../config.schema.js'
@@ -25,6 +25,7 @@ export class Evms {
   constructor(chains, config) {
     this.chains = chains
     this.config = config
+    this.deployer = new Wallet(config.deployer.privateKey)
     this.deploymentDir = `${config.deploymentDir}/${config.env}`
     rmSync(this.deploymentDir, {recursive: true, force: true})
     this.configFile = establishChainsAt(chains, this.deploymentDir)
@@ -33,14 +34,6 @@ export class Evms {
   get logger() { return this.config.logger }
   get store() { return new JsonFileStore(this.deploymentDir, '.evms') }
   get deployed() { return this.store.toObject() }
-  get deployments() {
-    return this.store.values().map(_ => ({
-      id: uint(_.id),
-      chain: _.chain,
-      provider: new JsonRpcProvider(_.providerURL),
-      contracts: _.contracts,
-    }))
-  }
 
   contracts(chain) { return this.deployed[chain].contracts }
   provider(chain) { return new JsonRpcProvider(this.deployed[chain].providerURL) }
@@ -82,12 +75,8 @@ export class Evms {
     const deploy = Deploy.from(this.config)
     for (let chain of this.chains) {
       await deploy.to(chain, options)
-      //fixme: snapshot:
-      // npx hardhat node --save
-      // npx hardhat node --load
     }
     await postDeploy(options)
-    //fixme: now snapshot if required
     return this
   }
 }
