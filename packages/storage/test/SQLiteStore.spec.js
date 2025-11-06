@@ -97,9 +97,29 @@ describe('SQLiteStore', () => {
       })
 
       it('[simple key] can store and update arrays', async () => {
+        const tracker = {}
+        for (let each of transfers) {
+          const {account} = each
+          if (!store.has(account)) tracker[account] = []
+          store.update(account, each, [])
+          tracker[account] = tracker[account].concat(each)
+        }
+        expect(Object.keys(tracker).length).toEqual(store.size())
+        expect(tracker).toMatchObject(store.toObject())
       })
 
       it('[composite key] can store and update arrays', async () => {
+        const tracker = {}
+        for (let each of transfers) {
+          const {account, from, txId} = each
+          const key = [account, from]
+          const compound_key = key.join('::')
+          if (!store.has(key)) tracker[compound_key] = []
+          store.update(key, txId, [])
+          tracker[compound_key] = tracker[compound_key].concat(txId)
+        }
+        expect(Object.keys(tracker).length).toEqual(store.size())
+        expect(tracker).toMatchObject(store.toObject())
       })
 
       it('can update values within a deeply nested object', async () => {
