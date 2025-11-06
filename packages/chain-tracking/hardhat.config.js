@@ -1,7 +1,7 @@
 import {default as chain_config} from '@leverj/lever.chain-deployment/hardhat.config'
 import {merge} from 'lodash-es'
 
-const hardhat_root = process.env.HARDHAT_ROOT
+const hardhat_root = '../chain-deployment'
 
 export default merge({}, chain_config, {
   paths: {
