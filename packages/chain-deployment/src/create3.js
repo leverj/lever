@@ -130,6 +130,7 @@ export const deployViaCreate3Factory = async (name, params, contractFactory, dep
     return {name, address, blockCreated}
   }
 
+  this.logger.log(`[create3] deploying ${name} contract `.padEnd(120, '.'))
   const {maxFeePerGas, maxPriorityFeePerGas} = await provider.getFeeData()
   const receipt = await deployer.sendTransaction({
     to: Create3Factory.contractAddress,
