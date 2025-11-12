@@ -1,7 +1,7 @@
 import {Contract, getAddress, solidityPackedKeccak256, ZeroAddress, ZeroHash} from 'ethers'
 import {setTimeout} from 'node:timers/promises'
 
-export {getAddress, verifyMessage, isAddress} from 'ethers'
+export {getAddress, verifyMessage, verifyTypedData, isAddress} from 'ethers'
 
 BigInt.prototype.toJSON = function () { return this.toString() }
 BigInt.fromBuffer = function (buffer) {
