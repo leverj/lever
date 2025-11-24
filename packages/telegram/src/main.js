@@ -28,6 +28,11 @@ export class Telegram {
     await this.sendText(text).catch(logger.error)
   }
 
+  async logInfo(message) {
+    const text = `__*${this.appInfo}*__\n\n${message}`
+    await this.sendText(text).catch(logger.error)
+  }
+
   async sendText(text) {
     if (!this.chatId || !this.tokenId) throw Error('TELEGRAM MESSAGE:' + text)
     const url = `https://api.telegram.org/bot${this.tokenId}/sendMessage`
