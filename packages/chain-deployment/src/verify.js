@@ -56,6 +56,6 @@ const flattenContractSource = async (name) => artifacts.readArtifact(name).
   then(_ => {
     const source_path = _.inputSourceName.replace('project', config.paths.root)
     const flattened_path = `${tmpdir()}/${name}.sol`
-    execSync(`npx hardhat flatten ${source_path} | awk '/SPDX-License-Identifier/&&c++>0 {next} 1' > ${flattened_path}`)
+    execSync(`npx hardhat flatten ${source_path} > ${flattened_path}`)
     return flattened_path
   })

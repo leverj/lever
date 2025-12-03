@@ -51,6 +51,7 @@ export const getCreationTransaction = async (provider, blockNumber, address) => 
   for (let each of block.transactions) {
     const receipt = await provider.getTransactionReceipt(each)
     if (receipt.contractAddress === address) return receipt.getTransaction()
+    await setTimeout(100) // meter-out requests
   }
   return null
 }
