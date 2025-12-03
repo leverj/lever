@@ -12,7 +12,7 @@
     "@leverj/lever.common": "5.2.30",
     "axios": "^1.13.2",
     "ephemeral-cache": "^1.1.0",
-    "ethers": "^6.15.0",
+    "ethers": "^6.16.0",
     "lodash-es": "^4.17.21",
     "socket.io-client": "^4.8.1"
   },
