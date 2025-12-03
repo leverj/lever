@@ -15,7 +15,7 @@ const getSourceCode = (name) => {
   const sources = glob.sync(`${paths.sources}/**/*.sol`)
   const source_path = sources.find(_ => _.endsWith(`/${name}.sol`))
   const flattened_path = `${tmpdir()}/${name}.sol`
-  execSync(`npx hardhat flatten ${source_path} | awk '/SPDX-License-Identifier/&&c++>0 {next} 1' > ${flattened_path}`)
+  execSync(`npx hardhat flatten ${source_path}' > ${flattened_path}`)
   return flattened_path
 }
 
