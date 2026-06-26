@@ -1,0 +1,137 @@
+version: 2.1
+
+# Continuation pipeline for the dynamic-config setup in `.circleci/config.yml`.
+# The setup pipeline's path-filtering step diffs HEAD against origin/main and sets
+# the boolean `run-*` parameters below; each workflow here fires only when its
+# package changed (or `run-all` for base-package / root / lockfile / CI changes).
+# This stops CI from spawning a container for every package on every push.
+#
+# `common` has no dedicated run-* parameter: it's depended on by every other
+# package, so any change under packages/common/ sets `run-all`, which fires every
+# workflow (its own included). The other base packages (config, storage,
+# chain-deployment) expand to their dependents in the setup mapping.
+
+parameters:
+  run-config: { type: boolean, default: false }
+  run-storage: { type: boolean, default: false }
+  run-chain-deployment: { type: boolean, default: false }
+  run-chain-tracking: { type: boolean, default: false }
+  run-telegram: { type: boolean, default: false }
+  run-zka: { type: boolean, default: false }
+  # whole-repo dependency:check; set by any package or root change
+  run-depcheck: { type: boolean, default: false }
+  # set by common / root / lockfile / CI changes — fires every workflow below
+  run-all: { type: boolean, default: false }
+
+docker-image: &docker-image
+  docker:
+    - image: cimg/node:22.15.0
+
+commands:
+  install:
+    description: Immutable install of all workspaces (internal deps are symlinked).
+    steps:
+      - run:
+          name: yarn install --immutable
+          command: yarn install --immutable
+
+  skip-if-docs-only:
+    description: >
+      Halt the job with success when every file changed (vs the merge-base with
+      main) matches a docs pattern (*.md / .dev/** / LICENSE). Fails open — any
+      error falls through to running the job. Guards against package-local doc
+      changes (e.g. packages/common/README.md) over-triggering run-all.
+    steps:
+      - run:
+          name: Skip if docs-only
+          command: |
+            set -e
+            if [ "$CIRCLE_BRANCH" = "main" ]; then
+              BASE_SHA=$(git rev-parse HEAD~1 2>/dev/null || true)
+            else
+              git fetch origin main --depth=50 --quiet 2>/dev/null || true
+              BASE_SHA=$(git merge-base HEAD origin/main 2>/dev/null || true)
+            fi
+            if [ -z "$BASE_SHA" ] || ! git cat-file -e "$BASE_SHA" 2>/dev/null; then
+              echo "No usable base SHA; running job."; exit 0
+            fi
+            CHANGED=$(git diff --name-only --no-renames "$BASE_SHA" HEAD)
+            if [ -z "$CHANGED" ]; then echo "No changed files vs $BASE_SHA; running job."; exit 0; fi
+            NON_DOC=$(echo "$CHANGED" | grep -vE '(^|/)[^/]+\.md$|^\.dev/|^LICENSE$' || true)
+            if [ -n "$NON_DOC" ]; then echo "Non-doc changes detected; running job."; exit 0; fi
+            echo "Docs-only commit (all changes match *.md / .dev/** / LICENSE):"
+            echo "$CHANGED" | sed 's/^/  /'
+            echo "Skipping job."
+            circleci-agent step halt
+
+jobs:
+  unit-tests:
+    parameters:
+      package: { type: string }
+    <<: *docker-image
+    steps:
+      - checkout
+      - skip-if-docs-only
+      - install
+      - run:
+          name: test
+          working_directory: packages/<< parameters.package >>
+          command: yarn test
+
+  dependency-check:
+    <<: *docker-image
+    steps:
+      - checkout
+      - skip-if-docs-only
+      - install
+      - run:
+          name: dependency:check
+          command: yarn dependency:check
+
+workflows:
+  common:
+    when: << pipeline.parameters.run-all >>
+    jobs:
+      - unit-tests: { name: 🧪 common, package: common }
+
+  config:
+    when:
+      or: [ << pipeline.parameters.run-config >>, << pipeline.parameters.run-all >> ]
+    jobs:
+      - unit-tests: { name: 🧪 config, package: config }
+
+  storage:
+    when:
+      or: [ << pipeline.parameters.run-storage >>, << pipeline.parameters.run-all >> ]
+    jobs:
+      - unit-tests: { name: 🧪 storage, package: storage }
+
+  telegram:
+    when:
+      or: [ << pipeline.parameters.run-telegram >>, << pipeline.parameters.run-all >> ]
+    jobs:
+      - unit-tests: { name: 🧪 telegram, package: telegram }
+
+  zka:
+    when:
+      or: [ << pipeline.parameters.run-zka >>, << pipeline.parameters.run-all >> ]
+    jobs:
+      - unit-tests: { name: 🧪 zka, package: zka }
+
+  chain-deployment:
+    when:
+      or: [ << pipeline.parameters.run-chain-deployment >>, << pipeline.parameters.run-all >> ]
+    jobs:
+      - unit-tests: { name: 🧪 chain-deployment, package: chain-deployment }
+
+  chain-tracking:
+    when:
+      or: [ << pipeline.parameters.run-chain-tracking >>, << pipeline.parameters.run-all >> ]
+    jobs:
+      - unit-tests: { name: 🧪 chain-tracking, package: chain-tracking }
+
+  checks:
+    when:
+      or: [ << pipeline.parameters.run-depcheck >>, << pipeline.parameters.run-all >> ]
+    jobs:
+      - dependency-check: { name: 🔎 dependency-check }
