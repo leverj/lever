@@ -1,10 +1,73 @@
 version: 2.1
+setup: true
+
+# CircleCI dynamic-config setup pipeline.
+#
+# Instead of spawning a container for every package on every push, this setup
+# pipeline diffs HEAD against origin/main and emits boolean `run-*` parameters for
+# the package paths that actually changed, then continues to
+# `.circleci/continue-config.yml`, where each workflow fires only when its
+# parameter (or `run-all`) is set. Unchanged packages never spawn a container.
+#
+# lever is a pure library monorepo (no servers / UI / e2e), so every job runs on a
+# cloud `cimg/node` executor — no self-hosted runner needed (unlike gallery/ezel,
+# which use the mac-mini for cypress/IPFS).
+#
+# Internal dependency graph (everything fans into `common`):
+#   common, config         -> base (no internal deps)
+#   storage, telegram, zka -> common
+#   chain-deployment       -> common, storage, config
+#   chain-tracking         -> common, storage, chain-deployment
+# The mapping below therefore expands each change to its DEPENDENTS (a change in
+# `common` retests everything via run-all; `storage` retests itself +
+# chain-deployment + chain-tracking). For the same reason we deliberately do NOT
+# use gallery's subtree `skip-if-already-green` — a package's tests depend on
+# sibling subtrees that may be unchanged, so a tree-hash green-skip would wrongly
+# skip a dependent. `skip-if-docs-only` (in continue-config) still halts docs-only
+# spawns (e.g. a packages/*/README.md change that over-triggers run-all).
+
+orbs:
+  path-filtering: circleci/path-filtering@3.0.0
+  continuation: circleci/continuation@1.0.0
+
+workflows:
+  setup:
+    jobs:
+      - filter-and-continue
 
 jobs:
-  build:
+  filter-and-continue:
     docker:
-      - image: cimg/node:22.15.0
+      - image: cimg/python:3.12
+    resource_class: small
     steps:
       - checkout
-      - run: yarn
-      - run: yarn test
+      - path-filtering/set-parameters:
+          base-revision: origin/main
+          config-path: .circleci/continue-config.yml
+          output-path: /tmp/pipeline-parameters.json
+          # path  ->  parameter  ->  value. path-filtering applies EVERY matching
+          # rule, so a single change can set multiple params (dependents).
+          mapping: |
+            packages/common/.*            run-all                true
+            packages/config/.*            run-config             true
+            packages/config/.*            run-chain-deployment   true
+            packages/config/.*            run-chain-tracking     true
+            packages/storage/.*           run-storage            true
+            packages/storage/.*           run-chain-deployment   true
+            packages/storage/.*           run-chain-tracking     true
+            packages/chain-deployment/.*  run-chain-deployment   true
+            packages/chain-deployment/.*  run-chain-tracking     true
+            packages/chain-tracking/.*    run-chain-tracking     true
+            packages/telegram/.*          run-telegram           true
+            packages/zka/.*               run-zka                true
+            packages/.*                   run-depcheck           true
+            ^package\.json$               run-all                true
+            ^yarn\.lock$                  run-all                true
+            ^lerna\.json$                 run-all                true
+            ^\.yarnrc\.yml$               run-all                true
+            ^scripts/.*                   run-all                true
+            ^\.circleci/.*                run-all                true
+      - continuation/continue:
+          configuration_path: .circleci/continue-config.yml
+          parameters: /tmp/pipeline-parameters.json

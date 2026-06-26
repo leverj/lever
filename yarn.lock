@@ -1233,7 +1233,6 @@ __metadata:
     hardhat-deploy-ethers: "npm:^0.4.2"
     immutable: "npm:^5.1.3"
     lodash-es: "npm:^4.17.21"
-    solc: "npm:^0.8.30"
     viem: "npm:^2.36.0"
     wait-on: "npm:^8.0.4"
   languageName: unknown
@@ -8600,23 +8599,6 @@ __metadata:
   bin:
     solcjs: solc.js
   checksum: 10c0/1eea35da99c228d0dc1d831c29f7819e7921b67824c889a5e5f2e471a2ef5856a15fabc0b5de067f5ba994fa36fb5a563361963646fe98dad58a0e4fa17c8b2d
-  languageName: node
-  linkType: hard
-
-"solc@npm:^0.8.30":
-  version: 0.8.30
-  resolution: "solc@npm:0.8.30"
-  dependencies:
-    command-exists: "npm:^1.2.8"
-    commander: "npm:^8.1.0"
-    follow-redirects: "npm:^1.12.1"
-    js-sha3: "npm:0.8.0"
-    memorystream: "npm:^0.3.1"
-    semver: "npm:^5.5.0"
-    tmp: "npm:0.0.33"
-  bin:
-    solcjs: solc.js
-  checksum: 10c0/1f6e303b81dccac87278602f85ae626ef6c044979fcc46ee3e469868eb0dac4201b3d1f1e7cae84baf492e9c3cf3549d505c9f330f319f4e8eb9fc5db346602e
   languageName: node
   linkType: hard
 
