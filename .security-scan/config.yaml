@@ -1,0 +1,59 @@
+# leverj/security-scan — DETERMINISTIC lanes for leverj/lever
+# Consumed by the `leverj:security-scan` skill + the Docker image.
+# Schema v4 (image v0.5.1). LLM lanes (codex/claude/gemma) live in config-llm.yaml.
+# Mirrors the gallery setup, retargeted to leverj/lever (4.x `main`) + board #8.
+
+repo: leverj/lever
+ref: main
+
+project:
+  owner: leverj
+  number: 8
+
+github_token_env: GITHUB_TOKEN
+
+secrets:
+  source: env            # GITHUB_TOKEN from `gh auth token`; flip to 1password + env_file if needed
+  env_file: null
+
+slack:
+  enabled: true          # posts a per-run summary; requires SLACK_WEBHOOK_URL in the CI context
+  webhook_url_env: SLACK_WEBHOOK_URL
+
+scanners:
+  osv: true
+  gitleaks: true
+  semgrep: true
+  trivy: true
+  trufflehog: true
+  syft: true
+  supply_chain: false   # Socket.dev lockfile analysis; needs SOCKET_API_KEY (off)
+
+image_scan:
+  base_images: true     # lever ships no Dockerfiles, so this is a no-op; kept for parity
+  built_image:
+    enabled: false
+    ref: null
+    build_locally: false
+  timeout: 600
+
+supabase:
+  enabled: false         # lever isn't Supabase-backed
+  url_env: SUPABASE_DB_URL
+  host_env: null
+  db_env: null
+  user_env: null
+  password_env: null
+  port: 5432
+  sslmode: require
+  connect_timeout: 10
+  query_timeout_ms: 30000
+  checks: null
+
+# Supply-chain lane tunables (only used when scanners.supply_chain is true).
+supply_chain:
+  vendor: socket
+  binary: socket
+  api_key_env: SOCKET_API_KEY
+  timeout: 600
+  issue_types: []        # [] = accept all Socket issue types

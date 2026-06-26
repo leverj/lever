@@ -1,0 +1,56 @@
+# leverj/security-scan-llm — LLM SAST lanes for leverj/lever
+# Consumed by the `leverj:security-scan-llm` skill + the host-side
+# security-scan-llm CLI. Independent from config.yaml (deterministic).
+# Schema v2 (tool v0.3.0). Files into the same Projects v2 board (#8).
+# Mirrors the gallery setup, retargeted to leverj/lever (4.x `main`).
+#
+# Active lanes: codex + claude (both cloud, on subscription), cross-referencing
+# each other. Add an `ollama` lane on a bigger box.
+
+repo: leverj/lever
+ref: main
+
+project:
+  owner: leverj
+  number: 8
+
+github_token_env: GITHUB_TOKEN
+
+severity_floor: low
+
+paths:
+  exclude: []
+
+# Each lane is an LLM that scans the repo; any two lanes cross-reference each
+# other. backend: codex-cli | claude-cli | ollama. name = scanner label / rule
+# prefix (so a lane named `qwen` files findings as `qwen.*`).
+lanes:
+  - name: codex
+    backend: codex-cli
+    model: null              # null => the codex CLI default
+    timeout: 1200
+    validate_timeout: 300
+
+  - name: claude
+    backend: claude-cli
+    model: claude-sonnet-4-6
+    timeout: 1200
+    validate_timeout: 300
+
+  # Enable on a bigger host:
+  # - name: qwen
+  #   backend: ollama
+  #   model: qwen2.5-coder:32b
+  #   base_url: http://localhost:11434   # MUST be loopback or RFC1918
+  #   timeout: 1800
+
+cross_validate:
+  enabled: true              # each finding reviewed by a different lane (needs ≥2 lanes)
+
+triage:
+  enabled: false
+  intro_enabled: true
+  prose_enabled: false
+  fuzzy_dup_enabled: false
+  timeout: 600
+  prewarm: true

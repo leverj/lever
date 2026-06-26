@@ -30,10 +30,31 @@ orbs:
   path-filtering: circleci/path-filtering@3.0.0
   continuation: circleci/continuation@1.0.0
 
+# Set true ONLY by the `nightly-security-scan` scheduled pipeline (created via the
+# CircleCI API — see .dev/ci-security-scan.md). On a normal push it defaults false,
+# so the `setup` workflow runs and `security-scan` is skipped. When the schedule
+# sets it true, `setup` is skipped (no path-filtering / continuation) and
+# `security-scan` runs the leverj/security-scan image against the checkout, filing
+# deduplicated findings into GitHub Project #8.
+parameters:
+  run-security-scan:
+    type: boolean
+    default: false
+
 workflows:
   setup:
+    when:
+      not: << pipeline.parameters.run-security-scan >>
     jobs:
       - filter-and-continue
+
+  security-scan:
+    when: << pipeline.parameters.run-security-scan >>
+    jobs:
+      - security-scan:
+          # Reuses the org-level `ezel-security-scan` context (leverj org). Its
+          # SECURITY_SCAN_TOKEN PAT must also grant lever repo + Project #8.
+          context: [ezel-security-scan]
 
 jobs:
   filter-and-continue:
@@ -71,3 +92,36 @@ jobs:
       - continuation/continue:
           configuration_path: .circleci/continue-config.yml
           parameters: /tmp/pipeline-parameters.json
+
+  # Nightly deterministic security scan (leverj/security-scan Docker image) against
+  # the checked-out tree, filing deduplicated findings into GitHub Project #8. Runs
+  # on the self-hosted mac mini (resource_class leverj/macos); Colima provides the
+  # Docker runtime. `brew shellenv` is required because the runner's task shell is
+  # non-login, so /opt/homebrew/bin (colima, docker) is otherwise off PATH. Secrets
+  # come from the `ezel-security-scan` context — see .dev/ci-security-scan.md.
+  security-scan:
+    machine: true
+    resource_class: leverj/macos
+    steps:
+      - checkout
+      - run:
+          name: Ensure container runtime (Colima) is up
+          command: |
+            eval "$(/opt/homebrew/bin/brew shellenv)"
+            colima status >/dev/null 2>&1 || colima start --cpu 4 --memory 8 --disk 60
+      - run:
+          name: Run leverj/security-scan → Project #8
+          no_output_timeout: 30m
+          command: |
+            eval "$(/opt/homebrew/bin/brew shellenv)"
+            # Fail loud if the config didn't make it into the clone — the scanner
+            # image exits 0 on a missing config, which would otherwise pass silently.
+            test -f .security-scan/config.yaml || { echo "ERROR: .security-scan/config.yaml not in checkout"; exit 1; }
+            docker pull -q leverj/security-scan:latest
+            docker run --rm \
+              -v "${PWD}/.security-scan:/config:ro" \
+              -v "${PWD}:/work" \
+              -e GITHUB_TOKEN="${SECURITY_SCAN_TOKEN}" \
+              -e SLACK_WEBHOOK_URL="${SLACK_WEBHOOK_URL:-}" \
+              leverj/security-scan:latest \
+              --repo-dir /work
