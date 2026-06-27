@@ -1,0 +1,13 @@
+{
+  "enabledPlugins": {
+    "leverj@leverj-ai-skills": true
+  },
+  "extraKnownMarketplaces": {
+    "leverj-ai-skills": {
+      "source": {
+        "source": "github",
+        "repo": "leverj/ai-skills"
+      }
+    }
+  }
+}
