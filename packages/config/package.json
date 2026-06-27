@@ -9,7 +9,7 @@
     "dependency:check": "npx depcheck"
   },
   "dependencies": {
-    "convict": "^6.2.4",
+    "convict": "^6.2.5",
     "convict-format-with-validator": "^6.2.0",
     "dotenv": "^17.2.1",
     "dotenv-expand": "^12.0.2",
