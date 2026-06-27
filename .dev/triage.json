@@ -1,0 +1,18 @@
+{
+  "source": "project",
+  "project": { "number": 8, "owner": "leverj" },
+  "baseBranch": "main",
+  "preCommitGate": null,
+  "duplicateRule": "same-advisory-id-only",
+  "assignFollowUpsTo": "@me",
+  "ecosystems": {
+    "js": {
+      "manifestGlob": "**/package.json",
+      "lockfile": "yarn.lock",
+      "updateCommand": "yarn up {dep}@{version}",
+      "testCommand": "yarn test",
+      "separatePR": true,
+      "alwaysRunSecurityReview": true
+    }
+  }
+}
