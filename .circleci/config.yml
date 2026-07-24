@@ -108,7 +108,29 @@ jobs:
           name: Ensure container runtime (Colima) is up
           command: |
             eval "$(/opt/homebrew/bin/brew shellenv)"
-            colima status >/dev/null 2>&1 || colima start --cpu 4 --memory 8 --disk 60
+            # Self-heal a wedged Colima VM. A plain `colima start` bails when the
+            # instance is half-dead ("vz driver is running but host agent is not"),
+            # which silently failed all three nightly scans on 2026-07-24. So: if
+            # Colima isn't healthy, try to start; on failure force-stop (SIGKILLs the
+            # vz driver and clears stale pid/socks, preserving the image cache) and
+            # retry; last resort delete + recreate. Then hard-gate on a live Docker.
+            start()   { colima start --cpu 4 --memory 8 --disk 60; }
+            healthy() { colima status >/dev/null 2>&1 && docker info >/dev/null 2>&1; }
+            if healthy; then
+              echo "Colima already up."
+            else
+              start || {
+                echo "colima start failed — force-stopping wedged instance and retrying."
+                colima stop -f 2>/dev/null || true
+                start || {
+                  echo "retry failed — deleting and recreating the Colima instance."
+                  colima delete -f 2>/dev/null || true
+                  start
+                }
+              }
+            fi
+            docker info >/dev/null 2>&1 || { echo "ERROR: Docker unavailable after Colima recovery"; exit 1; }
+            echo "Docker ready: $(docker version --format '{{.Server.Version}}')"
       - run:
           name: Run leverj/security-scan → Project #8
           no_output_timeout: 30m
