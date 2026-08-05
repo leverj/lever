@@ -2,7 +2,7 @@ import {JsonFileStore} from '@leverj/lever.storage'
 import {Map} from 'immutable'
 import {default as hardhat} from 'hardhat'
 import {cloneDeep} from 'lodash-es'
-import {execSync} from 'node:child_process'
+import {execFileSync} from 'node:child_process'
 import {setTimeout} from 'node:timers/promises'
 import {inspect} from 'node:util'
 import * as networksByChain from 'viem/chains'
@@ -71,7 +71,7 @@ export class Deploy {
 
   compileContracts() {
     this.logger.log(`compiling contracts `.padEnd(120, '.'))
-    execSync(`npx hardhat compile --quiet --config ${process.cwd()}/hardhat.config.cjs`)
+    execFileSync('npx', ['hardhat', 'compile', '--quiet', '--config', `${process.cwd()}/hardhat.config.cjs`])
   }
 
   async deployContracts(chain, options) {
