@@ -32,14 +32,14 @@ describe('ContractTracker - selective tracking', () => {
     await tracker.poll()
     expect(await contract.balances(account, token.target)).toEqual(0n)
     // expectEventsToMatch(events, [])
-    expectEventsToMatch(events, [
+    await expectEventsToMatch(events, [
       {address: token.target, name: 'Transfer', args: [ETH, account.address, 1000n]},
     ])
 
     await contract.connect(account).deposit(token.target, 1000n).then(_ => _.wait()) // => Transfer(from, to, value)
     expect(await contract.balances(account, token.target)).toEqual(1000n)
     await tracker.poll()
-    expectEventsToMatch(events, [
+    await expectEventsToMatch(events, [
       {address: token.target, name: 'Transfer', args: [ETH, account.address, 1000n]},
       {address: token.target, name: 'Transfer', args: [account.address, contract.target, 1000n]},
     ])
@@ -47,7 +47,7 @@ describe('ContractTracker - selective tracking', () => {
     await contract.connect(account).withdraw(token.target, 1000n / 10n).then(_ => _.wait())
     expect(await contract.balances(account, token.target)).toEqual(1000n / 10n * 9n)
     await tracker.poll()
-    expectEventsToMatch(events, [
+    await expectEventsToMatch(events, [
       {address: token.target, name: 'Transfer', args: [ETH, account.address, 1000n]},
       {address: token.target, name: 'Transfer', args: [account.address, contract.target, 1000n]},
       {address: token.target, name: 'Transfer', args: [contract.target, account.address, 100n]},
@@ -62,7 +62,7 @@ describe('ContractTracker - selective tracking', () => {
     await contract.connect(account).withdraw(token.target, 1000n / 10n).then(_ => _.wait())
     await tracker.start()
     await setTimeout(10)
-    expectEventsToMatch(events, [
+    await expectEventsToMatch(events, [
       {address: token.target, name: 'Transfer', args: [ETH, account.address, 1000n]},
       {address: token.target, name: 'Transfer', args: [account.address, contract.target, 1000n]},
       {address: token.target, name: 'Transfer', args: [contract.target, account.address, 100n]},
