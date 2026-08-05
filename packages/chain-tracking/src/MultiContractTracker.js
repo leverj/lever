@@ -60,10 +60,15 @@ export class MultiContractTracker {
   }
 
   async addContract(contract, kind) {
+    if (!this.isRunning) {
+      this._addContract_(contract, kind)
+      return this.scheduleToOnboard(contract.target, kind)
+    }
+    // resolve the creation block before registering: once registered, the running poller can see the
+    // contract, and anything it emits from lastBlock onwards would be emitted again by onboard's catchup
+    const creationBlock = await getCreationBlock(this.provider, contract.target, 100)
     this._addContract_(contract, kind)
-    return this.isRunning ?
-      this.onboard(contract, await getCreationBlock(this.provider, contract.target, 100)) :
-      this.scheduleToOnboard(contract.target, kind)
+    return this.onboard(contract, creationBlock)
   }
 
   scheduleToOnboard(address, kind) {
