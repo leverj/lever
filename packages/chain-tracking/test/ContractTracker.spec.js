@@ -24,18 +24,18 @@ describe('ContractTracker - with InMemoryCompoundKeyStore', () => {
 
   it('can track events when polling', async () => {
     const address = contract.target
-    expectEventsToMatch(events, [])
+    await expectEventsToMatch(events, [])
 
     await contract.mint(account.address, 1000n) // => Transfer(from, to, value)
     await tracker.poll()
-    expectEventsToMatch(events, [
+    await expectEventsToMatch(events, [
       {address, name: 'Transfer', args: [ETH, account.address, 1000n]},
     ])
 
     await contract.mint(account.address, 2000n) // => Transfer(from, to, value)
     await contract.approve(contract.target, 5000n) // => Approval(owner, spender, value)
     await tracker.poll()
-    expectEventsToMatch(events, [
+    await expectEventsToMatch(events, [
       {address, name: 'Transfer', args: [ETH, account.address, 1000n]},
       {address, name: 'Transfer', args: [ETH, account.address, 2000n]},
       {address, name: 'Approval', args: [deployer.address, contract.target, 5000n]},
@@ -49,7 +49,7 @@ describe('ContractTracker - with InMemoryCompoundKeyStore', () => {
     await contract.mint(account.address, 2000n) // => Transfer(from, to, value)
     await tracker.start()
     await setTimeout(10)
-    expectEventsToMatch(events, [
+    await expectEventsToMatch(events, [
       {address, name: 'Transfer', args: [ETH, account.address, 1000n]},
       {address, name: 'Approval', args: [deployer.address, contract.target, 5000n]},
       {address, name: 'Transfer', args: [ETH, account.address, 2000n]},
