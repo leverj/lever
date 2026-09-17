@@ -57,3 +57,16 @@ supply_chain:
   api_key_env: SOCKET_API_KEY
   timeout: 600
   issue_types: []        # [] = accept all Socket issue types
+
+# Findings whose file path matches any pattern here are dropped at normalize time
+# (prefix match, or fnmatch when the pattern contains * ? [ ).
+paths:
+  exclude:
+    # Trufflehog repeatedly fires its `Circle` detector on the `.promisor` sidecar
+    # files that the scan container's own partial-clone fetch writes into
+    # .git/objects/pack/. They are scanner artifacts, not repo content — no
+    # .promisor file is ever committed, and this repo isn't a partial clone.
+    # Filed and closed 8 times: #294 #295 #298 #306 #314 #353 #377 #383.
+    # Deliberately scoped to *.promisor only — excluding all of .git/ would blind
+    # trufflehog to real secrets in git history.
+    - "/work/.git/objects/pack/*.promisor"
