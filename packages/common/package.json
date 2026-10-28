@@ -1,6 +1,6 @@
 {
   "name": "@leverj/lever.common",
-  "version": "4.9.1",
+  "version": "4.9.2",
   "license": "MIT",
   "type": "module",
   "exports": {
@@ -34,5 +34,5 @@
   "devDependencies": {
     "randomhex": "^0.1.5"
   },
-  "gitHead": "4a8394b76c2cb17429ae9a27835ab80179149f06"
+  "gitHead": "469656241d22b1d95a4124c58f63f94aa21d5f44"
 }

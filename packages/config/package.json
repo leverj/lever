@@ -1,6 +1,6 @@
 {
   "name": "@leverj/lever.config",
-  "version": "4.9.1",
+  "version": "4.9.2",
   "license": "MIT",
   "type": "module",
   "main": "src/main.js",
@@ -15,5 +15,5 @@
     "dotenv-expand": "^12.0.2",
     "lodash-es": "^4.17.21"
   },
-  "gitHead": "4a8394b76c2cb17429ae9a27835ab80179149f06"
+  "gitHead": "469656241d22b1d95a4124c58f63f94aa21d5f44"
 }
