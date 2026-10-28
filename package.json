@@ -32,7 +32,7 @@
     "postcss": "8.5.23",
     "follow-redirects": "1.16.1",
     "cookie": "0.7.2",
-    "undici": "6.28.0",
+    "undici": "6.29.1",
     "serialize-javascript": "7.0.5",
     "immutable@npm:^4.0.0-rc.12": "4.3.9",
     "minimatch@npm:^10.0.3": "10.2.3",
