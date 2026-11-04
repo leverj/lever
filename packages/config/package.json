@@ -14,5 +14,8 @@
     "dotenv-expand": "^12.0.2",
     "lodash-es": "^4.17.21"
   },
+  "devDependencies": {
+    "@leverj/lever.common": "4.9.2"
+  },
   "gitHead": "469656241d22b1d95a4124c58f63f94aa21d5f44"
 }

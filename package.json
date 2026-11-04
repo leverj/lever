@@ -23,8 +23,7 @@
     "knip": "^6.43.0",
     "lerna": "^9.0.7",
     "mocha": "^11.7.1",
-    "sinon": "^21.0.0",
-    "yargs": "^18.0.0"
+    "sinon": "^21.0.0"
   },
   "resolutions": {
     "elliptic": "6.6.1",
