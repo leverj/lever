@@ -5,8 +5,7 @@
   "type": "module",
   "main": "src/main.js",
   "scripts": {
-    "test": "npx mocha",
-    "dependency:check": "npx depcheck"
+    "test": "npx mocha"
   },
   "dependencies": {
     "convict": "^6.2.5",

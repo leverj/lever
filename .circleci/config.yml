@@ -83,6 +83,7 @@ jobs:
             packages/telegram/.*          run-telegram           true
             packages/zka/.*               run-zka                true
             packages/.*                   run-depcheck           true
+            ^knip\.json$                  run-depcheck           true
             ^package\.json$               run-all                true
             ^yarn\.lock$                  run-all                true
             ^lerna\.json$                 run-all                true

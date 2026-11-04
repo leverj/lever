@@ -1,0 +1,21 @@
+{
+  "$schema": "https://unpkg.com/knip@6/schema.json",
+  "workspaces": {
+    ".": {
+      "ignoreDependencies": ["yargs"]
+    },
+    "packages/chain-deployment": {
+      "entry": ["config/*.js", "scripts/*.js", "test/**/*.spec.js"]
+    },
+    "packages/chain-tracking": {
+      "entry": ["hardhat.config.cjs"],
+      "ignoreDependencies": ["@openzeppelin/contracts"]
+    },
+    "packages/config": {
+      "ignoreDependencies": ["@leverj/lever.common"]
+    },
+    "packages/storage": {
+      "ignoreDependencies": ["ethers"]
+    }
+  }
+}
