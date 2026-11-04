@@ -1,9 +1,0 @@
-{
-  "ignore-patterns": [
-    "test"
-  ],
-  "ignores": [
-    "@leverj/lever.chain-deployment",
-    "wait-on"
-  ]
-}

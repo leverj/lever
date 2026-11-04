@@ -21,8 +21,7 @@
     "./until": "./src/until.js"
   },
   "scripts": {
-    "test": "npx mocha",
-    "dependency:check": "npx depcheck"
+    "test": "npx mocha"
   },
   "dependencies": {
     "ethers": "^6.15.0",
