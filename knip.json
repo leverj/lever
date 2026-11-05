@@ -1,5 +1,8 @@
 {
   "$schema": "node_modules/knip/schema.json",
+  "ignoreBinaries": [
+    "op"
+  ],
   "workspaces": {
     "packages/chain-deployment": {
       "entry": [

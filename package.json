@@ -16,7 +16,7 @@
     "publish:patch": "up=patch yarn publish:up",
     "publish:minor": "up=minor yarn publish:up",
     "publish:major": "up=major yarn publish:up",
-    "publish:up": "lerna version $up --force-publish --exact --git-tag-version --push --yes && lerna publish from-git --yes"
+    "publish:up": "node scripts/publish.js $up"
   },
   "devDependencies": {
     "expect": "^30.1.1",
